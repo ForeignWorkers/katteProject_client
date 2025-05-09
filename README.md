@@ -14,3 +14,23 @@
 
 --- 
 
+## 🛠 사용 툴
+
+### 💻 개발 언어 및 프레임워크
+- <img src="./README_resource/java.png" width="20"/> **Java [21]**
+- <img src="./README_resource/springboot.png" width="20"/> **Spring Boot**
+- <img src="./README_resource/sql.png" width="20"/> **SQL**
+- <img src="./README_resource/html.png" width="20"/> **HTML**
+- <img src="./README_resource/css.png" width="20"/> **CSS**
+- <img src="./README_resource/mybatis.png" width="20"/> **MyBatis**
+
+### 🧰 사용한 도구
+- <img src="./README_resource/eclipse.png" width="20"/> **Eclipse**
+- <img src="./README_resource/intellij.png" width="20"/> **IntelliJ IDEA**
+- <img src="./README_resource/github.png" width="20"/> **GitHub (Fork)**
+- <img src="./README_resource/trello.png" width="20"/> **Trello**
+- <img src="./README_resource/figma.png" width="20"/> **Figma**
+
+### ☁️ 인프라 관련
+- <img src="./README_resource/aws.png" width="20"/> **AWS**
+- <img src="./README_resource/azure.png" width="20"/> **Azure**
