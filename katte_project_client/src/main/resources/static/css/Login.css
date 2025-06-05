@@ -1,0 +1,559 @@
+.wrapper {
+  transform-origin: top left;
+  width: 100%;
+  min-height: 83vh; /* 100vh * 0.83 */
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  transform-origin: top left;
+  height: 100%;
+  background-color: #181818;
+}
+* {
+  box-sizing: border-box;
+}
+.login {
+  background: #181818;
+  height: 918px; /* 1080 * 0.85 */
+  position: relative;
+  overflow: hidden;
+}
+.line-136 {
+  width: 204.88px; /* 241.03 * 0.85 */
+  height: 0px;
+  position: absolute;
+  left: -607.33px; /* -714.5 * 0.85 */
+  top: 174.25px; /* 205 * 0.85 */
+  overflow: visible;
+}
+.group-767 {
+  height: auto;
+  position: absolute;
+  left: -106.25px; /* -125 * 0.85 */
+  top: -88.4px;   /* -104 * 0.85 */
+  overflow: visible;
+}
+.div {
+  position: absolute;
+  inset: 0;
+}
+.side-menu {
+  width: 227.8px; /* 268 * 0.85 */
+  height: 884.85px; /* 1041 * 0.85 */
+  position: absolute;
+  left: 42.5px; /* 50 * 0.85 */
+  top: 19.55px; /* 23 * 0.85 */
+}
+.div2 {
+  color: #787878;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 12.75px; /* 15 * 0.85 */
+  line-height: 34px; /* 40 * 0.85 */
+  font-weight: 400;
+  position: absolute;
+  left: 59.76px; /* 70.31 * 0.85 */
+  top: 804.95px; /* 947 * 0.85 */
+  width: 176.55px; /* 207.71 * 0.85 */
+  height: 42.5px; /* 50 * 0.85 */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.logomain {
+  width: 112.2px; /* 132 * 0.85 */
+  height: 136.85px; /* 161 * 0.85 */
+  position: absolute;
+  left: 887.4px; /* 1044 * 0.85 */
+  top: 106.25px; /* 125 * 0.85 */
+  object-fit: cover;
+  aspect-ratio: 132/161;
+}
+.group-956 {
+  position: absolute;
+  inset: 0;
+}
+/* .rectangle-1667 {
+  background: #181818;
+  border-radius: 34px; 40 * 0.85
+  border-style: solid;
+  border-color: #ccc9c9;
+  border-width: 1.7px; 2 * 0.85
+  width: 425px; 500 * 0.85
+  height: 59.5px; 70 * 0.85
+  position: absolute;
+  left: 731px; 860 * 0.85
+  top: 290.7px; 342 * 0.85
+} */
+/* .id {
+  color: rgba(249, 238, 238, 0.8);
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 20.4px; 24 * 0.85
+  line-height: 34px; 40 * 0.85
+  font-weight: 400;
+  position: absolute;
+  left: 752.25px; 885 * 0.85
+  top: 306.85px; 361 * 0.85
+  width: 247.35px; 291 * 0.85
+  height: 28.9px; 34 * 0.85
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+} */
+.group-957 {
+  position: absolute;
+  inset: 0;
+}
+/* .rectangle-16672 {
+  background: #181818;
+  border-radius: 34px;
+  border-style: solid;
+  border-color: #ccc9c9;
+  border-width: 1.7px;
+  width: 425px;
+  height: 59.5px;
+  position: absolute;
+  left: 731px;
+  top: 369.75px; 435 * 0.85
+} */
+.input-group {
+  margin-bottom: 18px;
+  /* 원하는 위치 맞춰서 margin/width 조정 */
+}
+
+.input-id {
+  position: absolute;
+  left: 731px;
+  top: 290.7px;
+  width: 425px;
+  height: 59.5px;
+  border-radius: 34px;
+  border: 1.7px solid #ccc9c9;
+  background: #181818;
+  color: #f9eeee;
+  font-size: 20.4px;
+  padding-left: 28px;
+  outline: none;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  z-index: 2;
+}
+.input-id::placeholder {
+  color: rgba(249, 238, 238, 0.8);
+}
+
+.input-pw {
+  position: absolute;
+  left: 731px;
+  top: 369.75px;
+  width: 425px;
+  height: 59.5px;
+  border-radius: 34px;
+  border: 1.7px solid #ccc9c9;
+  background: #181818;
+  color: #f9eeee;
+  font-size: 20.4px;
+  padding-left: 28px;
+  outline: none;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  z-index: 2;
+}
+.input-pw::placeholder {
+  color: rgba(249, 238, 238, 0.8);
+}
+/* .password {
+  color: rgba(249, 238, 238, 0.8);
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 20.4px;
+  line-height: 34px;
+  font-weight: 400;
+  position: absolute;
+  left: 752.25px;
+  top: 385.9px; 454 * 0.85
+  width: 247.35px;
+  height: 28.9px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+} */
+.group-958 {
+  position: absolute;
+  inset: 0;
+}
+.rectangle-16673 {
+  background: #181818;
+  border-radius: 34px;
+  border-style: solid;
+  border-color: #ccc9c9;
+  border-width: 1.7px;
+  width: 204px; /* 240 * 0.85 */
+  height: 59.5px;
+  position: absolute;
+  left: 731px;
+  top: 479.4px; /* 564 * 0.85 */
+}
+.loginbtn {
+  color: #f9eeee ;
+  text-align: left;
+  font-family: "LineSeedSansKr-Bold", sans-serif;
+  font-size: 22.95px;
+  line-height: 34px;
+  font-weight: 700;
+  position: absolute;
+  left: 798.15px;
+  top: 494.7px;
+  width: 69.7px;
+  height: 28.9px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+    
+.findID {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 18.7px; /* 22 * 0.85 */
+  line-height: 34px;
+  font-weight: 400;
+  position: absolute;
+  left: 798.15px;
+  top: 560.15px; /* 659 * 0.85 */
+  align-items: center;
+  justify-content: flex-start;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+.findPW {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 18.7px;
+  line-height: 34px;
+  font-weight: 400;
+  position: absolute;
+  left: 998.9px; /* 1174 * 0.85 */
+  top: 560.15px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+.group-959 {
+  position: absolute;
+  inset: 0;
+}
+.rectangle-16674 {
+  background: #181818;
+  border-radius: 34px;
+  border-style: solid;
+  border-color: #ccc9c9;
+  border-width: 1.7px;
+  width: 425px;
+  height: 59.5px;
+  position: absolute;
+  left: 727.6px; /* 856 * 0.85 */
+  top: 626.45px; /* 737 * 0.85 */
+}
+.naverlog {
+  background: linear-gradient(to left, #181818, #181818);
+  width: 42.5px; /* 50 * 0.85 */
+  height: 42.5px;
+  position: absolute;
+  left: 748px; /* 880 * 0.85 */
+  top: 634.95px; /* 747 * 0.85 */
+  object-fit: cover;
+}
+.naverlogin {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 20.4px; /* 24 * 0.85 */
+  line-height: 34px;
+  font-weight: 400;
+  position: absolute;
+  left: 875.5px; /* 1030 * 0.85 */
+  top: 641.75px; /* 755 * 0.85 */
+  width: 142px; /* 167 * 0.85 */
+  height: 28.9px;
+  align-items: center;
+  justify-content: flex-start;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+.group-960 {
+  position: absolute;
+  inset: 0;
+}
+.rectangle-16675 {
+  background: #181818;
+  border-radius: 34px;
+  border-style: solid;
+  border-color: #ccc9c9;
+  border-width: 1.7px;
+  width: 425px;
+  height: 59.5px;
+  position: absolute;
+  left: 727.6px;
+  top: 702.95px; /* 827 * 0.85 */
+}
+.gglogo {
+  border-radius: 40.5px; /* 47.65 * 0.85 */
+  width: 33.15px; /* 39 * 0.85 */
+  height: 34px; /* 40 * 0.85 */
+  position: absolute;
+  left: 750.55px; /* 883 * 0.85 */
+  top: 715.7px; /* 842 * 0.85 */
+  object-fit: cover;
+  aspect-ratio: 39/40;
+}
+.gogglelogin {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 20.4px;
+  line-height: 34px;
+  font-weight: 400;
+  position: absolute;
+  left: 889.1px; /* 1046 * 0.85 */
+  top: 718.25px; /* 845 * 0.85 */
+  width: 113.9px; /* 134 * 0.85 */
+  height: 28.9px;
+ white-space: nowrap;
+  align-items: center;
+  justify-content: flex-start;
+    cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+.group-961 {
+  position: absolute;
+  inset: 0;
+}
+.rectangle-16676 {
+  background: #181818;
+  border-radius: 34px;
+  border-style: solid;
+  border-color: #ccc9c9;
+  border-width: 1.7px;
+  width: 425px;
+  height: 59.5px;
+  position: absolute;
+  left: 727.6px;
+  top: 779.45px; /* 917 * 0.85 */
+}
+.kakaologo {
+  border-radius: 4.25px; /* 5 * 0.85 */
+  width: 29.75px; /* 35 * 0.85 */
+  height: 29.75px;
+  position: absolute;
+  left: 750.55px;
+  top: 794.75px; /* 935 * 0.85 */
+  object-fit: cover;
+  aspect-ratio: 1;
+}
+.kakaologin {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 20.4px;
+  line-height: 34px;
+  font-weight: 400;
+  position: absolute;
+  left: 874.65px; /* 1029 * 0.85 */
+  top: 792.2px; /* 932 * 0.85 */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.div6 {
+  color: #787878;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 12.75px;
+  line-height: 34px;
+  font-weight: 400;
+  position: absolute;
+  left: 58.91px; /* 69.31 * 0.85 */
+  top: 803.25px; /* 945 * 0.85 */
+  width: 176.55px;
+  height: 42.5px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.all-copyright-in-soldesk {
+  color: #787878;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 12.75px;
+  line-height: 34px;
+  font-weight: 400;
+  position: absolute;
+  left: 58.91px;
+  top: 825.35px; /* 971 * 0.85 */
+  width: 176.55px;
+  height: 42.5px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.div7 {
+  width: 156.5px; /* 184.12 * 0.85 */
+  height: 48.45px; /* 57 * 0.85 */
+  position: static;
+}
+
+
+.sidebar {
+  position: fixed;
+  top: 1.649vh;
+  left: 2.1675vw;
+  width: 11.866vw;
+  padding: 0.884vw;
+  box-sizing: border-box;
+  background: #181818;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar .logo-1 {
+  width: 62.77px;
+  height: 76.5px;
+  object-fit: cover;
+  aspect-ratio: 73.85/90;
+  margin-bottom: 34px;
+}
+
+.sidebar-nav {
+  margin-bottom: 51px;
+}
+.sidebar-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.sidebar-nav ul li {
+  margin-bottom: 17px;
+}
+.sidebar-nav ul li a {
+  display: block;
+  text-decoration: none;
+  color: #f9eeee;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 22.1px;
+  line-height: 34px;
+}
+
+.login-area {
+  margin-bottom: 51px;
+}
+.btn-login {
+  width: 100%;
+  height: 48.45px;      /* 57 * 0.85 */
+  background: #ff0044;
+  border: none;
+  border-radius: 11.9px; /* 14 * 0.85 */
+  color: #fff4f4;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 21.25px;   /* 25 * 0.85 */
+  line-height: 48.45px;
+  cursor: pointer;
+  display: flex;                 /* 추가: 버튼처럼 가운데 정렬 */
+  align-items: center;           /* 추가: 수직 가운데 */
+  justify-content: center;       /* 추가: 수평 가운데 */
+  text-decoration: none;         /* 추가: a태그 밑줄 제거 */
+}
+
+.sidebar-footer {
+  margin-top: auto;
+  font-size: 12.75px;
+  color: #787878;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+}
+.sidebar-footer a {
+  color: #787878;
+  text-decoration: none;
+}
+.sidebar-footer p {
+  margin: 0 0 6.8px;
+}
+.sidebar-footer small {
+  display: block;
+  margin: 0;
+}
+
+.logo-12 {
+  width: 62.77px; /* 73.85 * 0.85 */
+  height: 76.5px; /* 90 * 0.85 */
+  position: absolute;
+  left: 124.95px; /* 147 * 0.85 */
+  top: 38.25px; /* 45 * 0.85 */
+  object-fit: cover;
+  aspect-ratio: 73.85/90;
+}
+
+.div10 { left: 66.3px; top: 241.4px; position: absolute; }   /* 78 * 0.85, 284 * 0.85 */
+.div11 { left: 66.3px; top: 292.4px; position: absolute; }
+.div12 { left: 68.85px; top: 343.4px; position: absolute; }
+.div13 { left: 68.85px; top: 394.4px; position: absolute; }
+.div14 { left: 68.85px; top: 445.4px; position: absolute; }
+.div15 { left: 66.3px; top: 190.4px; position: absolute; }
+.div16 { left: 66.3px; top: 139.4px; position: absolute; }
+.group-962 {
+  position: absolute;
+  inset: 0;
+}
+.rectangle-1668 {
+  background: #181818;
+  border-radius: 34px;
+  border-style: solid;
+  border-color: #ccc9c9;
+  border-width: 1.7px;
+  width: 204px;
+  height: 59.5px;
+  position: absolute;
+  left: 952px; /* 1120 * 0.85 */
+  top: 479.4px;
+}
+
+.sign-upbtn {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Bold", sans-serif;
+  font-size: 22.95px; /* 27 * 0.85 */
+  line-height: 34px;
+  font-weight: 700;
+  position: absolute;
+  left: 1021.2px; /* 1192 * 0.85 */
+  top: 493.7px;
+  width: 69.7px; /* 109 * 0.85 */
+  height: 28.9px;
+  white-space: nowrap;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}

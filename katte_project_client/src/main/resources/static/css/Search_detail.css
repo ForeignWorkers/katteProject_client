@@ -1,0 +1,1290 @@
+@charset "UTF-8";
+@charset "UTF-8";
+
+.wrapper {
+  width: 100%;
+  min-height: 83vh; /* 필요에 따라 100vh로 바꿀 수도 있어요 */
+  padding-left: 12vw; /* 사이드바 넓이(11.866vw)보다 조금 크게 */
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  transform-origin: top left;
+  height: 100%;
+  background-color: #181818;
+}
+* {
+  box-sizing: border-box;
+}
+.sidebar {
+  position: fixed;
+  top: 1.649vh;
+  left: 2.1675vw;
+  width: 11.866vw;
+  padding: 0.884vw;
+  box-sizing: border-box;
+  background: #181818;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar .logo-1 {
+  width: 62.77px;
+  height: 76.5px;
+  object-fit: cover;
+  aspect-ratio: 73.85/90;
+  margin-bottom: 34px;
+}
+
+.sidebar-nav {
+  margin-bottom: 51px;
+}
+.sidebar-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.sidebar-nav ul li {
+  margin-bottom: 17px;
+}
+.sidebar-nav ul li a {
+  display: block;
+  text-decoration: none;
+  color: #f9eeee;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 22.1px;
+  line-height: 34px;
+}
+
+.login-area {
+  margin-bottom: 51px;
+}
+.btn-login {
+  width: 100%;
+  height: 48.45px;      /* 57 * 0.85 */
+  background: #ff0044;
+  border: none;
+  border-radius: 11.9px; /* 14 * 0.85 */
+  color: #fff4f4;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 21.25px;   /* 25 * 0.85 */
+  line-height: 48.45px;
+  cursor: pointer;
+  display: flex;                 /* 추가: 버튼처럼 가운데 정렬 */
+  align-items: center;           /* 추가: 수직 가운데 */
+  justify-content: center;       /* 추가: 수평 가운데 */
+  text-decoration: none;         /* 추가: a태그 밑줄 제거 */
+}
+
+.sidebar-footer {
+  margin-top: auto;
+  font-size: 12.75px;
+  color: #787878;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+}
+.sidebar-footer a {
+  color: #787878;
+  text-decoration: none;
+}
+.sidebar-footer p {
+  margin: 0 0 6.8px;
+}
+.sidebar-footer small {
+  display: block;
+  margin: 0;
+}
+.line-136 {
+  width: 241.03px;
+  height: 0px;
+  position: absolute;
+  left: -714.5px;
+  top: 205px;
+  overflow: visible;
+}
+.group-767 {
+  height: auto;
+  position: absolute;
+  left: -125px;
+  top: -104px;
+  overflow: visible;
+}
+.div {
+  position: absolute;
+  inset: 0;
+}
+.rectangle-1568 {
+  background: #181818;
+  width: 1520px;
+  height: 1038.24px;
+  position: absolute;
+  left: 355px;
+  top: 20px;
+}
+.div2 {
+  width: 1350.8px;
+  height: 323.16px;
+  position: static;
+}
+._1 {
+  width: 219.13px;
+  height: 322.84px;
+  position: static;
+}
+.rectangle-1582 {
+  background: #eeeeee;
+  border-radius: 30px;
+  width: 219.13px;
+  height: 219.13px;
+  position: absolute;
+  left: 441px;
+  top: 363.32px;
+  aspect-ratio: 1;
+}
+.group-1002 {
+  width: 218.3px;
+  height: 84.14px;
+  position: static;
+}
+.bape {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Bold", sans-serif;
+  font-size: 20px;
+  line-height: 40px;
+  font-weight: 700;
+  position: absolute;
+  left: 441.96px;
+  top: 602.02px;
+  width: 87.32px;
+  height: 20.54px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+._143-000 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Bold", sans-serif;
+  font-size: 14px;
+  line-height: 40px;
+  font-weight: 700;
+  position: absolute;
+  left: 441.96px;
+  top: 655.83px;
+  width: 84.44px;
+  height: 30.33px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.bape-college-t-shirt-black {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 16px;
+  line-height: 40px;
+  font-weight: 400;
+  position: absolute;
+  left: 441.82px;
+  top: 621.66px;
+  width: 218.3px;
+  height: 39.1px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.image-70 {
+  width: 192.63px;
+  height: 178.72px;
+  position: absolute;
+  left: 454.66px;
+  top: 389.93px;
+  object-fit: cover;
+  aspect-ratio: 192.63/178.72;
+}
+._23 {
+  color: #000000;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 10px;
+  line-height: 40px;
+  font-weight: 400;
+  position: absolute;
+  left: 630.03px;
+  top: 568.76px;
+  width: 15.35px;
+  height: 8.8px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.div3 {
+  width: 18.68px;
+  height: 19.05px;
+  position: static;
+}
+.ellipse-13 {
+  background: #464444;
+  border-radius: 50%;
+  width: 18.68px;
+  height: 19.05px;
+  position: absolute;
+  left: 626.69px;
+  top: 546.47px;
+}
+.mask-group {
+  width: 10.12px;
+  height: 10.12px;
+  position: absolute;
+  left: 630.97px;
+  top: 551.09px;
+  overflow: visible;
+}
+._2 {
+  width: 219.13px;
+  height: 322.84px;
+  position: static;
+}
+.rectangle-15822 {
+  background: #eeeeee;
+  border-radius: 30px;
+  width: 219.13px;
+  height: 219.13px;
+  position: absolute;
+  left: 725.03px;
+  top: 363px;
+  aspect-ratio: 1;
+}
+.bape2 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Bold", sans-serif;
+  font-size: 20px;
+  line-height: 40px;
+  font-weight: 700;
+  position: absolute;
+  left: 725.99px;
+  top: 601.7px;
+  width: 87.32px;
+  height: 20.54px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.bape-college-t-shirt-black2 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 16px;
+  line-height: 40px;
+  font-weight: 400;
+  position: absolute;
+  left: 725.85px;
+  top: 621.34px;
+  width: 218.3px;
+  height: 39.1px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+._143-0002 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Bold", sans-serif;
+  font-size: 14px;
+  line-height: 40px;
+  font-weight: 700;
+  position: absolute;
+  left: 725.99px;
+  top: 655.51px;
+  width: 84.44px;
+  height: 30.33px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.image-702 {
+  width: 192.63px;
+  height: 178.72px;
+  position: absolute;
+  left: 738.69px;
+  top: 389.62px;
+  object-fit: cover;
+  aspect-ratio: 192.63/178.72;
+}
+._232 {
+  color: #000000;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 10px;
+  line-height: 40px;
+  font-weight: 400;
+  position: absolute;
+  left: 914.06px;
+  top: 568.44px;
+  width: 15.35px;
+  height: 8.8px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.ellipse-132 {
+  background: #464444;
+  border-radius: 50%;
+  width: 18.68px;
+  height: 19.05px;
+  position: absolute;
+  left: 910.88px;
+  top: 546.47px;
+}
+.mask-group2 {
+  width: 10.12px;
+  height: 10.12px;
+  position: absolute;
+  left: 915.16px;
+  top: 551.09px;
+  overflow: visible;
+}
+._3 {
+  width: 219.13px;
+  height: 322.84px;
+  position: static;
+}
+.rectangle-15823 {
+  background: #eeeeee;
+  border-radius: 30px;
+  width: 219.13px;
+  height: 219.13px;
+  position: absolute;
+  left: 1006.26px;
+  top: 363px;
+  aspect-ratio: 1;
+}
+.bape3 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Bold", sans-serif;
+  font-size: 20px;
+  line-height: 40px;
+  font-weight: 700;
+  position: absolute;
+  left: 1007.22px;
+  top: 601.7px;
+  width: 87.32px;
+  height: 20.54px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.bape-college-t-shirt-black3 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 16px;
+  line-height: 40px;
+  font-weight: 400;
+  position: absolute;
+  left: 1007.09px;
+  top: 621.34px;
+  width: 218.3px;
+  height: 39.1px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+._143-0003 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Bold", sans-serif;
+  font-size: 14px;
+  line-height: 40px;
+  font-weight: 700;
+  position: absolute;
+  left: 1007.22px;
+  top: 655.51px;
+  width: 84.44px;
+  height: 30.33px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.image-703 {
+  width: 192.63px;
+  height: 178.72px;
+  position: absolute;
+  left: 1019.93px;
+  top: 389.62px;
+  object-fit: cover;
+  aspect-ratio: 192.63/178.72;
+}
+._233 {
+  color: #000000;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 10px;
+  line-height: 40px;
+  font-weight: 400;
+  position: absolute;
+  left: 1195.29px;
+  top: 568.44px;
+  width: 15.35px;
+  height: 8.8px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.ellipse-133 {
+  background: #464444;
+  border-radius: 50%;
+  width: 18.68px;
+  height: 19.05px;
+  position: absolute;
+  left: 1192.12px;
+  top: 546.47px;
+}
+.mask-group3 {
+  width: 10.12px;
+  height: 10.12px;
+  position: absolute;
+  left: 1196.4px;
+  top: 551.09px;
+  overflow: visible;
+}
+._4 {
+  width: 219.13px;
+  height: 322.84px;
+  position: static;
+}
+.rectangle-15824 {
+  background: #eeeeee;
+  border-radius: 30px;
+  width: 219.13px;
+  height: 219.13px;
+  position: absolute;
+  left: 1290.45px;
+  top: 363px;
+  aspect-ratio: 1;
+}
+.bape4 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Bold", sans-serif;
+  font-size: 20px;
+  line-height: 40px;
+  font-weight: 700;
+  position: absolute;
+  left: 1291.41px;
+  top: 601.7px;
+  width: 87.32px;
+  height: 20.54px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.bape-college-t-shirt-black4 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 16px;
+  line-height: 40px;
+  font-weight: 400;
+  position: absolute;
+  left: 1291.27px;
+  top: 621.34px;
+  width: 218.3px;
+  height: 39.1px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+._143-0004 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Bold", sans-serif;
+  font-size: 14px;
+  line-height: 40px;
+  font-weight: 700;
+  position: absolute;
+  left: 1291.41px;
+  top: 655.51px;
+  width: 84.44px;
+  height: 30.33px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.image-704 {
+  width: 192.63px;
+  height: 178.72px;
+  position: absolute;
+  left: 1304.11px;
+  top: 389.62px;
+  object-fit: cover;
+  aspect-ratio: 192.63/178.72;
+}
+._234 {
+  color: #000000;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 10px;
+  line-height: 40px;
+  font-weight: 400;
+  position: absolute;
+  left: 1479.48px;
+  top: 568.44px;
+  width: 15.35px;
+  height: 8.8px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.ellipse-134 {
+  background: #464444;
+  border-radius: 50%;
+  width: 18.68px;
+  height: 19.05px;
+  position: absolute;
+  left: 1476.15px;
+  top: 546.15px;
+}
+.mask-group4 {
+  width: 10.12px;
+  height: 10.12px;
+  position: absolute;
+  left: 1480.43px;
+  top: 550.77px;
+  overflow: visible;
+}
+._5 {
+  width: 219.13px;
+  height: 322.84px;
+  position: static;
+}
+.rectangle-15825 {
+  background: #eeeeee;
+  border-radius: 30px;
+  width: 219.13px;
+  height: 219.13px;
+  position: absolute;
+  left: 1572.67px;
+  top: 363px;
+  aspect-ratio: 1;
+}
+.bape5 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Bold", sans-serif;
+  font-size: 20px;
+  line-height: 40px;
+  font-weight: 700;
+  position: absolute;
+  left: 1573.63px;
+  top: 601.7px;
+  width: 87.32px;
+  height: 20.54px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.bape-college-t-shirt-black5 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 16px;
+  line-height: 40px;
+  font-weight: 400;
+  position: absolute;
+  left: 1573.5px;
+  top: 621.34px;
+  width: 218.3px;
+  height: 39.1px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+._143-0005 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Bold", sans-serif;
+  font-size: 14px;
+  line-height: 40px;
+  font-weight: 700;
+  position: absolute;
+  left: 1573.63px;
+  top: 655.51px;
+  width: 84.44px;
+  height: 30.33px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.image-705 {
+  width: 192.63px;
+  height: 178.72px;
+  position: absolute;
+  left: 1586.34px;
+  top: 389.62px;
+  object-fit: cover;
+  aspect-ratio: 192.63/178.72;
+}
+._235 {
+  color: #000000;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 10px;
+  line-height: 40px;
+  font-weight: 400;
+  position: absolute;
+  left: 1761.71px;
+  top: 568.44px;
+  width: 15.35px;
+  height: 8.8px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.ellipse-135 {
+  background: #464444;
+  border-radius: 50%;
+  width: 18.68px;
+  height: 19.05px;
+  position: absolute;
+  left: 1758.37px;
+  top: 546.15px;
+}
+.mask-group5 {
+  width: 10.12px;
+  height: 10.12px;
+  position: absolute;
+  left: 1762.65px;
+  top: 550.77px;
+  overflow: visible;
+}
+.rectangle-15826 {
+  background: #eeeeee;
+  border-radius: 30px;
+  width: 219.13px;
+  height: 219.13px;
+  position: absolute;
+  left: 441px;
+  top: 714.32px;
+  aspect-ratio: 1;
+}
+.bape6 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Bold", sans-serif;
+  font-size: 20px;
+  line-height: 40px;
+  font-weight: 700;
+  position: absolute;
+  left: 441.96px;
+  top: 953.02px;
+  width: 87.32px;
+  height: 20.54px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.bape-college-t-shirt-black6 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 16px;
+  line-height: 40px;
+  font-weight: 400;
+  position: absolute;
+  left: 441.82px;
+  top: 972.66px;
+  width: 218.3px;
+  height: 39.1px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+._143-0006 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Bold", sans-serif;
+  font-size: 14px;
+  line-height: 40px;
+  font-weight: 700;
+  position: absolute;
+  left: 441.96px;
+  top: 1006.83px;
+  width: 84.44px;
+  height: 30.33px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.image-706 {
+  width: 192.63px;
+  height: 178.72px;
+  position: absolute;
+  left: 454.66px;
+  top: 740.93px;
+  object-fit: cover;
+  aspect-ratio: 192.63/178.72;
+}
+._236 {
+  color: #000000;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 10px;
+  line-height: 40px;
+  font-weight: 400;
+  position: absolute;
+  left: 630.03px;
+  top: 919.76px;
+  width: 15.35px;
+  height: 8.8px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.ellipse-136 {
+  background: #464444;
+  border-radius: 50%;
+  width: 18.68px;
+  height: 19.05px;
+  position: absolute;
+  left: 626.69px;
+  top: 897.47px;
+}
+.mask-group6 {
+  width: 10.12px;
+  height: 10.12px;
+  position: absolute;
+  left: 630.97px;
+  top: 902.09px;
+  overflow: visible;
+}
+.rectangle-15827 {
+  background: #eeeeee;
+  border-radius: 30px;
+  width: 219.13px;
+  height: 219.13px;
+  position: absolute;
+  left: 725.03px;
+  top: 714px;
+  aspect-ratio: 1;
+}
+.bape7 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Bold", sans-serif;
+  font-size: 20px;
+  line-height: 40px;
+  font-weight: 700;
+  position: absolute;
+  left: 725.99px;
+  top: 952.7px;
+  width: 87.32px;
+  height: 20.54px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.bape-college-t-shirt-black7 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 16px;
+  line-height: 40px;
+  font-weight: 400;
+  position: absolute;
+  left: 725.85px;
+  top: 972.34px;
+  width: 218.3px;
+  height: 39.1px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+._143-0007 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Bold", sans-serif;
+  font-size: 14px;
+  line-height: 40px;
+  font-weight: 700;
+  position: absolute;
+  left: 725.99px;
+  top: 1006.51px;
+  width: 84.44px;
+  height: 30.33px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.image-707 {
+  width: 192.63px;
+  height: 178.72px;
+  position: absolute;
+  left: 738.69px;
+  top: 740.62px;
+  object-fit: cover;
+  aspect-ratio: 192.63/178.72;
+}
+._237 {
+  color: #000000;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 10px;
+  line-height: 40px;
+  font-weight: 400;
+  position: absolute;
+  left: 914.06px;
+  top: 919.44px;
+  width: 15.35px;
+  height: 8.8px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.ellipse-137 {
+  background: #464444;
+  border-radius: 50%;
+  width: 18.68px;
+  height: 19.05px;
+  position: absolute;
+  left: 910.88px;
+  top: 897.47px;
+}
+.mask-group7 {
+  width: 10.12px;
+  height: 10.12px;
+  position: absolute;
+  left: 915.16px;
+  top: 902.09px;
+  overflow: visible;
+}
+.rectangle-15828 {
+  background: #eeeeee;
+  border-radius: 30px;
+  width: 219.13px;
+  height: 219.13px;
+  position: absolute;
+  left: 1006.26px;
+  top: 714px;
+  aspect-ratio: 1;
+}
+.bape8 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Bold", sans-serif;
+  font-size: 20px;
+  line-height: 40px;
+  font-weight: 700;
+  position: absolute;
+  left: 1007.22px;
+  top: 952.7px;
+  width: 87.32px;
+  height: 20.54px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.bape-college-t-shirt-black8 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 16px;
+  line-height: 40px;
+  font-weight: 400;
+  position: absolute;
+  left: 1007.09px;
+  top: 972.34px;
+  width: 218.3px;
+  height: 39.1px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+._143-0008 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Bold", sans-serif;
+  font-size: 14px;
+  line-height: 40px;
+  font-weight: 700;
+  position: absolute;
+  left: 1007.22px;
+  top: 1006.51px;
+  width: 84.44px;
+  height: 30.33px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.image-708 {
+  width: 192.63px;
+  height: 178.72px;
+  position: absolute;
+  left: 1019.93px;
+  top: 740.62px;
+  object-fit: cover;
+  aspect-ratio: 192.63/178.72;
+}
+._238 {
+  color: #000000;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 10px;
+  line-height: 40px;
+  font-weight: 400;
+  position: absolute;
+  left: 1195.29px;
+  top: 919.44px;
+  width: 15.35px;
+  height: 8.8px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.ellipse-138 {
+  background: #464444;
+  border-radius: 50%;
+  width: 18.68px;
+  height: 19.05px;
+  position: absolute;
+  left: 1192.12px;
+  top: 897.47px;
+}
+.mask-group8 {
+  width: 10.12px;
+  height: 10.12px;
+  position: absolute;
+  left: 1196.4px;
+  top: 902.09px;
+  overflow: visible;
+}
+.rectangle-15829 {
+  background: #eeeeee;
+  border-radius: 30px;
+  width: 219.13px;
+  height: 219.13px;
+  position: absolute;
+  left: 1290.45px;
+  top: 714px;
+  aspect-ratio: 1;
+}
+.bape9 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Bold", sans-serif;
+  font-size: 20px;
+  line-height: 40px;
+  font-weight: 700;
+  position: absolute;
+  left: 1291.41px;
+  top: 952.7px;
+  width: 87.32px;
+  height: 20.54px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.bape-college-t-shirt-black9 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 16px;
+  line-height: 40px;
+  font-weight: 400;
+  position: absolute;
+  left: 1291.27px;
+  top: 972.34px;
+  width: 218.3px;
+  height: 39.1px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+._143-0009 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Bold", sans-serif;
+  font-size: 14px;
+  line-height: 40px;
+  font-weight: 700;
+  position: absolute;
+  left: 1291.41px;
+  top: 1006.51px;
+  width: 84.44px;
+  height: 30.33px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.image-709 {
+  width: 192.63px;
+  height: 178.72px;
+  position: absolute;
+  left: 1304.11px;
+  top: 740.62px;
+  object-fit: cover;
+  aspect-ratio: 192.63/178.72;
+}
+._239 {
+  color: #000000;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 10px;
+  line-height: 40px;
+  font-weight: 400;
+  position: absolute;
+  left: 1479.48px;
+  top: 919.44px;
+  width: 15.35px;
+  height: 8.8px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.ellipse-139 {
+  background: #464444;
+  border-radius: 50%;
+  width: 18.68px;
+  height: 19.05px;
+  position: absolute;
+  left: 1476.15px;
+  top: 897.15px;
+}
+.mask-group9 {
+  width: 10.12px;
+  height: 10.12px;
+  position: absolute;
+  left: 1480.43px;
+  top: 901.77px;
+  overflow: visible;
+}
+.rectangle-158210 {
+  background: #eeeeee;
+  border-radius: 30px;
+  width: 219.13px;
+  height: 219.13px;
+  position: absolute;
+  left: 1572.67px;
+  top: 714px;
+  aspect-ratio: 1;
+}
+.bape10 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Bold", sans-serif;
+  font-size: 20px;
+  line-height: 40px;
+  font-weight: 700;
+  position: absolute;
+  left: 1573.63px;
+  top: 952.7px;
+  width: 87.32px;
+  height: 20.54px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.bape-college-t-shirt-black10 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 16px;
+  line-height: 40px;
+  font-weight: 400;
+  position: absolute;
+  left: 1573.5px;
+  top: 972.34px;
+  width: 218.3px;
+  height: 39.1px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+._143-00010 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Bold", sans-serif;
+  font-size: 14px;
+  line-height: 40px;
+  font-weight: 700;
+  position: absolute;
+  left: 1573.63px;
+  top: 1006.51px;
+  width: 84.44px;
+  height: 30.33px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.image-7010 {
+  width: 192.63px;
+  height: 178.72px;
+  position: absolute;
+  left: 1586.34px;
+  top: 740.62px;
+  object-fit: cover;
+  aspect-ratio: 192.63/178.72;
+}
+._2310 {
+  color: #000000;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 10px;
+  line-height: 40px;
+  font-weight: 400;
+  position: absolute;
+  left: 1761.71px;
+  top: 919.44px;
+  width: 15.35px;
+  height: 8.8px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.ellipse-1310 {
+  background: #464444;
+  border-radius: 50%;
+  width: 18.68px;
+  height: 19.05px;
+  position: absolute;
+  left: 1758.37px;
+  top: 897.15px;
+}
+.mask-group10 {
+  width: 10.12px;
+  height: 10.12px;
+  position: absolute;
+  left: 1762.65px;
+  top: 901.77px;
+  overflow: visible;
+}
+.rectangle-1579 {
+  border-radius: 0px;
+  width: 1348px;
+  height: 0px;
+  position: absolute;
+  left: 441px;
+  top: 335.5px;
+  overflow: visible;
+}
+
+.line-255 {
+  margin-top: -1px;
+  border-style: solid;
+  border-color: #ff0000;
+  border-width: 1px 0 0 0;
+  width: 1164px;
+  height: 0px;
+  position: absolute;
+  left: 1110px;
+  top: 1109px;
+  transform-origin: 0 0;
+  transform: rotate(-90deg) scale(1, 1);
+}
+.rectangle-1580 {
+  border-radius: 0px;
+  width: 1346px;
+  height: 2px;
+  position: absolute;
+  left: 436px;
+  top: 310px;
+  overflow: visible;
+}
+.group-866 {
+  width: 104.28px;
+  height: 32.89px;
+  position: static;
+}
+.rectangle-1581 {
+  background: #f9eeee;
+  border-radius: 5px;
+  width: 79.43px;
+  height: 1.99px;
+  position: absolute;
+  left: 1125px;
+  top: 290.9px;
+}
+.div15 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 28px;
+  line-height: 40px;
+  font-weight: 400;
+  position: absolute;
+  left: 1128px;
+  top: 260px;
+  width: 101.28px;
+  height: 29.9px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.div16 {
+  width: 79.43px;
+  height: 40px;
+  position: static;
+}
+.div17 {
+  color: #ff0044;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 28px;
+  line-height: 40px;
+  font-weight: 400;
+  position: absolute;
+  left: 1029px;
+  top: 253px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.rectangle-15812 {
+  background: #ff0044;
+  border-radius: 5px;
+  width: 79.43px;
+  height: 1.99px;
+  position: absolute;
+  left: 1014px;
+  top: 290.9px;
+}
+.rectangle-1566 {
+  border-radius: 0px;
+  width: 1347.9px;
+  height: 74px;
+  position: absolute;
+  left: 432px;
+  top: 100px;
+  overflow: visible;
+}
+.div18 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 25px;
+  line-height: 40px;
+  font-weight: 400;
+  position: absolute;
+  left: 452.41px;
+  top: 117px;
+  width: 253.47px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.line-143 {
+  margin-top: -2px;
+  border-style: solid;
+  border-color: #f9eeee;
+  border-width: 2px 0 0 0;
+  width: 1299px;
+  height: 0px;
+  position: absolute;
+  left: 455px;
+  top: 163px;
+}
