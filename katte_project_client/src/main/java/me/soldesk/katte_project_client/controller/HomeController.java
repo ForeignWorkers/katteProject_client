@@ -1,7 +1,9 @@
 package me.soldesk.katte_project_client.controller;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
+@Controller
 public class HomeController {
 
     //메인 페이지로 이동(사이트 접속 시 최초 페이지)
