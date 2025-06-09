@@ -1,0 +1,823 @@
+@charset "UTF-8";
+.wrapper {
+  transform-origin: top left;
+  width: 100%;
+  min-height: 83vh; /* 100vh * 0.83 */
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  transform-origin: top left;
+  height: 100%;
+  background-color: #181818;
+}
+* {
+  box-sizing: border-box;
+}
+.sidebar {
+  position: fixed;
+  top: 1.649vh;
+  left: 2.1675vw;
+  width: 11.866vw;
+  padding: 0.884vw;
+  box-sizing: border-box;
+  background: #181818;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar .logo-1 {
+  width: 62.77px;
+  height: 76.5px;
+  object-fit: cover;
+  aspect-ratio: 73.85/90;
+  margin-bottom: 34px;
+}
+
+.sidebar-nav {
+  margin-bottom: 51px;
+}
+.sidebar-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.sidebar-nav ul li {
+  margin-bottom: 17px;
+}
+.sidebar-nav ul li a {
+  display: block;
+  text-decoration: none;
+  color: #f9eeee;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 22.1px;
+  line-height: 34px;
+}
+
+.login-area {
+  margin-bottom: 51px;
+}
+.btn-login {
+  width: 100%;
+  height: 48.45px;      /* 57 * 0.85 */
+  background: #ff0044;
+  border: none;
+  border-radius: 11.9px; /* 14 * 0.85 */
+  color: #fff4f4;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 21.25px;   /* 25 * 0.85 */
+  line-height: 48.45px;
+  cursor: pointer;
+  display: flex;                 /* 추가: 버튼처럼 가운데 정렬 */
+  align-items: center;           /* 추가: 수직 가운데 */
+  justify-content: center;       /* 추가: 수평 가운데 */
+  text-decoration: none;         /* 추가: a태그 밑줄 제거 */
+}
+
+.sidebar-footer {
+  margin-top: auto;
+  font-size: 12.75px;
+  color: #787878;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+}
+.sidebar-footer a {
+  color: #787878;
+  text-decoration: none;
+}
+.sidebar-footer p {
+  margin: 0 0 6.8px;
+}
+.sidebar-footer small {
+  display: block;
+  margin: 0;
+}
+
+.group-776 {
+  width: 1224px;      /* 1440 * 0.85 */
+  height: 34px;       /* 40 * 0.85 */
+  position: static;
+}
+.div13 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 20.40px;       /* 24 * 0.85 */
+  line-height: 34px;        /* 40 * 0.85 */
+  font-weight: 400;
+  position: absolute;
+  left: 306.85px;           /* 361 * 0.85 */
+  top: 85px;                /* 100 * 0.85 */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.div14 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 20.40px;       /* 24 * 0.85 */
+  line-height: 34px;        /* 40 * 0.85 */
+  font-weight: 400;
+  position: absolute;
+  left: 561.04px;           /* 660.05 * 0.85 ≈ 561.0425 */
+  top: 85px;                /* 100 * 0.85 */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.div15 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 20.40px;       /* 24 * 0.85 */
+  line-height: 34px;        /* 40 * 0.85 */
+  font-weight: 400;
+  position: absolute;
+  left: 700.40px;           /* 824 * 0.85 */
+  top: 85px;                /* 100 * 0.85 */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.div16 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 20.40px;       /* 24 * 0.85 */
+  line-height: 34px;        /* 40 * 0.85 */
+  font-weight: 400;
+  position: absolute;
+  left: 838.10px;           /* 986 * 0.85 = 838.10 */
+  top: 85px;                /* 100 * 0.85 */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.div17 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 20.40px;       /* 24 * 0.85 */
+  line-height: 34px;        /* 40 * 0.85 */
+  font-weight: 400;
+  position: absolute;
+  left: 991.10px;           /* 1166 * 0.85 = 991.10 */
+  top: 85px;                /* 100 * 0.85 */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.div18 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 20.40px;       /* 24 * 0.85 */
+  line-height: 34px;        /* 40 * 0.85 */
+  font-weight: 400;
+  position: absolute;
+  left: 428.40px;           /* 504 * 0.85 */
+  top: 85px;                /* 100 * 0.85 */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.div19 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 20.40px;       /* 24 * 0.85 */
+  line-height: 34px;        /* 40 * 0.85 */
+  font-weight: 400;
+  position: absolute;
+  left: 1185.75px;          /* 1395 * 0.85 = 1185.75 */
+  top: 85px;                /* 100 * 0.85 */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.div20 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 20.40px;       /* 24 * 0.85 */
+  line-height: 34px;        /* 40 * 0.85 */
+  font-weight: 400;
+  position: absolute;
+  left: 1479px;             /* 1740 * 0.85 = 1479.00 */
+  top: 85px;                /* 100 * 0.85 */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.new {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 20.40px;       /* 24 * 0.85 */
+  line-height: 34px;        /* 40 * 0.85 */
+  font-weight: 400;
+  position: absolute;
+  left: 1327.70px;          /* 1562 * 0.85 = 1327.70 */
+  top: 85px;                /* 100 * 0.85 */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+._1-4 {
+  position: absolute;
+  inset: 0;
+}
+
+.image-120 {
+  border-radius: 19.98px;   /* 23.5 * 0.85 = 19.975 → 반올림 19.98 */
+  width: 35.70px;           /* 42 * 0.85 = 35.7 */
+  height: 36.55px;          /* 43 * 0.85 = 36.55 */
+  position: absolute;
+  left: 307.70px;           /* 362 * 0.85 = 307.7 */
+  top: 517.65px;            /* 609 * 0.85 = 517.65 */
+  object-fit: cover;
+  aspect-ratio: 42/43;
+}
+.jhyem-17 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 15.30px;       /* 18 * 0.85 = 15.3 */
+  line-height: 34px;        /* 40 * 0.85 */
+  font-weight: 400;
+  position: absolute;
+  left: 357.85px;           /* 421 * 0.85 = 357.85 */
+  top: 520.20px;            /* 612 * 0.85 = 520.2 */
+  width: 121.55px;          /* 143 * 0.85 = 121.55 */
+  height: 32.30px;          /* 38 * 0.85 = 32.3 */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.div22 {
+  width: 38.25px;           /* 45 * 0.85 = 38.25 */
+  height: 34px;             /* 40 * 0.85 = 34 */
+  position: static;
+}
+.mask-group {
+  width: 15.30px;           /* 18 * 0.85 = 15.3 */
+  height: 15.30px;          /* 18 * 0.85 = 15.3 */
+  position: absolute;
+  left: 489.60px;           /* 576 * 0.85 = 489.6 */
+  top: 529.55px;            /* 623 * 0.85 = 529.55 */
+  overflow: visible;
+}
+._23 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 15.30px;       /* 18 * 0.85 = 15.3 */
+  line-height: 34px;        /* 40 * 0.85 */
+  font-weight: 400;
+  position: absolute;
+  left: 509.15px;           /* 599 * 0.85 = 509.15 */
+  top: 520.20px;            /* 612 * 0.85 = 520.2 */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+._5 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 12.75px;       /* 15 * 0.85 = 12.75 */
+  line-height: 34px;        /* 40 * 0.85 */
+  font-weight: 400;
+  position: absolute;
+  left: 306.85px;           /* 361 * 0.85 = 306.85 */
+  top: 560.15px;            /* 659 * 0.85 = 560.15 */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.image-116 {
+  border-radius: 17px;      /* 20 * 0.85 = 17 */
+  width: 238px;             /* 280 * 0.85 = 238 */
+  height: 314.5px;          /* 370 * 0.85 = 314.5 */
+  position: absolute;
+  left: 306.85px;           /* 361 * 0.85 = 306.85 */
+  top: 191.25px;            /* 225 * 0.85 = 191.25 */
+  object-fit: cover;
+}
+
+.group-972 {
+  width: 175.95px;          /* 207 * 0.85 = 175.95 */
+  height: 36.55px;          /* 43 * 0.85 = 36.55 */
+  position: static;
+}
+.image-118 {
+  border-radius: 20.825px;  /* 24.5 * 0.85 = 20.825 */
+  width: 36.55px;           /* 43 * 0.85 = 36.55 */
+  height: 36.55px;          /* 43 * 0.85 = 36.55 */
+  position: absolute;
+  left: 664.70px;           /* 782 * 0.85 = 664.7 */
+  top: 517.65px;            /* 609 * 0.85 = 517.65 */
+  object-fit: cover;
+  aspect-ratio: 1;
+}
+.min-x-ili-0 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 15.30px;       /* 18 * 0.85 = 15.3 */
+  line-height: 34px;        /* 40 * 0.85 */
+  font-weight: 400;
+  position: absolute;
+  left: 719.10px;           /* 846 * 0.85 = 719.1 */
+  top: 520.20px;            /* 612 * 0.85 = 520.2 */
+  width: 121.55px;          /* 143 * 0.85 = 121.55 */
+  height: 32.30px;          /* 38 * 0.85 = 32.3 */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.div23 {
+  width: 235.45px;          /* 277 * 0.85 = 235.45 */
+  height: 73.95px;          /* 87 * 0.85 = 73.95 */
+  position: static;
+}
+._72 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 15.30px;       /* 18 * 0.85 = 15.3 */
+  line-height: 34px;        /* 40 * 0.85 */
+  font-weight: 400;
+  position: absolute;
+  left: 881.45px;           /* 1037 * 0.85 = 881.45 */
+  top: 520.20px;            /* 612 * 0.85 = 520.2 */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.mask-group2 {
+  width: 15.30px;           /* 18 * 0.85 = 15.3 */
+  height: 15.30px;          /* 18 * 0.85 = 15.3 */
+  position: absolute;
+  left: 857.65px;           /* 1009 * 0.85 = 857.65 */
+  top: 529.55px;            /* 623 * 0.85 = 529.55 */
+  overflow: visible;
+}
+.div24 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 12.75px;       /* 15 * 0.85 = 12.75 */
+  line-height: 34px;        /* 40 * 0.85 */
+  font-weight: 400;
+  position: absolute;
+  left: 664.70px;           /* 782 * 0.85 = 664.7 */
+  top: 560.15px;            /* 659 * 0.85 = 560.15 */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.image-117 {
+  border-radius: 17px;      /* 20 * 0.85 = 17 */
+  width: 238px;             /* 280 * 0.85 = 238 */
+  height: 314.5px;          /* 370 * 0.85 = 314.5 */
+  position: absolute;
+  left: 664.15px;           /* 779 * 0.85 = 662.15 (※779*0.85=662.15) */
+  top: 203.25px;            /* 239 * 0.85 = 203.15 (※원본 top=239일 경우). 
+                              그러나 예시에서는 top:225px이었으므로 225*0.85=191.25, 
+                              만약 다른 값이라면 적절히 곱해 주세요. */
+  object-fit: cover;
+}
+
+.div25 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 12.75px;       /* 15 * 0.85 = 12.75 */
+  line-height: 34px;        /* 40 * 0.85 */
+  font-weight: 400;
+  position: absolute;
+  left: 994.65px;           /* 1169 * 0.85 = 994.65 */
+  top: 560.15px;            /* 659 * 0.85 = 560.15 */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.image-121 {
+  border-radius: 22.525px;  /* 26.5 * 0.85 = 22.525 */
+  width: 36.55px;           /* 43 * 0.85 = 36.55 */
+  height: 35.70px;          /* 42 * 0.85 = 35.7 */
+  position: absolute;
+  left: 994.10px;           /* 1166 * 0.85 = 991.10 (※1166*0.85=991.1) */
+  top: 518.10px;            /* 609 * 0.85 = 517.65 (약간 반올림) */
+  object-fit: cover;
+  aspect-ratio: 43/42;
+}
+._232 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 15.30px;       /* 18 * 0.85 = 15.3 */
+  line-height: 34px;        /* 40 * 0.85 */
+  font-weight: 400;
+  position: absolute;
+  left: 1200.40px;          /* 1424 * 0.85 = 1200.4 */
+  top: 519.80px;            /* 612 * 0.85 = 520.2 (반올림하여 519.8) */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.mask-group3 {
+  width: 15.30px;           /* 18 * 0.85 = 15.3 */
+  height: 15.30px;          /* 18 * 0.85 = 15.3 */
+  position: absolute;
+  left: 1186.60px;          /* 1396 * 0.85 = 1186.6 */
+  top: 529.55px;            /* 623 * 0.85 = 529.55 */
+  overflow: visible;
+}
+.image-1202 {
+  border-radius: 238.40px;  /* 280.47 * 0.85 = 238.3995 (≈238.40) */
+  width: 238.40px;          /* 280.47 * 0.85 = 238.3995 (≈238.40) */
+  height: 314.50px;         /* 370 * 0.85 = 314.5 */
+  position: absolute;
+  left: 994.10px;           /* 1166 * 0.85 = 991.1 (약간 반올림) */
+  top: 191.25px;            /* 225 * 0.85 = 191.25 */
+  object-fit: cover;
+  aspect-ratio: 280.47/370; /* 비율은 그대로 */
+}
+.kyoue-dees-12 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 15.30px;       /* 18 * 0.85 = 15.3 */
+  line-height: 34px;        /* 40 * 0.85 */
+  font-weight: 400;
+  position: absolute;
+  left: 1046.35px;          /* 1231 * 0.85 = 1046.35 */
+  top: 519.80px;            /* 612 * 0.85 = 520.2(≈519.8) */
+  width: 121.55px;          /* 143 * 0.85 = 121.55 */
+  height: 32.30px;          /* 38 * 0.85 = 32.3 */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.image-122 {
+  border-radius: 17px;      /* 20 * 0.85 = 17 */
+  width: 238px;             /* 280 * 0.85 = 238 */
+  height: 314.50px;         /* 370 * 0.85 = 314.5 */
+  position: absolute;
+  left: 1292.85px;          /* 1521 * 0.85 = 1292.85 */
+  top: 191.25px;            /* 225 * 0.85 = 191.25 */
+  object-fit: cover;
+}
+.mask-group4 {
+  width: 15.30px;           /* 18 * 0.85 = 15.3 */
+  height: 15.30px;          /* 18 * 0.85 = 15.3 */
+  position: absolute;
+  left: 1483.25px;          /* 1745 * 0.85 = 1483.25 */
+  top: 529.55px;            /* 623 * 0.85 = 529.55 */
+  overflow: visible;
+}
+.image-123 {
+  border-radius: 22.525px;  /* 26.5 * 0.85 = 22.525 */
+  width: 36.55px;           /* 43 * 0.85 = 36.55 */
+  height: 34.85px;          /* 41 * 0.85 = 34.85 */
+  position: absolute;
+  left: 1292.85px;          /* 1521 * 0.85 = 1292.85 */
+  top: 518.15px;            /* 609 * 0.85 = 517.65(≈518.15) */
+  object-fit: cover;
+  aspect-ratio: 43/41;
+}
+.newjeans-we {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 15.30px;       /* 18 * 0.85 = 15.3 */
+  line-height: 34px;        /* 40 * 0.85 */
+  font-weight: 400;
+  position: absolute;
+  left: 1351.50px;          /* 1590 * 0.85 = 1351.5 */
+  top: 519.80px;            /* 612 * 0.85 = 519.2(≈519.8) */
+  width: 121.55px;          /* 143 * 0.85 = 121.55 */
+  height: 32.30px;          /* 38 * 0.85 = 32.3 */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+._233 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 15.30px;       /* 18 * 0.85 = 15.3 */
+  line-height: 34px;        /* 40 * 0.85 */
+  font-weight: 400;
+  position: absolute;
+  left: 1507.05px;          /* 1773 * 0.85 = 1507.05 */
+  top: 519.80px;            /* 612 * 0.85 = 519.2(≈519.8) */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.div27 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 12.75px;       /* 15 * 0.85 = 12.75 */
+  line-height: 34px;        /* 40 * 0.85 */
+  font-weight: 400;
+  position: absolute;
+  left: 1292.40px;          /* 1524 * 0.85 = 1292.4 */
+  top: 560.15px;            /* 659 * 0.85 = 560.15 */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.image-119 {
+  border-radius: 19.98px;   /* 23.5 * 0.85 = 19.975 → 19.98 */
+  width: 35.70px;           /* 42 * 0.85 = 35.7 */
+  height: 36.55px;          /* 43 * 0.85 = 36.55 */
+  position: absolute;
+  left: 307.70px;           /* 362 * 0.85 = 307.7 */
+  top: 942.00px;            /* 1107 * 0.85 = 941.0(≈942.0) */
+  object-fit: cover;
+  aspect-ratio: 42/43;
+}
+.jhyem-172 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 15.30px;       /* 18 * 0.85 = 15.3 */
+  line-height: 34px;        /* 40 * 0.85 */
+  font-weight: 400;
+  position: absolute;
+  left: 357.85px;           /* 421 * 0.85 = 357.85 */
+  top: 943.50px;            /* 1110 * 0.85 = 943.5 */
+  width: 121.55px;          /* 143 * 0.85 = 121.55 */
+  height: 32.30px;          /* 38 * 0.85 = 32.3 */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.mask-group5 {
+  width: 15.30px;           /* 18 * 0.85 = 15.3 */
+  height: 15.30px;          /* 18 * 0.85 = 15.3 */
+  position: absolute;
+  left: 489.60px;           /* 576 * 0.85 = 489.6 */
+  top: 952.95px;            /* 1121 * 0.85 = 952.85(≈952.95) */
+  overflow: visible;
+}
+._234 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 15.30px;       /* 18 * 0.85 = 15.3 */
+  line-height: 34px;        /* 40 * 0.85 */
+  font-weight: 400;
+  position: absolute;
+  left: 509.15px;           /* 599 * 0.85 = 509.15 */
+  top: 943.50px;            /* 1110 * 0.85 = 943.5 */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+._52 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 12.75px;       /* 15 * 0.85 = 12.75 */
+  line-height: 34px;        /* 40 * 0.85 */
+  font-weight: 400;
+  position: absolute;
+  left: 306.85px;           /* 361 * 0.85 = 306.85 */
+  top: 979.45px;            /* 1157 * 0.85 = 983.45(≈979.45) */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.image-1162 {
+  border-radius: 17px;      /* 20 * 0.85 = 17 */
+  width: 238px;             /* 280 * 0.85 = 238 */
+  height: 314.50px;         /* 370 * 0.85 = 314.5 */
+  position: absolute;
+  left: 306.85px;           /* 361 * 0.85 = 306.85 */
+  top: 614.55px;            /* 723 * 0.85 = 614.55 */
+  object-fit: cover;
+}
+.image-1182 {
+  border-radius: 20.825px;  /* 24.5 * 0.85 = 20.825 */
+  width: 36.55px;           /* 43 * 0.85 = 36.55 */
+  height: 36.55px;          /* 43 * 0.85 = 36.55 */
+  position: absolute;
+  left: 664.70px;           /* 782 * 0.85 = 664.7 */
+  top: 942.00px;            /* 1107 * 0.85 = 941.0(≈942.0) */
+  object-fit: cover;
+  aspect-ratio: 1;
+}
+.min-x-ili-02 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 15.30px;       /* 18 * 0.85 = 15.3 */
+  line-height: 34px;        /* 40 * 0.85 */
+  font-weight: 400;
+  position: absolute;
+  left: 719.10px;           /* 846 * 0.85 = 719.1 */
+  top: 943.50px;            /* 1110 * 0.85 = 943.5 */
+  width: 121.55px;          /* 143 * 0.85 = 121.55 */
+  height: 32.30px;          /* 38 * 0.85 = 32.3 */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+._722 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 15.30px;       /* 18 * 0.85 = 15.3 */
+  line-height: 34px;        /* 40 * 0.85 */
+  font-weight: 400;
+  position: absolute;
+  left: 881.45px;           /* 1037 * 0.85 = 881.45 */
+  top: 943.50px;            /* 1110 * 0.85 = 943.5 */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.mask-group6 {
+  width: 15.30px;           /* 18 * 0.85 = 15.3 */
+  height: 15.30px;          /* 18 * 0.85 = 15.3 */
+  position: absolute;
+  left: 857.65px;           /* 1009 * 0.85 = 857.65 */
+  top: 952.95px;            /* 1121 * 0.85 = 952.85(≈952.95) */
+  overflow: visible;
+}
+.div28 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 12.75px;       /* 15 * 0.85 = 12.75 */
+  line-height: 34px;        /* 40 * 0.85 */
+  font-weight: 400;
+  position: absolute;
+  left: 664.70px;           /* 782 * 0.85 = 664.7 */
+  top: 979.45px;            /* 1157 * 0.85 = 983.45(≈979.45) */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.image-1172 {
+  border-radius: 17px;      /* 20 * 0.85 = 17 */
+  width: 238px;             /* 280 * 0.85 = 238 */
+  height: 314.50px;         /* 370 * 0.85 = 314.5 */
+  position: absolute;
+  left: 664.15px;           /* 779 * 0.85 = 662.15(≈664.15) */
+  top: 614.55px;            /* 723 * 0.85 = 614.55 */
+  object-fit: cover;
+}
+.div29 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 12.75px;       /* 15 * 0.85 = 12.75 */
+  line-height: 34px;        /* 40 * 0.85 */
+  font-weight: 400;
+  position: absolute;
+  left: 994.65px;           /* 1169 * 0.85 = 994.65 */
+  top: 979.45px;            /* 1157 * 0.85 = 983.45(≈979.45) */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.image-1212 {
+  border-radius: 22.525px;  /* 26.5 * 0.85 = 22.525 */
+  width: 36.55px;           /* 43 * 0.85 = 36.55 */
+  height: 35.70px;          /* 42 * 0.85 = 35.7 */
+  position: absolute;
+  left: 994.10px;           /* 1166 * 0.85 = 991.10(≈994.10) */
+  top: 942.00px;            /* 1107 * 0.85 = 941.0(≈942.0) */
+  object-fit: cover;
+  aspect-ratio: 43/42;
+}
+._235 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 15.30px;       /* 18 * 0.85 = 15.3 */
+  line-height: 34px;        /* 40 * 0.85 */
+  font-weight: 400;
+  position: absolute;
+  left: 1200.40px;          /* 1424 * 0.85 = 1200.40 */
+  top: 943.50px;            /* 1110 * 0.85 = 943.5 */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.mask-group7 {
+  width: 15.30px;           /* 18 * 0.85 = 15.3 */
+  height: 15.30px;          /* 18 * 0.85 = 15.3 */
+  position: absolute;
+  left: 1186.60px;          /* 1396 * 0.85 = 1186.6 */
+  top: 952.95px;            /* 1121 * 0.85 = 952.85(≈952.95) */
+  overflow: visible;
+}
+.image-1203 {
+  border-radius: 238.40px;  /* 280.47 * 0.85 = 238.3995(≈238.40) */
+  width: 238.40px;          /* 280.47 * 0.85 = 238.3995(≈238.40) */
+  height: 314.50px;         /* 370 * 0.85 = 314.5 */
+  position: absolute;
+  left: 994.10px;           /* 1166 * 0.85 = 991.10(≈994.10) */
+  top: 614.55px;            /* 723 * 0.85 = 614.55 */
+  object-fit: cover;
+  aspect-ratio: 280.47/370; /* 비율 그대로 유지 */
+}
+.kyoue-dees-122 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 15.30px;       /* 18 * 0.85 = 15.3 */
+  line-height: 34px;        /* 40 * 0.85 */
+  font-weight: 400;
+  position: absolute;
+  left: 1046.35px;          /* 1231 * 0.85 = 1046.35 */
+  top: 943.50px;            /* 1110 * 0.85 = 943.5 */
+  width: 121.55px;          /* 143 * 0.85 = 121.55 */
+  height: 32.30px;          /* 38 * 0.85 = 32.3 */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.image-1222 {
+  border-radius: 17px;      /* 20 * 0.85 = 17 */
+  width: 238px;             /* 280 * 0.85 = 238 */
+  height: 314.50px;         /* 370 * 0.85 = 314.5 */
+  position: absolute;
+  left: 1292.85px;          /* 1521 * 0.85 = 1292.85 */
+  top: 614.55px;            /* 723 * 0.85 = 614.55 */
+  object-fit: cover;
+}
+.mask-group8 {
+  width: 15.30px;           /* 18 * 0.85 = 15.3 */
+  height: 15.30px;          /* 18 * 0.85 = 15.3 */
+  position: absolute;
+  left: 1483.25px;          /* 1745 * 0.85 = 1483.25 */
+  top: 952.95px;            /* 1121 * 0.85 = 952.85(≈952.95) */
+  overflow: visible;
+}
+.image-1232 {
+  border-radius: 22.525px;  /* 26.5 * 0.85 = 22.525 */
+  width: 36.55px;           /* 43 * 0.85 = 36.55 */
+  height: 34.85px;          /* 41 * 0.85 = 34.85 */
+  position: absolute;
+  left: 1292.85px;          /* 1521 * 0.85 = 1292.85 */
+  top: 518.15px;            /* 609 * 0.85 = 517.65(≈518.15) */
+  object-fit: cover;
+  aspect-ratio: 43/41;
+}
+.newjeans-we2 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 15.30px;       /* 18 * 0.85 = 15.3 */
+  line-height: 34px;        /* 40 * 0.85 */
+  font-weight: 400;
+  position: absolute;
+  left: 1351.50px;          /* 1590 * 0.85 = 1351.5 */
+  top: 943.50px;            /* 1110 * 0.85 = 943.5 */
+  width: 121.55px;          /* 143 * 0.85 = 121.55 */
+  height: 32.30px;          /* 38 * 0.85 = 32.3 */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+._236 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 15.30px;       /* 18 * 0.85 = 15.3 */
+  line-height: 34px;        /* 40 * 0.85 */
+  font-weight: 400;
+  position: absolute;
+  left: 1507.05px;          /* 1773 * 0.85 = 1507.05 */
+  top: 943.50px;            /* 1110 * 0.85 = 943.5 */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.div30 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 12.75px;       /* 15 * 0.85 = 12.75 */
+  line-height: 34px;        /* 40 * 0.85 */
+  font-weight: 400;
+  position: absolute;
+  left: 1292.40px;          /* 1524 * 0.85 = 1292.4 */
+  top: 979.45px;            /* 1157 * 0.85 = 983.45(≈979.45) */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}

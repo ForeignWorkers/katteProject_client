@@ -267,7 +267,7 @@ html, body {
   top: 626.45px; /* 737 * 0.85 */
 }
 .naverlog {
-  background: linear-gradient(to left, #181818, #181818);
+ /*  background: linear-gradient(to left, #181818, #181818); */
   width: 42.5px; /* 50 * 0.85 */
   height: 42.5px;
   position: absolute;
@@ -312,14 +312,14 @@ html, body {
   top: 702.95px; /* 827 * 0.85 */
 }
 .gglogo {
-  border-radius: 40.5px; /* 47.65 * 0.85 */
-  width: 33.15px; /* 39 * 0.85 */
-  height: 34px; /* 40 * 0.85 */
-  position: absolute;
-  left: 750.55px; /* 883 * 0.85 */
-  top: 715.7px; /* 842 * 0.85 */
-  object-fit: cover;
-  aspect-ratio: 39/40;
+    border-radius: 40.5px;
+    width: 44.15px;
+    height: 35px;
+    position: absolute;
+    left: 742.55px;
+    top: 715.7px;
+    object-fit: cover;
+    aspect-ratio: 39 / 40;
 }
 .gogglelogin {
   color: #f9eeee;

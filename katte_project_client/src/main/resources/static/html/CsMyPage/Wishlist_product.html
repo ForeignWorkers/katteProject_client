@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Favorite</title>
+  <link rel="stylesheet" href="Wishlist_product.css">
+</head>
+<body>
+
+<aside class="sidebar">
+  <a href="/main">
+  <img class="logo-1" src="../../../../../../../../../../JAVA/JAVA_24.12.30/Project/src/main/webapp/img/logo%20(1).png" alt="로고" />
+  </a>
+  <nav class="sidebar-nav">
+    <ul>
+      <li><a href="/search">검색</a></li>
+      <li><a href="/explore">탐색</a></li>
+      <li><a href="/sell">판매등록</a></li>
+      <li><a href="/wishlist">관심상품</a></li>
+      <li><a href="/style">스타일</a></li>
+      <li><a href="/mypage">마이페이지</a></li>
+      <li><a href="/support">고객센터</a></li>
+    </ul>
+  </nav>
+  <div class="login-area">
+    <a href="/login" class="btn-login">로그인</a>
+  </div>
+  <footer class="sidebar-footer">
+    <p><a href="/support">고객센터</a> | <a href="/terms">이용약관</a></p>
+    <small>&copy; All copyright in soldesk</small>
+  </footer>
+</aside>
+
+<div id = "MyPageBar"> <!--상단 마이페이지 바-->
+  <div id = "MyPageText">MyPage</div>
+  <div id = "ClickBox">
+    <div id = "buyList">
+      <a href="MyPage.html">구매 내역</a>
+    </div>
+    <div id = "favorite" class = "selected">
+      <a href="./Favorite.html">관심</a>
+    </div>
+    <div id = "MyStyle">
+      <a href="MyStyle.html">내 스타일</a>
+    </div>
+    <div id = "MyKatteMoney">
+      <a href="MyKatteMoney.html">캇테머니</a>
+    </div>
+    <div id = "MyPoint">
+      <a href="MyPoint.html">포인트</a>
+    </div>
+    <div id = "MyCoupon">
+      <a href="MyCoupon.html">쿠폰함</a>
+    </div>
+    <div id = "MyLogInfo">
+      <a href="MyLogInfo.html">로그인 정보</a>
+    </div>
+    <div id = "MyProfile">
+      <a href="MyProfile.html">프로필 관리</a>
+    </div>
+    <div id = "MyAddress">
+      <a href="MyAddress.html">주소록 관리</a>
+    </div>
+  </div>
+</div>
+
+<!-- 관심 -->
+<div class="div24">상품</div>
+  <div class="div25">쇼츠</div>
+  <div class="line-238"></div>
+  <div class="div26">스타일</div>
+  <div class="div27">브랜드</div>
+  <div class="arc-teryx">Arc&#039;teryx</div>
+  <div class="_143-000">143,000 원</div>
+  <div class="arc-teryx-squamish-hoody-black">
+    Arc&#039;teryx Squamish Hoody Black
+  </div>
+  <img class="image-82" src="image-820.png" />
+  <div class="stussy">Stussy</div>
+  <div class="_80-000">80,000 원</div>
+  <div class="stussy-welder-t-shirt-white">Stussy Welder T-Shirt White</div>
+  <img class="image" src="image0.png" />
+  <div class="bape">BAPE</div>
+  <div class="_84-000">84,000 원</div>
+  <div class="bape-baby-milo-mobile-bag-1-brown">
+    BAPE Baby Milo Mobile Bag 1 Brown
+  </div>
+  <img class="image2" src="image1.png" />
+  
+ <div class="sort-dropdown">
+    <!-- .div28와 화살표 두 개를 감싸 줍니다 -->
+    <div class="div28 selected">관심 등록순</div>
+    <img class="arrow-713" src="../../../../../../../../../../JAVA/JAVA_24.12.30/Project/src/main/webapp/img/Arrow%20713.png" />
+    <img class="arrow-714" src="../../../../../../../../../../JAVA/JAVA_24.12.30/Project/src/main/webapp/img/Arrow%20714.png" />
+  </div>
+
+  
+  
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const items = document.querySelectorAll("#ClickList > div");
+    items.forEach(item => {
+      item.addEventListener("click", function () {
+        // 모든 div에서 selected를 해제
+        items.forEach(i => i.classList.remove("selected"));
+        // 클릭한 div에 selected를 부여
+        this.classList.add("selected");
+      });
+    });
+  });
+  document.addEventListener("DOMContentLoaded", function () {
+    // 1) 요소 가져오기
+    const dropdown     = document.querySelector(".sort-dropdown");
+    const popup        = document.querySelector(".sort-popup");
+    const options      = document.querySelectorAll(".sort-popup .sort-option");
+    const labelDiv28   = document.querySelector(".sort-dropdown .div28"); // 현재 표시 텍스트
+
+    // 2) .sort-dropdown(투명 상자) 클릭 시 팝업 토글
+    dropdown.addEventListener("click", function (e) {
+      e.stopPropagation();  // 클릭 이벤트가 body로 전파되는 것을 막음
+      // 팝업이 보이는 상태면 숨기고, 숨긴 상태면 보이도록 토글
+      if (popup.style.display === "none" || popup.style.display === "") {
+        popup.style.display = "block";
+      } else {
+        popup.style.display = "none";
+      }
+    });
+
+    // 3) 페이지 어디서든(문서 바깥) 클릭하면 팝업이 닫히도록
+    document.addEventListener("click", function () {
+      popup.style.display = "none";
+    });
+
+    // 4) 각 옵션(.sort-option) 클릭 시
+    options.forEach(function (opt) {
+      opt.addEventListener("click", function (e) {
+        e.stopPropagation(); // 옵션 클릭 시 바깥 클릭 처리가 안 일어나도록
+
+        // (1) 모든 옵션에서 selected 클래스 제거
+        options.forEach(o => o.classList.remove("selected"));
+
+        // (2) 클릭한 옵션에 selected 클래스 추가
+        this.classList.add("selected");
+
+        // (3) .div28(labelDiv28)의 텍스트를 클릭한 옵션의 텍스트로 변경
+        labelDiv28.textContent = this.textContent;
+
+        // (4) labelDiv28에도 selected(=볼드체)를 강제로 붙여주고,
+        //     이전에 선택되어 있었다면 클래스 제거
+        //     (여기서는 .div28에 selected 클래스를 무조건 붙여줌)
+        labelDiv28.classList.add("selected");
+
+        // (5) 팝업 닫기
+        popup.style.display = "none";
+      });
+    });
+  });
+
+</script>
+</body>
+</html>

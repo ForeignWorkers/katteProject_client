@@ -1,0 +1,752 @@
+@charset "UTF-8";
+.wraapper {
+  transform-origin: top left;
+  width: 100%;
+  min-height: 83vh; /* 100vh * 0.83 */
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  transform-origin: top left;
+  height: 100%;
+  background-color: #181818;
+}
+* {
+  box-sizing: border-box;
+}
+.sidebar {
+  position: fixed;
+  top: 1.649vh;
+  left: 2.1675vw;
+  width: 11.866vw;
+  padding: 0.884vw;
+  box-sizing: border-box;
+  background: #181818;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar .logo-1 {
+  width: 62.77px;
+  height: 76.5px;
+  object-fit: cover;
+  aspect-ratio: 73.85/90;
+  margin-bottom: 34px;
+}
+
+.sidebar-nav {
+  margin-bottom: 51px;
+}
+.sidebar-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.sidebar-nav ul li {
+  margin-bottom: 17px;
+}
+.sidebar-nav ul li a {
+  display: block;
+  text-decoration: none;
+  color: #f9eeee;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 22.1px;
+  line-height: 34px;
+}
+
+.login-area {
+  margin-bottom: 51px;
+}
+.btn-login {
+  width: 100%;
+  height: 48.45px;      /* 57 * 0.85 */
+  background: #ff0044;
+  border: none;
+  border-radius: 11.9px; /* 14 * 0.85 */
+  color: #fff4f4;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 21.25px;   /* 25 * 0.85 */
+  line-height: 48.45px;
+  cursor: pointer;
+  display: flex;                 /* 추가: 버튼처럼 가운데 정렬 */
+  align-items: center;           /* 추가: 수직 가운데 */
+  justify-content: center;       /* 추가: 수평 가운데 */
+  text-decoration: none;         /* 추가: a태그 밑줄 제거 */
+}
+
+.sidebar-footer {
+  margin-top: auto;
+  font-size: 12.75px;
+  color: #787878;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+}
+.sidebar-footer a {
+  color: #787878;
+  text-decoration: none;
+}
+.sidebar-footer p {
+  margin: 0 0 6.8px;
+}
+.sidebar-footer small {
+  display: block;
+  margin: 0;
+}
+
+.line-136 {
+  width: 204.88px;
+  height: 0px;
+  position: absolute;
+  left: -607.33px;
+  top: 174.25px;
+  overflow: visible;
+}
+.group-767 {
+  height: auto;
+  position: absolute;
+  left: -106.25px;
+  top: -88.40px;
+  overflow: visible;
+}
+.div2 {
+  position: absolute;
+  inset: 0;
+}
+
+.group-776 {
+  width: 1235.90px;
+  height: 34px;
+  position: static;
+}
+.div14 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 20.4px;
+  line-height: 34px;
+  font-weight: 400;
+  position: absolute;
+  left: 306.85px;
+  top: 85px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.div15 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 20.4px;
+  line-height: 34px;
+  font-weight: 400;
+  position: absolute;
+  left: 585.65px;
+  top: 85px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.div16 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 20.4px;
+  line-height: 34px;
+  font-weight: 400;
+  position: absolute;
+  left: 724.20px;
+  top: 85px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.div17 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 20.4px;
+  line-height: 34px;
+  font-weight: 400;
+  position: absolute;
+  left: 881.45px;
+  top: 85px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.div18 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 20.4px;
+  line-height: 34px;
+  font-weight: 400;
+  position: absolute;
+  left: 1037.00px;
+  top: 85px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.div19 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 20.4px;
+  line-height: 34px;
+  font-weight: 400;
+  position: absolute;
+  left: 445.40px;
+  top: 85px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.div20 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 20.4px;
+  line-height: 34px;
+  font-weight: 400;
+  position: absolute;
+  left: 1168.00px;
+  top: 85px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.div21 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 20.4px;
+  line-height: 34px;
+  font-weight: 400;
+  position: absolute;
+  left: 1453.35px;
+  top: 85px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.div22 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 20.4px;
+  line-height: 34px;
+  font-weight: 400;
+  position: absolute;
+  left: 1321.75px;
+  top: 85px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+._1-4 {
+  position: absolute;
+  inset: 0;
+}
+._1 {
+  width: 238px;
+  height: 391.85px;
+  position: static;
+}
+.image {
+  border-radius: 20px;
+  width: 35.70px;
+  height: 36.55px;
+  position: absolute;
+  left: 306.85px;
+  top: 918.85px;
+  object-fit: cover;
+  aspect-ratio: 42/43;
+}
+.unvanish-first-body-perfumed-oil-hand-body-wash {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 12.75px;
+  line-height: 17px;
+  font-weight: 400;
+  position: absolute;
+  left: 347.65px;
+  top: 920.55px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.group-970 {
+  width: 238px;
+  height: 391.85px;
+  position: static;
+}
+.div23 {
+  width: 38.25px;
+  height: 34px;
+  position: static;
+}
+.mask-group {
+  width: 15.30px;
+  height: 15.30px;
+  position: absolute;
+  left: 506.60px;
+  top: 959.65px;
+  overflow: visible;
+}
+._23 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 15.30px;
+  line-height: 34px;
+  font-weight: 400;
+  position: absolute;
+  left: 526.15px;
+  top: 950.30px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.image2 {
+  border-radius: 17px;
+  width: 238px;
+  height: 314.50px;
+  position: absolute;
+  left: 306.85px;
+  top: 592.45px;
+  object-fit: cover;
+}
+._2 {
+  width: 566.95px;
+  height: 391.85px;
+  position: static;
+}
+.group-972 {
+  width: 198.05px;
+  height: 36.55px;
+  position: static;
+}
+.image3 {
+  border-radius: 20.83px;
+  width: 36.55px;
+  height: 36.55px;
+  position: absolute;
+  left: 664.70px;
+  top: 918.85px;
+  object-fit: cover;
+  aspect-ratio: 1;
+}
+.aape-fancy-main-tee-black-25-ss {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 12.75px;
+  line-height: 17px;
+  font-weight: 400;
+  position: absolute;
+  left: 706.35px;
+  top: 922.40px;
+  width: 156.40px;
+  height: 32.30px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.div24 {
+  width: 368.05px;
+  height: 34px;
+  position: static;
+}
+.div25 {
+  width: 39.10px;
+  height: 34px;
+  position: static;
+}
+.mask-group2 {
+  width: 15.30px;
+  height: 15.30px;
+  position: absolute;
+  left: 861.05px;
+  top: 960.50px;
+  overflow: visible;
+}
+._72 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 15.30px;
+  line-height: 34px;
+  font-weight: 400;
+  position: absolute;
+  left: 881.45px;
+  top: 950.30px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.mask-group3 {
+  width: 15.30px;
+  height: 15.30px;
+  position: absolute;
+  left: 1190.00px;
+  top: 960.50px;
+  overflow: visible;
+}
+._722 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 15.30px;
+  line-height: 34px;
+  font-weight: 400;
+  position: absolute;
+  left: 1210.40px;
+  top: 950.30px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.image4 {
+  border-radius: 17px;
+  width: 238px;
+  height: 314.50px;
+  position: absolute;
+  left: 661.15px;
+  top: 592.45px;
+  object-fit: cover;
+}
+._3 {
+  width: 238.40px;
+  height: 361.25px;
+  position: static;
+}
+.image5 {
+  border-radius: 22.53px;
+  width: 36.55px;
+  height: 35.70px;
+  position: absolute;
+  left: 991.10px;
+  top: 918.00px;
+  object-fit: cover;
+  aspect-ratio: 43/42;
+}
+.image6 {
+  border-radius: 17px;
+  width: 238.40px;
+  height: 314.50px;
+  position: absolute;
+  left: 991.10px;
+  top: 592.45px;
+  object-fit: cover;
+  aspect-ratio: 280.47/370;
+}
+.nike-v-2-k-run-summit-white-metallic-silver {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 12.75px;
+  line-height: 17px;
+  font-weight: 400;
+  position: absolute;
+  left: 1032.75px;
+  top: 918.00px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+._4 {
+  width: 238px;
+  height: 391.85px;
+  position: static;
+}
+.image7 {
+  border-radius: 17px;
+  width: 238px;
+  height: 314.50px;
+  position: absolute;
+  left: 1292.85px;
+  top: 592.45px;
+  object-fit: cover;
+}
+.group-982 {
+  width: 37.40px;
+  height: 34px;
+  position: static;
+}
+.mask-group4 {
+  width: 15.30px;
+  height: 15.30px;
+  position: absolute;
+  left: 1493.45px;
+  top: 960.65px;
+  overflow: visible;
+}
+.div26 {
+  width: 18.70px;
+  height: 34px;
+  position: static;
+}
+._232 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 15.30px;
+  line-height: 34px;
+  font-weight: 400;
+  position: absolute;
+  left: 1512.15px;
+  top: 950.30px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.image8 {
+  border-radius: 22.53px;
+  width: 36.55px;
+  height: 34.85px;
+  position: absolute;
+  left: 1292.85px;
+  top: 918.85px;
+  object-fit: cover;
+  aspect-ratio: 43/41;
+}
+.w-hunter-original-tall-rain-boots-black {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 12.75px;
+  line-height: 17px;
+  font-weight: 400;
+  position: absolute;
+  left: 1334.50px;
+  top: 923.55px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.image9 {
+  border-radius: 20px;
+  width: 35.70px;
+  height: 36.55px;
+  position: absolute;
+  left: 306.85px;
+  top: 517.65px;
+  object-fit: cover;
+  aspect-ratio: 42/43;
+}
+.unvanish-first-body-perfumed-oil-hand-body-wash2 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 12.75px;
+  line-height: 17px;
+  font-weight: 400;
+  position: absolute;
+  left: 347.65px;
+  top: 520.35px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.mask-group5 {
+  width: 15.30px;
+  height: 15.30px;
+  position: absolute;
+  left: 506.60px;
+  top: 558.45px;
+  overflow: visible;
+}
+._233 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 15.30px;
+  line-height: 34px;
+  font-weight: 400;
+  position: absolute;
+  left: 526.15px;
+  top: 549.10px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.image10 {
+  border-radius: 17px;
+  width: 238px;
+  height: 314.50px;
+  position: absolute;
+  left: 306.85px;
+  top: 191.25px;
+  object-fit: cover;
+}
+.image11 {
+  border-radius: 20.83px;
+  width: 36.55px;
+  height: 36.55px;
+  position: absolute;
+  left: 664.70px;
+  top: 517.65px;
+  object-fit: cover;
+  aspect-ratio: 1;
+}
+.aape-fancy-main-tee-black-25-ss2 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 12.75px;
+  line-height: 17px;
+  font-weight: 400;
+  position: absolute;
+  left: 706.35px;
+  top: 520.20px;
+  width: 156.40px;
+  height: 32.30px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.mask-group6 {
+  width: 15.30px;
+  height: 15.30px;
+  position: absolute;
+  left: 861.05px;
+  top: 561.30px;
+  overflow: visible;
+}
+._723 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 15.30px;
+  line-height: 34px;
+  font-weight: 400;
+  position: absolute;
+  left: 881.45px;
+  top: 549.10px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.mask-group7 {
+  width: 15.30px;
+  height: 15.30px;
+  position: absolute;
+  left: 1190.00px;
+  top: 561.30px;
+  overflow: visible;
+}
+._724 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 15.30px;
+  line-height: 34px;
+  font-weight: 400;
+  position: absolute;
+  left: 1210.40px;
+  top: 549.10px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.image12 {
+  border-radius: 17px;
+  width: 238px;
+  height: 314.50px;
+  position: absolute;
+  left: 661.15px;
+  top: 191.25px;
+  object-fit: cover;
+}
+.image13 {
+  border-radius: 22.53px;
+  width: 36.55px;
+  height: 35.70px;
+  position: absolute;
+  left: 991.10px;
+  top: 516.80px;
+  object-fit: cover;
+  aspect-ratio: 43/42;
+}
+.image14 {
+  border-radius: 17px;
+  width: 238.40px;
+  height: 314.50px;
+  position: absolute;
+  left: 991.10px;
+  top: 191.25px;
+  object-fit: cover;
+  aspect-ratio: 280.47/370;
+}
+.nike-v-2-k-run-summit-white-metallic-silver2 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 12.75px;
+  line-height: 17px;
+  font-weight: 400;
+  position: absolute;
+  left: 1032.75px;
+  top: 516.80px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.image15 {
+  border-radius: 17px;
+  width: 238px;
+  height: 314.50px;
+  position: absolute;
+  left: 1292.85px;
+  top: 191.25px;
+  object-fit: cover;
+}
+.mask-group8 {
+  width: 15.30px;
+  height: 15.30px;
+  position: absolute;
+  left: 1493.45px;
+  top: 558.45px;
+  overflow: visible;
+}
+._234 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 15.30px;
+  line-height: 34px;
+  font-weight: 400;
+  position: absolute;
+  left: 1512.15px;
+  top: 549.10px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.image16 {
+  border-radius: 22.53px;
+  width: 36.55px;
+  height: 34.85px;
+  position: absolute;
+  left: 1292.85px;
+  top: 517.65px;
+  object-fit: cover;
+  aspect-ratio: 43/41;
+}
+.w-hunter-original-tall-rain-boots-black2 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 12.75px;
+  line-height: 17px;
+  font-weight: 400;
+  position: absolute;
+  left: 1334.50px;
+  top: 519.35px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}

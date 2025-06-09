@@ -1,0 +1,683 @@
+@charset "UTF-8";
+.wrapper {
+  transform-origin: top left;
+  width: 100%;
+  min-height: 83vh; /* 100vh * 0.83 */
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  transform-origin: top left;
+  height: 100%;
+  background-color: #181818;
+}
+* {
+  box-sizing: border-box;
+}
+.sidebar {
+  position: fixed;
+  top: 1.649vh;
+  left: 2.1675vw;
+  width: 11.866vw;
+  padding: 0.884vw;
+  box-sizing: border-box;
+  background: #181818;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar .logo-1 {
+  width: 62.77px;
+  height: 76.5px;
+  object-fit: cover;
+  aspect-ratio: 73.85/90;
+  margin-bottom: 34px;
+}
+
+.sidebar-nav {
+  margin-bottom: 51px;
+}
+.sidebar-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.sidebar-nav ul li {
+  margin-bottom: 17px;
+}
+.sidebar-nav ul li a {
+  display: block;
+  text-decoration: none;
+  color: #f9eeee;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 22.1px;
+  line-height: 34px;
+}
+
+.login-area {
+  margin-bottom: 51px;
+}
+.btn-login {
+  width: 100%;
+  height: 48.45px;      /* 57 * 0.85 */
+  background: #ff0044;
+  border: none;
+  border-radius: 11.9px; /* 14 * 0.85 */
+  color: #fff4f4;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 21.25px;   /* 25 * 0.85 */
+  line-height: 48.45px;
+  cursor: pointer;
+  display: flex;                 /* 추가: 버튼처럼 가운데 정렬 */
+  align-items: center;           /* 추가: 수직 가운데 */
+  justify-content: center;       /* 추가: 수평 가운데 */
+  text-decoration: none;         /* 추가: a태그 밑줄 제거 */
+}
+
+.sidebar-footer {
+  margin-top: auto;
+  font-size: 12.75px;
+  color: #787878;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+}
+.sidebar-footer a {
+  color: #787878;
+  text-decoration: none;
+}
+.sidebar-footer p {
+  margin: 0 0 6.8px;
+}
+.sidebar-footer small {
+  display: block;
+  margin: 0;
+}
+
+.div {
+  color: #f9eeee;
+  text-align: center;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 34px;
+  line-height: 92.65px;
+  letter-spacing: -0.03em;
+  font-weight: 400;
+  position: absolute;
+  left: 826.2px;
+  top: 36.55px;
+  width: 226.95px;
+  height: 39.95px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.rectangle-1594 {
+  width: 528.7px;
+  height: 5.95px;
+  position: absolute;
+  left: 331.5px;
+  top: 587.35px;
+  overflow: visible;
+}
+.rectangle-1613 {
+  background: #2a2929;
+  border-radius: 21.25px;
+  width: 1137.3px;
+  height: 1204.45px;
+  position: absolute;
+  left: 374.85px;
+  top: 102px;
+}
+.group-870 {
+  position: absolute;
+  inset: 0;
+}
+.rectangle-1604 {
+  background: #eeeeee;
+  border-radius: 8.5px;
+  width: 116.45px;
+  height: 116.45px;
+  position: absolute;
+  left: 413.95px;
+  top: 154.85px;
+}
+.image {
+  width: 112.17px;
+  height: 111.11px;
+  position: absolute;
+  left: 415.04px;
+  top: 154.85px;
+  object-fit: cover;
+}
+.nike-x-lil-yachty-us-force-1-low-white-and-midnight-navy {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 25.5px;
+  line-height: 92.65px;
+  letter-spacing: -0.06em;
+  font-weight: 400;
+  position: absolute;
+  left: 550.8px;
+  top: 162.35px;
+  width: 1003.85px;
+  height: 37.4px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.x-1 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Thin", sans-serif;
+  font-size: 21.25px;
+  line-height: 0px;
+  font-weight: 100;
+  position: absolute;
+  left: 550.8px;
+  top: 202.3px;
+  width: 996.2px;
+  height: 18.7px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+._270 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Thin", sans-serif;
+  font-size: 21.25px;
+  line-height: 0px;
+  font-weight: 100;
+  position: absolute;
+  left: 550.8px;
+  top: 228.65px;
+  width: 355.3px;
+  height: 18.7px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.group-872 {
+  position: absolute;
+  inset: 0;
+}
+.div2 {
+  color: #f9eeee;
+  text-align: center;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 25.5px;
+  line-height: 92.65px;
+  letter-spacing: -0.03em;
+  font-weight: 400;
+  position: absolute;
+  left: 598.4px;
+  top: 314.5px;
+  width: 119.9px;
+  height: 39.95px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+._178-000 {
+  color: #f9eeee;
+  text-align: center;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 38.25px;
+  line-height: 92.65px;
+  letter-spacing: -0.03em;
+  font-weight: 400;
+  position: absolute;
+  left: 471.75px;
+  top: 344.25px;
+  width: 367.2px;
+  height: 56.1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.group-873 {
+  position: absolute;
+  inset: 0;
+}
+.div3 {
+  color: #f9eeee;
+  text-align: center;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 25.5px;
+  line-height: 92.65px;
+  letter-spacing: -0.03em;
+  font-weight: 400;
+  position: absolute;
+  left: 1174.7px;
+  top: 314.5px;
+  width: 119.9px;
+  height: 39.95px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+._168-000 {
+  color: #f9eeee;
+  text-align: center;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 38.25px;
+  line-height: 92.65px;
+  letter-spacing: -0.03em;
+  font-weight: 400;
+  position: absolute;
+  left: 1048.05px;
+  top: 344.25px;
+  width: 367.2px;
+  height: 56.1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.line-262 {
+  margin-top: -2.55px;
+  border-style: solid;
+  border-color: #ccc9c9;
+  border-width: 2.55px 0 0 0;
+  width: 87.55px;
+  height: 0px;
+  position: absolute;
+  left: 943.5px;
+  top: 313.65px;
+  transform-origin: 0 0;
+  transform: rotate(90deg) scale(1, 1);
+}
+.group-874 {
+  position: absolute;
+  inset: 0;
+}
+.rectangle-1614 {
+  background: #eeeeee;
+  border-radius: 51px;
+  width: 1054px;
+  height: 74.81px;
+  position: absolute;
+  left: 412.25px;
+  top: 424.15px;
+}
+.rectangle-1615 {
+  background: #ff0044;
+  border-radius: 51px;
+  width: 531.25px;
+  height: 74.81px;
+  position: absolute;
+  left: 412.25px;
+  top: 424.15px;
+}
+.rectangle-1616 {
+  background: #eeeeee;
+  border-radius: 51px;
+  width: 522.75px;
+  height: 74.81px;
+  position: absolute;
+  left: 943.5px;
+  top: 424.15px;
+}
+.div4 {
+  color: #f9eeee;
+  text-align: center;
+  font-family: "LineSeedSansKr-Bold", sans-serif;
+  font-size: 25.5px;
+  line-height: 92.65px;
+  letter-spacing: -0.06em;
+  font-weight: 700;
+  position: absolute;
+  left: 577.15px;
+  top: 443.26px;
+  width: 201.45px;
+  height: 36.57px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.div5 {
+  color: #2a2929;
+  text-align: center;
+  font-family: "LineSeedSansKr-Bold", sans-serif;
+  font-size: 25.5px;
+  line-height: 92.65px;
+  letter-spacing: -0.06em;
+  font-weight: 700;
+  position: absolute;
+  left: 1131.35px;
+  top: 443.26px;
+  width: 201.45px;
+  height: 36.57px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.group-875 {
+  position: absolute;
+  inset: 0;
+}
+.div6 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 25.5px;
+  line-height: 92.65px;
+  letter-spacing: -0.03em;
+  font-weight: 400;
+  position: absolute;
+  left: 416.5px;
+  top: 554.2px;
+  width: 119.9px;
+  height: 39.95px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+._172-000 {
+  color: #f9eeee;
+  text-align: right;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 38.25px;
+  line-height: 92.65px;
+  letter-spacing: 0.03em;
+  font-weight: 400;
+  position: absolute;
+  left: 921.4px;
+  top: 600.95px;
+  width: 493.85px;
+  height: 39.95px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.div7 {
+  color: #f9eeee;
+  text-align: right;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 34px;
+  line-height: 92.65px;
+  letter-spacing: -0.03em;
+  font-weight: 400;
+  position: absolute;
+  left: 1431.4px;
+  top: 600.95px;
+  width: 31.45px;
+  height: 39.95px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.rectangle-1618 {
+  background: #ff0044;
+  border-radius: 17px;
+  width: 1054px;
+  height: 5.1px;
+  position: absolute;
+  left: 412.25px;
+  top: 651.95px;
+}
+.group-877 {
+  position: absolute;
+  inset: 0;
+}
+.div8 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 25.5px;
+  line-height: 92.65px;
+  letter-spacing: -0.03em;
+  font-weight: 400;
+  position: absolute;
+  left: 416.5px;
+  top: 685.95px;
+  width: 119.9px;
+  height: 39.95px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+._86-000 {
+  color: #f9eeee;
+  text-align: right;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 38.25px;
+  line-height: 92.65px;
+  letter-spacing: 0.03em;
+  font-weight: 400;
+  position: absolute;
+  left: 921.4px;
+  top: 732.7px;
+  width: 493.85px;
+  height: 39.95px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.div9 {
+  color: #f9eeee;
+  text-align: right;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 34px;
+  line-height: 92.65px;
+  letter-spacing: -0.03em;
+  font-weight: 400;
+  position: absolute;
+  left: 1431.4px;
+  top: 732.7px;
+  width: 31.45px;
+  height: 39.95px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.rectangle-16182 {
+  background: #eeeeee;
+  border-radius: 17px;
+  width: 1054px;
+  height: 5.1px;
+  position: absolute;
+  left: 412.25px;
+  top: 783.7px;
+}
+.group-878 {
+  position: absolute;
+  inset: 0;
+}
+.div10 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 25.5px;
+  line-height: 92.65px;
+  letter-spacing: -0.03em;
+  font-weight: 400;
+  position: absolute;
+  left: 416.5px;
+  top: 817.7px;
+  width: 171.7px;
+  height: 39.95px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+._320-000 {
+  color: #f9eeee;
+  text-align: right;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 38.25px;
+  line-height: 92.65px;
+  letter-spacing: 0.03em;
+  font-weight: 400;
+  position: absolute;
+  left: 884.85px;
+  top: 864.45px;
+  width: 493.85px;
+  height: 39.95px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.katte {
+  color: #f9eeee;
+  text-align: right;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 34px;
+  line-height: 92.65px;
+  letter-spacing: -0.03em;
+  font-weight: 400;
+  position: absolute;
+  left: 1312.4px;
+  top: 864.45px;
+  width: 153.85px;
+  height: 39.95px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.rectangle-16183 {
+  background: #eeeeee;
+  border-radius: 17px;
+  width: 1054px;
+  height: 5.1px;
+  position: absolute;
+  left: 412.25px;
+  top: 915.45px;
+}
+.div11 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 25.5px;
+  line-height: 92.65px;
+  letter-spacing: -0.03em;
+  font-weight: 400;
+  position: absolute;
+  left: 416.5px;
+  top: 984.3px;
+  width: 171.7px;
+  height: 39.95px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.group-879 {
+  position: absolute;
+  inset: 0;
+}
+
+/* 1) 공통 스타일을 day-button으로 묶습니다 */
+.day-button {
+  background: none;            /* 배경 없애기 */
+  border: none;                /* 테두리 없애기 */
+  cursor: pointer;             /* 커서 모양 */
+  color: #ccc9c9;              /* 기본(비활성) 색상 */
+  text-align: center;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 25.5px;
+  line-height: 92.65px;
+  letter-spacing: -0.03em;
+  font-weight: 400;            /* 기본(비활성) 폰트 두께 */
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 2) 각 버튼별로 위치만 지정합니다 */
+.day-button._1 {
+  left: 502.35px;
+  top: 1069.3px;
+  width: 97.75px;
+  height: 50.15px;
+}
+.day-button._3 {
+  left: 623.05px;
+  top: 1069.3px;
+  width: 97.75px;
+  height: 50.15px;
+}
+.day-button._7 {
+  left: 743.75px;
+  top: 1069.3px;
+  width: 97.75px;
+  height: 50.15px;
+}
+.day-button._30 {
+  left: 985.15px;
+  top: 1069.3px;
+  width: 97.75px;
+  height: 50.15px;
+}
+.day-button._60 {
+  left: 864.45px;
+  top: 1069.3px;
+  width: 97.75px;
+  height: 50.15px;
+  /* 60일 버튼은 일단 보통체(400) 유지, 활성 시에만 볼드 처리됩니다 */
+}
+.day-button._90 {
+  left: 1105.85px;
+  top: 1069.3px;
+  width: 97.75px;
+  height: 50.15px;
+}
+.day-button._180 {
+  left: 1226.55px;
+  top: 1044px;
+  width: 157.25px;
+  height: 79.9px;
+  /* line-height: 0일 때 세로 중앙 정렬이 어색할 수 있으므로
+     필요하다면 line-height를 따로 지정해 주세요 */
+}
+
+/* 3) 활성화(active) 상태일 때 색상 및 볼드체 적용 */
+.day-button.active {
+  color: #f9eeee;
+  font-weight: 700;
+}
+
+._60-2025-07-22 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Thin", sans-serif;
+  font-size: 21.25px;
+  line-height: 92.65px;
+  letter-spacing: -0.03em;
+  font-weight: 100;
+  position: absolute;
+  left: 416.5px;
+  top: 1014.05px;
+  width: 308.55px;
+  height: 39.95px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.rectangle-1619 {
+  background: #eeeeee;
+  border-radius: 51px;
+  width: 1054px;
+  height: 76.5px;
+  position: absolute;
+  left: 416.5px;
+  top: 1163.65px;
+}
+.div12 {
+  color: #2a2929;
+  text-align: center;
+  font-family: "LineSeedSansKr-Bold", sans-serif;
+  font-size: 34px;
+  line-height: 92.65px;
+  letter-spacing: 0.01em;
+  font-weight: 700;
+  position: absolute;
+  left: 733.7px;
+  top: 1172.15px;
+  width: 422.45px;
+  height: 60.35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}

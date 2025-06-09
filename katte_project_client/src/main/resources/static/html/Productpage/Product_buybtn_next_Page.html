@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<link rel="stylesheet" href="Product_buybtn_next_Page.css" />
+<body>
+<aside class="sidebar">
+  <a href="/main">
+  <img class="logo-1" src="../../../../../../../../../../JAVA/JAVA_24.12.30/Project/src/main/webapp/img/logo%20(1).png" alt="로고" />
+  </a>
+  <nav class="sidebar-nav">
+    <ul>
+      <li><a href="/search">검색</a></li>
+      <li><a href="/explore">탐색</a></li>
+      <li><a href="/sell">판매등록</a></li>
+      <li><a href="/wishlist">관심상품</a></li>
+      <li><a href="/style">스타일</a></li>
+      <li><a href="/mypage">마이페이지</a></li>
+      <li><a href="/support">고객센터</a></li>
+    </ul>
+  </nav>
+  <div class="login-area">
+    <a href="/login" class="btn-login">로그인</a>
+  </div>
+  <footer class="sidebar-footer">
+    <p><a href="/support">고객센터</a> | <a href="/terms">이용약관</a></p>
+    <small>&copy; All copyright in soldesk</small>
+  </footer>
+</aside>
+
+<div class="wrapper">
+
+
+  <div class="line-262"></div>
+  <img class="line-136" src="line-1360.svg" />
+  <div class="div">배송 / 결제</div>
+  <img class="rectangle-1594" src="rectangle-15940.svg" />
+  <div class="rectangle-1613"></div>
+  <div class="rectangle-1615"></div>
+  <div class="rectangle-1616"></div>
+  <div class="rectangle-1614"></div>
+  <div class="div2">배송 주소</div>
+  <div class="div3">주문 상품</div>
+  <div class="div4">사용 가능한 쿠폰</div>
+  <div class="div5">배송방법</div>
+  <div class="div6">일반배송</div>
+  <div class="_5-7">검수 후 배송 ・ 5-7일 내 도착 예정</div>
+  <div class="_1">총 1 건</div>
+  <button id="changeAddressButton" class="address-change-btn">
+      주소 변경
+  </button>
+  
+   <div class="modal-overlay"></div>
+
+  <div class="address-modal">
+    <div class="modal-header">
+      <h2>주소록</h2>
+      <button class="modal-close-btn">&times;</button>
+    </div>
+   <button class="add-address-btn">+ 새 주소 추가하기</button>
+
+    <div class="address-entry">
+      <h3>정민규 <span class="default-label">(기본 배송지)</span></h3>
+      <p>[12345] 서울특별시 서울구 서울동 123번지 1234호</p>
+      <p>010-2011-6847</p>
+      <hr/>
+    </div>
+
+    <div class="address-entry">
+      <h3>정이규 <span class="default-label">(기본 배송지)</span></h3>
+      <p>[12345] 경기 수원시 장안구 송죽동 송죽로길 12-54 송죽오피스텔 1동 1203호</p>
+      <p>010-2011-6847</p>
+      <hr/>
+    </div>
+  </div>
+  <div class="add-address-modal">
+    <div class="modal-header">
+      <h2>주소 추가하기</h2>
+      <button class="modal-close-btn" id="closeAddFormBtn">&times;</button>
+    </div>
+
+    <form class="add-address-form" id="addAddressForm">
+      <!-- 이름 -->
+      <label for="recipientName">이름</label>
+      <input
+        type="text"
+        id="recipientName"
+        name="recipientName"
+        placeholder="수령인의 이름"
+      />
+
+      <!-- 휴대폰 번호 -->
+      <label for="phoneNumber">휴대폰 번호</label>
+      <input
+        type="tel"
+        id="phoneNumber"
+        name="phoneNumber"
+        placeholder="- 없이 입력"
+      />
+
+      <!-- 우편번호 -->
+      <label for="zipCode">우편번호</label>
+      <div class="zip-search-container">
+        <input
+          type="text"
+          id="zipCode"
+          name="zipCode"
+          placeholder="우편 번호를 검색하세요"
+          readonly
+        />
+        <button type="button" class="zip-search-btn">우편번호</button>
+      </div>
+
+      <!-- 주소 -->
+      <label for="address">주소</label>
+      <input
+        type="text"
+        id="address"
+        name="address"
+        placeholder="우편 번호 검색 후, 자동입력 됩니다."
+        readonly
+      />
+
+      <!-- 상세주소 -->
+      <label for="detailAddress">상세주소</label>
+      <input
+        type="text"
+        id="detailAddress"
+        name="detailAddress"
+        placeholder="건물, 아파트, 동/호수 입력"
+      />
+
+      <!-- 기본 배송지 설정 체크박스 -->
+      <div class="checkbox-container">
+        <input
+          type="checkbox"
+          id="defaultAddress"
+          name="defaultAddress"
+        />
+        <label for="defaultAddress">기본 배송지로 설정</label>
+      </div>
+
+      <!-- 저장하기 버튼 -->
+      <button type="submit" class="save-btn">저장하기</button>
+    </form>
+  </div>
+  
+  <div class="div8">받는 분</div>
+  <div class="div9">연락처</div>
+  <div class="div10">주소</div>
+  <div class="div11">요청 사항 없음</div>
+  <div class="div12">사용한 쿠폰이 없음</div>
+  <div class="div13">정민규</div>
+  <div class="_010-2011-6847">010-2011-6847</div>
+  <div class="_12345-123-1234">
+    [12345] 서울특별시 서울구 서울동 123번지 1234호
+  </div>
+  <img class="polygon-20" src="../img/Polygon.png" />
+  <img class="polygon-21" src="../img/Polygon.png" />
+  <div class="rectangle-1604"></div>
+  <img class="image" src="image0.png" />
+  <div class="nike-x-lil-yachty-us-force-1-low-white-and-midnight-navy">
+    Nike x Lil Yachty Us Force 1 Low White and Midnight Navy
+  </div>
+  <div class="x-1">
+    나이키 x 릴 야티 어스 포스 1 로우 화이트 앤 미드나잇 네이비
+  </div>
+  <div class="_270">270</div>
+  <div class="ellipse-63"></div>
+  <div class="ellipse-64"></div>
+  <div class="rectangle-1617"></div>
+</div>
+
+
+  <div class="rectangle-1723"></div>
+  <div class="rectangle-1722"></div>
+  <div class="div1">결제 금액</div>
+  <div class="_179-000-katte">179,000 katte</div>
+  <div class="div21">구매가</div>
+  <div class="_189-000-katte">189,000 katte</div>
+  <div class="div31">검수비</div>
+  <div class="free">free</div>
+  <div class="div41">수수료</div>
+  <div class="_2-700-katte">2,700 katte</div>
+  <div class="div51">배송비</div>
+  <div class="_3-000-katte">3,000 katte</div>
+  <div class="div61">쿠폰사용</div>
+  <div class="_5-700-katte">-5,700 katte</div>
+  <div class="div71">포인트사용</div>
+  <div class="_7000-katte">-7000 katte</div>
+  <div class="group-897">
+    <div class="group-906">
+      <div class="rectangle-1618"></div>
+      <div class="div81">결제 금액</div>
+      <div class="_179-000-katte2">179,000 katte</div>
+      <div class="_179-000-katte3">179,000 katte</div>
+      <div class="div91">결제</div>
+      <div class="div101">최대 사용</div>
+      <div class="rectangle-1636"></div>
+      <div class="div111">보유 캇테머니</div>
+      <div class="_3-000-000-katte">3,000,000 katte</div>
+      <div class="div121">캇테머니 충전하기</div>
+      <div class="rectangle-1638"></div>
+      <div class="group-8972">
+        <div class="rectangle-1570"></div>
+        <div class="div131">카카오 페이</div>
+        <img class="image-105" src="image-1050.png" />
+      </div>
+    </div>
+    <div class="rectangle-1639"></div>
+    <div class="div141">포인트 혜택</div>
+ 
+    <!-- 기존 rectangle-1640과 텍스트를 감싸는 클릭용 버튼 -->
+    <button id="completePurchaseBtn" class="payment-btn">
+      <div class="rectangle-1640"></div>
+      <div class="_179-000-katte4">179,000 katte・결제하기</div>
+    </button>
+
+
+  <!-- [B] 결제 완료 모달: 처음엔 보이지 않도록 display:none 처리 -->
+  <div class="purchase-complete-modal">
+    <p class="purchase-complete-text">구매가 정상적으로 처리되었습니다</p>
+    <button id="closePurchaseCompleteBtn" class="purchase-close-btn">닫기</button>
+  </div>
+  <!--   <div class="group-901">
+      <div class="rectangle-16402"></div>
+      <div class="_179-000-katte5">179,000 katte・결제하기</div>
+    </div> -->
+    <div class="div151">적립 예정 포인트</div>
+    <div class="_910-p">910 p</div>
+    <div class="group-898">
+      <div class="rectangle-1571"></div>
+      <div class="div161">네이버 페이</div>
+      <img class="image-107" src="image-1070.png" />
+    </div>
+  </div>
+  <div class="div171">포인트</div>
+  <div class="_7-000-p">7,000 P</div>
+  <div class="rectangle-1720"></div>
+  <div class="div181">최대 사용</div>
+  <div class="rectangle-1721"></div>
+  <div class="div191">보유 포인트</div>
+  <div class="div201">
+    구매 입찰은 ‘최대 사용’만 선택 가능하며, 거래 체결 시점에 보유한 모든
+    포인트를 사용합니다.
+  </div>
+  <div class="_15-000-p">15,000 p</div>
+
+
+</div>
+</div>
+<!-- HTML 하단에 삽입할 수정된 JS 코드 -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // ─────────────────────────────────────────────────────────────
+  // 1) 공통 오버레이(모달 뒤 어두운 배경) 가져오기
+  // ─────────────────────────────────────────────────────────────
+  const overlay = document.querySelector('.modal-overlay');
+
+  // ─────────────────────────────────────────────────────────────
+  // 2) 첫 번째 모달(주소록) 관련 요소 가져오기
+  // ─────────────────────────────────────────────────────────────
+  const changeBtn       = document.getElementById('changeAddressButton');           // “주소 변경” 버튼
+  const addressModal    = document.querySelector('.address-modal');                 // 첫 번째 주소록 모달
+  const closeAddrBtn    = document.querySelector('.address-modal .modal-close-btn');// 첫 번째 모달 닫기(X) 버튼
+  const openAddFormBtn  = document.querySelector('.add-address-btn');               // 첫 번째 모달 내 “+ 새 주소 추가하기” 버튼
+
+  // ─────────────────────────────────────────────────────────────
+  // 3) 두 번째 모달(주소 추가 폼) 관련 요소 가져오기
+  // ─────────────────────────────────────────────────────────────
+  const addFormModal    = document.querySelector('.add-address-modal');             // 두 번째 주소 추가 폼 모달
+  const closeAddFormBtn = document.getElementById('closeAddFormBtn');               // 두 번째 모달 닫기(X) 버튼
+  const zipSearchBtn    = document.querySelector('.zip-search-btn');                // 우편번호 검색 버튼
+  const zipCodeInput    = document.getElementById('zipCode');                       // 우편번호 입력란
+  const addressInput    = document.getElementById('address');                       // 주소 입력란
+  const addForm         = document.getElementById('addAddressForm');                 // 두 번째 모달 폼 전체
+
+  // ─────────────────────────────────────────────────────────────
+  // 4) 세 번째 모달(결제 완료) 관련 요소 가져오기
+  // ─────────────────────────────────────────────────────────────
+  const completePurchaseBtn   = document.getElementById('completePurchaseBtn');      // “결제하기” 버튼
+  const purchaseModal         = document.querySelector('.purchase-complete-modal');   // 결제 완료 모달
+  const closePurchaseBtn      = document.getElementById('closePurchaseCompleteBtn');  // 결제 완료 모달 내 “닫기” 버튼
+
+  // ─────────────────────────────────────────────────────────────
+  // 5) 첫 번째 모달 열기/닫기 함수 정의
+  // ─────────────────────────────────────────────────────────────
+  function openAddressModal() {
+    overlay.style.display      = 'block';
+    addressModal.style.display = 'block';
+    document.body.style.overflow = 'hidden'; // 스크롤 방지
+  }
+  function closeAddressModal() {
+    overlay.style.display      = 'none';
+    addressModal.style.display = 'none';
+    document.body.style.overflow = 'auto';
+  }
+
+  // ─────────────────────────────────────────────────────────────
+  // 6) 두 번째 모달(주소 추가 폼) 열기/닫기 함수 정의
+  // ─────────────────────────────────────────────────────────────
+  function openAddAddressModal() {
+    // 첫 번째 모달을 닫고
+    closeAddressModal();
+    // 두 번째 모달을 열기
+    addFormModal.style.display = 'block';
+    overlay.style.display      = 'block';
+    document.body.style.overflow = 'hidden';
+  }
+  function closeAddAddressModal() {
+    addFormModal.style.display = 'none';
+    overlay.style.display      = 'none';
+    document.body.style.overflow = 'auto';
+  }
+
+  // ─────────────────────────────────────────────────────────────
+  // 7) 세 번째 모달(결제 완료) 열기/닫기 함수 정의
+  // ─────────────────────────────────────────────────────────────
+  function openPurchaseModal() {
+    overlay.style.display       = 'block';
+    purchaseModal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+  }
+  function closePurchaseModal() {
+    overlay.style.display       = 'none';
+    purchaseModal.style.display = 'none';
+    document.body.style.overflow = 'auto';
+  }
+
+  // ─────────────────────────────────────────────────────────────
+  // 8) 이벤트 연결
+  // ─────────────────────────────────────────────────────────────
+  // [첫 번째 모달 관련]
+  changeBtn.addEventListener('click', openAddressModal);     // “주소 변경” 클릭 → 주소록 모달 열기
+  closeAddrBtn.addEventListener('click', closeAddressModal); // 주소록 모달 X클릭 → 모달 닫기
+
+  // [두 번째 모달 관련]
+  openAddFormBtn.addEventListener('click', openAddAddressModal);   // “+ 새 주소 추가하기” 클릭 → 주소 추가 폼 모달 열기
+  closeAddFormBtn.addEventListener('click', closeAddAddressModal); // 주소 추가 폼 모달 X클릭 → 모달 닫기
+
+  zipSearchBtn.addEventListener('click', function() {
+    // 실제: API/팝업 → 여기서는 예시로 임의 데이터 채우기
+    zipCodeInput.value = '12345';
+    addressInput.value = '서울특별시 강남구 역삼동 000-00';
+    addressInput.focus();
+  });
+
+  addForm.addEventListener('submit', function(event) {
+    event.preventDefault(); // 페이지 리로드 방지
+    // 입력값 수집 예시
+    const data = {
+      name: document.getElementById('recipientName').value,
+      phone: document.getElementById('phoneNumber').value,
+      zip: zipCodeInput.value,
+      addr: addressInput.value,
+      detail: document.getElementById('detailAddress').value,
+      isDefault: document.getElementById('defaultAddress').checked
+    };
+    console.log('새 주소 저장 데이터:', data);
+    // TODO: 서버 전송 로직 추가
+
+    // 두 번째 모달 닫고 → 첫 번째 모달 다시 열기
+    closeAddAddressModal();
+    openAddressModal();
+  });
+
+  // [세 번째 모달 관련]
+  completePurchaseBtn.addEventListener('click', openPurchaseModal);    // “결제하기” 클릭 → 결제 완료 모달 열기
+  closePurchaseBtn.addEventListener('click', closePurchaseModal);      // 결제 완료 모달 닫기 버튼 클릭 → 모달 닫기
+
+  // [오버레이 클릭 시, 열린 모달 모두 닫기]
+  overlay.addEventListener('click', function() {
+    if (purchaseModal.style.display === 'block') {
+      closePurchaseModal();
+      return;
+    }
+    if (addressModal.style.display === 'block') {
+      closeAddressModal();
+      return;
+    }
+    if (addFormModal.style.display === 'block') {
+      closeAddAddressModal();
+      return;
+    }
+  });
+
+}); // ────────────────────────────────────────────────────────────
+</script>
+
+
+</body>
+</html>

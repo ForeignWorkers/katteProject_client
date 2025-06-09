@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>회원 관리</title>
+  <link rel="stylesheet" href="Membership_management.css" />
+</head>
+<body>
+  <!-- ───────────────────────────────────────────────────────────────────
+     1) 사이드바 (기존과 동일)
+     ─────────────────────────────────────────────────────────────────── -->
+  <aside class="sidebar">
+    <a href="/main">
+      <img class="logo-1" src="../../../../../../../../../../JAVA/JAVA_24.12.30/Project/src/main/webapp/img/logo%20(1).png" alt="로고" />
+    </a>
+    <nav class="sidebar-nav">
+      <ul>
+        <li><a href="/search">검색</a></li>
+        <li><a href="/explore">탐색</a></li>
+        <li><a href="/sell">판매등록</a></li>
+        <li><a href="/wishlist">관심상품</a></li>
+        <li><a href="/style">스타일</a></li>
+        <li><a href="/mypage">마이페이지</a></li>
+        <li><a href="/support">고객센터</a></li>
+      </ul>
+    </nav>
+    <div class="login-area">
+      <a href="/login" class="btn-login">관리자</a>
+    </div>
+    <footer class="sidebar-footer">
+      <p><a href="/support">고객센터</a> | <a href="/terms">이용약관</a></p>
+      <small>&copy; All copyright in soldesk</small>
+    </footer>
+  </aside>
+
+  <!-- ───────────────────────────────────────────────────────────────────
+     2) 메인 콘텐츠 영역
+     ─────────────────────────────────────────────────────────────────── -->
+  <div class="content">
+
+    <!-- ─────────────────────────────────────────────────────────────────
+       2-1) 상단: 탭 + “총 회원 보기” 토글
+       ───────────────────────────────────────────────────────────────── -->
+    <div class="tab-toggle-wrapper">
+      <div class="tab-container">
+        <div class="tab active" data-target="member-area">회원 관리</div>
+        <div class="tab"       data-target="review-area">검수 관리</div>
+        <div class="tab"       data-target="report-area">신고 관리</div>
+      </div>
+      <div class="view-toggle-container">
+        <button id="viewToggleBtn" class="view-toggle-btn">
+          <span class="view-label">총 회원 보기</span>
+          <span class="view-arrow">⬇︎</span>
+        </button>
+        <div id="viewDropdown" class="view-dropdown">
+          <div class="view-option selected" data-value="all">
+            <span class="checkmark">✔</span>
+            <span class="option-label">총 회원 보기</span>
+          </div>
+          <div class="view-option" data-value="reported">
+            <span class="checkmark"></span>
+            <span class="option-label">신고된 회원 보기</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─────────────────────────────────────────────────────────────────
+       2-2) 검색창 + 총 회원 수
+       ───────────────────────────────────────────────────────────────── -->
+    <div class="search-area">
+      <div class="total-count">총 회원 13,334명</div>
+      <div class="search-input">
+        <input type="text" placeholder="닉네임 혹은 계정 ID를 검색하세요" />
+      </div>
+    </div>
+
+    <!-- ─────────────────────────────────────────────────────────────────
+       2-3) 회원관리 섹션
+       ───────────────────────────────────────────────────────────────── -->
+    <div id="member-area">
+      <table class="member-table">
+        <thead>
+          <tr>
+            <th>닉네임</th>
+            <th>계정 ID</th>
+            <th>회원 가입일</th>
+            <th>게시글 &amp; 댓글 수</th>
+            <th>회원 상태 관리</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- ─── 예시 1행 (row-all) ─── -->
+          <tr class="row-all">
+            <td>니쥬냥</td>
+            <td>need_u_neko</td>
+            <td>2025-1-4</td>
+            <td class="post-cell">
+              <span class="post-count">게시글: 4개</span><br />
+              <span class="comment-count">댓글: 10개</span>
+            </td>
+            <td class="status-cell">
+              <div class="status-wrapper">
+                <span class="status-display"></span>
+                <button class="edit-btn">수정하기</button>
+              </div>
+              <div class="status-popup">
+                <ul>
+                  <li data-value="정상">정상</li>
+                  <li data-value="정지 3일">정지 3일</li>
+                  <li data-value="정지 7일">정지 7일</li>
+                  <li data-value="정지 30일">정지 30일</li>
+                  <li data-value="추방">추방</li>
+                </ul>
+              </div>
+            </td>
+          </tr>
+          <!-- ─── 예시 2행 (row-reported) ─── -->
+          <tr class="row-reported">
+            <td>주노띠</td>
+            <td>jyuhebs</td>
+            <td>2025-1-12</td>
+            <td class="post-cell">
+              <span class="post-count">게시글: 13개</span><br />
+              <span class="comment-count">댓글: 120개</span>
+            </td>
+            <td class="status-cell">
+              <div class="status-wrapper">
+                <span class="status-display"></span>
+                <button class="edit-btn">수정하기</button>
+              </div>
+              <div class="status-popup">
+                <ul>
+                  <li data-value="정상">정상</li>
+                  <li data-value="정지 3일">정지 3일</li>
+                  <li data-value="정지 7일">정지 7일</li>
+                  <li data-value="정지 30일">정지 30일</li>
+                  <li data-value="추방">추방</li>
+                </ul>
+              </div>
+            </td>
+          </tr>
+          <!-- ─── 예시 3행 (row-all) ─── -->
+          <tr class="row-all">
+            <td>재연짱</td>
+            <td>sdsafdssfd</td>
+            <td>2025-1-4</td>
+            <td class="post-cell">
+              <span class="post-count">게시글: 12개</span><br />
+              <span class="comment-count">댓글: 4개</span>
+            </td>
+            <td class="status-cell">
+              <div class="status-wrapper">
+                <span class="status-display"></span>
+                <button class="edit-btn">수정하기</button>
+              </div>
+              <div class="status-popup">
+                <ul>
+                  <li data-value="정상">정상</li>
+                  <li data-value="정지 3일">정지 3일</li>
+                  <li data-value="정지 7일">정지 7일</li>
+                  <li data-value="정지 30일">정지 30일</li>
+                  <li data-value="추방">추방</li>
+                </ul>
+              </div>
+            </td>
+          </tr>
+          <!-- ─── 예시 4행 (row-all) ─── -->
+          <tr class="row-all">
+            <td>정민규바보</td>
+            <td>dfwwwwwbabo</td>
+            <td>2025-1-4</td>
+            <td class="post-cell">
+              <span class="post-count">게시글: 42개</span><br />
+              <span class="comment-count">댓글: 120개</span>
+            </td>
+            <td class="status-cell">
+              <div class="status-wrapper">
+                <span class="status-display"></span>
+                <button class="edit-btn">수정하기</button>
+              </div>
+              <div class="status-popup">
+                <ul>
+                  <li data-value="정상">정상</li>
+                  <li data-value="정지 3일">정지 3일</li>
+                  <li data-value="정지 7일">정지 7일</li>
+                  <li data-value="정지 30일">정지 30일</li>
+                  <li data-value="추방">추방</li>
+                </ul>
+              </div>
+            </td>
+          </tr>
+          <!-- ─── 예시 5행 (row-reported) ─── -->
+          <tr class="row-reported">
+            <td>성근냥</td>
+            <td>sndfbsfwad</td>
+            <td>2025-1-4</td>
+            <td class="post-cell">
+              <span class="post-count">게시글: 4개</span><br />
+              <span class="comment-count">댓글: 1개</span>
+            </td>
+            <td class="status-cell">
+              <div class="status-wrapper">
+                <span class="status-display"></span>
+                <button class="edit-btn">수정하기</button>
+              </div>
+              <div class="status-popup">
+                <ul>
+                  <li data-value="정상">정상</li>
+                  <li data-value="정지 3일">정지 3일</li>
+                  <li data-value="정지 7일">정지 7일</li>
+                  <li data-value="정지 30일">정지 30일</li>
+                  <li data-value="추방">추방</li>
+                </ul>
+              </div>
+            </td>
+          </tr>
+          <!-- ─── 예시 6행 (row-all) ─── -->
+          <tr class="row-all">
+            <td>졸린고양이</td>
+            <td>need_u_neko</td>
+            <td>2025-1-4</td>
+            <td class="post-cell">
+              <span class="post-count">게시글: 0개</span><br />
+              <span class="comment-count">댓글: 1개</span>
+            </td>
+            <td class="status-cell">
+              <div class="status-wrapper">
+                <span class="status-display"></span>
+                <button class="edit-btn">수정하기</button>
+              </div>
+              <div class="status-popup">
+                <ul>
+                  <li data-value="정상">정상</li>
+                  <li data-value="정지 3일">정지 3일</li>
+                  <li data-value="정지 7일">정지 7일</li>
+                  <li data-value="정지 30일">정지 30일</li>
+                  <li data-value="추방">추방</li>
+                </ul>
+              </div>
+            </td>
+          </tr>
+          <!-- ─── 예시 7행 (row-reported) ─── -->
+          <tr class="row-reported">
+            <td>꿍지</td>
+            <td>need_u_neko</td>
+            <td>2025-1-4</td>
+            <td class="post-cell">
+              <span class="post-count">게시글: 0개</span><br />
+              <span class="comment-count">댓글: 10개</span>
+            </td>
+            <td class="status-cell">
+              <div class="status-wrapper">
+                <span class="status-display"></span>
+                <button class="edit-btn">수정하기</button>
+              </div>
+              <div class="status-popup">
+                <ul>
+                  <li data-value="정상">정상</li>
+                  <li data-value="정지 3일">정지 3일</li>
+                  <li data-value="정지 7일">정지 7일</li>
+                  <li data-value="정지 30일">정지 30일</li>
+                  <li data-value="추방">추방</li>
+                </ul>
+              </div>
+            </td>
+          </tr>
+          <!-- ─══ 예시 8행 (row-all) ─══ -->
+          <tr class="row-all">
+            <td>소루데스쿠</td>
+            <td>need_u_neko</td>
+            <td>2025-1-4</td>
+            <td class="post-cell">
+              <span class="post-count">게시글: 4개</span><br />
+              <span class="comment-count">댓글: 10개</span>
+            </td>
+            <td class="status-cell">
+              <div class="status-wrapper">
+                <span class="status-display"></span>
+                <button class="edit-btn">수정하기</button>
+              </div>
+              <div class="status-popup">
+                <ul>
+                  <li data-value="정상">정상</li>
+                  <li data-value="정지 3일">정지 3일</li>
+                  <li data-value="정지 7일">정지 7일</li>
+                  <li data-value="정지 30일">정지 30일</li>
+                  <li data-value="추방">추방</li>
+                </ul>
+              </div>
+            </td>
+          </tr>
+          <!-- ─══ 예시 9행 (row-all) ─══ -->
+          <tr class="row-all">
+            <td>나즈나</td>
+            <td>need_u_neko</td>
+            <td>2025-1-4</td>
+            <td class="post-cell">
+              <span class="post-count">게시글: 4개</span><br />
+              <span class="comment-count">댓글: 10개</span>
+            </td>
+            <td class="status-cell">
+              <div class="status-wrapper">
+                <span class="status-display"></span>
+                <button class="edit-btn">수정하기</button>
+              </div>
+              <div class="status-popup">
+                <ul>
+                  <li data-value="정상">정상</li>
+                  <li data-value="정지 3일">정지 3일</li>
+                  <li data-value="정지 7일">정지 7일</li>
+                  <li data-value="정지 30일">정지 30일</li>
+                  <li data-value="추방">추방</li>
+                </ul>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- ───────────────────────────────────────────────────────────────────
+         2-4) 페이징 네비게이션
+         ─────────────────────────────────────────────────────────────────── -->
+      <div class="pagination">
+        <a href="#" class="prev">PREV</a>
+        <span class="current-page">1</span>
+        <a href="#">2</a><a href="#">3</a>
+        <a href="#" class="next">NEXT</a>
+      </div>
+    </div>
+
+    <!-- ─────────────────────────────────────────────────────────────────
+       2-5) 검수관리 섹션
+       ───────────────────────────────────────────────────────────────── -->
+    <div id="review-area" class="hidden">
+      <div class="section-count">검수 내역 3건</div>
+      <table class="review-table">
+        <thead>
+          <tr>
+            <th>상품명</th>
+            <th>상품 타이틀</th>
+            <th>판매자 아이디</th>
+            <th>등록일</th>
+            <th>검수 상태</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              Stussy Welder T-Shirt White<br/>
+              <button class="detail-btn">상세 보기</button>
+            </td>
+            <td>스트릿 패션의 기본! 스투시 반팔 판매합니다</td>
+            <td>wefad_1432</td>
+            <td>2025-3-25</td>
+            <td class="review-cell">
+              <button class="review-complete-btn">검수 완료</button>
+              <button class="review-fail-btn">검수 기준 미달</button>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              AAPE Fancy Main Tee Black - 25SS<br/>
+              <button class="detail-btn">상세 보기</button>
+            </td>
+            <td>베이프 신상 티셔츠 판매합니다</td>
+            <td>Lves8934</td>
+            <td>2025-3-24</td>
+            <td class="review-cell">
+              <button class="review-complete-btn">검수 완료</button>
+              <button class="review-fail-btn">검수 기준 미달</button>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              Nike V2K Run Summit White Metallic Silver<br/>
+              <button class="detail-btn">상세 보기</button>
+            </td>
+            <td>[주의] 한 번도 안 신은 나이키 신발 판매합니다! 실물 진짜 예뻐</td>
+            <td>xilio_1_meow</td>
+            <td>2025-3-23</td>
+            <td class="review-cell">
+              <button class="review-complete-btn">검수 완료</button>
+              <button class="review-fail-btn">검수 기준 미달</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="pagination">
+        <a href="#" class="prev">PREV</a>
+        <span class="current-page">1</span>
+        <a href="#">2</a><a href="#">3</a>
+        <a href="#" class="next">NEXT</a>
+      </div>
+    </div>
+    <div id="report-area" class="hidden">
+      <!-- ▶ 맨 위: 신고 건수 -->
+      <div class="section-count">신고 건수 10건</div>
+
+      <!-- ▶ 신고 관리 테이블 -->
+      <table class="report-table">
+        <thead>
+          <tr>
+            <th>분류</th>
+            <th>신고분류</th>
+            <th>신고글</th>
+            <th>작성자</th>
+            <th>신고횟수</th>
+            <th>신고자</th>
+            <th>신고날짜</th>
+            <th>삭제</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>게시글 신고</td>
+            <td>홍보 및 상업적인 내용이 들어간 글</td>
+            <td>빵댕이가예브네여</td>
+            <td>minQQQQQ1</td>
+            <td>게시글: 1회<br/>댓글: 1회</td>
+            <td>wedsㅏ_23xXy</td>
+            <td>2025-01-13</td>
+            <td><button class="delete-btn">삭제</button></td>
+          </tr>
+          <tr>
+            <td>댓글 신고</td>
+            <td>악의적 욕설이 포함된 글</td>
+            <td>오 개별루띠닝ww</td>
+            <td>sungkeun0728</td>
+            <td>게시글: 2회<br/>댓글: 3회</td>
+            <td>gdxLLILxXXXx</td>
+            <td>2025-01-14</td>
+            <td><button class="delete-btn">삭제</button></td>
+          </tr>
+          <!-- … 추가 행 가능 … -->
+        </tbody>
+      </table>
+
+      <!-- ▶ 페이징 네비게이션 (기존과 동일한 스타일) -->
+      <div class="pagination">
+        <a href="#" class="prev">PREV</a>
+        <span class="current-page">1</span>
+        <a href="#">2</a>
+        <a href="#">3</a>
+        <a href="#" class="next">NEXT</a>
+      </div>
+    </div>
+    
+
+    <!-- ─────────────────────────────────────────────────────────────────
+       2-6) 신고관리 섹션 (플레이스홀더)
+       ───────────────────────────────────────────────────────────────── -->
+    <div id="report-area" class="hidden">
+      <p>신고관리 페이지 작업 중…</p>
+    </div>
+  </div>
+
+  <!-- ───────────────────────────────────────────────────────────────────
+     3) 게시글 모달
+     ─────────────────────────────────────────────────────────────────── -->
+  <div id="postsModal" class="modal">
+    <div class="modal-overlay"></div>
+    <div class="modal-box">
+      <button class="modal-close">&times;</button>
+      <div class="modal-header">
+        <h2 class="modal-title"></h2>
+        <button class="modal-count"></button>
+      </div>
+      <table class="modal-table">
+        <thead>
+          <tr>
+            <th>글 번호</th>
+            <th>글 제목</th>
+            <th>작성일</th>
+            <th>조회수</th>
+            <th>좋아요</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ───────────────────────────────────────────────────────────────────
+     4) 댓글 모달
+     ─────────────────────────────────────────────────────────────────── -->
+  <div id="commentsModal" class="modal">
+    <div class="modal-overlay"></div>
+    <div class="modal-box">
+      <button class="modal-close">&times;</button>
+      <div class="modal-header">
+        <h2 class="modal-title"></h2>
+        <button class="modal-count"></button>
+      </div>
+      <table class="modal-table">
+        <thead>
+          <tr>
+            <th>글 번호</th>
+            <th>작성한 댓글</th>
+            <th>작성일</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ───────────────────────────────────────────────────────────────────
+     5) JavaScript (탭 전환 + 드롭다운 + 상태 팝업 + 모달 + 검수관리)
+     ─────────────────────────────────────────────────────────────────── -->
+  <script>
+document.addEventListener('DOMContentLoaded', () => {
+  // (1) 탭 전환
+  document.querySelectorAll('.tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      // 탭 스타일 토글
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      // 섹션 표시 토글
+      ['member-area','review-area','report-area'].forEach(id => {
+        document.getElementById(id).classList.toggle('hidden', tab.dataset.target !== id);
+      });
+    });
+  });
+
+  // (2) “총 회원 보기” 드롭다운 (회원 관리 탭에서만 사용)
+  const viewToggleBtn = document.getElementById('viewToggleBtn');
+  const viewDropdown  = document.getElementById('viewDropdown');
+  const options       = viewDropdown.querySelectorAll('.view-option');
+  const viewLabel     = viewToggleBtn.querySelector('.view-label');
+  let currentView = 'all';
+
+  viewToggleBtn.addEventListener('click', e => {
+    e.stopPropagation();
+    const isOpen = viewDropdown.style.display === 'block';
+    viewDropdown.style.display = isOpen ? 'none' : 'block';
+    viewToggleBtn.classList.toggle('open', !isOpen);
+  });
+
+  options.forEach(opt => {
+    opt.addEventListener('click', () => {
+      const v = opt.dataset.value;
+      if (v !== currentView) {
+        options.forEach(o => o.classList.remove('selected'));
+        opt.classList.add('selected');
+        viewLabel.innerText = opt.querySelector('.option-label').innerText;
+        currentView = v;
+        document.querySelectorAll('#member-area .member-table tbody tr').forEach(r => {
+          r.style.display = (v === 'all' || r.classList.contains('row-reported')) ? '' : 'none';
+        });
+      }
+      viewDropdown.style.display = 'none';
+      viewToggleBtn.classList.remove('open');
+    });
+  });
+
+  document.addEventListener('click', () => {
+    if (viewDropdown.style.display === 'block') {
+      viewDropdown.style.display = 'none';
+      viewToggleBtn.classList.remove('open');
+    }
+  });
+
+  // (3) “수정하기” 버튼 → 상태 팝업
+  document.querySelectorAll('.status-cell').forEach(cell => {
+    const btn   = cell.querySelector('.edit-btn');
+    const popup = cell.querySelector('.status-popup');
+    const disp  = cell.querySelector('.status-display');
+
+    btn.addEventListener('click', e => {
+      e.stopPropagation();
+      document.querySelectorAll('.status-popup').forEach(p => p.style.display = 'none');
+      popup.style.display = popup.style.display === 'block' ? 'none' : 'block';
+    });
+
+    popup.querySelectorAll('li').forEach(li => {
+      li.addEventListener('click', () => {
+        popup.querySelectorAll('li').forEach(o => o.classList.remove('selected'));
+        li.classList.add('selected');
+        disp.innerText = li.dataset.value;
+        popup.style.display = 'none';
+      });
+    });
+  });
+
+  document.addEventListener('click', () => {
+    document.querySelectorAll('.status-popup').forEach(popup => {
+      if (popup.style.display === 'block') popup.style.display = 'none';
+    });
+  });
+
+  // (4) 예시 데이터
+  const postData = {
+    need_u_neko: [
+      { no:109, title:'오늘의 룩 넘 귀여이잉', date:'2024년 10월 17일 22시 13분', views:143, likes:12 },
+      { no:231, title:'너무너무 춥던 날이에욤', date:'2024년 11월 01일 22시 13분', views:3423, likes:43 },
+      { no:353, title:'생일 기념 ootd', date:'2024년 12월 17일 22시 13분', views:1217, likes:121 },
+      { no:356, title:'날씨 좋다 ㅇㅇ', date:'2025년 01월 23일 22시 13분', views:43, likes:3 }
+    ],
+    jyuhebs: [], sdsafdssfd: [], dfwwwwwbabo: [], sndfbsfwad: []
+  };
+  const commentData = {
+    need_u_neko: [
+      { no:32, comment:'여기 어디인가요? 너무 예뻐용', date:'2024년 10월 17일 22시 13분' },
+      { no:1321, comment:'핵 저 옷 사고 싶어서 고민하고 있었는데~+♥', date:'2024년 11월 01일 22시 13분' },
+      { no:232, comment:'살찌 듬뻐용 ㅎㅎ', date:'2024년 12월 17일 22시 13분' },
+      { no:2415, comment:'오늘 룩 너무 맹해용', date:'2025년 01월 23일 22시 13분' }
+    ],
+    jyuhebs: [], sdsafdssfd: [], dfwwwwwbabo: [], sndfbsfwad: []
+  };
+
+  // (5) 모달 공통 셋업
+  function setupModal(id) {
+    const m = document.getElementById(id);
+    m.querySelector('.modal-overlay').onclick = () => m.style.display = 'none';
+    m.querySelector('.modal-close').onclick   = () => m.style.display = 'none';
+  }
+  setupModal('postsModal');
+  setupModal('commentsModal');
+
+  // (6) 게시글 클릭 → postsModal
+  document.querySelectorAll('.post-count').forEach(el => {
+    el.style.cursor = 'pointer';
+    el.onclick = () => {
+      const uid = el.closest('tr').cells[1].innerText.trim();
+      const list = postData[uid] || [];
+      const m    = document.getElementById('postsModal');
+      m.querySelector('.modal-title').innerText = `${uid}님의 작성 게시글`;
+      m.querySelector('.modal-count').innerText = `작성한 게시글 수: 총 ${String(list.length).padStart(2,'0')}개`;
+      const tb = m.querySelector('tbody'); tb.innerHTML = '';
+      list.forEach(p => {
+        tb.insertAdjacentHTML('beforeend',
+          `<tr>
+            <td>${p.no}</td>
+            <td>${p.title}</td>
+            <td>${p.date}</td>
+            <td>${p.views}</td>
+            <td>${p.likes}</td>
+          </tr>`
+        );
+      });
+      m.style.display = 'block';
+    };
+  });
+
+  // (7) 댓글 클릭 → commentsModal
+  document.querySelectorAll('.comment-count').forEach(el => {
+    el.style.cursor = 'pointer';
+    el.onclick = () => {
+      const uid = el.closest('tr').cells[1].innerText.trim();
+      const list = commentData[uid] || [];
+      const m    = document.getElementById('commentsModal');
+      m.querySelector('.modal-title').innerText = `${uid}님의 작성 댓글`;
+      m.querySelector('.modal-count').innerText = `작성한 댓글 수: 총 ${String(list.length).padStart(2,'0')}개`;
+      const tb = m.querySelector('tbody'); tb.innerHTML = '';
+      list.forEach(c => {
+        tb.insertAdjacentHTML('beforeend',
+          `<tr>
+            <td>${c.no}</td>
+            <td>${c.comment}</td>
+            <td>${c.date}</td>
+          </tr>`
+        );
+      });
+      m.style.display = 'block';
+    };
+  });
+
+  // (8) 검수관리 – 검수 상태 버튼 처리
+  document.querySelectorAll('.review-complete-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (confirm('검수를 완료하시겠습니까?')) {
+        btn.closest('td').innerText = '검수 완료';
+      }
+    });
+  });
+  document.querySelectorAll('.review-fail-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (confirm('검수 기준 미달 처리를 하겠습니까?')) {
+        btn.closest('td').innerText = '검수 기준 미달';
+      }
+    });
+  });
+
+  // (9) 신고관리 – 삭제 버튼 (향후 로직 연결)
+  document.querySelectorAll('.delete-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      // TODO: 삭제 API 호출 또는 행 제거
+      console.log('삭제 클릭:', btn.closest('tr'));
+    });
+  });
+});
+</script>
+</body>
+</html>
