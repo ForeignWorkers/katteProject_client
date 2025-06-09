@@ -1,0 +1,557 @@
+@charset "UTF-8";
+/* ───────────────────────────────────────────────────────────────────────────
+   1) 공통 리셋
+   ─────────────────────────────────────────────────────────────────────────── */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html, body {
+  height: 100%;
+  background-color: #181818;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  color: #f9eeee;
+}
+
+/* ───────────────────────────────────────────────────────────────────────────
+   2) 사이드바
+   ─────────────────────────────────────────────────────────────────────────── */
+.sidebar {
+  position: fixed;
+  top: 1.649vh;
+  left: 2.1675vw;
+  width: 11.866vw;
+  padding: 0.884vw;
+  background: #181818;
+  display: flex;
+  flex-direction: column;
+}
+.sidebar .logo-1 {
+  width: 62.77px;
+  height: 76.5px;
+  object-fit: cover;
+  aspect-ratio: 73.85/90;
+  margin-bottom: 34px;
+}
+.sidebar-nav {
+  margin-bottom: 51px;
+}
+.sidebar-nav ul {
+  list-style: none;
+}
+.sidebar-nav ul li {
+  margin-bottom: 17px;
+}
+.sidebar-nav ul li a {
+  display: block;
+  text-decoration: none;
+  color: #f9eeee;
+  font-size: 22.1px;
+  line-height: 34px;
+}
+.login-area {
+  margin-bottom: 51px;
+}
+.btn-login {
+  width: 100%;
+  height: 48.45px;       /* 57px × 0.85 */
+  background: #ff0044;
+  border: none;
+  border-radius: 11.9px;  /* 14px × 0.85 */
+  color: #fff4f4;
+  font-size: 21.25px;     /* 25px × 0.85 */
+  line-height: 48.45px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+.sidebar-footer {
+  margin-top: auto;
+  font-size: 12.75px;     /* 15px × 0.85 */
+  color: #787878;
+}
+.sidebar-footer a {
+  color: #787878;
+  text-decoration: none;
+}
+.sidebar-footer p {
+  margin-bottom: 6.8px;   /* 8px × 0.85 */
+}
+.sidebar-footer small {
+  display: block;
+}
+
+/* ───────────────────────────────────────────────────────────────────────────
+   3) 콘텐츠 영역
+   ─────────────────────────────────────────────────────────────────────────── */
+.content {
+  margin-left: calc(11.866vw + 2.1675vw + 17px);
+  /* 사이드바 너비 + 좌측 여백 + (20px × 0.85 → 17px) */
+  padding: 17px;
+}
+
+/* ───────────────────────────────────────────────────────────────────────────
+   4) 상단: 탭 + “총 회원 보기” 토글 래퍼
+   ─────────────────────────────────────────────────────────────────────────── */
+.tab-toggle-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20.4px; /* 24px × 0.85 */
+}
+
+/* ───────────────────────────────────────────────────────────────────────────
+   5) 탭 스타일 (회원 관리 / 검수 관리 / 신고 관리)
+   ─────────────────────────────────────────────────────────────────────────── */
+.tab-container {
+  display: flex;
+  gap: 2px;
+}
+.tab-container .tab {
+  flex: 1;
+  text-align: center;
+  padding: 13.6px 0;          /* 16px × 0.85 */
+  font-size: 17px;            /* 20px × 0.85 */
+  font-weight: 400;
+  color: #f9eeee;
+  border: 0.85px solid #ff0044; /* 1px × 0.85 */
+  background: transparent;
+  cursor: pointer;
+}
+.tab-container .tab.active {
+  background: #ff0044;
+  font-weight: 700;
+}
+
+/* ───────────────────────────────────────────────────────────────────────────
+   6) 검색 영역 (총 회원 수 + 검색창)
+   ─────────────────────────────────────────────────────────────────────────── */
+.search-area {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20.4px;  /* 24px × 0.85 */
+}
+.search-area .total-count {
+  font-size: 12.75px;     /* 15px × 0.85 */
+  margin-right: 13.6px;   /* 16px × 0.85 */
+}
+.search-area .search-input {
+  flex: 1;
+  max-width: 340px;       /* 400px × 0.85 */
+  position: relative;
+}
+.search-area .search-input input {
+  width: 100%;
+  height: 28.05px;        /* 33px × 0.85 */
+  background: #181818;
+  color: #f9eeee;
+  border: 0.85px solid #f9eeee; /* 1px × 0.85 */
+  border-radius: 17px;     /* 20px × 0.85 */
+  padding: 0 10.2px;       /* 12px × 0.85 */
+  font-size: 12.75px;      /* 15px × 0.85 */
+}
+.search-area .search-input input::placeholder {
+  color: rgba(249, 238, 238, 0.7);
+}
+
+/* ───────────────────────────────────────────────────────────────────────────
+   7) 회원 목록 테이블
+   ─────────────────────────────────────────────────────────────────────────── */
+.member-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;     /* 열 너비 균등 분배 */
+  background: #2a2929;
+  border-radius: 6.8px;    /* 8px × 0.85 */
+  overflow: hidden;
+  margin-bottom: 20.4px;   /* 24px × 0.85 */
+}
+.member-table thead {
+  background: #2a2929;
+}
+.member-table thead th {
+  padding: 10.2px;             /* 12px × 0.85 */
+  font-size: 12.75px;          /* 15px × 0.85 */
+  font-weight: 700;
+  color: #f9eeee;
+  text-align: left;
+  border-bottom: 0.85px solid #444; /* 1px × 0.85 */
+  vertical-align: middle;
+}
+.member-table tbody tr:nth-child(even) {
+  background-color: #2a2929;
+}
+.member-table tbody tr:nth-child(odd) {
+  background-color: #242323;
+}
+.member-table tbody td {
+  padding: 10.2px;             /* 12px × 0.85 */
+  font-size: 12.75px;          /* 15px × 0.85 */
+  color: #f9eeee;
+  border-bottom: 0.85px solid #444; /* 1px × 0.85 */
+  vertical-align: middle;
+  word-wrap: break-word;
+}
+
+/* ───────────────────────────────────────────────────────────────────────────
+   8) 회원 상태 관리 셀
+   ─────────────────────────────────────────────────────────────────────────── */
+.status-cell {
+  position: relative;
+  background: transparent;
+  padding: 0;
+  vertical-align: middle;
+}
+.status-cell .status-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 100%;
+  padding: 10.2px;
+}
+.status-display {
+  font-weight: bold;
+  white-space: nowrap;
+}
+.status-wrapper .edit-btn {
+  background: none;
+  border: 0.85px solid #ff0044;
+  border-radius: 3.4px;
+  color: #ff0044;
+  padding: 3.4px 6.8px;
+  font-size: 11.9px;
+  cursor: pointer;
+}
+.status-wrapper .edit-btn:hover {
+  background: #ff0044;
+  color: #ffffff;
+}
+.status-popup {
+  display: none;
+  position: absolute;
+  top: calc(100% + 2px);
+  right: 0;
+  background: #ffffff;
+  border: 0.85px solid #ccc;
+  border-radius: 8.5px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  width: 140px;
+  z-index: 1000;
+}
+.status-popup ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.status-popup li {
+  padding: 6.8px 10.2px;
+  font-size: 12.75px;
+  color: #2a2929;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.status-popup li:hover {
+  background-color: #f2f2f2;
+}
+.status-popup li.selected {
+  background-color: #ff0044;
+  color: #ffffff;
+}
+
+/* ───────────────────────────────────────────────────────────────────────────
+   9) 페이징 네비게이션
+   ─────────────────────────────────────────────────────────────────────────── */
+.pagination {
+  margin-top: 20.4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6.8px;
+  font-size: 11.9px;
+}
+.pagination a,
+.pagination span {
+  color: #f9eeee;
+  text-decoration: none;
+  padding: 3.4px 6.8px;
+  border: 0.85px solid #f9eeee;
+  border-radius: 3.4px;
+}
+.pagination a:hover {
+  background: #ff0044;
+  color: #ffffff;
+}
+.pagination .current-page {
+  background: #ff0044;
+  color: #ffffff;
+  cursor: default;
+}
+
+/* ───────────────────────────────────────────────────────────────────────────
+  10) “총 회원 보기” 토글 버튼 + 드롭다운
+   ─────────────────────────────────────────────────────────────────────────── */
+.view-toggle-container {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 20.4px;
+}
+.view-toggle-btn {
+  display: flex;
+  align-items: center;
+  gap: 4.25px;
+  background: none;
+  border: 0.85px solid #f9eeee;
+  border-radius: 12.75px;
+  padding: 6.8px 13.6px;
+  font-size: 12.75px;
+  color: #f9eeee;
+  cursor: pointer;
+  user-select: none;
+}
+.view-toggle-btn .view-arrow {
+  font-size: 12px;
+  transition: transform 0.2s ease;
+}
+.view-toggle-btn.open .view-arrow {
+  transform: rotate(180deg);
+}
+.view-dropdown {
+  display: none;
+  position: absolute;
+  top: calc(100% + 2px);
+  left: 0;
+  background: #ffffff;
+  border: 0.85px solid #ccc;
+  border-radius: 8.5px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  width: 180px;
+  z-index: 1000;
+}
+.view-dropdown .view-option {
+  display: flex;
+  align-items: center;
+  padding: 8.5px 12.75px;
+  font-size: 12.75px;
+  color: #2a2929;
+  cursor: pointer;
+}
+.view-dropdown .view-option:hover {
+  background-color: #f2f2f2;
+}
+.view-dropdown .checkmark {
+  display: inline-block;
+  width: 12px;
+  margin-right: 6.8px;
+  color: #ff0044;
+  font-size: 12px;
+  visibility: hidden;
+}
+.view-dropdown .view-option.selected .checkmark {
+  visibility: visible;
+}
+.view-dropdown .view-option.selected {
+  background-color: #ffe6eb;
+}
+
+/* ───────────────────────────────────────────────────────────────────────────
+  11) 검수관리 전용
+   ─────────────────────────────────────────────────────────────────────────── */
+.hidden {
+  display: none !important;
+}
+.section-count {
+  font-size: 12.75px;
+  margin-bottom: 13px;
+  color: #f9eeee;
+}
+.review-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  background: #2a2929;
+  border-radius: 6.8px;
+  overflow: hidden;
+  margin-bottom: 20.4px;
+}
+.review-table thead th {
+  padding: 10.2px;
+  font-size: 12.75px;
+  font-weight: 700;
+  color: #f9eeee;
+  text-align: left;
+  border-bottom: 0.85px solid #444;
+}
+.review-table tbody tr:nth-child(even) {
+  background-color: #2a2929;
+}
+.review-table tbody tr:nth-child(odd) {
+  background-color: #242323;
+}
+.review-table tbody td {
+  padding: 10.2px;
+  font-size: 12.75px;
+  color: #f9eeee;
+  border-bottom: 0.85px solid #444;
+  vertical-align: middle;
+  word-wrap: break-word;
+}
+.detail-btn {
+  background: none;
+  border: 0.85px solid #ff0044;
+  border-radius: 3.4px;
+  color: #ff0044;
+  padding: 3.4px 6.8px;
+  font-size: 11.9px;
+  cursor: pointer;
+}
+.detail-btn:hover {
+  background: #ff0044;
+  color: #ffffff;
+}
+.review-cell button {
+  background: none;
+  border: 0.85px solid #ff0044;
+  border-radius: 3.4px;
+  color: #ff0044;
+  padding: 3.4px 6.8px;
+  font-size: 11.9px;
+  cursor: pointer;
+  margin-right: 4px;
+}
+.review-cell button:hover {
+  background: #ff0044;
+  color: #ffffff;
+}
+
+/* ───────────────────────────────────────────────────────────────────────────
+ 12) 모달 공통
+   ─────────────────────────────────────────────────────────────────────────── */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 2000;
+}
+.modal-overlay {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.5);
+}
+.modal-box {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  background: #181818;
+  padding: 20px;
+  border-radius: 8px;
+  width: 80%; max-width: 800px;
+  color: #f9eeee;
+}
+.modal-close {
+  position: absolute;
+  top: 10px; right: 10px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #f9eeee;
+}
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+.modal-title {
+  font-size: 18px;
+}
+.modal-count {
+  background: none;
+  border: 0.85px solid #f9eeee;
+  border-radius: 4px;
+  padding: 4px 8px;
+  font-size: 12px;
+  color: #f9eeee;
+}
+.modal-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.modal-table th, .modal-table td {
+  border: 0.85px solid #444;
+  padding: 8px;
+  font-size: 12px;
+  text-align: left;
+}
+.modal-table thead th {
+  background: #2a2929;
+}
+.modal-table tbody tr:nth-child(even) {
+  background-color: #2a2929;
+}
+.modal-table tbody tr:nth-child(odd) {
+  background-color: #242323;
+}
+.hidden {
+  display: none !important;
+}
+
+.section-count {
+  font-size: 12.75px;
+  margin-bottom: 13px;
+  color: #f9eeee;
+}
+
+.report-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  background: #2a2929;
+  border-radius: 6.8px;
+  overflow: hidden;
+  margin-bottom: 20.4px;
+}
+
+.report-table thead th {
+  padding: 10.2px;
+  font-size: 12.75px;
+  font-weight: 700;
+  color: #f9eeee;
+  text-align: left;
+  border-bottom: 0.85px solid #444;
+}
+
+.report-table tbody tr:nth-child(even) {
+  background-color: #2a2929;
+}
+.report-table tbody tr:nth-child(odd) {
+  background-color: #242323;
+}
+
+.report-table td {
+  padding: 10.2px;
+  font-size: 12.75px;
+  color: #f9eeee;
+  border-bottom: 0.85px solid #444;
+  vertical-align: middle;
+  word-break: break-word;
+}
+
+.delete-btn {
+  background: none;
+  border: 0.85px solid #ff0044;
+  border-radius: 3.4px;
+  color: #ff0044;
+  padding: 3.4px 6.8px;
+  font-size: 11.9px;
+  cursor: pointer;
+}
+.delete-btn:hover {
+  background: #ff0044;
+  color: #ffffff;
+}

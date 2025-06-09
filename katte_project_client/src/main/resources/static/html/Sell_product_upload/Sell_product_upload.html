@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<link rel="stylesheet" href="Sell_product_upload.css" />
+<body>
+<aside class="sidebar">
+  <a href="/main">
+  <img class="logo-1" src="../../../../../../../../../../JAVA/JAVA_24.12.30/Project/src/main/webapp/img/logo%20(1).png" alt="로고" />
+  </a>
+  <nav class="sidebar-nav">
+    <ul>
+      <li><a href="/search">검색</a></li>
+      <li><a href="/explore">탐색</a></li>
+      <li><a href="/sell">판매등록</a></li>
+      <li><a href="/wishlist">관심상품</a></li>
+      <li><a href="/style">스타일</a></li>
+      <li><a href="/mypage">마이페이지</a></li>
+      <li><a href="/support">고객센터</a></li>
+    </ul>
+  </nav>
+  <div class="login-area">
+    <a href="/login" class="btn-login">로그인</a>
+  </div>
+  <footer class="sidebar-footer">
+    <p><a href="/support">고객센터</a> | <a href="/terms">이용약관</a></p>
+    <small>&copy; All copyright in soldesk</small>
+  </footer>
+</aside>
+
+<div class="wraaper">
+  <img class="line-136" src="line-1360.svg" />
+  <div class="line-264"></div>
+  <img class="group-767" src="group-7670.svg" />
+  <div class="rectangle-1676" id="tab-upload-bg"></div>
+  <div class="div2"  id="tab-upload" >상품 등록</div>
+  <div class="rectangle-1675" id="tab-manage-bg" ></div>
+  <div class="div3" id="tab-manage">등록 상품 관리</div>
+  <div class="rectangle-1677"></div>
+  <div class="div18" id="btn-register">등록</div>
+  <div class="div19">
+    <div class="rectangle-16772"></div>
+    <div class="div20">상품 설명</div>
+  </div>
+
+     <div class="rectangle-1678"></div>
+    <textarea
+      class="input-desc"
+      placeholder="상품 설명을 작성하세요"
+    ></textarea>
+
+    <!-- ■ 이미지 썸네일용 사각형들 ■ -->
+    <div class="rectangle-1692"></div>
+    <div class="rectangle-1691"></div>
+    <div class="rectangle-1694"></div>
+    <div class="rectangle-1689"></div>
+    <div class="rectangle-1693"></div>
+
+    <!-- ■ “상품 이미지 & 숏폼” 제목 ■ -->
+    <div class="rectangle-16773"></div>
+    <div class="div22">상품 이미지 &amp; 숏폼</div>
+
+    <!-- ■ “숏폼 상품 타이틀” 입력 영역 ■ -->
+    <div class="rectangle-16774"></div>
+    <input
+      type="text"
+      class="input-shorttitle"
+      placeholder="숏폼에 작성할 상품의 타이틀을 작성해주세요"
+    />
+
+    <!-- ■ “상품 제목” 입력 영역 ■ -->
+    <div class="div19">
+      <div class="rectangle-16775"></div>
+      <div class = "div26" >상품제목</div>
+    </div>
+
+    <!-- ■ “상품 검색” 입력 영역 ■ -->
+    <div class="div27">
+      <div class="div19">
+        <div class="rectangle-16776"></div>
+        <div class = "div28" >상품검색</div>
+      </div>
+      <div class="rectangle-16777"></div>
+      <input
+        type="text"
+        class="input-search2"
+        placeholder="상품명을 검색해주세요"
+      />
+    </div>
+
+    <!-- ■ 구분선, 그룹 요소 등 ■ -->
+    <img class="line-13622" src="line-1360.svg" alt="line" />
+    <div class="line-2642"></div>
+    <img class="group-7672" src="group-7670.svg" alt="group" />
+
+    <!-- ■ “임시 저장” / “등록하기” 버튼 ■ -->
+    <div class="rectangle-1677222"></div>
+    <div class="rectangle-16772222"></div>
+    <div class="div32">임시 저장</div>
+    <div class="div42">등록하기</div>
+
+    <!-- ■ 경매 마감기간: “3일 / 5일 / 7일” 라디오 버튼 ■ -->
+    <div class="rectangle-1677322"></div>
+    <div class="rectangle-1677422"></div>
+    <div class="group-99822">
+      <div class="_3">
+        <div class="_32">3일</div>
+        <input
+          type="radio"
+          name="circle-choice"
+          id="circle1"
+          class="toggle-input"
+        />
+        <label for="circle1" class="ellipse-73"></label>
+      </div>
+
+      <div class="_3">
+        <div class="_5">5일</div>
+        <input
+          type="radio"
+          name="circle-choice"
+          id="circle2"
+          class="toggle-input"
+        />
+        <label for="circle2" class="ellipse-732"></label>
+      </div>
+
+      <div class="div6">경매 마감기간</div>
+
+      <div class="_33">
+        <div class="_7">7일</div>
+        <input
+          type="radio"
+          name="circle-choice"
+          id="circle3"
+          class="toggle-input"
+        />
+        <label for="circle3" class="ellipse-733"></label>
+      </div>
+    </div>
+
+    <!-- ■ “경매 시작가” / “즉시 구매가” 입력 영역 ■ -->
+    <div class="div7">경매 시작가</div>
+    <div class="div8">즉시 구매가</div>
+
+    <!-- • 첫 번째 입력: 최소 금액 1 -->
+    <div class="rectangle-1677522"></div>
+    <input
+      type="number"
+      class="input-minprice1"
+      placeholder="최소 10,000원 이상 입력"
+      min="10000"
+    />
+    <div class="div9">원</div>
+
+    <!-- • 두 번째 입력: 최소 금액 2 -->
+    <div class="rectangle-1677622"></div>
+    <input
+      type="number"
+      class="input-minprice2"
+      placeholder="최소 10,000원 이상 입력"
+      min="10000"
+    />
+    <div class="div10">원</div>
+    <div class="div11">즉시구매 설정 안 함</div>
+
+    <!-- ■ “체크박스(라디오 비슷)” 예: rectangle-1695 → 클릭 시 채워지는 네모 ■ -->
+    <input
+      type="checkbox"
+      id="square-toggle"
+      class="toggle-input"
+    />
+    <label for="square-toggle" class="rectangle-1695"></label>
+
+<!-- <div id="content-upload" style="display: none;"> -->
+
+
+  </div> <!-- /.wrapper -->
+ <script>
+ document.addEventListener("DOMContentLoaded", function() {
+   // ➤ 탭 요소(배경, 텍스트) 각각 가져오기
+   const tabUploadBg   = document.getElementById("tab-upload-bg");   // .rectangle-1676
+   const tabUploadText = document.getElementById("tab-upload");      // .div2
+
+   const tabManageBg   = document.getElementById("tab-manage-bg");   // .rectangle-1675
+   const tabManageText = document.getElementById("tab-manage");      // .div3
+
+   // ───────────────────────────────────────────────────
+   // “상품 등록” 탭 클릭 시 활성화
+   tabUploadText.addEventListener("click", function() {
+     // ● 클릭된 쪽(상품 등록) → 빨간 배경(#ff0044), 볼드(700)
+     tabUploadBg.style.backgroundColor = "#ff0044";
+     tabUploadText.style.fontWeight    = "700";
+
+     // ● 반대쪽(등록 상품 관리) → 어두운 배경(#181818), 레귤러(400)
+     tabManageBg.style.backgroundColor = "#181818";
+     tabManageText.style.fontWeight    = "400";
+   });
+
+   // ───────────────────────────────────────────────────
+   // “등록 상품 관리” 탭 클릭 시 활성화
+   tabManageText.addEventListener("click", function() {
+     // ● 클릭된 쪽(등록 상품 관리) → 빨간 배경(#ff0044), 볼드(700)
+     tabManageBg.style.backgroundColor = "#ff0044";
+     tabManageText.style.fontWeight    = "700";
+
+     // ● 반대쪽(상품 등록) → 어두운 배경(#181818), 레귤러(400)
+     tabUploadBg.style.backgroundColor = "#181818";
+     tabUploadText.style.fontWeight    = "400";
+   });
+
+   // ───────────────────────────────────────────────────
+   // (선택 사항) 페이지 로딩 시 “상품 등록”을 기본 활성화 상태로 만들고 싶다면
+   tabUploadBg.style.backgroundColor = "#ff0044";
+   tabUploadText.style.fontWeight    = "700";
+   tabManageBg.style.backgroundColor = "#181818";
+   tabManageText.style.fontWeight    = "400";
+ });
+</script>
+</body>
+</html>

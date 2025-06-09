@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Favorite</title>
+  <link rel="stylesheet" href="Mypage_point.css">
+</head>
+<body>
+<aside class = "sidebar"> <!--사이드 바-->
+  <a href="/main"><img class="logo-1" src="../../../../../../../../../../JAVA/JAVA_24.12.30/Project/src/main/webapp/img/logo%20(1).png" alt="로고"></a>
+  <nav class="sidebar-nav">
+    <ul>
+      <li><a href="/search">검색</a></li>
+      <li><a href="/explore">탐색</a></li>
+      <li><a href="/sell">판매등록</a></li>
+      <li><a href="/wishlist">관심상품</a></li>
+      <li><a href="/style">스타일</a></li>
+      <li><a href="/mypage">마이페이지</a></li>
+      <li><a href="/support">고객센터</a></li>
+    </ul>
+  </nav>
+   <div class="login-area">
+    <a href="/login" class="btn-login">로그인</a>
+  </div>
+  <footer class="sidebar-footer">
+    <p><a href="/support">고객센터</a> | <a href="/terms">이용약관</a></p>
+    <small>&copy; All copyright in soldesk</small>
+  </footer>
+</aside>
+<div id = "MyPageBar"> <!--상단 마이페이지 바-->
+  <div id = "MyPageText">MyPage</div>
+  <div id = "ClickBox">
+    <div id = "buyList">
+      <a href="MyPage.html">구매 내역</a>
+    </div>
+    <div id = "favorite" class = "selected">
+      <a href="./Favorite.html">관심</a>
+    </div>
+    <div id = "MyStyle">
+      <a href="MyStyle.html">내 스타일</a>
+    </div>
+    <div id = "MyKatteMoney">
+      <a href="MyKatteMoney.html">캇테머니</a>
+    </div>
+    <div id = "MyPoint">
+      <a href="MyPoint.html">포인트</a>
+    </div>
+    <div id = "MyCoupon">
+      <a href="MyCoupon.html">쿠폰함</a>
+    </div>
+    <div id = "MyLogInfo">
+      <a href="MyLogInfo.html">로그인 정보</a>
+    </div>
+    <div id = "MyProfile">
+      <a href="MyProfile.html">프로필 관리</a>
+    </div>
+    <div id = "MyAddress">
+      <a href="MyAddress.html">주소록 관리</a>
+    </div>
+  </div>
+  </div>
+  
+
+  <div class="div">보유 포인트</div>
+  <div class="_530-point">530Point</div>
+  <div class="div2">주문적립</div>
+  <div class="_2025-4-30-2026-4-30">적립 2025-4-30(2026-4-30소멸예정)</div>
+  <div class="div3">
+    <span>
+ 
+      <span class="div-3-span2">
+        [네스티팬시클럽]쿠로미 반팔티(상품명)
+        <br />
+      </span>
+    </span>
+  </div>
+  <div class="_160-point">+160Point</div>
+  <div class="line-271"></div>
+  <div class="div4">적립금 결제</div>
+  <div class="_2025-3-24">사용 2025-3-24</div>
+  <div class="_160-point2">-160Point</div>
+  <div class="line-2712"></div>
+  <div class="div5">주문적립</div>
+  <div class="_2025-3-1-2026-3-1">적립 2025-3-1(2026-3-1소멸예정)</div>
+  <div class="vans">
+    <span>
+    
+      <span class="vans-span2">
+        [Vans]올드스쿨 고어택스(상품명)
+        <br />
+      </span>
+    </span>
+  </div>
+  <div class="_160-point3">+160Point</div>
+  <div class="line-2713"></div>
+  <div class="ellipse-65" id="pointInfoBtn"></div>
+<div class="div7" id="pointInfoBtnText">?</div>
+  <div class="point-tooltip-modal" id="pointTooltipModal" style="display:none;">
+  <button class="tooltip-close" id="tooltipCloseBtn">✕</button>
+  <div class="tooltip-content">
+    주문금액의 0.5%가 적립됩니다.<br>
+    적립금은 적립일로부터 1년 후 자동소멸됩니다.
+  </div>
+</div>
+<script>
+  // 물음표 클릭 시 툴팁 팝업 표시
+  document.getElementById('pointInfoBtn').onclick =
+  document.getElementById('pointInfoBtnText').onclick = function() {
+    document.getElementById('pointTooltipModal').style.display = 'block';
+  }
+  // X 클릭 시 팝업 닫기
+  document.getElementById('tooltipCloseBtn').onclick = function() {
+    document.getElementById('pointTooltipModal').style.display = 'none';
+  }
+  // 바깥 클릭 시 닫기(선택)
+  document.addEventListener('mousedown', function(e) {
+    const modal = document.getElementById('pointTooltipModal');
+    if (modal.style.display === 'block' && !modal.contains(e.target) && !document.getElementById('pointInfoBtn').contains(e.target) && !document.getElementById('pointInfoBtnText').contains(e.target)) {
+      modal.style.display = 'none';
+    }
+  });
+</script>
+</body>
+</html>
+  

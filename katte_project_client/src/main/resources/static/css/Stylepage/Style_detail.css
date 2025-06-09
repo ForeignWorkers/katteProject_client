@@ -1,0 +1,863 @@
+@charset "UTF-8";
+
+/* 기본 페이지 레이아웃 */
+html, body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  height: 100%;
+  background-color: #181818;
+  overflow-x : hidden; 
+}
+* {
+  box-sizing: border-box;
+}
+
+/* wrapper 전체 (메인 콘텐츠 영역) */
+.wrapper {
+  transform-origin: top left;
+  width: 100%;
+  min-height: 83vh; /* 100vh * 0.83 */
+}
+
+/* ============================================ */
+/* 1) 사이드바 (기존) */
+/* ============================================ */
+.sidebar {
+  position: fixed;
+  top: 1.649vh;
+  left: 2.1675vw;
+  width: 11.866vw;
+  padding: 0.884vw;
+  background: #181818;
+  display: flex;
+  flex-direction: column;
+  z-index: 1000; /* 오버레이보다 위에 표시 */
+}
+
+.sidebar .logo-1 {
+  width: 62.77px;
+  height: 76.5px;
+  object-fit: cover;
+  margin-bottom: 34px;
+}
+
+.sidebar-nav {
+  margin-bottom: 51px;
+}
+.sidebar-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.sidebar-nav ul li {
+  margin-bottom: 17px;
+}
+.sidebar-nav ul li a {
+  display: block;
+  text-decoration: none;
+  color: #f9eeee;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 22.1px;
+  line-height: 34px;
+}
+
+.login-area {
+  margin-bottom: 51px;
+}
+.btn-login {
+  width: 100%;
+  height: 48.45px;      /* 57 * 0.85 */
+  background: #ff0044;
+  border: none;
+  border-radius: 11.9px; /* 14 * 0.85 */
+  color: #fff4f4;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 21.25px;   /* 25 * 0.85 */
+  line-height: 48.45px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+.sidebar-footer {
+  margin-top: auto;
+  font-size: 12.75px;
+  color: #787878;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+}
+.sidebar-footer a {
+  color: #787878;
+  text-decoration: none;
+}
+.sidebar-footer p {
+  margin: 0 0 6.8px;
+}
+.sidebar-footer small {
+  display: block;
+  margin: 0;
+}
+
+/* ============================================ */
+/* 2) 메인 콘텐츠 (원래 있던 스타일)             */
+/* ============================================ */
+.div13 {
+  width: 146.20px;
+  height: 51.85px;
+  position: static;
+}
+
+.image-118 {
+  border-radius: 20.83px;
+  width: 38.25px;
+  height: 38.25px;
+  position: absolute;
+  left: 766.70px;
+  top: 39.95px;
+  object-fit: cover;
+  aspect-ratio: 1;
+}
+
+.min-x-ili-0 {
+  color: #f9eeee;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 18.70px;
+  line-height: 34px;
+  font-weight: 400;
+  position: absolute;
+  left: 814.30px;
+  top: 39.95px;
+  width: 98.60px;
+  height: 28.05px;
+  display: flex;
+  align-items: center;
+}
+
+
+
+.image-119 {
+  border-radius: 17.00px;
+  width: 354.45px;
+  height: 497.25px;
+  position: absolute;
+  left: 766.70px;
+  top: 99.45px;
+  object-fit: cover;
+}
+
+._5 {
+  color: #eeeeee;
+  font-family: "LineSeedSansKr-Bold", sans-serif;
+  font-size: 15.30px;
+  line-height: 34px;
+  font-weight: 700;
+  position: absolute;
+  left: 766.70px;
+  top: 623.05px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.group-975 {
+  width: 348.75px;
+  height: 114.75px;
+  position: static;
+}
+
+._1 {
+  width: 65.45px;
+  height: 114.75px;
+  position: static;
+}
+
+.image-125 {
+  border-radius: 4.25px;
+  width: 65.19px;
+  height: 63.31px;
+  position: absolute;
+  left: 766.70px;
+  top: 670.65px;
+  object-fit: cover;
+}
+
+.hysteric-glamour-hyst-280-000 {
+  color: #f9eeee;
+  font-family: "-", sans-serif;
+  font-size: 8.50px;
+  font-weight: 400;
+  position: absolute;
+  left: 766.70px;
+  top: 738.65px;
+  width: 65.45px;
+  height: 46.75px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.hysteric-glamour-hyst-280-000-span { font-family: "Inter-Regular", sans-serif; }
+.hysteric-glamour-hyst-280-000-span2 {
+  font-family: "Inter-Bold", sans-serif;
+  font-weight: 700;
+}
+
+._2 {
+  width: 65.53px;
+  height: 114.75px;
+  position: static;
+}
+
+.image-126 {
+  border-radius: 4.25px;
+  width: 65.19px;
+  height: 63.31px;
+  position: absolute;
+  left: 837.59px;
+  top: 670.65px;
+  object-fit: cover;
+}
+
+.bape-baby-milo-mobile-85-000 {
+  color: #f9eeee;
+  font-family: "-", sans-serif;
+  font-size: 8.50px;
+  font-weight: 400;
+  position: absolute;
+  left: 837.25px;
+  top: 738.65px;
+  width: 62.05px;
+  height: 46.75px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.bape-baby-milo-mobile-85-000-span { font-family: "Inter-Regular", sans-serif; }
+.bape-baby-milo-mobile-85-000-span2 {
+  font-family: "Inter-Bold", sans-serif;
+  font-weight: 700;
+}
+
+._3 {
+  width: 65.19px;
+  height: 114.75px;
+  position: static;
+}
+
+.image-127 {
+  border-radius: 4.25px;
+  width: 65.19px;
+  height: 63.31px;
+  position: absolute;
+  left: 908.48px;
+  top: 670.65px;
+  object-fit: cover;
+}
+
+.human-made-heart-keyring-54-000 {
+  color: #f9eeee;
+  font-family: "-", sans-serif;
+  font-size: 8.50px;
+  font-weight: 400;
+  position: absolute;
+  left: 908.65px;
+  top: 738.65px;
+  width: 64.60px;
+  height: 46.75px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.human-made-heart-keyring-54-000-span { font-family: "Inter-Regular", sans-serif; }
+.human-made-heart-keyring-54-000-span2 {
+  font-family: "Inter-Bold", sans-serif;
+  font-weight: 700;
+}
+
+._4 {
+  width: 65.45px;
+  height: 114.75px;
+  position: static;
+}
+
+.image-128 {
+  border-radius: 4.25px;
+  width: 65.19px;
+  height: 63.31px;
+  position: absolute;
+  left: 979.37px;
+  top: 670.65px;
+  object-fit: cover;
+}
+
+.karactor-vintage-emble-131-000 {
+  color: #f9eeee;
+  font-family: "-", sans-serif;
+  font-size: 8.50px;
+  font-weight: 400;
+  position: absolute;
+  left: 979.20px;
+  top: 738.65px;
+  width: 65.45px;
+  height: 46.75px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.karactor-vintage-emble-131-000-span { font-family: "Inter-Regular", sans-serif; }
+.karactor-vintage-emble-131-000-span2 {
+  font-family: "Inter-Bold", sans-serif;
+  font-weight: 700;
+}
+
+._52 {
+  width: 65.19px;
+  height: 114.75px;
+  position: static;
+}
+
+.image-129 {
+  border-radius: 4.25px;
+  width: 65.19px;
+  height: 63.31px;
+  position: absolute;
+  left: 1040.26px;
+  top: 670.65px;
+  object-fit: cover;
+}
+
+.asics-x-story-mfg-gel-ven-280-000 {
+  color: #f9eeee;
+  font-family: "-", sans-serif;
+  font-size: 8.50px;
+  font-weight: 400;
+  position: absolute;
+  left: 1050.60px;
+  top: 738.65px;
+  width: 64.60px;
+  height: 46.75px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.asics-x-story-mfg-gel-ven-280-000-span { font-family: "Inter-Regular", sans-serif; }
+.asics-x-story-mfg-gel-ven-280-000-span2 {
+  font-family: "Inter-Bold", sans-serif;
+  font-weight: 700;
+}
+
+.div14 {
+  width: 59.50px;
+  height: 29.75px;
+  position: static;
+}
+
+.div15 {
+  width: 34.85px;
+  height: 29.75px;
+  position: static;
+}
+
+._23 {
+  color: #f9eeee;
+  font-family: "LineSeedSansKr-Bold", sans-serif;
+  font-size: 11.05px;
+  line-height: 34px;
+  font-weight: 700;
+  position: absolute;
+  left: 1069.30px;
+  top: 793.00px;
+  width: 18.70px;
+  height: 29.75px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.mask-group {
+  width: 13.23px;
+  height: 13.23px;
+  position: absolute;
+  left: 1052.15px;
+  top: 803.91px;
+  overflow: visible;
+}
+
+.div16 {
+  width: 22.49px;
+  height: 29.75px;
+  position: static;
+}
+
+/* ============================================ */
+/* 3) 말풍선(댓글) 버튼 (image-ellipse-71)       */
+/* ============================================ */
+.ellipse-71 {
+  background: #181818;   /* 배경은 검정 혹은 이미지만 표시 */
+  width: 14.51px;
+  height: 12.65px;
+  position: absolute;
+  left: 1090.16px;
+  top: 802.83px;
+  cursor: pointer;
+}
+
+/* 댓글 옆 숫자 “1” */
+._12 {
+  color: #f9eeee;
+  font-family: "LineSeedSansKr-Bold", sans-serif;
+  font-size: 11.05px;
+  line-height: 34px;
+  font-weight: 700;
+  position: absolute;
+  left: 1107.57px;
+  top: 793.00px;
+  width: 5.08px;
+  height: 29.75px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+/* 게시글 텍스트 */
+.jeans {
+  color: #f9eeee;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 12.75px;
+  line-height: 34px;
+  font-weight: 400;
+  position: absolute;
+  left: 768.40px;
+  top: 824.50px;
+  width: 85.85px;
+  height: 13.60px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+/* 해시태그 텍스트 */
+.hashtag {
+  color: #f9eeee;
+  font-family: "LineSeedSansKr-Bold", sans-serif;
+  font-size: 11.05px;
+  line-height: 34px;
+  font-weight: 700;
+  position: relative;
+  left: 768.40px;
+  top: 659.50px;
+  height: 18.70px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+/* 인디케이터 점들 (슬라이드) */
+.ellipse-48 {
+  background: #c90036;
+  border-radius: 50%;
+  width: 5.10px;
+  height: 5.10px;
+  position: absolute;
+  left: 927.35px;
+  top: 609.45px;
+}
+
+.ellipse-49 {
+  background: #ccc9c9;
+  border-radius: 50%;
+  width: 5.10px;
+  height: 5.10px;
+  position: absolute;
+  left: 945.20px;
+  top: 609.45px;
+}
+
+.ellipse-50 {
+  background: #ccc9c9;
+  border-radius: 50%;
+  width: 5.10px;
+  height: 5.10px;
+  position: absolute;
+  left: 953.70px;
+  top: 609.45px;
+}
+
+.ellipse-47 {
+  background: #ccc9c9;
+  border-radius: 50%;
+  width: 5.10px;
+  height: 5.10px;
+  position: absolute;
+  left: 935.85px;
+  top: 609.45px;
+}
+
+/* 슬라이드 버튼들 */
+.div17 {
+  height: auto;
+  position: absolute;
+  left: 1081.20px;
+  top: 333.20px;
+  overflow: visible;
+  cursor: pointer;
+}
+/* ===================================================
+   기존 CSS에 필요한 변경 사항을 반영하여 전체를 재작성
+   =================================================== */
+
+/* 신고 버튼 (댓글 메타에서 사용하는 이미지용) */
+.comment-report-btn {
+	width: 21px;
+	height: 21px;
+	cursor: pointer;
+	 /* 날짜/답글쓰기 옆에 간격 주기 */
+}
+
+/* 오버레이: 배경 어둡게 */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 500;
+}
+
+/* =========================================
+   4) 댓글 패널 (두 번째 스크린샷과 동일하게)
+   ========================================= */
+.comment-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 350px;                /* 패널 너비 */
+  height: 100vh;
+  background: #181818;
+  box-shadow: -4px 0 12px rgba(0, 0, 0, 0.5);
+  z-index: 501;
+  display: none;               /* 초기에는 숨김 */
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+/* 4-1) 패널 상단 헤더: 닫기 버튼 */
+.comment-header {
+  display: flex;
+  justify-content: flex-end;
+  padding: 12px 12px 0 12px;
+}
+.comment-header .close-btn {
+  font-size: 24px;
+  color: #f9eeee;
+  cursor: pointer;
+}
+
+/* 4-2) 게시글 작성자 정보 및 본문 */
+.comment-post {
+  padding: 12px;
+  border-bottom: 1px solid #333;
+  color: #f9eeee;
+}
+.comment-post .post-author {
+  display: flex;
+  align-items: center;
+}
+.comment-post .author-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 8px;
+}
+.comment-post .author-name {
+  font-weight: 700;
+  font-size: 14px;
+}
+/* 해시태그 */
+.comment-post .post-text {
+  margin-top: 8px;
+  font-size: 14px;
+  line-height: 20px;
+}
+.comment-post .post-hashtags {
+  display: block;
+  margin-top: 4px;
+  color: #cccccc;
+  font-size: 12px;
+  line-height: 18px;
+}
+/* 날짜: 해시태그 아래로 더 간격을 주려면 margin-top 값을 조절 */
+.comment-post .post-date {
+  font-size: 12px;
+  color: rgba(249, 238, 238, 0.6);
+  margin-top: 12px; /* 해시태그 바로 아래에 띄울 여백 */
+  margin-left: 0;   /* 해시태그와 동일한 좌측 정렬 */
+}
+
+/* 4-3) 댓글 입력창 */
+.comment-input {
+  padding: 12px;
+  border-bottom: 1px solid #333;
+}
+.comment-input .comment-text {
+  width: 100%;
+  padding: 8px 12px;
+  background: #1f1f1f;
+  border: 1px solid #333;
+  border-radius: 999px;  /* 둥글게 */
+  color: #ccc;            /* 기본 회색 */
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 14px;
+}
+.comment-input .comment-text::placeholder {
+  color: #777;
+}
+
+/* 4-4) 댓글 목록 전체 */
+.comment-list {
+  flex: 1; /* 남은 공간 모두 차지 (스크롤 가능) */
+  padding: 12px;
+  overflow-y: auto;
+}
+
+/* 댓글 아이템 기본 설정 */
+.comment-list .comment-item {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 16px;
+}
+
+/* 대댓글(replies)의 들여쓰기 */
+.comment-item.reply {
+  margin-left: 20px; /* 원하는 만큼 들여쓰기 */
+}
+
+/* ----- 1) 아바타 ----- */
+.comment-list .comment-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+/* ----- 2) 댓글 본문 + 메타 컨테이너 ----- */
+.comment-list .comment-body {
+  flex: 1;  /* 좋아요 아이콘을 제외한 나머지 공간 모두 차지 */
+  display: flex;
+  flex-direction: column;
+  color: #f9eeee;
+}
+
+/* 2-1) 작성자 아이디 */
+.comment-list .comment-author {
+  font-weight: 700;
+  font-size: 14px;
+  color: #f9eeee;
+}
+
+/* 2-2) 댓글 텍스트 */
+.comment-list .comment-text-item {
+  margin-top: 4px;
+  font-size: 13px;
+  line-height: 18px;
+  color: #eeeeee;
+}
+
+.comment-list .comment-meta {
+  margin-top: 6px;
+  display: flex;
+  align-items: flex-start;
+  font-size: 12px;
+  color: #ccc;
+}
+/* 2-3) 하단 메타: 날짜, 답글쓰기, 신고 버튼 */
+.comment-list .comment-action-row {
+  margin-top: 6px;
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  color: #ccc;
+}
+.comment-list .comment-date {
+  font-size: 12px;
+  color: rgba(249, 238, 238, 0.6);
+  margin-right: 12px; /* 날짜와 답글쓰기 사이 여백 */
+}
+.comment-list .reply-link {
+  cursor: pointer;
+  color: #ccc;
+}
+/* 신고 버튼 (이미지) */
+.comment-list .comment-report-btn {
+    width: 20px;
+    height: 20px;
+  cursor: pointer;
+  margin-left: 4px;
+  margin-top: -1px;
+}
+
+/* ----- 3) 좋아요 아이콘: comment-item 오른쪽 끝 ----- */
+.comment-list .like-icon {
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 16px;
+  cursor: pointer;
+  color: #fff; /* 기본 흰색(🤍) */
+}
+.comment-list .like-icon.liked {
+  color: #ff0044; /* 좋아요 눌리면 빨간 하트(❤️) */
+}
+
+/* ===================================================
+   기존에 있던 다른 버튼 위치 지정 (슬라이드, 신고 등)
+   =================================================== */
+.btn-prev {
+  height: auto;
+  position: absolute;
+  left: 779.20px;
+  top: 333.20px;
+  overflow: visible;
+  cursor: pointer;
+  user-select: none;
+}
+
+/* 본문 밖에서 쓰이는 신고 버튼(필요 시 남겨 두세요) */
+.report_button {
+  width: 20.40px;
+  height: 20.40px;
+  position: absolute;
+  left: 1026.2px;
+  top: 800px;
+  overflow: visible;
+  aspect-ratio: 1;
+}
+.report-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 700; /* 다른 요소보다 위에 표시 */
+}
+
+/* =====================================
+   신고하기 팝업 모달
+   ===================================== */
+.report-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  max-width: 90%;
+  background: #181818;
+  border: 1px solid #fff;
+  border-radius: 8px;
+  transform: translate(-50%, -50%);
+  z-index: 701;
+  display: none;         /* JS로 열 때 flex 로 변경 */
+  flex-direction: column;
+  color: #f9eeee;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
+}
+
+/* 팝업 헤더: 제목 + 닫기 버튼 */
+.report-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  border-bottom: 1px solid #333;
+}
+.report-modal-header .report-title {
+  font-size: 18px;
+  font-weight: 700;
+}
+.report-modal-header .report-close {
+  font-size: 24px;
+  cursor: pointer;
+  color: #f9eeee;
+}
+
+/* 팝업 바디 영역 */
+.report-modal-body {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 안내문구 (신고사유를 선택해주세요) */
+.report-subtitle {
+  margin: 0 0 8px 0;
+  font-size: 14px;
+}
+
+/* 라디오버튼 리스트 */
+.report-form label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  font-size: 14px;
+  cursor: pointer;
+}
+.report-form label input[type="radio"] {
+  margin-right: 8px;
+  accent-color: #ff0044; /* 체크 시 빨간색 */
+}
+
+/* 텍스트 입력란 */
+.report-text {
+  width: 100%;
+  padding: 8px 12px;
+  margin-top: 12px;
+  background: #1f1f1f;
+  border: 1px solid #333;
+  border-radius: 4px;
+  resize: vertical;
+  color: #f9eeee;              /* 입력된 텍스트 색상 */
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 14px;
+}
+.report-text::placeholder {
+  color: #777;                 /* 플레이스홀더 색상 */
+}
+
+/* 신고하기 버튼 */
+.report-submit-btn {
+  margin-top: 16px;
+  align-self: center;          /* 버튼을 가로 중앙에 */
+  padding: 8px 24px;
+  background: transparent;
+  border: 1px solid #f9eeee;
+  border-radius: 4px;
+  color: #f9eeee;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.report-submit-btn:hover {
+  background: #f9eeee;
+  color: #181818;
+}
+
+/* =====================================
+   댓글창 내부 신고 버튼(작게, 메타 안쪽)
+   ===================================== */
+/* 기존 .comment-report-btn 에 추가된 규칙 */
+.comment-list .comment-report-btn {
+  width: 14px;
+  height: 14px;
+  cursor: pointer;
+  margin-left: 4px;  /* 답글쓰기 옆 간격 */
+  margin-top: 2px;   /* flex-start 상태에서 아래로 살짝 내리기 */
+}

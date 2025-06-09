@@ -128,11 +128,7 @@ html, body {
   height: 323.16px;
   position: static;
 }
-._1 {
-  width: 219.13px;
-  height: 322.84px;
-  position: static;
-}
+
 .rectangle-1582 {
   background: #eeeeee;
   border-radius: 30px;
@@ -243,11 +239,8 @@ html, body {
   top: 551.09px;
   overflow: visible;
 }
-._2 {
-  width: 219.13px;
-  height: 322.84px;
-  position: static;
-}
+
+
 .rectangle-15822 {
   background: #eeeeee;
   border-radius: 30px;
@@ -348,11 +341,7 @@ html, body {
   top: 551.09px;
   overflow: visible;
 }
-._3 {
-  width: 219.13px;
-  height: 322.84px;
-  position: static;
-}
+
 .rectangle-15823 {
   background: #eeeeee;
   border-radius: 30px;
@@ -453,11 +442,7 @@ html, body {
   top: 551.09px;
   overflow: visible;
 }
-._4 {
-  width: 219.13px;
-  height: 322.84px;
-  position: static;
-}
+
 .rectangle-15824 {
   background: #eeeeee;
   border-radius: 30px;
@@ -558,11 +543,7 @@ html, body {
   top: 550.77px;
   overflow: visible;
 }
-._5 {
-  width: 219.13px;
-  height: 322.84px;
-  position: static;
-}
+
 .rectangle-15825 {
   background: #eeeeee;
   border-radius: 30px;
@@ -1173,19 +1154,6 @@ html, body {
   overflow: visible;
 }
 
-.line-255 {
-  margin-top: -1px;
-  border-style: solid;
-  border-color: #ff0000;
-  border-width: 1px 0 0 0;
-  width: 1164px;
-  height: 0px;
-  position: absolute;
-  left: 1110px;
-  top: 1109px;
-  transform-origin: 0 0;
-  transform: rotate(-90deg) scale(1, 1);
-}
 .rectangle-1580 {
   border-radius: 0px;
   width: 1346px;

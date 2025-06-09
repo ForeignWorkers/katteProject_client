@@ -1,0 +1,1800 @@
+@charset "UTF-8";
+.wrapper {
+  transform-origin: top left;
+  width: 100%;
+  min-height: 83vh; /* 100vh * 0.83 */
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  transform-origin: top left;
+  height: 100%;
+  background-color: #181818;
+}
+* {
+  box-sizing: border-box;
+}
+.sidebar {
+  position: fixed;
+  top: 1.649vh;
+  left: 2.1675vw;
+  width: 11.866vw;
+  padding: 0.884vw;
+  box-sizing: border-box;
+  background: #181818;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar .logo-1 {
+  width: 62.77px;
+  height: 76.5px;
+  object-fit: cover;
+  aspect-ratio: 73.85/90;
+  margin-bottom: 34px;
+}
+
+.sidebar-nav {
+  margin-bottom: 51px;
+}
+.sidebar-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.sidebar-nav ul li {
+  margin-bottom: 17px;
+}
+.sidebar-nav ul li a {
+  display: block;
+  text-decoration: none;
+  color: #f9eeee;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 22.1px;
+  line-height: 34px;
+}
+
+.login-area {
+  margin-bottom: 51px;
+}
+.btn-login {
+  width: 100%;
+  height: 48.45px;      /* 57 * 0.85 */
+  background: #ff0044;
+  border: none;
+  border-radius: 11.9px; /* 14 * 0.85 */
+  color: #fff4f4;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 21.25px;   /* 25 * 0.85 */
+  line-height: 48.45px;
+  cursor: pointer;
+  display: flex;                 /* 추가: 버튼처럼 가운데 정렬 */
+  align-items: center;           /* 추가: 수직 가운데 */
+  justify-content: center;       /* 추가: 수평 가운데 */
+  text-decoration: none;         /* 추가: a태그 밑줄 제거 */
+}
+
+.sidebar-footer {
+  margin-top: auto;
+  font-size: 12.75px;
+  color: #787878;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+}
+.sidebar-footer a {
+  color: #787878;
+  text-decoration: none;
+}
+.sidebar-footer p {
+  margin: 0 0 6.8px;
+}
+.sidebar-footer small {
+  display: block;
+  margin: 0;
+}
+
+
+.line-262 {
+  margin-top: -2.55px;
+  border-style: solid;
+  border-color: #ccc9c9;
+  border-width: 2.55px 0 0 0;
+  width: 87.55px;
+  height: 0px;
+  position: absolute;
+  left: 943.50px;
+  top: 313.65px;
+  transform-origin: 0 0;
+  transform: rotate(90deg) scale(1, 1);
+}
+
+.line-136 {
+  width: 204.88px;
+  height: 0px;
+  position: absolute;
+  left: -607.33px;
+  top: 174.25px;
+  overflow: visible;
+}
+
+.div {
+  color: #f9eeee;
+  text-align: center;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 34px;
+  line-height: 92.65px;
+  letter-spacing: -0.04em;
+  font-weight: 400;
+  position: absolute;
+  left: 826.20px;
+  top: 36.55px;
+  width: 226.95px;
+  height: 39.95px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rectangle-1594 {
+  width: 528.70px;
+  height: 5.95px;
+  position: absolute;
+  left: 331.50px;
+  top: 587.35px;
+  overflow: visible;
+}
+
+.rectangle-1613 {
+  background: #2a2929;
+  border-radius: 21.25px;
+  width: 1137.30px;
+  height: 293.25px;
+  position: absolute;
+  left: 374.85px;
+  top: 107.95px;
+}
+
+.rectangle-1615 {
+  background: #2a2929;
+  border-radius: 21.25px;
+  width: 1137.30px;
+  height: 325.55px;
+  position: absolute;
+  left: 374.85px;
+  top: 426.70px;
+}
+
+.rectangle-1616 {
+  background: #2a2929;
+  border-radius: 21.25px 21.25px 0px 0px;
+  width: 1137.30px;
+  height: 141.95px;
+  position: absolute;
+  left: 374.85px;
+  top: 777.75px;
+}
+
+.rectangle-1614 {
+  background: rgba(42, 41, 41, 0);
+  border-radius: 21.25px;
+  border-style: solid;
+  border-color: #eeeeee;
+  border-width: 1.275px;
+  width: 1081.20px;
+  height: 59.50px;
+  position: absolute;
+  left: 401.20px;
+  top: 310.25px;
+}
+
+.div2 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 25.50px;
+  line-height: 92.65px;
+  letter-spacing: -0.07em;
+  font-weight: 400;
+  position: absolute;
+  left: 401.20px;
+  top: 130.05px;
+  width: 129.20px;
+  height: 37.40px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.div3 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 25.50px;
+  line-height: 92.65px;
+  letter-spacing: -0.07em;
+  font-weight: 400;
+  position: absolute;
+  left: 401.20px;
+  top: 448.80px;
+  width: 129.20px;
+  height: 37.40px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.div4 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 25.50px;
+  line-height: 92.65px;
+  letter-spacing: -0.07em;
+  font-weight: 400;
+  position: absolute;
+  left: 401.20px;
+  top: 799.85px;
+  width: 289.00px;
+  height: 37.40px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.div5 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 25.50px;
+  line-height: 92.65px;
+  letter-spacing: -0.07em;
+  font-weight: 400;
+  position: absolute;
+  left: 401.20px;
+  top: 645.15px;
+  width: 129.20px;
+  height: 37.40px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.div6 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 21.25px;
+  line-height: 92.65px;
+  letter-spacing: 0.04em;
+  font-weight: 400;
+  position: absolute;
+  left: 445.40px;
+  top: 689.35px;
+  width: 129.20px;
+  height: 37.40px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+._5-7 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Thin", sans-serif;
+  font-size: 19.55px;
+  line-height: 92.65px;
+  letter-spacing: -0.01em;
+  font-weight: 100;
+  position: absolute;
+  left: 548.25px;
+  top: 689.35px;
+  width: 447.95px;
+  height: 37.40px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+._1 {
+  color: #f9eeee;
+  text-align: right;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 25.50px;
+  line-height: 92.65px;
+  letter-spacing: -0.07em;
+  font-weight: 400;
+  position: absolute;
+  left: 1348.95px;
+  top: 435.20px;
+  width: 129.20px;
+  height: 37.40px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.group-880 {
+  position: absolute;
+  inset: 0;
+}
+
+/* === “주소 변경” 버튼 스타일 (기존 .rectangle-16152 + .div7 대체) === */
+.address-change-btn {
+  position: absolute;
+  left: 1372.75px;   /* 기존 .rectangle-16152의 left, top 값을 그대로 사용 */
+  top: 130.05px;
+  width: 109.65px;
+  height: 36.55px;
+  background: none;            /* 투명 배경 */
+  border: 1.275px solid #f9eeee;
+  border-radius: 12.75px;
+  color: #f9eeee;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 12.75px;
+  line-height: 36.55px;         /* 세로 중앙 정렬용 */
+  letter-spacing: -0.07em;
+  font-weight: 400;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;                  /* 모달 위에 잘 나오도록 */
+}
+
+/* === 모달 오버레이 (화면 어둡게) === */
+.modal-overlay {
+  display: none;            /* 기본 숨김 */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 100;             /* 버튼보다 위 */
+}
+
+/* === 주소록 모달 박스 === */
+.address-modal {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  max-height: 85vh;           /* 모달을 조금 더 길게 하고 싶다면 vh 값을 키워줍니다 */
+  background: #ffffff;        /* 배경을 흰색으로 변경 */
+  color: #5D5A5A;             /* 텍스트는 어두운 색으로 변경 */
+  border-radius: 10px;
+  padding: 20px;
+  overflow-y: auto;
+  z-index: 200;
+}
+
+/* === 모달 헤더 === */
+.address-modal .modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.address-modal .modal-header h2 {
+  margin: 0;
+  font-family: "LineSeedSansKr-Bold", sans-serif;
+  font-size: 24px;
+  color: #5D5A5A;
+}
+
+.address-modal .modal-close-btn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #5D5A5A;
+  cursor: pointer;
+}
+
+/* === “+ 새 주소 추가하기” 버튼 === */
+.address-modal .add-address-btn {
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 20px;
+  padding: 8px 0;
+  background: none;
+  border: 1px solid #5D5A5A;
+  border-radius: 6px;
+  color: #5D5A5A;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* === 각 주소 항목(주소록 엔트리) === */
+.address-modal .address-entry {
+  margin-bottom: 15px;
+}
+
+.address-modal .address-entry h3 {
+  margin: 0;
+  font-size: 18px;
+  font-family: "LineSeedSansKr-Bold", sans-serif;
+  display: flex;
+  align-items: center;
+}
+
+.address-modal .address-entry .default-label {
+  margin-left: 8px;
+  font-size: 14px;
+  font-family: "LineSeedSansKr-Thin", sans-serif;
+  color: #cccccc;
+}
+
+.address-modal .address-entry p {
+  margin: 4px 0;
+  font-size: 16px;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+}
+
+.address-modal .address-entry hr {
+  border: 0;
+  border-top: 1px solid #444;
+  margin: 10px 0;
+}
+
+.add-address-modal {
+  display: none;               /* 기본 숨김 */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 520px;                /* 적절히 약간 더 넓힐 수 있음 */
+  max-height: 90vh;            /* 세로 높이를 좀 더 여유롭게 */
+  background: #ffffff;         /* 흰색 배경 */
+  color: #5D5A5A;              /* 내부 텍스트 색상 */
+  border-radius: 16px;
+  border: 2px solid #5D5A5A;   /* 테두리는 파란색 (원하면 다른 색으로) */
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  padding: 24px;               /* 안쪽 여백 넉넉히 */
+  overflow-y: auto;            /* 세로 스크롤 허용 */
+  z-index: 300;                /* 첫 번째 모달보다 위 */
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+}
+
+/* 모달 헤더 (제목 + 닫기 버튼) */
+.add-address-modal .modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.add-address-modal .modal-header h2 {
+  margin: 0;
+  font-family: "LineSeedSansKr-Bold", sans-serif;
+  font-size: 22px;
+  color: #5D5A5A;
+}
+
+.add-address-modal .modal-close-btn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #5D5A5A;
+  cursor: pointer;
+}
+
+/* ============================================
+   [3] 입력 폼 내부 (label, input, placeholder)
+   ============================================ */
+
+.add-address-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.add-address-form label {
+  margin-bottom: 4px;
+  font-size: 14px;
+  color: #5D5A5A;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+}
+
+.add-address-form input[type="text"],
+.add-address-form input[type="tel"] {
+  height: 36px;
+  padding: 6px 8px;
+  font-size: 16px;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  color: #5D5A5A;             /* 사용자가 타이핑한 텍스트 색상 */
+  border: none;
+  border-bottom: 1px solid #CCCCCC; /* 밑줄만 있는 디자인 */
+  background: transparent;
+  margin-bottom: 16px;
+}
+
+/* 플레이스홀더 색상 */
+.add-address-form input::placeholder {
+  color: #CECECE;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 16px;
+}
+
+/* 포커스 시 밑줄 색 변경 (선택사항) */
+.add-address-form input:focus {
+  outline: none;
+  border-bottom: 1px solid #5D5A5A; /* 포커스 시 파란색 밑줄 */
+}
+
+/* ============================================
+   [4] 우편번호 검색 래퍼
+   ============================================ */
+.zip-search-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.zip-search-container input {
+  flex: 1;                      /* 버튼 옆 공간 차지 */
+  height: 36px;
+  padding: 6px 8px;
+  font-size: 16px;
+  color: #5D5A5A;
+  border: none;
+  border-bottom: 1px solid #CCCCCC;
+  background: transparent;
+}
+
+.zip-search-container input::placeholder {
+  color: #CECECE;
+}
+
+.zip-search-btn {
+  margin-left: 8px;
+  padding: 4px 12px;
+  font-size: 14px;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  background: none;
+  border: 1px solid #5D5A5A;
+  color: #5D5A5A;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* ============================================
+   [5] 상세주소 입력란
+   ============================================ */
+/* (label, input 스타일은 위와 동일하므로 별도 없음) */
+
+/* ============================================
+   [6] 체크박스(기본 배송지 설정)
+   ============================================ */
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.checkbox-container input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  margin-right: 8px;
+  accent-color: #5D5A5A;  /* 최신 브라우저에서 체크 색상을 지정 가능 */
+  cursor: pointer;
+}
+
+.checkbox-container label {
+  font-size: 16px;
+  color: #5D5A5A;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  cursor: pointer;
+}
+
+/* ============================================
+   [7] 저장하기 버튼
+   ============================================ */
+.save-btn {
+  margin-top: auto;
+  align-self: center;
+  width: 120px;
+  height: 40px;
+  background: none;
+  border: 1px solid #5D5A5A;
+  border-radius: 8px;
+  color: #5D5A5A;
+  font-size: 16px;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.save-btn:hover {
+  background: #5D5A5A;
+  color: #FFFFFF;
+}
+
+.div8 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 21.25px;
+  line-height: 92.65px;
+  letter-spacing: -0.07em;
+  font-weight: 400;
+  position: absolute;
+  left: 401.20px;
+  top: 183.60px;
+  width: 129.20px;
+  height: 37.40px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.div9 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 21.25px;
+  line-height: 92.65px;
+  letter-spacing: -0.07em;
+  font-weight: 400;
+  position: absolute;
+  left: 401.20px;
+  top: 221.00px;
+  width: 129.20px;
+  height: 37.40px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.div10 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 21.25px;
+  line-height: 92.65px;
+  letter-spacing: -0.07em;
+  font-weight: 400;
+  position: absolute;
+  left: 401.20px;
+  top: 257.55px;
+  width: 129.20px;
+  height: 37.40px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.div11 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 19.55px;
+  line-height: 92.65px;
+  letter-spacing: -0.07em;
+  font-weight: 400;
+  position: absolute;
+  left: 427.55px;
+  top: 320.45px;
+  width: 686.80px;
+  height: 37.40px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.div12 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 19.55px;
+  line-height: 92.65px;
+  letter-spacing: -0.07em;
+  font-weight: 400;
+  position: absolute;
+  left: 427.55px;
+  top: 861.90px;
+  width: 686.80px;
+  height: 37.40px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.div13 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 21.25px;
+  line-height: 92.65px;
+  letter-spacing: -0.07em;
+  font-weight: 400;
+  position: absolute;
+  left: 548.25px;
+  top: 183.60px;
+  width: 129.20px;
+  height: 37.40px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+._010-2011-6847 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 21.25px;
+  line-height: 92.65px;
+  letter-spacing: -0.07em;
+  font-weight: 400;
+  position: absolute;
+  left: 548.25px;
+  top: 221.00px;
+  width: 195.50px;
+  height: 37.40px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+._12345-123-1234 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 21.25px;
+  line-height: 92.65px;
+  letter-spacing: -0.07em;
+  font-weight: 400;
+  position: absolute;
+  left: 548.25px;
+  top: 257.55px;
+  width: 904.40px;
+  height: 37.40px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.polygon-20 {
+  border-radius: 0px;
+  width: 29.75px;
+  height: 24.65px;
+  position: absolute;
+  left: 1431.40px;
+  top: 352.75px;
+  transform: translate(3.54px, -18.49px);
+  overflow: visible;
+}
+
+.polygon-21 {
+  border-radius: 0px;
+  width: 29.75px;
+  height: 24.65px;
+  position: absolute;
+  left: 1431.40px;
+  top: 894.20px;
+  transform: translate(3.54px, -18.49px);
+  overflow: visible;
+}
+
+.rectangle-1604 {
+  background: #eeeeee;
+  border-radius: 8.50px;
+  width: 116.45px;
+  height: 116.45px;
+  position: absolute;
+  left: 401.20px;
+  top: 498.10px;
+}
+
+.image {
+  width: 112.17px;
+  height: 111.11px;
+  position: absolute;
+  left: 403.33px;
+  top: 498.10px;
+  object-fit: cover;
+}
+
+.nike-x-lil-yachty-us-force-1-low-white-and-midnight-navy {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 25.50px;
+  line-height: 92.65px;
+  letter-spacing: -0.07em;
+  font-weight: 400;
+  position: absolute;
+  left: 548.25px;
+  top: 510.85px;
+  width: 1003.85px;
+  height: 37.40px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.x-1 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Thin", sans-serif;
+  font-size: 21.25px;
+  line-height: 0px;
+  font-weight: 100;
+  position: absolute;
+  left: 548.25px;
+  top: 550.80px;
+  width: 996.20px;
+  height: 18.70px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+._270 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Thin", sans-serif;
+  font-size: 21.25px;
+  line-height: 0px;
+  font-weight: 100;
+  position: absolute;
+  left: 548.25px;
+  top: 577.15px;
+  width: 355.30px;
+  height: 18.70px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.ellipse-63 {
+  background: #eeeeee;
+  border-radius: 50%;
+  width: 29.75px;
+  height: 29.75px;
+  position: absolute;
+  left: 403.75px;
+  top: 695.30px;
+}
+
+.ellipse-64 {
+  background: #2a2929;
+  border-radius: 50%;
+  width: 19.55px;
+  height: 19.55px;
+  position: absolute;
+  left: 408.85px;
+  top: 700.40px;
+}
+
+.rectangle-1617 {
+  background: rgba(42, 41, 41, 0);
+  border-radius: 21.25px;
+  border-style: solid;
+  border-color: #eeeeee;
+  border-width: 1.275px;
+  width: 1081.20px;
+  height: 59.50px;
+  position: absolute;
+  left: 401.20px;
+  top: 851.70px;
+}
+
+.rectangle-1723 {
+  background: #2a2929;
+  border-radius: 0 0 21.25px 21.25px;
+  width: 1137.3px;
+  height: 259.25px;
+  position: absolute;
+  left: 374.85px;
+  top: 918px;
+}
+
+.rectangle-1722 {
+  background: #2a2929;
+  border-radius: 21.25px;
+  width: 1137.3px;
+  height: 346.8px;
+  position: absolute;
+  left: 374.85px;
+  top: 1200.05px;
+}
+
+/* ===== 결제 금액 ===== */
+.div1 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 25.5px;
+  line-height: 92.65px;
+  letter-spacing: -0.06em;
+  font-weight: 400;
+  position: absolute;
+  left: 401.2px;
+  top: 1222.15px;
+  width: 289px;
+  height: 37.4px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+._179-000-katte {
+  color: #f9eeee;
+  text-align: right;
+  font-family: "LineSeedSansKr-Bold", sans-serif;
+  font-size: 25.5px;
+  line-height: 92.65px;
+  letter-spacing: -0.04em;
+  font-weight: 700;
+  position: absolute;
+  left: 1193.4px;
+  top: 1222.15px;
+  width: 289px;
+  height: 37.4px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+/* ===== 구매가 ===== */
+.div21 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Thin", sans-serif;
+  font-size: 25.5px;
+  line-height: 92.65px;
+  letter-spacing: -0.06em;
+  font-weight: 100;
+  position: absolute;
+  left: 401.2px;
+  top: 1278.4px;
+  width: 289px;
+  height: 37.4px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+._189-000-katte {
+  color: #f9eeee;
+  text-align: right;
+  font-family: "LineSeedSansKr-Thin", sans-serif;
+  font-size: 25.5px;
+  line-height: 92.65px;
+  letter-spacing: -0.04em;
+  font-weight: 100;
+  position: absolute;
+  left: 1193.4px;
+  top: 1278.4px;
+  width: 289px;
+  height: 37.4px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+/* ===== 검수비 ===== */
+.div31 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Thin", sans-serif;
+  font-size: 25.5px;
+  line-height: 92.65px;
+  letter-spacing: -0.06em;
+  font-weight: 100;
+  position: absolute;
+  left: 401.2px;
+  top: 1319.05px;
+  width: 289px;
+  height: 37.4px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.free {
+  color: #f9eeee;
+  text-align: right;
+  font-family: "LineSeedSansKr-Thin", sans-serif;
+  font-size: 25.5px;
+  line-height: 92.65px;
+  letter-spacing: -0.04em;
+  font-weight: 100;
+  position: absolute;
+  left: 1193.4px;
+  top: 1319.05px;
+  width: 289px;
+  height: 37.4px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+/* ===== 수수료 ===== */
+.div41 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Thin", sans-serif;
+  font-size: 25.5px;
+  line-height: 92.65px;
+  letter-spacing: -0.06em;
+  font-weight: 100;
+  position: absolute;
+  left: 401.2px;
+  top: 1361.7px;
+  width: 289px;
+  height: 37.4px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+._2-700-katte {
+  color: #f9eeee;
+  text-align: right;
+  font-family: "LineSeedSansKr-Thin", sans-serif;
+  font-size: 25.5px;
+  line-height: 92.65px;
+  letter-spacing: -0.04em;
+  font-weight: 100;
+  position: absolute;
+  left: 1193.4px;
+  top: 1361.7px;
+  width: 289px;
+  height: 37.4px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+/* ===== 배송비 ===== */
+.div51 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Thin", sans-serif;
+  font-size: 25.5px;
+  line-height: 92.65px;
+  letter-spacing: -0.06em;
+  font-weight: 100;
+  position: absolute;
+  left: 401.2px;
+  top: 1403.35px;
+  width: 289px;
+  height: 37.4px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+._3-000-katte {
+  color: #f9eeee;
+  text-align: right;
+  font-family: "LineSeedSansKr-Thin", sans-serif;
+  font-size: 25.5px;
+  line-height: 92.65px;
+  letter-spacing: -0.04em;
+  font-weight: 100;
+  position: absolute;
+  left: 1193.4px;
+  top: 1403.35px;
+  width: 289px;
+  height: 37.4px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+/* ===== 쿠폰사용 ===== */
+.div61 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Thin", sans-serif;
+  font-size: 25.5px;
+  line-height: 92.65px;
+  letter-spacing: -0.06em;
+  font-weight: 100;
+  position: absolute;
+  left: 401.2px;
+  top: 1445px;
+  width: 289px;
+  height: 37.4px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+._5-700-katte {
+  color: #f9eeee;
+  text-align: right;
+  font-family: "LineSeedSansKr-Thin", sans-serif;
+  font-size: 25.5px;
+  line-height: 92.65px;
+  letter-spacing: -0.04em;
+  font-weight: 100;
+  position: absolute;
+  left: 1193.4px;
+  top: 1445px;
+  width: 289px;
+  height: 37.4px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+/* ===== 포인트사용 ===== */
+.div71 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Thin", sans-serif;
+  font-size: 25.5px;
+  line-height: 92.65px;
+  letter-spacing: -0.06em;
+  font-weight: 100;
+  position: absolute;
+  left: 401.2px;
+  top: 1487.65px;
+  width: 289px;
+  height: 37.4px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+._7000-katte {
+  color: #f9eeee;
+  text-align: right;
+  font-family: "LineSeedSansKr-Thin", sans-serif;
+  font-size: 25.5px;
+  line-height: 92.65px;
+  letter-spacing: -0.04em;
+  font-weight: 100;
+  position: absolute;
+  left: 1193.4px;
+  top: 1487.65px;
+  width: 289px;
+  height: 37.4px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+/* ===== group-897 (내부 결제모달) ===== */
+.group-897 {
+  width: 1137.3px;
+  height: 880.6px;
+  position: static;
+}
+
+.group-906 {
+  width: 1137.3px;
+  height: 454.75px;
+  position: static;
+}
+
+.rectangle-1618 {
+  background: #2a2929;
+  border-radius: 21.25px;
+  width: 1137.3px;
+  height: 454.75px;
+  position: absolute;
+  left: 374.85px;
+  top: 1570px;
+}
+
+/* ===== 내부 “결제 금액” ===== */
+.div81 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 25.5px;
+  line-height: 92.65px;
+  letter-spacing: -0.06em;
+  font-weight: 400;
+  position: absolute;
+  left: 401.2px;
+  top: 1593.75px;
+  width: 289px;
+  height: 37.4px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+._179-000-katte2 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 21.25px;
+  line-height: 92.65px;
+  letter-spacing: -0.03em;
+  font-weight: 400;
+  position: absolute;
+  left: 427.55px;
+  top: 1726.35px;
+  width: 686.8px;
+  height: 37.4px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+._179-000-katte3 {
+  color: #f9eeee;
+  text-align: right;
+  font-family: "LineSeedSansKr-Bold", sans-serif;
+  font-size: 25.5px;
+  line-height: 92.65px;
+  letter-spacing: -0.04em;
+  font-weight: 700;
+  position: absolute;
+  left: 1193.4px;
+  top: 1593.75px;
+  width: 289px;
+  height: 37.4px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.div91 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 25.5px;
+  line-height: 92.65px;
+  letter-spacing: -0.06em;
+  font-weight: 400;
+  position: absolute;
+  left: 401.2px;
+  top: 1659.2px;
+  width: 289px;
+  height: 37.4px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.div101 {
+  color: #f9eeee;
+  text-align: center;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 21.25px;
+  line-height: 92.65px;
+  letter-spacing: -0.06em;
+  font-weight: 400;
+  position: absolute;
+  left: 1336.2px;
+  top: 1726.35px;
+  width: 136.85px;
+  height: 37.4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rectangle-1636 {
+  background: rgba(42, 41, 41, 0);
+  border-radius: 17px;
+  border-style: solid;
+  border-color: #eeeeee;
+  border-width: 1.28px;
+  width: 903.7px;
+  height: 60.35px;
+  position: absolute;
+  left: 401.2px;
+  top: 1708.5px;
+}
+
+.div111 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Thin", sans-serif;
+  font-size: 21.25px;
+  line-height: 92.65px;
+  letter-spacing: -0.06em;
+  font-weight: 100;
+  position: absolute;
+  left: 401.2px;
+  top: 1778.05px;
+  width: 115.2px;
+  height: 37.4px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+._3-000-000-katte {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Thin", sans-serif;
+  font-size: 21.25px;
+  line-height: 92.65px;
+  letter-spacing: -0.06em;
+  font-weight: 100;
+  position: absolute;
+  left: 524.45px;
+  top: 1778.05px;
+  width: 187.85px;
+  height: 37.4px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.div121 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 25.5px;
+  line-height: 92.65px;
+  letter-spacing: -0.06em;
+  font-weight: 400;
+  position: absolute;
+  left: 401.2px;
+  top: 1848.55px;
+  width: 289px;
+  height: 37.4px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.rectangle-1638 {
+  background: rgba(42, 41, 41, 0);
+  border-radius: 17px;
+  border-style: solid;
+  border-color: #eeeeee;
+  border-width: 1.28px;
+  width: 156.4px;
+  height: 59.5px;
+  position: absolute;
+  left: 1326px;
+  top: 1708.5px;
+}
+
+.group-8972 {
+  width: 289px;
+  height: 78.2px;
+  position: static;
+}
+
+.rectangle-1570 {
+  background: #eeeeee;
+  border-radius: 21.25px;
+  width: 289px;
+  height: 78.2px;
+  position: absolute;
+  left: 631.55px;
+  top: 1904.85px;
+}
+
+.div131 {
+  color: #2a2929;
+  text-align: center;
+  font-family: "LineSeedSansKr-Bold", sans-serif;
+  font-size: 21.25px;
+  line-height: 34px;
+  letter-spacing: 0.01em;
+  font-weight: 700; 
+  position: absolute;
+  left: 783.7px;
+  top: 1924.4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-105 {
+  width: 100.3px;
+  height: 39.1px;
+  position: absolute;
+  left: 669.95px;
+  top: 1924.4px;
+  object-fit: cover;
+  aspect-ratio: 118/46;
+}
+
+/* ===== 포인트 혜택 바닥 ===== */
+.rectangle-1639 {
+  background: #2a2929;
+  border-radius: 21.25px;
+  width: 1137.3px;
+  height: 145.35px;
+  position: absolute;
+  left: 374.85px;
+  top: 2047.65px;
+}
+
+.div141 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 25.5px;
+  line-height: 92.65px;
+  letter-spacing: -0.06em;
+  font-weight: 400;
+  position: absolute;
+  left: 401.2px;
+  top: 2075.7px;
+  width: 289px;
+  height: 37.4px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+/* ===== “179,000 katte・결제하기” 버튼 ===== */
+
+.rectangle-1640 {
+  background: #ff0044;
+  border-radius: 21.25px;
+  width: 1137.3px;
+  height: 98.6px;
+  position: absolute;
+  left: 374.85px;
+  top: 2216px;
+}
+
+._179-000-katte4 {
+    color: #f9eeee;
+    text-align: center;
+    font-family: "LineSeedSansKr-Regular", sans-serif;
+    font-size: 34px;
+    line-height: 92.65px;
+    letter-spacing: -0.01em;
+    font-weight: 400;
+    position: absolute;
+    left: 669.95px;
+    top: 2245px;
+    width: 549.1px;
+    height: 37.4px;
+    display: flex
+;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ===== 비활성(회색) 버튼 ===== */
+/* .group-901 {
+  width: 1137.3px;
+  height: 98.6px;
+  position: static;
+}
+
+.rectangle-16402 {
+  background: #ccc9c9;
+  border-radius: 21.25px;
+  width: 1137.3px;
+  height: 98.6px;
+  position: absolute;
+  left: 374.85px;
+  top: 2351.95px;
+}
+
+._179-000-katte5 {
+  color: #f9eeee;
+  text-align: center;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 34px;
+  line-height: 92.65px;
+  letter-spacing: -0.01em;
+  font-weight: 400;
+  position: absolute;
+  left: 669.95px;
+  top: 2379.75px;
+  width: 549.1px;
+  height: 37.4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+ */
+/* ===== 적립 예정 포인트 ===== */
+.div151 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Thin", sans-serif;
+  font-size: 25.5px;
+  line-height: 92.65px;
+  letter-spacing: -0.06em;
+  font-weight: 100;
+  position: absolute;
+  left: 401.2px;
+  top: 2125px;
+  width: 289px;
+  height: 37.4px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+._910-p {
+  color: #ff0044;
+  text-align: right;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 25.5px;
+  line-height: 92.65px;
+  letter-spacing: 0.03em;
+  font-weight: 400;
+  position: absolute;
+  left: 1183.05px;
+  top: 2125px;
+  width: 289px;
+  height: 37.4px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+/* ===== “네이버 페이” ===== */
+.group-898 {
+  width: 289px;
+  height: 78.2px;
+  position: static;
+}
+
+.rectangle-1571 {
+  background: #eeeeee;
+  border-radius: 21.25px;
+  width: 289px;
+  height: 78.2px;
+  position: absolute;
+  left: 967.45px;
+  top: 1904.85px;
+}
+
+.div161 {
+  color: #2a2929;
+  text-align: center;
+  font-family: "LineSeedSansKr-Bold", sans-serif;
+  font-size: 21.25px;
+  line-height: 34px;
+  letter-spacing: 0.01em;
+  font-weight: 700; 
+  position: absolute;
+  left: 1118.6px;
+  top: 1926px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-107 {
+  border-radius: 82.88px;
+  width: 101.15px;
+  height: 39.95px;
+  position: absolute;
+  left: 1003px;
+  top: 1924.4px;
+  object-fit: cover;
+  aspect-ratio: 119/47;
+}
+
+/* ===== 포인트 관련 상단 ===== */
+.div171 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 25.5px;
+  line-height: 92.65px;
+  letter-spacing: -0.06em;
+  font-weight: 400;
+  position: absolute;
+  left: 401.2px;
+  top: 961.35px;
+  width: 289px;
+  height: 37.4px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+._7-000-p {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 19.55px;
+  line-height: 92.65px;
+  letter-spacing: -0.06em;
+  font-weight: 400;
+  position: absolute;
+  left: 427.55px;
+  top: 1020.85px;
+  width: 686.8px;
+  height: 37.4px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+/* ===== 최대 사용 (박스) ===== */
+.rectangle-1720 {
+  background: rgba(42, 41, 41, 0);
+  border-radius: 17px;
+  border-style: solid;
+  border-color: #eeeeee;
+  border-width: 1.28px;
+  width: 903.7px;
+  height: 60.35px;
+  position: absolute;
+  left: 401.2px;
+  top: 1009.8px;
+}
+
+.div181 {
+  color: #f9eeee;
+  text-align: center;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 21.25px;
+  line-height: 92.65px;
+  letter-spacing: -0.06em;
+  font-weight: 400;
+  position: absolute;
+  left: 1336.2px;
+  top: 1020.85px;
+  width: 136.85px;
+  height: 37.4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ===== 보유 포인트 (박스) ===== */
+.rectangle-1721 {
+  background: rgba(42, 41, 41, 0);
+  border-radius: 17px;
+  border-style: solid;
+  border-color: #eeeeee;
+  border-width: 1.28px;
+  width: 156.4px;
+  height: 59.5px;
+  position: absolute;
+  left: 1326px;
+  top: 1009.8px;
+}
+
+.div191 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Thin", sans-serif;
+  font-size: 21.25px;
+  line-height: 92.65px;
+  letter-spacing: -0.06em;
+  font-weight: 100;
+  position: absolute;
+  left: 401.2px;
+  top: 1089.45px;
+  width: 112.2px;
+  height: 37.4px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+/* ===== 안내 문구 ===== */
+.div201 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Thin", sans-serif;
+  font-size: 17px;
+  line-height: 92.65px;
+  letter-spacing: -0.06em;
+  font-weight: 100;
+  position: absolute;
+  left: 401.2px;
+  top: 1130.65px;
+  width: 903.7px;
+  height: 37.4px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+/* ===== 15,000 p ===== */
+._15-000-p {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Thin", sans-serif;
+  font-size: 21.25px;
+  line-height: 92.65px;
+  letter-spacing: -0.06em;
+  font-weight: 100;
+  position: absolute;
+  left: 513.4px;
+  top: 1089.45px;
+  width: 112.2px;
+  height: 37.4px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+/* ─────────────────────────────────────────────────────────────
+   [A] 버튼을 감싸는 부모(.group-900) 수정 예시
+   ───────────────────────────────────────────────────────────── */
+
+/* ─────────────────────────────────────────────────────────────
+   [B] .payment-btn 수정: 부모 크기에 딱 맞추도록
+
+
+/* 자식: 문서 전체 기준으로 절대 위치 지정 */
+.rectangle-1640 {
+  position: absolute;
+  left: 374.85px;
+  top:  2216px;
+  width: 1137.3px;
+  height: 98.6px;
+  background: #ff0044;
+  border-radius: 21.25px;
+}
+._179-000-katte4 {
+  position: absolute;
+  left: 669.95px;
+  top:  2245px;
+  width:  549.1px;
+  height: 37.4px;
+  color: #f9eeee;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 34px;
+  line-height: 92.65px;
+  letter-spacing: -0.01em;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ------------------------------------------------------------------
+   [2] 결제 완료 모달 (purchase-complete-modal)
+   ------------------------------------------------------------------ */
+/* overlay(@existing .modal-overlay) : 
+   이미 background: rgba(0,0,0,0.6) 등으로 정의되어 있다고 가정
+   display:none 상태라 모달이 화면 바깥에 있을 때 보이지 않음 */
+
+.purchase-complete-modal {
+  display: none;              /* 처음엔 숨김 */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 380px;               /* 예시 너비 */
+  background: #ffffff;        /* 흰색 배경 */
+  border-radius: 12px;
+  padding: 24px 16px;
+  text-align: center;
+  color: #5D5A5A;             /* 글자 색은 짙은 회색(#5D5A5A) */
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  z-index: 500;               /* overlay 위에 표시되도록 (overlay z-index:100) */
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* 모달 안의 문구 */
+.purchase-complete-modal .purchase-complete-text {
+  margin: 0;
+  font-size: 20px;
+  line-height: 1.5;
+}
+
+/* 모달 닫기 버튼 */
+.purchase-complete-modal .purchase-close-btn {
+  margin-top: 20px;
+  background: none;
+  border: 1px solid #5D5A5A;
+  border-radius: 8px;
+  color: #5D5A5A;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 16px;
+  padding: 8px 20px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+.purchase-complete-modal .purchase-close-btn:hover {
+  background: #5D5A5A;
+  color: #ffffff;
+}

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>고객센터</title>
+  <link rel="stylesheet" href="../../Customer_center.css">
+</head>
+<body>
+  <!-- 사이드바 (기존 코드 그대로) -->
+  <aside class="sidebar">
+    <a href="/main"><img class="logo-1" src="../../../../../../../../../../JAVA/JAVA_24.12.30/Project/src/main/webapp/img/logo%20(1).png" alt="로고"></a>
+    <nav class="sidebar-nav">
+      <ul>
+        <li><a href="/search">검색</a></li>
+        <li><a href="/explore">탐색</a></li>
+        <li><a href="/sell">판매등록</a></li>
+        <li><a href="/wishlist">관심상품</a></li>
+        <li><a href="/style">스타일</a></li>
+        <li><a href="/mypage">마이페이지</a></li>
+        <li><a href="/support">고객센터</a></li>
+      </ul>
+    </nav>
+    <div class="login-area">
+      <a href="/login" class="btn-login">로그인</a>
+    </div>
+    <footer class="sidebar-footer">
+      <p><a href="/support">고객센터</a> | <a href="/terms">이용약관</a></p>
+      <small>&copy; All copyright in soldesk</small>
+    </footer>
+  </aside>
+
+  <!-- 내용 영역 -->
+  <div class="content">
+    <!-- 1) 탭 내비게이션 -->
+    <div class="cc-tabs">
+      <button class="cc-tab active" data-target="notice">공지사항</button>
+      <button class="cc-tab"        data-target="faq">자주 묻는 질문</button>
+      <button class="cc-tab"        data-target="qna">1:1 문의</button>
+      <button class="cc-tab"        data-target="criteria">검수 기준</button>
+    </div>
+
+    <!-- 2) 검색 바 (모든 탭 공통) -->
+    <div class="cc-search">
+      <input type="text" id="cc-search-input" placeholder="검색어를 입력하세요">
+    </div>
+
+    <!-- 3) 공지사항 -->
+    <section id="notice" class="cc-section">
+      <div class="cc-filter">
+        <button class="filter-btn selected" data-filter="all">전체</button>
+        <button class="filter-btn"        data-filter="notice">공지</button>
+        <button class="filter-btn"        data-filter="event">이벤트</button>
+        <button class="filter-btn"        data-filter="etc">기타</button>
+      </div>
+      <table class="cc-table">
+        <thead>
+          <tr><th>제목</th><th>날짜</th></tr>
+        </thead>
+        <tbody>
+          <tr data-cat="notice"><td>공지사항!!</td><td>2025-05-22</td></tr>
+          <tr data-cat="etc"><td>설 연휴 휴무 안내</td><td>2025-05-22</td></tr>
+          <tr data-cat="event"><td>충전 시 300% 추가 포인트</td><td>2025-05-22</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- 4) FAQ -->
+    <section id="faq" class="cc-section hidden">
+      <div class="cc-filter">
+        <button class="filter-btn selected" data-faq-cat="all">전체</button>
+        <button class="filter-btn"        data-faq-cat="policy">이용정책</button>
+        <button class="filter-btn"        data-faq-cat="penalty">패널티 정책</button>
+      </div>
+      <div class="cc-accordion">
+        <div class="acc-item" data-faq-cat="policy">
+          <div class="acc-header">설 연휴 휴무 안내</div>
+          <div class="acc-body">설 연휴에는 쉬어요~</div>
+        </div>
+        <div class="acc-item" data-faq-cat="policy">
+          <div class="acc-header">상품 구매는 어떻게 하나요?</div>
+          <div class="acc-body">
+            서비스 가입 후 로그인 한 회원은 누구나...<br>
+            (이하 생략)
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5) 1:1 문의 -->
+    <section id="qna" class="cc-section hidden">
+      <div class="qna-tabs">
+        <button class="qna-tab active" data-qna="list">문의 내역</button>
+        <button class="qna-tab"        data-qna="write">문의 하기</button>
+      </div>
+      <!-- 문의 내역 -->
+      <div id="qna-list" class="qna-content">
+        <table class="cc-table">
+          <thead>
+            <tr><th>분류</th><th>제목</th><th>상태</th><th>날짜</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>구매</td><td>배송 언제 오나요?</td><td>진행中</td><td>2025-05-21</td></tr>
+            <tr><td>일반</td><td>문의용</td><td>답변완료</td><td>2025-05-21</td></tr>
+            <tr><td>└ RE</td><td>문의용</td><td>답변완료</td><td>2025-05-21</td></tr>
+            <tr><td>일반</td><td>무니무니</td><td>접수</td><td>2025-05-21</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- 문의 하기 -->
+      <div id="qna-write" class="qna-content hidden">
+        <div class="write-form">
+          <div class="write-group">
+            <label>문의 유형</label>
+            <button class="type-btn">구매</button>
+            <button class="type-btn">브랜드 협습</button>
+            <button class="type-btn">판매</button>
+            <button class="type-btn active">일반</button>
+          </div>
+          <div class="write-group">
+            <label for="qna-subject">제목</label>
+            <input type="text" id="qna-subject" placeholder="제목을 입력해주세요">
+          </div>
+          <div class="write-group">
+            <label for="qna-content">내용</label>
+            <textarea id="qna-content" placeholder="문의 내용을 입력해주세요"></textarea>
+          </div>
+          <div class="write-actions">
+            <button class="btn-cancel">취소</button>
+            <button class="btn-submit">확인</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6) 검수 기준 -->
+    <section id="criteria" class="cc-section hidden">
+      <table class="cc-criteria-table">
+        <thead>
+          <tr>
+            <th>신발</th><th>아우터 상의 하의</th><th>가방 시계 지갑 패션잡화</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>테크</td><td>뷰티 컬렉터블 캠핑 가구/리빙</td><td>프리미엄 시계</td>
+          </tr>
+          <tr>
+            <td>프리미엄 가방</td><td colspan="2"></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="cc-criteria-text">
+        <p>[업데이트] 2021/11/29</p>
+        <p>[적용일시] 2021/12/03 00:00 적용 시작</p>
+        <p>KREAM의 ... (장문의 안내문)</p>
+        <!-- 이하 생략 -->
+      </div>
+    </section>
+  </div>
+
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+	  // 탭 전환
+	  document.querySelectorAll('.cc-tab').forEach(tab => {
+	    tab.addEventListener('click', () => {
+	      document.querySelectorAll('.cc-tab').forEach(t=>t.classList.remove('active'));
+	      tab.classList.add('active');
+	      document.querySelectorAll('.cc-section').forEach(sec => {
+	        sec.classList.toggle('hidden', sec.id !== tab.dataset.target);
+	      });
+	    });
+	  });
+
+	  // 공지사항 / FAQ 필터
+	  document.querySelectorAll('#notice .filter-btn').forEach(btn=>{
+	    btn.addEventListener('click', ()=> {
+	      const f = btn.dataset.filter;
+	      document.querySelectorAll('#notice .filter-btn').forEach(b=>b.classList.remove('selected'));
+	      btn.classList.add('selected');
+	      document.querySelectorAll('#notice tbody tr').forEach(row=>{
+	        row.style.display = (f==='all'||row.dataset.cat===f) ? '' : 'none';
+	      });
+	    });
+	  });
+	  document.querySelectorAll('#faq .filter-btn').forEach(btn=>{
+	    btn.addEventListener('click', ()=> {
+	      const f=btn.dataset.faqCat;
+	      document.querySelectorAll('#faq .filter-btn').forEach(b=>b.classList.remove('selected'));
+	      btn.classList.add('selected');
+	      document.querySelectorAll('#faq .acc-item').forEach(item=>{
+	        item.style.display = (f==='all'||item.dataset.faqCat===f) ? '' : 'none';
+	      });
+	    });
+	  });
+
+	  // FAQ 아코디언
+	  document.querySelectorAll('.acc-header').forEach(header=>{
+	    header.addEventListener('click', ()=>{
+	      const item = header.parentElement;
+	      item.classList.toggle('open');
+	    });
+	  });
+
+	  // 1:1 문의 탭 전환
+	  document.querySelectorAll('.qna-tab').forEach(tab=>{
+	    tab.addEventListener('click', ()=>{
+	      document.querySelectorAll('.qna-tab').forEach(t=>t.classList.remove('active'));
+	      tab.classList.add('active');
+	      document.querySelectorAll('.qna-content').forEach(c=>{
+	        c.classList.toggle('hidden', c.id !== 'qna-'+tab.dataset.qna);
+	      });
+	    });
+	  });
+
+	  // 문의 하기 - 유형 버튼
+	  document.querySelectorAll('.type-btn').forEach(btn=>{
+	    btn.addEventListener('click', ()=>{
+	      document.querySelectorAll('.type-btn').forEach(b=>b.classList.remove('active'));
+	      btn.classList.add('active');
+	    });
+	  });
+
+	  // (추가) 검색 기능
+	  const searchInput = document.getElementById('cc-search-input');
+	  searchInput.addEventListener('input', () => {
+	    const kw = searchInput.value.trim().toLowerCase();
+	    // 각 섹션에서 제목(첫 td) 텍스트에 포함된 행만 남기기
+	    document.querySelectorAll('.cc-table tbody tr, .qna-content table tbody tr').forEach(row => {
+	      const txt = row.children[0].innerText.toLowerCase();
+	      row.style.display = txt.includes(kw) ? '' : 'none';
+	    });
+	  });
+	});
+
+  </script>
+</body>
+</html>

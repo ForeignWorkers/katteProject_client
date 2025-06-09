@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Favorite</title>
+  <link rel="stylesheet" href="Mypage_kattemoney_page.css">
+</head>
+<body>
+<aside class = "sidebar"> <!--사이드 바-->
+  <a href="/main"><img class="logo-1" src="../../../../../../../../../../JAVA/JAVA_24.12.30/Project/src/main/webapp/img/logo%20(1).png" alt="로고"></a>
+  <nav class="sidebar-nav">
+    <ul>
+      <li><a href="/search">검색</a></li>
+      <li><a href="/explore">탐색</a></li>
+      <li><a href="/sell">판매등록</a></li>
+      <li><a href="/wishlist">관심상품</a></li>
+      <li><a href="/style">스타일</a></li>
+      <li><a href="/mypage">마이페이지</a></li>
+      <li><a href="/support">고객센터</a></li>
+    </ul>
+  </nav>
+   <div class="login-area">
+    <a href="/login" class="btn-login">로그인</a>
+  </div>
+  <footer class="sidebar-footer">
+    <p><a href="/support">고객센터</a> | <a href="/terms">이용약관</a></p>
+    <small>&copy; All copyright in soldesk</small>
+  </footer>
+</aside>
+<div id = "MyPageBar"> <!--상단 마이페이지 바-->
+  <div id = "MyPageText">MyPage</div>
+  <div id = "ClickBox">
+    <div id = "buyList">
+      <a href="MyPage.html">구매 내역</a>
+    </div>
+    <div id = "favorite" class = "selected">
+      <a href="./Favorite.html">관심</a>
+    </div>
+    <div id = "MyStyle">
+      <a href="MyStyle.html">내 스타일</a>
+    </div>
+    <div id = "MyKatteMoney">
+      <a href="MyKatteMoney.html">캇테머니</a>
+    </div>
+    <div id = "MyPoint">
+      <a href="MyPoint.html">포인트</a>
+    </div>
+    <div id = "MyCoupon">
+      <a href="MyCoupon.html">쿠폰함</a>
+    </div>
+    <div id = "MyLogInfo">
+      <a href="MyLogInfo.html">로그인 정보</a>
+    </div>
+    <div id = "MyProfile">
+      <a href="MyProfile.html">프로필 관리</a>
+    </div>
+    <div id = "MyAddress">
+      <a href="MyAddress.html">주소록 관리</a>
+    </div>
+  </div>
+  </div>
+  
+
+ 
+  <div class="div">보유 캇테머니</div>
+  <div class="_133-000-katte">133,000katte</div>
+  <div class="div2">충전하기</div>
+  <div class="div3">환불하기</div>
+  <div class="_2025-03-04">
+    <span>
+      <span class="_2025-03-04-span">
+        캇테머니 충전
+        <br />
+      </span>
+      <span class="_2025-03-04-span2">2025.03.04</span>
+    </span>
+  </div>
+  <div class="_133-000-katte2">+133,000katte</div>
+  <div class="line-271"></div>
+  <div class="_2025-02-24">
+    <span>
+      <span class="_2025-02-24-span">캇테머니 결제</span>
+      <span class="_2025-02-24-span2">2025.02.24</span>
+    </span>
+  </div>
+  <div class="_65-000-katte">-65,000katte</div>
+  <div class="line-2712"></div>
+  <div class="_2025-02-01">
+    <span>
+      <span class="_2025-02-01-span">
+        캇테머니 결제
+        <br />
+      </span>
+      <span class="_2025-02-01-span2">2025.02.01</span>
+    </span>
+  </div>
+  <div class="_83-000-katte">-83,000katte</div>
+  <div class="line-2713"></div>
+  <div class="_2025-01-26">
+    <span>
+      <span class="_2025-01-26-span">
+        캇테머니 충전
+        <br />
+      </span>
+      <span class="_2025-01-26-span2">2025.01.26</span>
+    </span>
+  </div>
+  <div class="_108-700-katte">+108,700katte</div>
+  <div class="line-2714"></div>
+  <div class="_2025-01-04">
+    <span>
+      <span class="_2025-01-04-span">
+        캇테머니 결제
+        <br />
+      </span>
+      <span class="_2025-01-04-span2">2025.01.04</span>
+    </span>
+  </div>
+  <div class="_201-000-katte">-201,000katte</div>
+  <div class="line-2715"></div>
+  <div class="_2025-01-03">
+    <span>
+      <span class="_2025-01-03-span">
+        캇테머니 충전
+        <br />
+      </span>
+      <span class="_2025-01-03-span2">2025.01.03</span>
+    </span>
+  </div>
+  <div class="_240-300-katte">+240,300katte</div>
+  <div class="line-2716"></div>
+
+  <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const items = document.querySelectorAll("#ClickList > div");
+    items.forEach(item => {
+      item.addEventListener("click", function () {
+        // 모든 div에서 selected를 해제
+        items.forEach(i => i.classList.remove("selected"));
+        // 클릭한 div에 selected를 부여
+        this.classList.add("selected");
+      });
+    });
+  });
+</script>
+  </body>
+  </html>
+  

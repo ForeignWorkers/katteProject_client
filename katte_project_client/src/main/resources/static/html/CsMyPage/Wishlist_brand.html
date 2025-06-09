@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Favorite</title>
+  <link rel="stylesheet" href="Wishlist_brand.css">
+</head>
+<body>
+
+<aside class="sidebar">
+  <a href="/main">
+  <img class="logo-1" src="../../../../../../../../../../JAVA/JAVA_24.12.30/Project/src/main/webapp/img/logo%20(1).png" alt="로고" />
+  </a>
+  <nav class="sidebar-nav">
+    <ul>
+      <li><a href="/search">검색</a></li>
+      <li><a href="/explore">탐색</a></li>
+      <li><a href="/sell">판매등록</a></li>
+      <li><a href="/wishlist">관심상품</a></li>
+      <li><a href="/style">스타일</a></li>
+      <li><a href="/mypage">마이페이지</a></li>
+      <li><a href="/support">고객센터</a></li>
+    </ul>
+  </nav>
+  <div class="login-area">
+    <a href="/login" class="btn-login">로그인</a>
+  </div>
+  <footer class="sidebar-footer">
+    <p><a href="/support">고객센터</a> | <a href="/terms">이용약관</a></p>
+    <small>&copy; All copyright in soldesk</small>
+  </footer>
+</aside>
+
+<div id = "MyPageBar"> <!--상단 마이페이지 바-->
+  <div id = "MyPageText">MyPage</div>
+  <div id = "ClickBox">
+    <div id = "buyList">
+      <a href="MyPage.html">구매 내역</a>
+    </div>
+    <div id = "favorite" class = "selected">
+      <a href="./Favorite.html">관심</a>
+    </div>
+    <div id = "MyStyle">
+      <a href="MyStyle.html">내 스타일</a>
+    </div>
+    <div id = "MyKatteMoney">
+      <a href="MyKatteMoney.html">캇테머니</a>
+    </div>
+    <div id = "MyPoint">
+      <a href="MyPoint.html">포인트</a>
+    </div>
+    <div id = "MyCoupon">
+      <a href="MyCoupon.html">쿠폰함</a>
+    </div>
+    <div id = "MyLogInfo">
+      <a href="MyLogInfo.html">로그인 정보</a>
+    </div>
+    <div id = "MyProfile">
+      <a href="MyProfile.html">프로필 관리</a>
+    </div>
+    <div id = "MyAddress">
+      <a href="MyAddress.html">주소록 관리</a>
+    </div>
+  </div>
+</div>
+
+<!-- 관심 -->
+<div class="div24">상품</div>
+  <div class="div25">쇼츠</div>
+  <div class="line-238"></div>
+  <div class="div26">스타일</div>
+  <div class="div27">브랜드</div>
+  
+<!-- 브랜드 -->
+<div class="_2">전체 2</div>
+  <img class="image-90" src="image-900.png" />
+  <img class="rectangle-1607" src="rectangle-16070.svg" />
+  <div class="_3-6">관심 3.6만</div>
+  <div class="div18">
+    <img class="image" src="image0.png" />
+    <div class="bape-baby">BAPE Baby...</div>
+    <div class="_83-400">83,400원</div>
+  </div>
+  <div class="bape">BAPE</div>
+  <img class="polygon-19" src="polygon-190.svg" />
+  <img class="rectangle-16072" src="rectangle-16071.svg" />
+  <div class="_3-6">관심 3.6만</div>
+  <div class="div19">
+    <img class="image" src="image1.png" />
+    <div class="bape-baby-m">BAPE Baby M...</div>
+    <div class="_83-400">83,400원</div>
+  </div>
+  <div class="div18">
+    <img class="image2" src="image2.png" />
+    <div class="bape-colleg">BAPE Colleg...</div>
+    <div class="_144-400">144,400원</div>
+  </div>
+  <div class="div18">
+    <img class="image3" src="image3.png" />
+    <div class="bape-japan">BAPE Japan...</div>
+    <div class="_157-000">157,000원</div>
+  </div>
+  <div class="div18">
+    <img class="image4" src="image4.png" />
+    <div class="bape-colle">BAPE Colle...</div>
+    <div class="_138-400">138,400원</div>
+  </div>
+  <img class="polygon-192" src="polygon-191.svg" />
+  <div class="bape">BAPE</div>
+  <img class="image-90" src="image-901.png" />
+  <img class="rectangle-16073" src="rectangle-16072.svg" />
+  <div class="_3-62">관심 3.6만</div>
+  <div class="div19">
+    <img class="image5" src="image5.png" />
+    <div class="bape-baby-m2">BAPE Baby M...</div>
+    <div class="_83-4002">83,400원</div>
+  </div>
+  <div class="div18">
+    <img class="image6" src="image6.png" />
+    <div class="bape-colleg2">BAPE Colleg...</div>
+    <div class="_144-4002">144,400원</div>
+  </div>
+  <div class="div18">
+    <img class="image7" src="image7.png" />
+    <div class="bape-japan2">BAPE Japan...</div>
+    <div class="_157-0002">157,000원</div>
+  </div>
+  <div class="div18">
+    <img class="image8" src="image8.png" />
+    <div class="bape-colle2">BAPE Colle...</div>
+    <div class="_138-4002">138,400원</div>
+  </div>
+  <img class="polygon-193" src="polygon-192.svg" />
+  <div class="bape2">BAPE</div>
+  <img class="image-902" src="image-902.png" />
+  <img class="image-86" src="image-860.png" />
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const items = document.querySelectorAll("#ClickList > div");
+    items.forEach(item => {
+      item.addEventListener("click", function () {
+        // 모든 div에서 selected를 해제
+        items.forEach(i => i.classList.remove("selected"));
+        // 클릭한 div에 selected를 부여
+        this.classList.add("selected");
+      });
+    });
+  });
+</script>
+</body>
+</html>

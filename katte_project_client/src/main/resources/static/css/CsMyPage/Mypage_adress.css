@@ -1,0 +1,613 @@
+@charset "UTF-8";
+.wrapper {
+  transform-origin: top left;
+  width: 100%;
+  min-height: 83vh; /* 100vh * 0.83 */
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  transform-origin: top left;
+  height: 100%;
+  background-color: #181818;
+}
+* {
+  box-sizing: border-box;
+}
+.sidebar {
+  position: fixed;
+  top: 1.649vh;
+  left: 2.1675vw;
+  width: 11.866vw;
+  padding: 0.884vw;
+  box-sizing: border-box;
+  background: #181818;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar .logo-1 {
+  width: 62.77px;
+  height: 76.5px;
+  object-fit: cover;
+  aspect-ratio: 73.85/90;
+  margin-bottom: 34px;
+}
+
+.sidebar-nav {
+  margin-bottom: 51px;
+}
+.sidebar-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.sidebar-nav ul li {
+  margin-bottom: 17px;
+}
+.sidebar-nav ul li a {
+  display: block;
+  text-decoration: none;
+  color: #f9eeee;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 22.1px;
+  line-height: 34px;
+}
+
+.login-area {
+  margin-bottom: 51px;
+}
+.btn-login {
+  width: 100%;
+  height: 48.45px;      /* 57 * 0.85 */
+  background: #ff0044;
+  border: none;
+  border-radius: 11.9px; /* 14 * 0.85 */
+  color: #fff4f4;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 21.25px;   /* 25 * 0.85 */
+  line-height: 48.45px;
+  cursor: pointer;
+  display: flex;                 /* 추가: 버튼처럼 가운데 정렬 */
+  align-items: center;           /* 추가: 수직 가운데 */
+  justify-content: center;       /* 추가: 수평 가운데 */
+  text-decoration: none;         /* 추가: a태그 밑줄 제거 */
+}
+
+.sidebar-footer {
+  margin-top: auto;
+  font-size: 12.75px;
+  color: #787878;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+}
+.sidebar-footer a {
+  color: #787878;
+  text-decoration: none;
+}
+.sidebar-footer p {
+  margin: 0 0 6.8px;
+}
+.sidebar-footer small {
+  display: block;
+  margin: 0;
+}
+
+
+#MyPageBar{
+    position : absolute;
+    width : 75vw;
+    height : 9vh;
+    right : 85px;
+}
+#ClickBox{
+    position : absolute;
+    left : 10px;
+    margin : 0 auto;
+    align-items: center;
+    display : flex;
+}
+#ClickBox > div {
+    width: 112px;
+    height: 30px;
+    margin-right: 14px;
+    padding : 10px;
+    display: flex;
+    align-items : center;
+    justify-content: center;
+}
+#MyPageText {
+    padding : 20px;
+    font-size : 32px;
+    color : #EEEEEE;
+}
+
+a {
+    color : #CCC9C9CC;
+    text-decoration: none;
+}
+a:visited{
+    color : #CCC9C9CC;
+    text-decoration: none;
+}
+
+div.selected a {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    font-weight : bold;
+}
+/*
+#BuySortWrapper{
+    position : absolute;
+    width : 75vw;
+    height : 12vh;
+    top : 12vh;
+    right : -5vw;
+}
+#BuySortClickBox{
+    padding : 10px;
+    display: flex;
+    align-items : center;
+}
+
+#BuySortClickBox > div {
+    text-align: center;
+    width: 112px;
+    height: 30px;
+    margin-top : 14px;
+    margin-right: 14px;
+    margin-left : 10px;
+}*/
+#HistoryListWrapper{
+    position : absolute;
+    width : 75vw;
+    height : 75vh;
+    top : 15vh;
+    right : 70px;
+}
+#OneHistory{
+    width : 1440px;
+    height : 186px;
+    display : flex;
+}
+#OneHistory a{
+    text-decoration: none;
+    color : #EEEEEE;
+}
+#OneHistory a:visited{
+    text-decoration: none;
+    color : #EEEEEE;
+}
+#OneHistory > div{
+    position : relative;
+    left : 27px;
+}
+#ProductPicture{
+    background-color : rgb(114,0,0);
+    width : 180px;
+    height : 180px;
+    left : 0;
+}
+#ProductStatus{
+    left : 27px;
+    top : 10px;
+}
+#ProductBrand{
+    top : 60px;
+}
+#ProductName{
+    top : 108px;
+}
+#ProductSize{
+    top : 146px;
+}
+#ProductPrice{
+    right : 1px;
+    top : 115px;
+    text-align: right;
+}
+
+
+.div {
+  position: absolute;
+  inset: 0;
+}
+.div2 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Bold", sans-serif;
+  font-size: 24px;
+  line-height: 40px;
+  font-weight: 700;
+  position: absolute;
+  left: 371px;
+  top: 332px;
+  width: 98.65px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.div3 {
+  color: #f9eeee;
+  text-align: left;
+  position: absolute;
+  left: 381.84px;
+  top: 363px;
+  width: 354.49px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.div-3-span {
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 20px;
+  line-height: 40px;
+  font-weight: 400;
+}
+.div-3-span2 {
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 16px;
+  line-height: 40px;
+  font-weight: 400;
+}
+._120-501 {
+  color: #f9eeee;
+  text-align: left;
+  position: absolute;
+  left: 381.84px;
+  top: 420px;
+  width: 711.14px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+._120-501-span {
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 20px;
+  line-height: 40px;
+  font-weight: 400;
+}
+._120-501-span2 {
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 16px;
+  line-height: 40px;
+  font-weight: 400;
+}
+._010-1231-1231 {
+  color: #f9eeee;
+  text-align: left;
+  position: absolute;
+  left: 381.84px;
+  top: 391px;
+  width: 1111.16px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+._010-1231-1231-span {
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 20px;
+  line-height: 40px;
+  font-weight: 400;
+}
+._010-1231-1231-span2 {
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 16px;
+  line-height: 40px;
+  font-weight: 400;
+}
+.group-931 {
+  width: 1367px;
+  height: 106px;
+  position: static;
+}
+.rectangle-1650 {
+  background: #181818;
+  border-radius: 20px;
+  border-style: solid;
+  border-color: #f9eeee;
+  border-width: 1px;
+  width: 70px;
+  height: 40px;
+  position: absolute;
+  left: 1679px;
+  top: 382px;
+}
+._16438 {
+  color: #f9eeee;
+  text-align: left;
+  position: absolute;
+  left: 382px;
+  top: 448px;
+  width: 711.14px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+._16438-span {
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 20px;
+  line-height: 40px;
+  font-weight: 400;
+}
+._16438-span2 {
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 16px;
+  line-height: 40px;
+  font-weight: 400;
+}
+.div4 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 20px;
+  line-height: 40px;
+  font-weight: 400;
+  position: absolute;
+  left: 1696px;
+  top: 391px;
+  width: 39px;
+  height: 21px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.group-932 {
+  width: 70px;
+  height: 40px;
+  position: static;
+}
+.rectangle-1651 {
+  background: #181818;
+  border-radius: 20px;
+  border-style: solid;
+  border-color: #f9eeee;
+  border-width: 1px;
+  width: 70px;
+  height: 40px;
+  position: absolute;
+  left: 1763px;
+  top: 382px;
+}
+.div5 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 20px;
+  line-height: 40px;
+  font-weight: 400;
+  position: absolute;
+  left: 1779px;
+  top: 391px;
+  width: 39px;
+  height: 21px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.line-272 {
+  border-top: 2px solid #ccc9c9;
+  width: 1465.04px;
+  height: 0;      /* border로 선만 */
+  position: absolute;
+  left: 371px;
+  top: 490px;
+  /* overflow: visible; 필요 없음 */
+}
+
+._2 {
+  position: absolute;
+  inset: 0;
+}
+.div6 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Bold", sans-serif;
+  font-size: 24px;
+  line-height: 40px;
+  font-weight: 700;
+  position: absolute;
+  left: 371px;
+  top: 503px;
+  width: 148px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.div7 {
+  color: #f9eeee;
+  text-align: left;
+  position: absolute;
+  left: 381.84px;
+  top: 554px;
+  width: 354.49px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.div-7-span {
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 20px;
+  line-height: 40px;
+  font-weight: 400;
+}
+.div-7-span2 {
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 16px;
+  line-height: 40px;
+  font-weight: 400;
+}
+._12-15 {
+  color: #f9eeee;
+  text-align: left;
+  position: absolute;
+  left: 381.84px;
+  top: 611px;
+  width: 711.14px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+._12-15-span {
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 20px;
+  line-height: 40px;
+  font-weight: 400;
+}
+._12-15-span2 {
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 16px;
+  line-height: 40px;
+  font-weight: 400;
+}
+._010-1231-12312 {
+  color: #f9eeee;
+  text-align: left;
+  position: absolute;
+  left: 381.84px;
+  top: 582px;
+  width: 1111.16px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+._010-1231-12312-span {
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 20px;
+  line-height: 40px;
+  font-weight: 400;
+}
+._010-1231-12312-span2 {
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 16px;
+  line-height: 40px;
+  font-weight: 400;
+}
+.group-9312 {
+  width: 70px;
+  height: 40px;
+  position: static;
+}
+.rectangle-16502 {
+  background: #181818;
+  border-radius: 20px;
+  border-style: solid;
+  border-color: #f9eeee;
+  border-width: 1px;
+  width: 70px;
+  height: 40px;
+  position: absolute;
+  left: 1679px;
+  top: 573px;
+}
+.div8 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 20px;
+  line-height: 40px;
+  font-weight: 400;
+  position: absolute;
+  left: 1696px;
+  top: 582px;
+  width: 39px;
+  height: 21px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.group-933 {
+  width: 130px;
+  height: 40px;
+  position: static;
+}
+.rectangle-16503 {
+  background: #181818;
+  border-radius: 20px;
+  border-style: solid;
+  border-color: #f9eeee;
+  border-width: 1px;
+  width: 130px;
+  height: 40px;
+  position: absolute;
+  left: 1530px;
+  top: 573px;
+}
+.div9 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 20px;
+  line-height: 40px;
+  font-weight: 400;
+  position: absolute;
+  left: 1549px;
+  top: 582px;
+  width: 97px;
+  height: 21px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.rectangle-16512 {
+  background: #181818;
+  border-radius: 20px;
+  border-style: solid;
+  border-color: #f9eeee;
+  border-width: 1px;
+  width: 70px;
+  height: 40px;
+  position: absolute;
+  left: 1763px;
+  top: 573px;
+}
+.div10 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 20px;
+  line-height: 40px;
+  font-weight: 400;
+  position: absolute;
+  left: 1779px;
+  top: 582px;
+  width: 39px;
+  height: 21px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+._03190 {
+  color: #f9eeee;
+  text-align: left;
+  position: absolute;
+  left: 382px;
+  top: 637px;
+  width: 711.14px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+._03190-span {
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 20px;
+  line-height: 40px;
+  font-weight: 400;
+}
+._03190-span2 {
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 16px;
+  line-height: 40px;
+  font-weight: 400;
+}
+
+.line-2722 {
+  border-top: 2px solid #ccc9c9;
+  width: 1465.04px;
+  height: 0;      /* border로 선만 */
+  position: absolute;
+  left: 371px;
+  top: 677px;
+  /* overflow: visible; 필요 없음 */
+}

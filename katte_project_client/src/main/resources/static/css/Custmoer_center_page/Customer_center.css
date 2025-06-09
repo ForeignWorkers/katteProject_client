@@ -1,0 +1,346 @@
+@charset "UTF-8";
+
+/* ───────────────────────────────────────────────────────────────────────────
+   1) 공통 리셋
+   ─────────────────────────────────────────────────────────────────────────── */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html, body {
+  height: 100%;
+  background-color: #181818;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  color: #f9eeee;
+}
+
+/* ───────────────────────────────────────────────────────────────────────────
+   2) 콘텐츠 래퍼 (Customer Center)
+   ─────────────────────────────────────────────────────────────────────────── */
+.wraaper {
+  transform-origin: top left;
+  width: 100%;
+  min-height: 83vh; /* 100vh * 0.83 */
+}
+.wrapper {
+  transform-origin: top left;
+  width: 100%;
+  min-height: 83vh;
+}
+
+/* ───────────────────────────────────────────────────────────────────────────
+   3) 사이드바 (기존 그대로)
+   ─────────────────────────────────────────────────────────────────────────── */
+.sidebar {
+  position: fixed;
+  top: 1.649vh;
+  left: 2.1675vw;
+  width: 11.866vw;
+  padding: 0.884vw;
+  background: #181818;
+  display: flex;
+  flex-direction: column;
+}
+.sidebar .logo-1 {
+  width: 62.77px;
+  height: 76.5px;
+  object-fit: cover;
+  aspect-ratio: 73.85/90;
+  margin-bottom: 34px;
+}
+.sidebar-nav {
+  margin-bottom: 51px;
+}
+.sidebar-nav ul {
+  list-style: none;
+}
+.sidebar-nav ul li {
+  margin-bottom: 17px;
+}
+.sidebar-nav ul li a {
+  display: block;
+  text-decoration: none;
+  color: #f9eeee;
+  font-size: 22.1px;
+  line-height: 34px;
+}
+.login-area {
+  margin-bottom: 51px;
+}
+.btn-login {
+  width: 100%;
+  height: 48.45px;      /* 57px × 0.85 */
+  background: #ff0044;
+  border: none;
+  border-radius: 11.9px; /* 14px × 0.85 */
+  color: #fff4f4;
+  font-size: 21.25px;    /* 25px × 0.85 */
+  line-height: 48.45px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+.sidebar-footer {
+  margin-top: auto;
+  font-size: 12.75px;    /* 15px × 0.85 */
+  color: #787878;
+}
+.sidebar-footer a {
+  color: #787878;
+  text-decoration: none;
+}
+.sidebar-footer p {
+  margin-bottom: 6.8px;  /* 8px × 0.85 */
+}
+.sidebar-footer small {
+  display: block;
+}
+
+/* ───────────────────────────────────────────────────────────────────────────
+   4) 컨텐츠 영역 좌측 여백
+   ─────────────────────────────────────────────────────────────────────────── */
+.content {
+  margin-left: calc(11.866vw + 2.1675vw + 17px);
+  padding: 20px;
+}
+
+/* ───────────────────────────────────────────────────────────────────────────
+   5) 상단 탭
+   ─────────────────────────────────────────────────────────────────────────── */
+.cc-tabs {
+  display: flex;
+  gap: 2px;
+  margin-bottom: 16px;
+}
+.cc-tab {
+  flex: 1;
+  padding: 12px;
+  text-align: center;
+  border: 1px solid #555;
+  cursor: pointer;
+  background: transparent;
+  color: #f9eeee;
+}
+.cc-tab.active {
+  background: #ff0044;
+  border-color: #ff0044;
+  font-weight: 700;
+}
+
+/* ───────────────────────────────────────────────────────────────────────────
+   6) 검색창
+   ─────────────────────────────────────────────────────────────────────────── */
+.cc-search {
+  margin-bottom: 20px;
+}
+.cc-search input {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #555;
+  border-radius: 4px;
+  background: #181818;
+  color: #f9eeee;
+}
+
+/* ───────────────────────────────────────────────────────────────────────────
+   7) 공통 테이블 스타일
+   ─────────────────────────────────────────────────────────────────────────── */
+.cc-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #2a2929;
+  border-radius: 6px;
+  overflow: hidden;
+}
+.cc-table th,
+.cc-table td {
+  padding: 10px;
+  font-size: 13px;
+  border-bottom: 1px solid #444;
+  text-align: left;
+  color: #f9eeee; /* 항상 선명하게 */
+}
+.cc-table thead th {
+  background: #333333;
+  color: #f9eeee;
+}
+.cc-table tbody tr:nth-child(odd) {
+  background-color: #2e2e2e;
+}
+.cc-table tbody tr:nth-child(even) {
+  background-color: #2a2929;
+}
+
+/* ───────────────────────────────────────────────────────────────────────────
+   8) 필터 버튼
+   ─────────────────────────────────────────────────────────────────────────── */
+.cc-filter {
+  margin-bottom: 12px;
+}
+.filter-btn {
+  margin-right: 8px;
+  padding: 4px 8px;
+  border: 1px solid #f9eeee;
+  border-radius: 12px;
+  background: transparent;
+  color: #f9eeee;
+  cursor: pointer;
+}
+.filter-btn.selected {
+  background: #f9eeee;
+  color: #181818;
+}
+
+/* ───────────────────────────────────────────────────────────────────────────
+   9) 숨김 처리
+   ─────────────────────────────────────────────────────────────────────────── */
+.cc-section.hidden {
+  display: none !important;
+}
+
+/* ───────────────────────────────────────────────────────────────────────────
+ 10) FAQ 아코디언
+   ─────────────────────────────────────────────────────────────────────────── */
+.cc-accordion .acc-item {
+  border-top: 1px solid #444;
+}
+.acc-header {
+  padding: 12px;
+  cursor: pointer;
+  position: relative;
+  color: #f9eeee; /* 제목도 선명하게 */
+}
+.acc-header::after {
+  content: '▶';
+  position: absolute;
+  right: 12px;
+  transition: transform 0.2s;
+}
+.acc-item.open .acc-header::after {
+  transform: rotate(90deg);
+}
+.acc-body {
+  display: none;
+  padding: 0 12px 12px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #f9eeee; /* 본문도 선명하게 */
+}
+.cc-accordion .open .acc-body {
+  display: block;
+}
+
+/* ───────────────────────────────────────────────────────────────────────────
+ 11) 1:1 문의 탭
+   ─────────────────────────────────────────────────────────────────────────── */
+.qna-tabs {
+  display: flex;
+  gap: 2px;
+  margin-bottom: 12px;
+}
+.qna-tab {
+  flex: 1;
+  padding: 8px;
+  text-align: center;
+  border: 1px solid #555;
+  cursor: pointer;
+  background: transparent;
+  color: #f9eeee;
+}
+.qna-tab.active {
+  background: #ff0044;
+  color: #f9eeee;
+  border-color: #ff0044;
+}
+.qna-content.hidden {
+  display: none;
+}
+
+/* ───────────────────────────────────────────────────────────────────────────
+ 12) 문의 하기 폼
+   ─────────────────────────────────────────────────────────────────────────── */
+.write-form {
+  background: #2a2929;
+  padding: 16px;
+  border-radius: 6px;
+}
+.write-group {
+  margin-bottom: 12px;
+}
+.write-group label {
+  display: block;
+  margin-bottom: 4px;
+  color: #f9eeee;
+}
+.write-group input,
+.write-group textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #555;
+  border-radius: 4px;
+  background: #181818;
+  color: #f9eeee;
+}
+.write-group textarea {
+  height: 120px;
+  resize: vertical;
+}
+.type-btn {
+  margin-right: 6px;
+  padding: 4px 8px;
+  border: 1px solid #f9eeee;
+  border-radius: 4px;
+  background: transparent;
+  color: #f9eeee;
+  cursor: pointer;
+}
+.type-btn.active {
+  background: #f9eeee;
+  color: #181818;
+}
+.write-actions {
+  text-align: right;
+}
+.btn-cancel,
+.btn-submit {
+  margin-left: 8px;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.btn-cancel {
+  background: #555;
+  color: #f9eeee;
+}
+.btn-submit {
+  background: #ff0044;
+  color: #fff;
+}
+
+/* ───────────────────────────────────────────────────────────────────────────
+ 13) 검수 기준
+   ─────────────────────────────────────────────────────────────────────────── */
+.cc-criteria-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 12px;
+}
+.cc-criteria-table th,
+.cc-criteria-table td {
+  border: 1px solid #444;
+  padding: 10px;
+  text-align: center;
+  color: #f9eeee;
+}
+.cc-criteria-text {
+  background: #2a2929;
+  padding: 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #f9eeee;
+}

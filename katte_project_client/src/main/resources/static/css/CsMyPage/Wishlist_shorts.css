@@ -1,0 +1,772 @@
+* {
+    box-sizing: border-box;
+}
+html, body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transform-origin: top left;
+    height: 100%;
+    color : #EEEEEE;
+    background-color: #181818;
+}
+* {
+  box-sizing: border-box;
+}
+.sidebar {
+  position: fixed;
+  top: 1.649vh;
+  left: 2.1675vw;
+  width: 11.866vw;
+  padding: 0.884vw;
+  box-sizing: border-box;
+  background: #181818;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar .logo-1 {
+  width: 62.77px;
+  height: 76.5px;
+  object-fit: cover;
+  aspect-ratio: 73.85/90;
+  margin-bottom: 34px;
+}
+
+.sidebar-nav {
+  margin-bottom: 51px;
+}
+.sidebar-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.sidebar-nav ul li {
+  margin-bottom: 17px;
+}
+.sidebar-nav ul li a {
+  display: block;
+  text-decoration: none;
+  color: #f9eeee;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 22.1px;
+  line-height: 34px;
+}
+
+.login-area {
+  margin-bottom: 51px;
+}
+.btn-login {
+  width: 100%;
+  height: 48.45px;      /* 57 * 0.85 */
+  background: #ff0044;
+  border: none;
+  border-radius: 11.9px; /* 14 * 0.85 */
+  color: #fff4f4;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 21.25px;   /* 25 * 0.85 */
+  line-height: 48.45px;
+  cursor: pointer;
+  display: flex;                 /* 추가: 버튼처럼 가운데 정렬 */
+  align-items: center;           /* 추가: 수직 가운데 */
+  justify-content: center;       /* 추가: 수평 가운데 */
+  text-decoration: none;         /* 추가: a태그 밑줄 제거 */
+}
+
+.sidebar-footer {
+  margin-top: auto;
+  font-size: 12.75px;
+  color: #787878;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+}
+.sidebar-footer a {
+  color: #787878;
+  text-decoration: none;
+}
+.sidebar-footer p {
+  margin: 0 0 6.8px;
+}
+.sidebar-footer small {
+  display: block;
+  margin: 0;
+}
+#MyPageBar{
+    position : absolute;
+    width : 75vw;
+    height : 9vh;
+    right : 85px;
+}
+#ClickBox{
+    position : absolute;
+    left : 10px;
+    margin : 0px auto;
+    align-items: center;
+    display : flex;
+}
+#ClickBox > div {
+    width: 112px;
+    height: 30px;
+    margin-right: 14px;
+    padding : 10px;
+    display: flex;
+    align-items : center;
+}
+#MyPageText {
+    padding : 20px;
+    font-size : 32px;
+    color : #EEEEEE;
+}
+
+a {
+    color : #CCC9C9CC;
+    text-decoration: none;
+}
+a:visited{
+    color : #CCC9C9CC;
+    text-decoration: none;
+}
+
+div.selected a {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+    font-weight : bold;
+}
+
+#BuySortWrapper{
+    position : absolute;
+    width : 75vw;
+    height : 12vh;
+    top : 12vh;
+    right : -5vw;
+}
+#BuySortClickBox{
+    padding : 10px;
+    display: flex;
+    align-items : center;
+}
+
+#BuySortClickBox > div {
+    text-align: center;
+    width: 112px;
+    height: 30px;
+    margin-top : 14px;
+    margin-right: 14px;
+    margin-left : 10px;
+}
+#HistoryListWrapper{
+    position : absolute;
+    width : 75vw;
+    height : 75vh;
+    top : 25vh;
+    right : 85px;
+}
+#OneHistory{
+    width : 1440px;
+    height : 186px;
+}
+#OneHistory a{
+    text-decoration: none;
+    color : #EEEEEE;
+}
+#OneHistory a:visited{
+    text-decoration: none;
+    color : #EEEEEE;
+}
+#ProductPicture{
+    width : 180px;
+    height : 180px;
+}
+.div24 {
+  color: rgba(249, 238, 238, 0.595);
+  text-align: left;
+  font-family: "LineSeedSansKr-Bold", sans-serif;
+  font-size: 21.25px;       /* 25 * 0.85 */
+  line-height: 34px;        /* 40 * 0.85 */
+  font-weight: 400;
+  position: absolute;
+  left: 731px;              /* 860 * 0.85 */
+  top: 204.85px;            /* 241 * 0.85 */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.div25 {
+  color: #f9eeee;  /* 0.7 * 0.85 */
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 21.25px;       /* 25 * 0.85 */
+  line-height: 34px;        /* 40 * 0.85 */
+  font-weight: 700;
+  position: absolute;
+  left: 843.2px;            /* 992 * 0.85 */
+  top: 205.7px;             /* 242 * 0.85 */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.line-238 {
+  width: 54.4px;            /* 64 * 0.85 */
+  height: 0px;
+  border-top: 1px solid #f9eeee;
+  position: absolute; 
+  left: 835.5px;       /* 850 * 0.85 */
+  top: 238.85px;            /* 281 * 0.85 */
+  overflow: visible;
+}
+
+.div26 {
+  color: rgba(249, 238, 238, 0.595);  /* 0.7 * 0.85 */
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 21.25px;       /* 25 * 0.85 */
+  line-height: 34px;        /* 40 * 0.85 */
+  font-weight: 400;
+  position: absolute;
+  left: 956.25px;           /* 1125 * 0.85 */
+  top: 205.7px;             /* 242 * 0.85 */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.div27 {
+  color: rgba(249, 238, 238, 0.595);  /* 0.7 * 0.85 */
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 21.25px;       /* 25 * 0.85 */
+  line-height: 34px;        /* 40 * 0.85 */
+  font-weight: 400;
+  position: absolute;
+  left: 1087.15px;          /* 1279 * 0.85 */
+  top: 205.7px;             /* 242 * 0.85 */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+._1-4 {
+  position: absolute;
+  inset: 0px; /* unchanged */
+}
+._1 {
+  width: 238px;    /* 280 * 0.85 */
+  height: 392.85px;/* 461 * 0.85 */
+  position: static;
+}
+.image {
+  border-radius: 19.975px;  /* 23.5 * 0.85 */
+  width: 35.7425px;         /* 42.05 * 0.85 */
+  height: 36.5075px;        /* 42.95 * 0.85 */
+  position: absolute;
+  left: 334.05px;           /* 393 * 0.85 */
+  top: 598.4px;             /* 704 * 0.85 */
+  object-fit: cover;
+  aspect-ratio: 35.7425/36.5075;
+}
+.unvanish-first-body-perfumed-oil-hand-body-wash {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 12.75px;   /* 15 * 0.85 */
+  line-height: 17px;    /* 20 * 0.85 */
+  font-weight: 400;
+  position: absolute;
+  left: 374.85px;       /* 441 * 0.85 */
+  top: 600.1px;         /* 706 * 0.85 */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.group-970 {
+  width: 238px;         /* 280 * 0.85 */
+  height: 392.85px;     /* 461 * 0.85 */
+  position: static;
+}
+.div29 {
+  width: 38.25px;       /* 45 * 0.85 */
+  height: 34px;         /* 40 * 0.85 */
+  position: static;
+}
+.mask-group {
+  width: 15.3px;        /* 18 * 0.85 */
+  height: 15.3px;       /* 18 * 0.85 */
+  position: absolute;
+  left: 534.8px;        /* 628 * 0.85 */
+  top: 639.2px;         /* 752 * 0.85 */
+  overflow: visible;
+}
+._23 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 15.3px;    /* 18 * 0.85 */
+  line-height: 34px;    /* 40 * 0.85 */
+  font-weight: 400;
+  position: absolute;
+  left: 553.35px;       /* 651 * 0.85 */
+  top: 629.85px;        /* 741 * 0.85 */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.image2 {
+  border-radius: 17px;  /* 20 * 0.85 */
+  width: 238px;         /* 280 * 0.85 */
+  height: 314.5px;      /* 370 * 0.85 */
+  position: absolute;
+  left: 334.05px;       /* 393 * 0.85 */
+  top: 272px;           /* 320 * 0.85 */
+  object-fit: cover;
+}
+._2 {
+  width: 1003.323px;    /* 1180.38 * 0.85 */
+  height: 392.85px;     /* 461 * 0.85 */
+  position: static;
+}
+.group-972 {
+  width: 198.05px;      /* 233 * 0.85 */
+  height: 36.55px;      /* 43 * 0.85 */
+  position: static;
+}
+.image3 {
+  border-radius: 20.825px; /* 24.5 * 0.85 */
+  width: 36.55px;          /* 43 * 0.85 */
+  height: 36.55px;         /* 43 * 0.85 */
+  position: absolute;
+  left: 691.9px;           /* 814 * 0.85 */
+  top: 598.4px;            /* 704 * 0.85 */
+  object-fit: cover;
+  aspect-ratio: 1;
+}
+.aape-fancy-main-tee-black-25-ss {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 12.75px;       /* 15 * 0.85 */
+  line-height: 17px;        /* 20 * 0.85 */
+  font-weight: 400;
+  position: absolute;
+  left: 733.55px;           /* 863 * 0.85 */
+  top: 600.95px;            /* 707 * 0.85 */
+  width: 156.4px;           /* 184 * 0.85 */
+  height: 32.3px;           /* 38 * 0.85 */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.div30 {
+  width: 1003.323px;       /* 1180.38 * 0.85 */
+  height: 34px;            /* 40 * 0.85 */
+  position: static;
+}
+.div31 {
+  width: 394.723px;        /* 464.38 * 0.85 */
+  height: 34px;            /* 40 * 0.85 */
+  position: static;
+}
+.mask-group2 {
+  width: 15.3px;           /* 18 * 0.85 */
+  height: 15.3px;          /* 18 * 0.85 */
+  position: absolute;
+  left: 888.25px;          /* 1045 * 0.85 */
+  top: 640.05px;           /* 753 * 0.85 */
+  overflow: visible;
+}
+.mask-group3 {
+  width: 15.3px;           /* 18 * 0.85 */
+  height: 15.3px;          /* 18 * 0.85 */
+  position: absolute;
+  left: 532.627px;         /* 626.62 * 0.85 */
+  top: 639.2px;            /* 752 * 0.85 */
+  overflow: visible;
+}
+._72 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 15.3px;       /* 18 * 0.85 */
+  line-height: 34px;       /* 40 * 0.85 */
+  font-weight: 400;
+  position: absolute;
+  left: 908.65px;          /* 1069 * 0.85 */
+  top: 629.85px;           /* 741 * 0.85 */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.div32 {
+  width: 318.75px;         /* 375 * 0.85 */
+  height: 34px;            /* 40 * 0.85 */
+  position: static;
+}
+.mask-group4 {
+  width: 15.3px;           /* 18 * 0.85 */
+  height: 15.3px;          /* 18 * 0.85 */
+  position: absolute;
+  left: 1217.2px;          /* 1432 * 0.85 */
+  top: 640.05px;           /* 753 * 0.85 */
+  overflow: visible;
+}
+.mask-group5 {
+  width: 15.3px;           /* 18 * 0.85 */
+  height: 15.3px;          /* 18 * 0.85 */
+  position: absolute;
+  left: 1520.65px;         /* 1789 * 0.85 */
+  top: 640.05px;           /* 753 * 0.85 */
+  overflow: visible;
+}
+._722 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 15.3px;       /* 18 * 0.85 */
+  line-height: 34px;       /* 40 * 0.85 */
+  font-weight: 400;
+  position: absolute;
+  left: 1237.6px;          /* 1456 * 0.85 */
+  top: 629.85px;           /* 741 * 0.85 */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.image4 {
+  border-radius: 17px;      /* 20 * 0.85 */
+  width: 238px;             /* 280 * 0.85 */
+  height: 314.5px;          /* 370 * 0.85 */
+  position: absolute;
+  left: 689.35px;           /* 811 * 0.85 */
+  top: 272px;               /* 320 * 0.85 */
+  object-fit: cover;
+}
+._3 {
+  width: 238.3995px;        /* 280.47 * 0.85 */
+  height: 361.25px;         /* 425 * 0.85 */
+  position: static;
+}
+.image5 {
+  border-radius: 22.525px;  /* 26.5 * 0.85 */
+  width: 36.465px;          /* 42.9 * 0.85 */
+  height: 35.785px;         /* 42.1 * 0.85 */
+  position: absolute;
+  left: 1018.3px;           /* 1198 * 0.85 */
+  top: 597.465px;           /* 702.9 * 0.85 */
+  object-fit: cover;
+  aspect-ratio: 36.465/35.785;
+}
+.image6 {
+  border-radius: 17px;      /* 20 * 0.85 */
+  width: 238.3995px;        /* 280.47 * 0.85 */
+  height: 314.5px;          /* 370 * 0.85 */
+  position: absolute;
+  left: 1018.3px;           /* 1198 * 0.85 */
+  top: 272px;               /* 320 * 0.85 */
+  object-fit: cover;
+  aspect-ratio: 238.3995/314.5;
+}
+.nike-v-2-k-run-summit-white-metallic-silver {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 12.75px;       /* 15 * 0.85 */
+  line-height: 17px;        /* 20 * 0.85 */
+  font-weight: 400;
+  position: absolute;
+  left: 1060px;             /* 1247 * 0.85 */
+  top: 597.55px;            /* 703 * 0.85 */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+._4 {
+  width: 238px;             /* 280 * 0.85 */
+  height: 392.85px;         /* 461 * 0.85 */
+  position: static;
+}
+.image7 {
+  border-radius: 17px;      /* 20 * 0.85 */
+  width: 238px;             /* 280 * 0.85 */
+  height: 314.5px;          /* 370 * 0.85 */
+  position: absolute;
+  left: 1320.05px;          /* 1553 * 0.85 */
+  top: 272px;               /* 320 * 0.85 */
+  object-fit: cover;
+}
+.group-982 {
+  width: 18.7px;            /* 22 * 0.85 */
+  height: 34px;             /* 40 * 0.85 */
+  position: static;
+}
+.div33 {
+  width: 18.7px;            /* 22 * 0.85 */
+  height: 34px;             /* 40 * 0.85 */
+  position: static;
+}
+._232 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 15.3px;       /* 18 * 0.85 */
+  line-height: 34px;       /* 40 * 0.85 */
+  font-weight: 400;
+  position: absolute;
+  left: 1539.35px;         /* 1811 * 0.85 */
+  top: 629.85px;           /* 741 * 0.85 */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.image8 {
+  border-radius: 22.525px;  /* 26.5 * 0.85 */
+  width: 36.3545px;         /* 42.77 * 0.85 */
+  height: 34.037px;         /* 41.22 * 0.85 */
+  position: absolute;
+  left: 1320.05px;          /* 1553 * 0.85 */
+  top: 598.4px;             /* 704 * 0.85 */
+  object-fit: cover;
+  aspect-ratio: 36.3545/34.037;
+}
+.w-hunter-original-tall-rain-boots-black {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 12.75px;       /* 15 * 0.85 */
+  line-height: 17px;        /* 20 * 0.85 */
+  font-weight: 400;
+  position: absolute;
+  left: 1361.7px;           /* 1602 * 0.85 */
+  top: 600.1px;             /* 706 * 0.85 */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.image9 {
+  border-radius: 19.975px;  /* 23.5 * 0.85 */
+  width: 35.7425px;         /* 42.05 * 0.85 */
+  height: 36.5075px;        /* 42.95 * 0.85 */
+  position: absolute;
+  left: 334.05px;           /* 393 * 0.85 */
+  top: 1048.9px;            /* 1234 * 0.85 */
+  object-fit: cover;
+  aspect-ratio: 35.7425/36.5075;
+}
+.unvanish-first-body-perfumed-oil-hand-body-wash2 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 12.75px;       /* 15 * 0.85 */
+  line-height: 17px;        /* 20 * 0.85 */
+  font-weight: 400;
+  position: absolute;
+  left: 374.85px;           /* 441 * 0.85 */
+  top: 1050.6px;            /* 1236 * 0.85 */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.mask-group6 {
+  width: 15.3px;            /* 18 * 0.85 */
+  height: 15.3px;           /* 18 * 0.85 */
+  position: absolute;
+  left: 534.8px;            /* 628 * 0.85 */
+  top: 1090.7px;            /* 1282 * 0.85 */
+  overflow: visible;
+}
+._233 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 15.3px;       /* 18 * 0.85 */
+  line-height: 34px;       /* 40 * 0.85 */
+  font-weight: 400;
+  position: absolute;
+  left: 553.35px;          /* 651 * 0.85 */
+  top: 1079.35px;          /* 1271 * 0.85 */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.image10 {
+  border-radius: 17px;      /* 20 * 0.85 */
+  width: 238px;             /* 280 * 0.85 */
+  height: 314.5px;          /* 370 * 0.85 */
+  position: absolute;
+  left: 334.05px;           /* 393 * 0.85 */
+  top: 722.5px;             /* 850 * 0.85 */
+  object-fit: cover;
+}
+.image11 {
+  border-radius: 20.825px;  /* 24.5 * 0.85 */
+  width: 36.55px;           /* 43 * 0.85 */
+  height: 36.55px;          /* 43 * 0.85 */
+  position: absolute;
+  left: 691.9px;            /* 814 * 0.85 */
+  top: 1048.9px;            /* 1234 * 0.85 */
+  object-fit: cover;
+  aspect-ratio: 1;
+}
+.aape-fancy-main-tee-black-25-ss2 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 12.75px;       /* 15 * 0.85 */
+  line-height: 17px;        /* 20 * 0.85 */
+  font-weight: 400;
+  position: absolute;
+  left: 733.55px;           /* 863 * 0.85 */
+  top: 1051.45px;           /* 1237 * 0.85 */
+  width: 156.4px;           /* 184 * 0.85 */
+  height: 32.3px;           /* 38 * 0.85 */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.mask-group7 {
+  width: 15.3px;            /* 18 * 0.85 */
+  height: 15.3px;           /* 18 * 0.85 */
+  position: absolute;
+  left: 888.25px;           /* 1045 * 0.85 */
+  top: 1090.55px;           /* 1283 * 0.85 */
+  overflow: visible;
+}
+.mask-group8 {
+  width: 15.3px;            /* 18 * 0.85 */
+  height: 15.3px;           /* 18 * 0.85 */
+  position: absolute;
+  left: 532.627px;          /* 626.62 * 0.85 */
+  top: 1090.7px;            /* 1282 * 0.85 */
+  overflow: visible;
+}
+._723 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 15.3px;       /* 18 * 0.85 */
+  line-height: 34px;       /* 40 * 0.85 */
+  font-weight: 400;
+  position: absolute;
+  left: 908.65px;          /* 1069 * 0.85 */
+  top: 1079.35px;          /* 1271 * 0.85 */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.mask-group9 {
+  width: 15.3px;            /* 18 * 0.85 */
+  height: 15.3px;           /* 18 * 0.85 */
+  position: absolute;
+  left: 1217.2px;           /* 1432 * 0.85 */
+  top: 1090.55px;           /* 1283 * 0.85 */
+  overflow: visible;
+}
+.mask-group10 {
+  width: 15.3px;            /* 18 * 0.85 */
+  height: 15.3px;           /* 18 * 0.85 */
+  position: absolute;
+  left: 1520.65px;          /* 1789 * 0.85 */
+  top: 1090.55px;           /* 1283 * 0.85 */
+  overflow: visible;
+}
+._724 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 15.3px;       /* 18 * 0.85 */
+  line-height: 34px;       /* 40 * 0.85 */
+  font-weight: 400;
+  position: absolute;
+  left: 1237.6px;          /* 1456 * 0.85 */
+  top: 1079.35px;          /* 1271 * 0.85 */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.image12 {
+  border-radius: 17px;      /* 20 * 0.85 */
+  width: 238px;             /* 280 * 0.85 */
+  height: 314.5px;          /* 370 * 0.85 */
+  position: absolute;
+  left: 689.35px;           /* 811 * 0.85 */
+  top: 722.5px;             /* 850 * 0.85 */
+  object-fit: cover;
+}
+.image13 {
+  border-radius: 22.525px;  /* 26.5 * 0.85 */
+  width: 36.465px;          /* 42.9 * 0.85 */
+  height: 35.785px;         /* 42.1 * 0.85 */
+  position: absolute;
+  left: 1018.3px;           /* 1198 * 0.85 */
+  top: 1048.965px;          /* 1232.9 * 0.85 */
+  object-fit: cover;
+  aspect-ratio: 36.465/35.785;
+}
+.image14 {
+  border-radius: 17px;      /* 20 * 0.85 */
+  width: 238.3995px;        /* 280.47 * 0.85 */
+  height: 314.5px;          /* 370 * 0.85 */
+  position: absolute;
+  left: 1018.3px;           /* 1198 * 0.85 */
+  top: 722.5px;             /* 850 * 0.85 */
+  object-fit: cover;
+  aspect-ratio: 238.3995/314.5;
+}
+.nike-v-2-k-run-summit-white-metallic-silver2 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 12.75px;       /* 15 * 0.85 */
+  line-height: 17px;        /* 20 * 0.85 */
+  font-weight: 400;
+  position: absolute;
+  left: 1059.95px;          /* 1247 * 0.85 */
+  top: 1048.05px;           /* 1233 * 0.85 */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.image15 {
+  border-radius: 17px;      /* 20 * 0.85 */
+  width: 238px;             /* 280 * 0.85 */
+  height: 314.5px;          /* 370 * 0.85 */
+  position: absolute;
+  left: 1320.05px;          /* 1553 * 0.85 */
+  top: 722.5px;             /* 850 * 0.85 */
+  object-fit: cover;
+}
+._234 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 15.3px;       /* 18 * 0.85 */
+  line-height: 34px;       /* 40 * 0.85 */
+  font-weight: 400;
+  position: absolute;
+  left: 1539.35px;         /* 1811 * 0.85 */
+  top: 1079.35px;          /* 1271 * 0.85 */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.image16 {
+  border-radius: 22.525px;  /* 26.5 * 0.85 */
+  width: 36.3545px;         /* 42.77 * 0.85 */
+  height: 34.037px;         /* 41.22 * 0.85 */
+  position: absolute;
+  left: 1320.05px;          /* 1553 * 0.85 */
+  top: 1048.9px;            /* 1234 * 0.85 */
+  object-fit: cover;
+  aspect-ratio: 36.3545/34.037;
+}
+.w-hunter-original-tall-rain-boots-black2 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 12.75px;       /* 15 * 0.85 */
+  line-height: 17px;        /* 20 * 0.85 */
+  font-weight: 400;
+  position: absolute;
+  left: 1361.7px;           /* 1602 * 0.85 */
+  top: 1050.6px;            /* 1236 * 0.85 */
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
