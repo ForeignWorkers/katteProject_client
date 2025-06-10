@@ -698,3 +698,28 @@ html, body {
   cursor: pointer;
   text-decoration: none;
 }
+
+.error-label {
+  position: absolute;
+  color: #ff0044;
+  font-size: 14px;
+  font-weight: 400;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  margin-left: 10px;
+  display: inline;
+  white-space: pre-line;
+  top: 0;
+  transform: translateY(2px);
+}
+#email-error-label {
+  top: 90px;
+  left: 960px;
+}
+#pw-error-label {
+  top: 216px;
+  left: 960px;
+}
+#nickname-error-label {
+  top: 430px;
+  left: 960px;
+}

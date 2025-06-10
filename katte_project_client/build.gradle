@@ -40,8 +40,11 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-web-services'
     implementation 'org.springframework.boot:spring-boot-starter-security'
-    implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
-    implementation 'javax.servlet:jstl:1.2'
+
+    //jsp 제거
+//    implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
+//    implementation 'javax.servlet:jstl:1.2'
+
     providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat' //내장 톰캣을 war로 배포
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
@@ -50,6 +53,9 @@ dependencies {
 
     //common-lib
     implementation 'com.github.ForeignWorkers:katteProject_common_lib:1.0.55'
+
+    //thymeleaf
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 }
 
 tasks.named('test') {

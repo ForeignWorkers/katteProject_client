@@ -27,9 +27,9 @@ public class LoginController {
     private UserService userService;
 
     @GetMapping("/signUp")
-    public String signUp() {
-        System.out.println("AAAAAAAAAAAAA");
-        return "redirect:/html/Signuppage/Signup.html";
+    public String signUp(Model model) {
+        model.addAttribute("apiBaseUrl", "https://api-katte.jp.ngrok.io");
+        return "Signuppage/Signup";
     }
 
     @PostMapping("/signUp_pro")
@@ -87,7 +87,7 @@ public class LoginController {
             }
         }
 
-        return "redirect:/html/Loginpage/Login";
+        return "Loginpage/Login";
     }
 
     @PostMapping("/login")
@@ -100,10 +100,10 @@ public class LoginController {
 
         if (loginSuccess) {
             session.setAttribute("userId", userId);
-            return "redirect:/main";
+            return "Mainpage/Mainpage";
         } else {
             model.addAttribute("loginError", true);
-            return "redirect:/html/Loginpage/Login";
+            return "Loginpage/Login";
         }
     }
 }
