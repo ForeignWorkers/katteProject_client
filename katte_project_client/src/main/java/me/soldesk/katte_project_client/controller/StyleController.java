@@ -9,12 +9,12 @@ public class StyleController {
     //스타일 페이지 이동
     @GetMapping("/style")
     public String style() {
-        return "redirect:/html/Stylepage/Stylepage.html";
+        return "Stylepage/Stylepage";
     }
 
     //스타일 -> 특정 게시 스타일 페이지 이동
     @GetMapping("/style/detail")
     public String styleDetail() {
-        return "redirect:/html/Stylepage/Style_detail.html";
+        return "Stylepage/Style_detail";
     }
 }
