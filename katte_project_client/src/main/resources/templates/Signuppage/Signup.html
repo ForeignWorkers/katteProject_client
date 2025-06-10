@@ -34,29 +34,26 @@
   <form action="/signUp_pro" method="POST">
     <div class="group-957">
       <div class="id">E-Mail</div>
+      <label id="email-error-label" class="error-label"></label>
       <input type="text" name="email_id" class="input-id" placeholder="E-Mail를 입력해 주세요" required />
     </div>
-
     <div class="group-958">
       <div class="password2">Password</div>
+      <label id="pw-error-label" class="error-label"></label>
       <input type="password" name="password" class="input-pw" placeholder="Password를 입력해 주세요" required />
     </div>
-
     <div class="group-959">
       <div class="date-of-birth">Date of Birth</div>
-
       <select name="birthYear" id="birthYear" class="rectangle-16673"></select>
       <div class="div13">년</div>
-
       <select name="birthMonth" id="birthMonth" class="rectangle-1668"></select>
       <div class="div14">월</div>
-
       <select name="birthDay" id="birthDay" class="rectangle-1669"></select>
       <div class="div15">일</div>
     </div>
-
     <div class="group-963">
       <div class="nickname2">Nickname</div>
+      <label id="nickname-error-label" class="error-label"></label>
       <input type="text" name="nickname" class="nickname" placeholder="Nickname을 입력해 주세요" required />
     </div>
 
@@ -111,6 +108,104 @@
   yearSelect.addEventListener('change', updateDays);
   monthSelect.addEventListener('change', updateDays);
   updateDays(); // 초기 실행
+
+
+  const emailInput = document.querySelector('input[name="email_id"]');
+  const passwordInput = document.querySelector('input[name="password"]');
+  const nicknameInput = document.querySelector('input[name="nickname"]');
+  const emailError = document.getElementById("email-error-label");
+  const pwError = document.getElementById("pw-error-label");
+  const nicknameError = document.getElementById("nickname-error-label");
+  const submitButton = document.querySelector('button[type="submit"]');
+
+  let isEmailFormatValid = false;
+  let isEmailNotDuplicate = false;
+  let isPasswordValid = false;
+  let isNicknameFilled = false;
+
+  const BASE_URL = /*[[${apiBaseUrl}]]*/ "http://localhost:9000/";
+  console.log("✅ BASE_URL =", BASE_URL);
+
+  function validateEmailFormat(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  }
+
+  function validatePassword(password) {
+    return /^(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{8,}$/.test(password);
+  }
+
+  async function checkEmailDuplicate(email) {
+    try {
+      const url = `${BASE_URL}user/duplicate?email_id=${encodeURIComponent(email)}`;
+      console.log("📡 요청 URL:", url);
+
+      const response = await fetch(url, { method: "GET" });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const result = await response.json();  // JSON 파싱
+      console.log("📦 응답 결과:", result);
+
+      // 서버가 { duplicate: true/false } 형식으로 리턴한다고 가정
+      return !result;
+    } catch (err) {
+      console.error("❌ 이메일 중복 확인 오류:", err);
+      return false;
+    }
+  }
+
+  async function validateEmail() {
+    const email = emailInput.value.trim();
+    isEmailFormatValid = validateEmailFormat(email);
+
+    if (!isEmailFormatValid) {
+      emailError.textContent = "유효한 이메일 형식이 아닙니다.";
+      isEmailNotDuplicate = false;
+    } else {
+      // AJAX 중복 검사
+      const notDuplicate = await checkEmailDuplicate(email);
+      console.log("TTTTTTT" + notDuplicate)
+      isEmailNotDuplicate = notDuplicate;
+      emailError.textContent = notDuplicate ? "ㅁㅁㅁㅁㅁ" : "이미 사용 중인 이메일입니다.";
+    }
+
+    updateSubmitButton();
+  }
+
+  function validatePw() {
+    const pw = passwordInput.value;
+    isPasswordValid = validatePassword(pw);
+    pwError.textContent = isPasswordValid ? "" : "특수,영문 포함 8자 이상이어야 합니다.";
+    updateSubmitButton();
+  }
+
+  function validateNick() {
+    const nick = nicknameInput.value.trim();
+    isNicknameFilled = nick.length > 0;
+    nicknameError.textContent = isNicknameFilled ? "" : "닉네임을 입력해주세요.";
+    updateSubmitButton();
+  }
+
+  function areAllTermsChecked() {
+    const requiredTerms = document.querySelectorAll('input[name="terms"]:required');
+    return Array.from(requiredTerms).every(cb => cb.checked);
+  }
+
+  function updateSubmitButton() {
+    const isFormValid = isEmailFormatValid && isEmailNotDuplicate && isPasswordValid && isNicknameFilled && areAllTermsChecked();
+    submitButton.disabled = !isFormValid;
+  }
+
+  // 이벤트 바인딩
+  emailInput.addEventListener("blur", validateEmail);
+  passwordInput.addEventListener("blur", validatePw);
+  nicknameInput.addEventListener("blur", validateNick);
+
+  document.querySelectorAll('input[name="terms"]').forEach(cb => {
+    cb.addEventListener('change', updateSubmitButton);
+  });
 </script>
 </body>
 </html>
