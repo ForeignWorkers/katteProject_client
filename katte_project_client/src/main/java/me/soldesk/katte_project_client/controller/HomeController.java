@@ -9,12 +9,18 @@ public class HomeController {
     //메인 페이지로 이동(사이트 접속 시 최초 페이지)
     @GetMapping("/")
     public String home() {
-        return "redirect:/html/Main.html";
+        return "redirect:/html/Mainpage/Mainpage.html";
+    }
+
+    //메인 페이지로 이동(로고 선택 시)
+    @GetMapping("/main")
+    public String mainpage() {
+        return "redirect:/html/Mainpage/Mainpage.html";
     }
 
     //로그인 페이지로 이동
     @GetMapping("/login")
     public String login() {
-        return "redirect:/html/Login.html";
+        return "redirect:/html/Loginpage/Login.html";
     }
 }
