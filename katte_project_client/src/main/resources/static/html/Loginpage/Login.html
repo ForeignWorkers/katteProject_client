@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+  <meta charset="UTF-8">
+  <title>Insert title here</title>
   <link rel="stylesheet" href="/css/Loginpage/Login.css" />
 </head>
 <body>
@@ -30,36 +30,43 @@
   </footer>
 </aside>
 
-<div class= "wrapper">
+<div class="wrapper">
   <a href="/main">
-  <img class="logomain" src="/img/logolo.png" />
+    <img class="logomain" src="/img/logolo.png" />
   </a>
-<!--   <div class="rectangle-1667"></div> -->
+
+  <!-- ✅ 로그인 폼 시작 -->
+  <form action="/login" method="POST">
     <div class="input-group">
-    <input type="text" class="input-id" placeholder="ID를 입력해 주세요" />
-  </div>
-  <!-- 비밀번호 입력 -->
-  <div class="input-group">
-    <input type="password" class="input-pw" placeholder="Password를 입력해 주세요" />
-  </div>
-  <div class="rectangle-16673"></div>
-  <a href="/login" class="loginbtn">Login</a>
+      <input type="text" name="userId" class="input-id" placeholder="ID를 입력해 주세요" required />
+    </div>
+    <div class="input-group">
+      <input type="password" name="password" class="input-pw" placeholder="Password를 입력해 주세요" required />
+    </div>
+    <div class="rectangle-16673"></div>
+    <button type="submit" class="loginbtn">Login</button>
+  </form>
+  <!-- ✅ 로그인 폼 끝 -->
+
   <a href="/findID" class="findID">ID 찾기</a>
   <a href="/findPW" class="findPW">Password 찾기</a>
+
   <div class="rectangle-16674"></div>
   <img class="naverlog" src="/img/naverlog.png" />
   <a href="/naver" class="naverlogin">네이버로 로그인</a>
+
   <div class="rectangle-16675"></div>
-  <img class=gglogo src="/img/gglogo.png" />
+  <img class="gglogo" src="/img/gglogo.png" />
   <a href="/goggle" class="gogglelogin">구글로 로그인</a>
+
   <div class="rectangle-16676"></div>
   <img class="kakaologo" src="/img/kakaologo.png" />
+  <a href="/kakao" class="kakaologin">카카오로 로그인</a>
 
-   <a href="/kakao" class="kakaologin">카카오로 로그인</a>
-  <div class="rectangle-1668"></div>
-  <a href="/sign-up" class="sign-upbtn">Sign Up</a>
+  <form action="/signUp" method="GET">
+    <div class="rectangle-1668"></div>
+    <button type="submit" class="sign-upbtn">SignUp</button>
+  </form>
 </div>
-</div>
-
 </body>
 </html>

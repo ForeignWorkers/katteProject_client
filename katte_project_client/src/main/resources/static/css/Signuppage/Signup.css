@@ -109,7 +109,7 @@ html, body {
   color: #f9eeee;
   text-align: left;
   font-family: "LineSeedSansKr-Bold", sans-serif;
-  font-size: 22.95px;
+  font-size: 20px;
   line-height: 34px;
   font-weight: 700;
   position: absolute;
@@ -368,7 +368,7 @@ html, body {
   outline: none;
   font-family: "LineSeedSansKr-Regular", sans-serif;
   z-index: 2;
-  
+
 }
 .address::placeholder {
   color: rgba(249, 238, 238, 0.8);
@@ -404,7 +404,7 @@ html, body {
   height: 59.5px;
   position: absolute;
   left: 731px;
-  top: 574px;
+  top: 460px;
 }
 .nickname {
   color: rgba(249, 238, 238, 0.8);
@@ -412,7 +412,7 @@ html, body {
   line-height: 34px;
   font-weight: 400;
   left: 731px;
-  top: 578.05px;
+  top: 464.7px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -428,7 +428,7 @@ html, body {
   outline: none;
   font-family: "LineSeedSansKr-Regular", sans-serif;
   z-index: 2;
-  
+
 }
 .nickname::placeholder {
   color: rgba(249, 238, 238, 0.8);
@@ -443,7 +443,7 @@ html, body {
   font-weight: 700;
   position: absolute;
   left: 745.45px;
-  top: 535.5px;
+  top: 424.15px;
   width: 193.02px;
   height: 28.9px;
   display: flex;
@@ -630,4 +630,71 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: flex-start;
+}
+
+
+/* ✅ 체크박스 정렬 및 예쁘게 보이도록 개선 */
+.group-965,
+.group-966,
+.group-967,
+.group-968 {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: absolute;
+  left: 731px;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 15.3px;
+  color: rgba(249, 238, 238, 0.8);
+}
+
+/* ✅ 체크박스들 위치도 위로 */
+.group-965 { top: 540px; } /* 기존: 650px */
+.group-966 { top: 575px; }
+.group-967 { top: 610px; }
+.group-968 { top: 645px; }
+
+.group-965 input,
+.group-966 input,
+.group-967 input,
+.group-968 input {
+  width: 19.55px;
+  height: 19.55px;
+  accent-color: #f9eeee;
+  cursor: pointer;
+}
+
+.group-965 label,
+.group-966 label,
+.group-967 label,
+.group-968 label {
+  color: #ffffff; /* ✅ 더 선명하게 */
+  font-size: 16px; /* ✅ 가독성 개선 */
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  line-height: 24px;
+  display: inline-block;
+  white-space: nowrap; /* ✅ 줄바꿈 방지 */
+  position: relative;
+  left: auto;
+  top: auto;
+}
+
+.div16 {
+  background-color: #ff0044;
+  color: #fff4f4;
+  border: none;
+  border-radius: 11.9px;
+  font-family: "LineSeedSansKr-Bold", sans-serif;
+  font-size: 19.55px;
+  font-weight: 700;
+  width: 425px;
+  height: 42.5px;
+  position: absolute;
+  top: 715px;
+  left: 731px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  text-decoration: none;
 }
