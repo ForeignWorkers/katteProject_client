@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+  <meta charset="UTF-8">
+  <title>회원가입</title>
+  <link rel="stylesheet" href="/css/Signuppage/Signup.css" />
 </head>
-<link rel="stylesheet" href="/css/Signuppage/Signup.css" />
 <body>
 <aside class="sidebar">
   <a href="/main">
-  <img class="logo-1" src="/img/logo%20(1).png" alt="로고" />
+    <img class="logo-1" src="/img/logo%20(1).png" alt="로고" />
   </a>
   <nav class="sidebar-nav">
     <ul>
@@ -30,55 +30,87 @@
   </footer>
 </aside>
 
-<div class="wraaper">
+<div class="wrapper">
+  <form action="/signUp_pro" method="POST">
+    <div class="group-957">
+      <div class="id">E-Mail</div>
+      <input type="text" name="email_id" class="input-id" placeholder="E-Mail를 입력해 주세요" required />
+    </div>
 
-  <div class="id">ID</div>
-    <input type="text" class="input-id" placeholder="ID를 입력해 주세요" />
+    <div class="group-958">
+      <div class="password2">Password</div>
+      <input type="password" name="password" class="input-pw" placeholder="Password를 입력해 주세요" required />
+    </div>
 
-  <!-- 비밀번호 입력 -->
-  <div class="input-group">
-    <input type="text" class="input-pw" placeholder="Password를 입력해 주세요" />
-  </div>
-  <div class="password2">Password</div>
-<input type="text" class="rectangle-16673" maxlength="4" placeholder="YYYY" />
-<input type="text" class="rectangle-1668" maxlength="2" placeholder="MM" />
-<input type="text" class="rectangle-1669" maxlength="2" placeholder="DD" />
-  <div class="div13">년</div>
-  <div class="div14">월</div>
-  <div class="div15">일</div>
-  <div class="date-of-birth">Date of Birth</div>
-  <div class="group-962">
-    <div class="rectangle-16682"></div>
-     <input type="text" class="address" placeholder="Address를 입력해 주세요" />
-    <div class="address2">Address</div>
-  </div>
-  <div class="group-963">
-    <input type="text" class="nickname" placeholder="Nickname을 입력해 주세요" />
-    <!-- <div class="nickname">Nickname를 입력해 주세요</div> -->
-    <div class="nickname2">Nickname</div>
-  </div>
-  <div class="group-969">
-    <div class="rectangle-16692"></div>
-    <a href="/static" class="div16">본인인증하고 가입</a>
-  </div>
-  <div class="rectangle-1670"></div>
-  <div class="group-965">
-    <div class="rectangle-1671"></div>
-    <div class="_14">[필수] 만 14세 이상입니다.</div>
-  </div>
-  <div class="group-966">
-    <div class="rectangle-16712"></div>
-    <div class="div17">[필수] 이용 약관 동의</div>
-  </div>
-  <div class="group-967">
-    <div class="rectangle-16713"></div>
-    <div class="div18">[필수] 개인 정보 수집 및 동의</div>
-  </div>
-  <div class="group-968">
-    <div class="rectangle-16714"></div>
-    <div class="div19">[선택] 광고성 홍보 수신 동의</div>
-  </div>
-  <div class="div20">모두 동의</div>
+    <div class="group-959">
+      <div class="date-of-birth">Date of Birth</div>
+
+      <select name="birthYear" id="birthYear" class="rectangle-16673"></select>
+      <div class="div13">년</div>
+
+      <select name="birthMonth" id="birthMonth" class="rectangle-1668"></select>
+      <div class="div14">월</div>
+
+      <select name="birthDay" id="birthDay" class="rectangle-1669"></select>
+      <div class="div15">일</div>
+    </div>
+
+    <div class="group-963">
+      <div class="nickname2">Nickname</div>
+      <input type="text" name="nickname" class="nickname" placeholder="Nickname을 입력해 주세요" required />
+    </div>
+
+    <div class="group-965">
+      <input type="checkbox" id="over14" name="terms" required />
+      <label for="over14" class="_14">[필수] 만 14세 이상입니다.</label>
+    </div>
+    <div class="group-966">
+      <input type="checkbox" id="terms1" name="terms" required />
+      <label for="terms1" class="div17">[필수] 이용 약관 동의</label>
+    </div>
+    <div class="group-967">
+      <input type="checkbox" id="terms2" name="terms" required />
+      <label for="terms2" class="div18">[필수] 개인 정보 수집 및 동의</label>
+    </div>
+    <div class="group-968">
+      <input type="checkbox" id="terms3" name="terms" />
+      <label for="terms3" class="div19">[선택] 광고성 홍보 수신 동의</label>
+    </div>
+
+    <div class="group-969">
+      <button type="submit" class="div16">본인인증하고 가입</button>
+    </div>
+  </form>
 </div>
+
+<script>
+  // 년도 셀렉트박스
+  const yearSelect = document.getElementById('birthYear');
+  const monthSelect = document.getElementById('birthMonth');
+  const daySelect = document.getElementById('birthDay');
+
+  const now = new Date();
+  const currentYear = now.getFullYear();
+
+  for (let y = currentYear; y >= 1900; y--) {
+    yearSelect.innerHTML += `<option value="${y}">${y}</option>`;
+  }
+  for (let m = 1; m <= 12; m++) {
+    monthSelect.innerHTML += `<option value="${m}">${m}</option>`;
+  }
+  function updateDays() {
+    const year = parseInt(yearSelect.value);
+    const month = parseInt(monthSelect.value);
+    const lastDay = new Date(year, month, 0).getDate();
+
+    daySelect.innerHTML = '';
+    for (let d = 1; d <= lastDay; d++) {
+      daySelect.innerHTML += `<option value="${d}">${d}</option>`;
+    }
+  }
+  yearSelect.addEventListener('change', updateDays);
+  monthSelect.addEventListener('change', updateDays);
+  updateDays(); // 초기 실행
+</script>
 </body>
 </html>
