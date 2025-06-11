@@ -1,40 +1,22 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8" />
   <title>메인 페이지</title>
+  <!-- 사이드바 CSS 분리 스타일 적용 -->
+  <link rel="stylesheet" href="/css/fragments/Sidebar.css" />
   <link rel="stylesheet" href="/css/Mainpage/Mainpage.css" />
 </head>
 <body>
-<aside class="sidebar">
-  <a href="/main">
-    <img class="logo-1" src="/img/logo (1).png" alt="로고" />
-  </a>
-  <nav class="sidebar-nav">
-    <ul>
-    <li><a href="/sell">검색</a></li>
-     <li><a href="/sell">탐색</a></li>
-      <li><a href="/sell">판매등록</a></li>
-       <li><a href="/sell">관심상품</a></li>
-        <li><a href="/sell">스타일</a></li>
-         <li><a href="/sell">마이페이지</a></li>
-          <li><a href="/sell">고객센터</a></li>
-          
-    </ul>
-  </nav>
-  <div class="login-area">
-    <a href="/login" class="btn-login">로그인</a>
-  </div>
-  <footer class="sidebar-footer">
-    <p><a href="/support">고객센터</a> | <a href="/terms">이용약관</a></p>
-    <small>&copy; All copyright in soldesk</small>
-  </footer>
-</aside>
+<!-- 사이드바 HTML 분리 -->
+<div th:replace="Fragments/Sidebar :: sidebar"></div>
 <div class="wrapper">
 
 <div class="mainpage">
   <img class="image-5" src="/img/image%205.png" />
-  <div class="rectangle-1578"></div>
+  <a th:href="@{/product/detail}">
+    <div class="rectangle-1578"></div>
+  </a>
   <div class="top"></div>
   <div class="bottom"></div>
   <img class="div2" src="/img/pro.png" />
@@ -62,9 +44,6 @@
     <div class="ellipse-142"></div>
     <img class="_1" src="/img/Vector.png" />
   <img class="arrow-306" src="/img/Arrow%20306.png" />
-
-
-
 
   <div class="rectangle-1588"></div>
   <div class="div18">시세표</div>
@@ -101,9 +80,19 @@
   <div class="_250-000">250,000</div>
   <div class="_400-000">400,000</div>
   <div class="rectangle-1589"></div>
-  <img class="image-65" src="/img/image%2065.png" />
-  <img class="image-66" src="/img/image%2066.png" />
-  <img class="image-67" src="/img/image%2067.png" />
+
+  <!--왼쪽 화살표-->
+  <a href="#" onclick="loadPrevStyle(); return false;">
+    <img class="image-67" src="/img/image%2065.png" alt="이전" />
+  </a>
+
+  <!--오른쪽 화살표-->
+  <a href="#" onclick="loadNextStyle(); return false;">
+    <img class="image-66" src="/img/image%2065.png" alt="다음" />
+  </a>
+
+  <!--스타일 메인 카드 (링크 적용)-->
+  <a th:href="@{/style/detail}"><img class="image-65" src="/img/image%2065.png" />
   <img class="div20" src="/img/프로필.png" />
     <img class="mask-group4" src="/img/heart.png" />
   <div class="_2">스타일 리뷰</div>
@@ -115,10 +104,35 @@
     <br />
     이것은 그냥 글에대한 설명 글 ㅋㅋㅋㅋㅋ
   </div>
+  </a>
+
+  <script>
+    async function loadStyle(direction) {
+      const response = await fetch(`/style/${direction}`);
+      const data = await response.json();
+
+      //메인 이미지 변경
+      document.querySelector('.image-65').src = data.imageUrl;
+      //프로필, 좋아요, 닉네임, 해시태그 등도 업데이트
+      document.querySelector('.div20').src = data.profileUrl;
+      document.querySelector('._730-em-0').textContent = data.nickname;
+      document.querySelector('._4').innerHTML = data.hashtags;
+    }
+
+    function loadNextStyle() {
+      loadStyle("next");
+    }
+
+    function loadPrevStyle() {
+      loadStyle("prev");
+    }
+  </script>
+
   <div class="_139">139</div>
   <div class="div23">호시이</div>
   <div class="rectangle-1591"></div>
   </div>
+
 </div></div>
 </div>
 </body>

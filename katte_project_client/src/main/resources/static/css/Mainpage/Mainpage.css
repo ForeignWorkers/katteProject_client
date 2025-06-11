@@ -349,84 +349,6 @@ html, body {
   overflow: visible;
 }
 
-.sidebar {
-  position: fixed;
-  top: 1.649vh;         /* 1.94 * 0.85 */
-  left: 2.1675vw;       /* 2.55 * 0.85 */
-  width: 11.866vw;      /* 13.96 * 0.85 */
-  padding: 0.884vw;     /* 1.04 * 0.85 */
-  box-sizing: border-box;
-  background: #181818;
-  display: flex;
-  flex-direction: column;
-}
-
-.sidebar .logo-1 {
-  width: 62.77px;       /* 73.85 * 0.85 */
-  height: 76.5px;       /* 90 * 0.85 */
-  object-fit: cover;
-  aspect-ratio: 73.85/90;
-  margin-bottom: 34px;  /* 40 * 0.85 */
-}
-
-.sidebar-nav {
-  margin-bottom: 51px;  /* 60 * 0.85 */
-}
-.sidebar-nav ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-.sidebar-nav ul li {
-  margin-bottom: 17px;  /* 20 * 0.85 */
-}
-.sidebar-nav ul li a {
-  display: block;
-  text-decoration: none;
-  color: #f9eeee;
-  font-family: "LineSeedSansKr-Regular", sans-serif;
-  font-size: 22.1px;    /* 26 * 0.85 */
-  line-height: 34px;    /* 40 * 0.85 */
-}
-
-.login-area {
-  margin-bottom: 51px;
-}
-.btn-login {
-  width: 100%;
-  height: 48.45px;      /* 57 * 0.85 */
-  background: #ff0044;
-  border: none;
-  border-radius: 11.9px; /* 14 * 0.85 */
-  color: #fff4f4;
-  font-family: "LineSeedSansKr-Regular", sans-serif;
-  font-size: 21.25px;   /* 25 * 0.85 */
-  line-height: 48.45px;
-  cursor: pointer;
-  display: flex;                 /* 추가: 버튼처럼 가운데 정렬 */
-  align-items: center;           /* 추가: 수직 가운데 */
-  justify-content: center;       /* 추가: 수평 가운데 */
-  text-decoration: none;     
-}
-.sidebar-footer {
-  margin-top: auto;
-  font-size: 12.75px;   /* 15 * 0.85 */
-  color: #787878;
-  font-family: "LineSeedSansKr-Regular", sans-serif;
-}
-.sidebar-footer a {
-  color: #787878;
-  text-decoration: none;
-}
-.sidebar-footer p {
-  margin: 0 0 6.8px;    /* 8 * 0.85 */
-}
-.sidebar-footer small {
-  display: block;
-  margin: 0;
-}
-
-
 .rectangle-1588 {
   background: #2a2929;
   border-radius: 25.5px;           /* 30 * 0.85 */
@@ -904,6 +826,7 @@ html, body {
   left: 1541.05px;                 /* 1813 * 0.85 */
   top: 308.55px;                   /* 363 * 0.85 */
 }
+
 .image-65 {
   border-radius: 17px;
   width: 188.7px;                  /* 222 * 0.85 */
@@ -914,19 +837,22 @@ html, body {
   object-fit: cover;
   aspect-ratio: 222/326;
 }
+
 .image-66 {
-  border-radius: 17px 0px 0px 17px;
-  width: 22.1px;                   /* 26 * 0.85 */
-  height: 277.1px;
   position: absolute;
-  left: 1797.75px;                 /* 2115 * 0.85 */
+  left: 1806px; /* 살짝 오른쪽으로 이동해서 끝 1/3만 보여지게 */
   top: 368.9px;
+  width: 188.7px;
+  height: 277.1px;
   object-fit: cover;
-  aspect-ratio: 26/326;
+  border-radius: 17px 0 0 17px;
+  clip-path: inset(0 78% 0 0);
+  z-index: 3;
 }
+
 .image-67 {
   border-radius: 17px 0px 0px 17px;
-  width: 22.1px;
+  width: 188.7px;
   height: 277.1px;
   position: absolute;
   left: 1581.85px;                 /* 1861 * 0.85 */
@@ -934,8 +860,10 @@ html, body {
   transform-origin: 0 0;
   transform: rotate(0deg) scale(-1, 1);
   object-fit: cover;
+  clip-path: inset(0 78% 0 0);
   aspect-ratio: 26/326;
 }
+
 .div20 {
   width: 18.7px;                   /* 22 * 0.85 */
   height: 18.7px;
@@ -1041,4 +969,74 @@ html, body {
   position: absolute;
   left: 1558.05px;
   top: 53.55px;                    /* 63 * 0.85 */
+}
+
+/* 기본 배치 */
+.style-review-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* 중앙 카드 */
+.style-main-card {
+  position: relative;
+  background: #222;
+  padding: 20px;
+  border-radius: 30px;
+  text-decoration: none;
+  color: white;
+  z-index: 2;
+  width: 240px;
+  transition: transform 0.3s ease;
+}
+
+.style-main-image {
+  width: 100%;
+  border-radius: 20px;
+  object-fit: cover;
+}
+
+/* 좌우 이미지 화살표 (style-left/right) */
+.style-arrow {
+  width: 60px;
+  height: auto;
+  opacity: 0.4;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.style-left {
+  position: absolute;
+  left: -50px;
+  z-index: 1;
+}
+.style-right {
+  position: absolute;
+  right: -50px;
+  z-index: 1;
+}
+
+.style-arrow:hover {
+  opacity: 1;
+}
+
+/* 텍스트 */
+.style-info {
+  margin-top: 15px;
+}
+.nickname {
+  font-weight: bold;
+  font-size: 18px;
+}
+.likes {
+  float: right;
+  font-size: 14px;
+  color: hotpink;
+}
+.hashtags,
+.caption {
+  font-size: 13px;
+  margin-top: 5px;
 }

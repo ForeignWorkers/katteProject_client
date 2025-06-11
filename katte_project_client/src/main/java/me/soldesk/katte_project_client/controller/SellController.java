@@ -9,6 +9,6 @@ public class SellController {
     //판매 페이지 판매 등록(디폴트)으로 이동
     @GetMapping("/sell")
     public String sell() {
-        return "redirect:/html/Sell_product_upload/Sell_product_upload.html"; // 추후 등록
+        return "Sell_product_upload/Sell_product_upload"; // 추후 등록
     }
 }

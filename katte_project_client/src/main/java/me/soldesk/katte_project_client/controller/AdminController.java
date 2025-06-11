@@ -9,6 +9,6 @@ public class AdminController {
     //관리자 회원 관리 페이지(디폴트)로 이동
     @GetMapping("/admin")
     public String adminMain() {
-        return "redirect:/html/Membership_management/Membership_management.html";
+        return "Membership_management/Membership_management";
     }
 }
