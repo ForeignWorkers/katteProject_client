@@ -24,7 +24,7 @@
     <div class="input-group">
       <input type="password" name="password" class="input-pw" placeholder="Password를 입력해 주세요" required />
     </div>
-    <label id="login-error-label" class="error-label"></label>
+    <label id="login-error-label" class="error-label" th:text="${loginError}" style="color: #ff0044;"></label>
     <div class="rectangle-16673"></div>
     <button type="submit" class="loginbtn">Login</button>
   </form>

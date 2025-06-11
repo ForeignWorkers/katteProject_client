@@ -55,10 +55,10 @@ public class LoginService {
         );
 
         if (ApiManagers.isSuccessful(result)) {
-            System.out.println("로그인 성공!");
-            return true;
+            System.out.println("통신 성공!");
+            return Boolean.TRUE.equals(result.getBody());
         } else {
-            System.out.println("로그인 실패!");
+            System.out.println("통신 실패!");
             return false;
         }
     }

@@ -98,11 +98,13 @@ public class LoginController {
 
         boolean loginSuccess = loginService.isLogin(userId, password);
 
+        System.out.println("AAAAA" + loginSuccess);
+
         if (loginSuccess) {
             session.setAttribute("userId", userId);
             return "Mainpage/Mainpage";
         } else {
-            model.addAttribute("loginError", true);
+            model.addAttribute("loginError", "아이디 또는 비밀번호가 일치하지 않습니다.");
             return "Loginpage/Login";
         }
     }
