@@ -4,31 +4,12 @@
   <meta charset="UTF-8">
   <title>회원가입</title>
   <link rel="stylesheet" href="/css/Signuppage/Signup.css" />
+  <!-- 사이드바 CSS 분리 스타일 적용 -->
+  <link rel="stylesheet" href="/css/fragments/Sidebar.css" />
 </head>
 <body>
-<aside class="sidebar">
-  <a href="/main">
-    <img class="logo-1" src="/img/logo%20(1).png" alt="로고" />
-  </a>
-  <nav class="sidebar-nav">
-    <ul>
-      <li><a href="/search">검색</a></li>
-      <li><a href="/explore">탐색</a></li>
-      <li><a href="/sell">판매등록</a></li>
-      <li><a href="/wishlist">관심상품</a></li>
-      <li><a href="/style">스타일</a></li>
-      <li><a href="/mypage">마이페이지</a></li>
-      <li><a href="/support">고객센터</a></li>
-    </ul>
-  </nav>
-  <div class="login-area">
-    <a href="/login" class="btn-login">로그인</a>
-  </div>
-  <footer class="sidebar-footer">
-    <p><a href="/support">고객센터</a> | <a href="/terms">이용약관</a></p>
-    <small>&copy; All copyright in soldesk</small>
-  </footer>
-</aside>
+<!-- 사이드바 HTML 분리 -->
+<div th:replace="Fragments/Sidebar :: sidebar"></div>
 
 <div class="wrapper">
   <form action="/signUp_pro" method="POST">
@@ -54,7 +35,7 @@
     <div class="group-963">
       <div class="nickname2">Nickname</div>
       <label id="nickname-error-label" class="error-label"></label>
-      <input type="text" name="nickname" class="nickname" placeholder="Nickname을 입력해 주세요" required />
+      <input type="text" name="nickname" class="nickname" placeholder="Nickname을 입력해 주세요" required maxlength="12" />
     </div>
 
     <div class="group-965">
@@ -134,6 +115,10 @@
     return /^(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{8,}$/.test(password);
   }
 
+  function validateNickname(nickname) {
+    return /^[가-힣a-zA-Z0-9]{2,12}$/.test(nickname);
+  }
+
   async function checkEmailDuplicate(email) {
     try {
       const url = `${BASE_URL}user/duplicate?email_id=${encodeURIComponent(email)}`;
@@ -166,9 +151,8 @@
     } else {
       // AJAX 중복 검사
       const notDuplicate = await checkEmailDuplicate(email);
-      console.log("TTTTTTT" + notDuplicate)
       isEmailNotDuplicate = notDuplicate;
-      emailError.textContent = notDuplicate ? "ㅁㅁㅁㅁㅁ" : "이미 사용 중인 이메일입니다.";
+      emailError.textContent = notDuplicate ? "" : "이미 사용 중인 이메일입니다.";
     }
 
     updateSubmitButton();
@@ -181,12 +165,41 @@
     updateSubmitButton();
   }
 
-  function validateNick() {
-    const nick = nicknameInput.value.trim();
-    isNicknameFilled = nick.length > 0;
-    nicknameError.textContent = isNicknameFilled ? "" : "닉네임을 입력해주세요.";
-    updateSubmitButton();
+  async function checkNicknameDuplicate(nickname) {
+    try {
+      const url = `${BASE_URL}user/nickname?nickname=${encodeURIComponent(nickname)}`;
+      console.log("📡 요청 URL:", url);
+
+      const response = await fetch(url, { method: "GET" });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const result = await response.json();  // JSON 파싱
+      console.log("📦 응답 결과:", result);
+      return !result;
+    } catch (err) {
+      console.error("❌ 이메일 중복 확인 오류:", err);
+      return false;
+    }
   }
+
+  async function validateNick() {
+    const nick = nicknameInput.value.trim();
+    isNicknameFilled = validateNickname(nick);
+    if (!isNicknameFilled) {
+      nicknameError.textContent = "닉네임은 영어,한글,숫자 만 가능합니다.";
+      isNicknameFilled = false;
+    } else {
+      // AJAX 중복 검사
+      const notDuplicate = await checkNicknameDuplicate(nick);
+      isNicknameFilled = notDuplicate;
+      nicknameError.textContent = notDuplicate ? "" : "이미 사용 중인 닉네임입니다.";
+      updateSubmitButton();
+    }
+  }
+
 
   function areAllTermsChecked() {
     const requiredTerms = document.querySelectorAll('input[name="terms"]:required');
