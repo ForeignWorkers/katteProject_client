@@ -18,11 +18,7 @@ html, body {
 /* ───────────────────────────────────────────────────────────────────────────
    2) 콘텐츠 래퍼 (Customer Center)
    ─────────────────────────────────────────────────────────────────────────── */
-.wraaper {
-  transform-origin: top left;
-  width: 100%;
-  min-height: 83vh; /* 100vh * 0.83 */
-}
+
 .wrapper {
   transform-origin: top left;
   width: 100%;
@@ -102,10 +98,17 @@ html, body {
 /* ───────────────────────────────────────────────────────────────────────────
    4) 컨텐츠 영역 좌측 여백
    ─────────────────────────────────────────────────────────────────────────── */
-.content {
+.contentWrapper {
   margin-left: calc(11.866vw + 2.1675vw + 17px);
   padding: 20px;
 }
+
+.content{
+  width : 75vw;
+  max-width : 100%;
+}
+
+
 
 /* ───────────────────────────────────────────────────────────────────────────
    5) 상단 탭
@@ -173,7 +176,12 @@ html, body {
 .cc-table tbody tr:nth-child(even) {
   background-color: #2a2929;
 }
-
+#thDate{
+  text-align: right;
+}
+#tdDate{
+  text-align: right;
+}
 /* ───────────────────────────────────────────────────────────────────────────
    8) 필터 버튼
    ─────────────────────────────────────────────────────────────────────────── */
@@ -324,18 +332,6 @@ html, body {
 /* ───────────────────────────────────────────────────────────────────────────
  13) 검수 기준
    ─────────────────────────────────────────────────────────────────────────── */
-.cc-criteria-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 12px;
-}
-.cc-criteria-table th,
-.cc-criteria-table td {
-  border: 1px solid #444;
-  padding: 10px;
-  text-align: center;
-  color: #f9eeee;
-}
 .cc-criteria-text {
   background: #2a2929;
   padding: 12px;
@@ -343,4 +339,23 @@ html, body {
   font-size: 13px;
   line-height: 1.5;
   color: #f9eeee;
+}
+.standard-tabs {
+  display: flex;
+  gap: 2px;
+  margin-bottom: 16px;
+}
+.standard {
+  flex: 1;
+  padding: 12px;
+  text-align: center;
+  border: 1px solid #555;
+  cursor: pointer;
+  background: transparent;
+  color: #f9eeee;
+}
+.standard.active {
+  background: #ff0044;
+  border-color: #ff0044;
+  font-weight: 700;
 }
