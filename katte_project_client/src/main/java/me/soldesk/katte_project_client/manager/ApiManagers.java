@@ -88,7 +88,7 @@ public class ApiManagers {
     }
 
     // ✅ DELETE 요청 - (선택적으로) 바디 포함 가능
-    public static <T> ResponseEntity<T> delete(String path, Map<String, String> queryParams, Class<T> responseType) {
+    public static <T> ResponseEntity<T> deleteQuery(String path, Map<String, String> queryParams, Class<T> responseType) {
         UriComponentsBuilder uriBuilder = UriComponentsBuilder.fromHttpUrl(BASE_URL + path);
 
         if (queryParams != null) {
@@ -103,6 +103,22 @@ public class ApiManagers {
                 url,
                 HttpMethod.DELETE,
                 new HttpEntity<>(new HttpHeaders()),  // 필요 시 헤더 설정 가능
+                responseType
+        );
+    }
+
+    public static <T> ResponseEntity<T> deleteBody(String path, Object requestBody, Class<T> responseType) {
+        String url = BASE_URL + path;
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+
+        HttpEntity<Object> entity = new HttpEntity<>(requestBody, headers);
+
+        return restTemplate.exchange(
+                url,
+                HttpMethod.DELETE,
+                entity,
                 responseType
         );
     }
