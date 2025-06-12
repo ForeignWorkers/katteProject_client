@@ -563,3 +563,20 @@ html, body {
   text-decoration: none;
   padding: 0;               /* 패딩 제거 */
 }
+
+.error-label {
+  position: absolute;
+  color: #ff0044;
+  font-size: 14px;
+  font-weight: 400;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  margin-left: 10px;
+  display: inline;
+  white-space: pre-line;
+  top: 0;
+  transform: translateY(2px);
+}
+#login-error-label {
+  top: 442px;
+  left: 815px;
+}

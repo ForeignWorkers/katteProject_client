@@ -18,7 +18,6 @@ public class UserService {
             requestBody.put("user_id", null);
             requestBody.put("email_id", email);
 
-            // ✅ POST 요청 실행
             ResponseEntity<UserBean> result = ApiManagers.get(
                     "user",
                     requestBody,
