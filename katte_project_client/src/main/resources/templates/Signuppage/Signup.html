@@ -39,21 +39,23 @@
     </div>
 
     <div class="group-965">
-      <input type="checkbox" id="over14" name="terms" required />
+      <input type="checkbox" id="over14" name="over14" />
       <label for="over14" class="_14">[필수] 만 14세 이상입니다.</label>
     </div>
     <div class="group-966">
-      <input type="checkbox" id="terms1" name="terms" required />
+      <input type="checkbox" id="terms1" name="terms1" />
       <label for="terms1" class="div17">[필수] 이용 약관 동의</label>
     </div>
     <div class="group-967">
-      <input type="checkbox" id="terms2" name="terms" required />
+      <input type="checkbox" id="terms2" name="terms2" />
       <label for="terms2" class="div18">[필수] 개인 정보 수집 및 동의</label>
     </div>
     <div class="group-968">
-      <input type="checkbox" id="terms3" name="terms" />
+      <input type="checkbox" id="terms3" name="terms3" />
       <label for="terms3" class="div19">[선택] 광고성 홍보 수신 동의</label>
     </div>
+
+    <label id="terms-error-label" class="error-label"></label>
 
     <div class="group-969">
       <button type="submit" class="div16">본인인증하고 가입</button>
@@ -89,7 +91,6 @@
   yearSelect.addEventListener('change', updateDays);
   monthSelect.addEventListener('change', updateDays);
   updateDays(); // 초기 실행
-
 
   const emailInput = document.querySelector('input[name="email_id"]');
   const passwordInput = document.querySelector('input[name="password"]');
@@ -200,10 +201,21 @@
     }
   }
 
-
   function areAllTermsChecked() {
-    const requiredTerms = document.querySelectorAll('input[name="terms"]:required');
-    return Array.from(requiredTerms).every(cb => cb.checked);
+    const termsError = document.getElementById('terms-error-label');
+    const over14 = document.querySelector('input[name="over14"]');
+    const terms1 = document.querySelector('input[name="terms1"]');
+    const terms2 = document.querySelector('input[name="terms2"]');
+
+    const allChecked = over14.checked && terms1.checked && terms2.checked;
+
+    if (!allChecked) {
+      termsError.textContent = "필수 약관에 모두 동의해주세요.";
+    } else {
+      termsError.textContent = "";
+    }
+
+    return allChecked;
   }
 
   function updateSubmitButton() {
@@ -215,6 +227,10 @@
   emailInput.addEventListener("blur", validateEmail);
   passwordInput.addEventListener("blur", validatePw);
   nicknameInput.addEventListener("blur", validateNick);
+
+  document.getElementById("over14").addEventListener("change", updateSubmitButton);
+  document.getElementById("terms1").addEventListener("change", updateSubmitButton);
+  document.getElementById("terms2").addEventListener("change", updateSubmitButton);
 
   document.querySelectorAll('input[name="terms"]').forEach(cb => {
     cb.addEventListener('change', updateSubmitButton);

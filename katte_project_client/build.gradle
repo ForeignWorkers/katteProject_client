@@ -52,7 +52,7 @@ dependencies {
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 
     //common-lib
-    implementation 'com.github.ForeignWorkers:katteProject_common_lib:1.0.55'
+    implementation 'com.github.ForeignWorkers:katteProject_common_lib:1.0.60'
 
     //thymeleaf
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'

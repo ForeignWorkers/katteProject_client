@@ -1,0 +1,4 @@
+naver:
+  request-token-uri: https://nid.naver.com/oauth2.0/token
+  client-id: zHTVWYIOJ_5XTZOpm410
+  client-secret: 0Aj9LvYCaV

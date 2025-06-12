@@ -47,13 +47,6 @@ public class HomeController {
             model.addAttribute("isAdmin", userBean.getIs_admin());
         }
 
-
         return "Mainpage/Mainpage";
-    }
-
-    //로그인 페이지로 이동
-    @GetMapping("/login")
-    public String login() {
-        return "Loginpage/Login";
     }
 }
