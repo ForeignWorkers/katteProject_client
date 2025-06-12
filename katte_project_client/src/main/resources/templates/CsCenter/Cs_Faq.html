@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>자주 묻는 질문</title>
+    <link rel="stylesheet" href="/css/CsCenter/CsCenter.css">
+    <link rel="stylesheet" href="/css/fragments/Sidebar.css" />
+</head>
+<body>
+<div th:replace="~{Fragments/Sidebar :: sidebar}"></div>
+
+<!-- 내용 영역 -->
+<div class="contentWrapper">
+    <div class = "content">
+        <!-- 1) 탭 내비게이션 -->
+        <div class="cc-tabs">
+            <a href="/announce" class = "cc-tab">
+                <div class = "insideA">
+                    공지사항
+                </div>
+            </a>
+            <a href="/faq" class = "cc-tab active">
+                <div class = "insideA">
+                    자주 묻는 질문
+                </div>
+            </a>
+            <a href="/Inquire_Customer" class = "cc-tab">
+                <div class = "insideA">
+                    1:1문의
+                </div>
+            </a>
+            <a href="/Standard" class = "cc-tab">
+                <div class = "insideA">
+                    검수 기준
+                </div>
+            </a>
+        </div>
+    </div>
+        <!-- 2) 검색 바 (모든 탭 공통) -->
+        <div class="cc-search">
+            <input type="text" id="cc-search-input" placeholder="검색어를 입력하세요">
+        </div>
+
+    <section id = "faqs" class = "cc-section">
+        <div id="faq" class="cc-section">
+                <!--필터-->
+                <div class="cc-filter">
+                    <button class="filter-btn selected" data-faq-cat="ALL">전체</button>
+                    <button class="filter-btn"        data-faq-cat="TERM">이용정책</button>
+                    <button class="filter-btn"        data-faq-cat="GENERAL">공통</button>
+                    <button class="filter-btn"        data-faq-cat="BUY">구매</button>
+                    <button class="filter-btn"        data-faq-cat="SELL">판매</button>
+                </div>
+                <div id="result-count" style="padding: 0.5rem; font-weight: bold;"></div>
+                <div id="no-result" style="display: none; padding: 1rem; color: #FF0044; font-weight: bold;">
+                    결과가 없습니다.
+                </div>
+                <!--헤더 출력-->
+
+            <div class="cc-accordion">
+                <th:block th:each="f : ${faqs}">
+                    <div class="acc-item" th:attr="data-cat=${f.faq_category.name()}">
+                        <div class="acc-header">
+                            <div class="div-header">
+                                <div class="div-category" th:switch="${f.faq_category.name()}">
+                                    <span th:case="'TERM'">이용정책</span>
+                                    <span th:case="'GENERAL'">공통</span>
+                                    <span th:case="'BUY'">구매</span>
+                                    <span th:case="'SELL'">판매</span>
+                                </div>
+                                <div class="div-title" th:text="${f.faq_title}">제목</div>
+                                <div class="div-date" th:text="${f.created_at}">작성년월일</div>
+                            </div>
+                            <div class="acc-body">
+                                <div class ="div-content" th:utext="${f.faq_content}">
+                                    faq 내용
+                                </div>
+                                <div class = "div-button-box">
+                                    <a th:href="@{'/faq/edit/' + ${f.faq_id}}" class="edit-btn">
+                                        <div class="edit-div">수정</div>
+                                    </a>
+                                    <form method="post" action="/faq/delete" onsubmit="return confirm('삭제하시겠습니까?');">
+                                        <input type="hidden" name="faq_id" th:value="${f.faq_id}" />
+                                        <button type="submit" class="delete-btn">삭제</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </th:block>
+            </div>
+            <div class = post-button-box>
+                <a href="/faq/post" class = "post-button">
+                    <div>작성</div>
+                </a>
+            </div>
+        </div>
+    </section>
+</div>
+
+<script>
+        //필터
+        document.querySelectorAll('#faq .filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const f = btn.dataset.faqCat.toUpperCase();
+
+                document.querySelectorAll('#faq .filter-btn').forEach(b => b.classList.remove('selected'));
+                btn.classList.add('selected');
+
+                document.querySelectorAll('#faq .acc-item').forEach(item => {
+                    const cat = item.dataset.cat?.toUpperCase();
+                    item.style.display = (f === 'ALL' || cat === f) ? '' : 'none';
+                });
+            });
+        });
+
+        // (추가) 검색 기능
+        const searchInput = document.getElementById('cc-search-input');
+        const resultCount = document.getElementById('result-count');
+        const noResult = document.getElementById('no-result');
+
+        searchInput.addEventListener('input', () => {
+            const keyword = searchInput.value.trim().toLowerCase();
+
+            let matchCount = 0;
+
+            document.querySelectorAll('.cc-accordion .acc-item').forEach(item => {
+                const title = item.querySelector('.div-title')?.textContent.toLowerCase() || '';
+                const body = item.querySelector('.acc-body')?.textContent.toLowerCase() || '';
+
+                // 제목 or 본문에 키워드가 포함되어 있다면 표시
+                const isMatch = title.includes(keyword) || body.includes(keyword);
+                item.style.display = isMatch ? '' : 'none';
+
+                if (isMatch) matchCount++;
+            });
+
+            // 검색 결과 갯수와 결과x 전환
+            if (keyword.length === 0) {
+                resultCount.textContent = '';
+                noResult.style.display = 'none';
+            } else if (matchCount === 0) {
+                resultCount.textContent = '0개의 결과';
+                noResult.style.display = 'block';
+            } else {
+                resultCount.textContent = `${matchCount}개의 결과`;
+                noResult.style.display = 'none';
+            }
+        });
+
+        // 아코디언 기능
+        document.querySelectorAll('.acc-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const item = header.parentElement;
+                item.classList.toggle('open');
+            });
+        });
+
+        document.querySelectorAll('.acc-body').forEach(body => {
+            body.addEventListener('click', (e) => {
+                e.stopPropagation();
+            });
+        });
+</script>
+</body>
+</html>

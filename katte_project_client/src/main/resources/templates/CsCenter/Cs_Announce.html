@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>공지사항</title>
+    <link rel="stylesheet" href="/css/CsCenter/CsCenter.css">
+    <link rel="stylesheet" href="/css/fragments/Sidebar.css">
+</head>
+<body>
+<div th:replace="~{Fragments/Sidebar :: sidebar}"></div>
+
+    <!-- 내용 영역 -->
+    <div class="contentWrapper">
+        <div class = "content">
+            <!-- 1) 탭 내비게이션 -->
+            <div class="cc-tabs">
+                <a href="/announce" class = "cc-tab active">
+                    <div class = "insideA">
+                        공지사항
+                    </div>
+                </a>
+                <a href="/faq" class = "cc-tab">
+                    <div class = "insideA">
+                        자주 묻는 질문
+                    </div>
+                </a>
+                <a href="/Inquire_Customer" class = "cc-tab">
+                    <div class = "insideA">
+                        1:1문의
+                    </div>
+                </a>
+                <a href="/Standard" class = "cc-tab">
+                    <div class = "insideA">
+                        검수 기준
+                    </div>
+                </a>
+            </div>
+        </div>
+            <!-- 2) 검색 바 (모든 탭 공통) -->
+            <div class="cc-search">
+                <input type="text" id="cc-search-input" placeholder="검색어를 입력하세요">
+            </div>
+
+            <!--공지사항 출력-->
+            <section id="notice" class="cc-section">
+                <!--공지사항 필터-->
+                <div class="cc-filter">
+                    <button class="filter-btn selected" data-filter="ALL">전체</button>
+                    <button class="filter-btn"        data-filter="ANNOUNCE">공지사항</button>
+                    <button class="filter-btn"        data-filter="EVENT">이벤트</button>
+                    <button class="filter-btn"        data-filter="ETC">기타</button>
+                </div>
+                <div id="result-count" style="padding: 0.5rem; font-weight: bold;"></div>
+                <div id="no-result" style="display: none; padding: 1rem; color: #FF0044; font-weight: bold;">
+                    결과가 없습니다.
+                </div>
+                <!--공지사항 헤더 출력-->
+                <div class="cc-accordion">
+                    <th:block th:each="a : ${announces}">
+                        <div class="acc-item" th:attr="data-cat=${a.announce_category.name()}">
+                            <div class="acc-header">
+                                <div class="div-header">
+                                    <div class="div-category" th:switch="${a.announce_category.name()}">
+                                        <span th:case="'ANNOUNCE'">공지사항</span>
+                                        <span th:case="'EVENT'">이벤트</span>
+                                        <span th:case="'ETC'">기타</span>
+                                    </div>
+                                    <div class="div-title" th:text="${a.announce_title}">제목</div>
+                                    <div class="div-date" th:text="${a.announce_at}">작성년월일</div>
+                                </div>
+                                    <div class="acc-body">
+                                        <div class ="div-content" th:utext="${a.announce_content}">
+                                            공지 내용
+                                        </div>
+                                       <div class = "div-button-box">
+                                           <a th:href="@{'/announce/edit/' + ${a.announce_id}}" class="edit-btn">
+                                               <div class="edit-div">수정</div>
+                                           </a>
+                                           <form method="post" action="/announce/delete" onsubmit="return confirm('삭제하시겠습니까?');">
+                                               <input type="hidden" name="announce_id" th:value="${a.announce_id}" />
+                                               <button type="submit" class="delete-btn">삭제</button>
+                                           </form>
+                                       </div>
+                                    </div>
+                            </div>
+                        </div>
+                    </th:block>
+                </div>
+            </section>
+            <div class = post-button-box>
+                <a href="/announce/post" class = "post-button">
+                    <div>작성</div>
+                </a>
+            </div>
+        </div>
+
+    <script>
+            // 검색
+            const searchInput = document.getElementById('cc-search-input');
+            const resultCount = document.getElementById('result-count');
+            const noResult = document.getElementById('no-result');
+
+            searchInput.addEventListener('input', () => {
+            const keyword = searchInput.value.trim().toLowerCase();
+
+            let matchCount = 0;
+
+            document.querySelectorAll('.cc-accordion .acc-item').forEach(item => {
+            const title = item.querySelector('.div-title')?.textContent.toLowerCase() || '';
+            const body = item.querySelector('.acc-body')?.textContent.toLowerCase() || '';
+
+            const isMatch = title.includes(keyword) || body.includes(keyword);
+            item.style.display = isMatch ? '' : 'none';
+
+            if (isMatch) matchCount++;
+        });
+
+        // 검색 갯수 or 결과가 없습니다 전환
+            if (keyword.length === 0) {
+            resultCount.textContent = '';
+            noResult.style.display = 'none';
+        } else if (matchCount === 0) {
+            resultCount.textContent = '0개의 결과';
+            noResult.style.display = 'block';
+        } else {
+            resultCount.textContent = `${matchCount}개의 결과`;
+            noResult.style.display = 'none';
+        }
+        });
+
+            /*필터*/
+            document.querySelectorAll('#notice .filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const f = btn.dataset.filter.toUpperCase();
+
+                document.querySelectorAll('#notice .filter-btn').forEach(b => b.classList.remove('selected'));
+                btn.classList.add('selected');
+
+                document.querySelectorAll('#notice .acc-item').forEach(item => {
+                    const cat = item.dataset.cat?.toUpperCase();
+                    item.style.display = (f === 'ALL' || cat === f) ? '' : 'none';
+                });
+            });
+        });
+
+            // 아코디언 기능
+            document.querySelectorAll('.acc-header').forEach(header=>{
+            header.addEventListener('click', ()=>{
+                const item = header.parentElement;
+                item.classList.toggle('open');
+            });
+        });
+
+            document.querySelectorAll('.acc-body').forEach(body => {
+            body.addEventListener('click', (e) => {
+                e.stopPropagation();
+            });
+        });
+
+        //삭제 확인
+        function confirmDelete() {
+            return confirm('삭제하시겠습니까?');
+        }
+
+    </script>
+</body>
+</html>

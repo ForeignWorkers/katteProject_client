@@ -8,47 +8,47 @@ public class MyPageController {
 
     @GetMapping("/MyPage")
     public String myPage(){
-        return "redirect:/html/CsMyPage/MyPage.html";
+        return "CsMyPage/MyPage";
     }
 
     @GetMapping("/Favorite")
     public String favorite(){
-        return "redirect:/html/CsMyPage/Favorite.html";
+        return "CsMyPage/Favorite";
     }
 
     @GetMapping("/MyStyle")
     public String myStyle(){
-        return "redirect:/html/CsMyPage/Mypage_mystyle.html";
+        return "CsMyPage/Mypage_mystyle";
     }
 
     @GetMapping("/MyKatteMoney")
     public String myKatteMoney(){
-        return "redirect:/html/CsMyPage/Mypage_kattemoney_page.html";
+        return "CsMyPage/Mypage_kattemoney_page";
     }
 
     @GetMapping("/MyPoint")
     public String myPoint(){
-        return "redirect:/html/CsMyPage/Mypage_point.html";
+        return "CsMyPage/Mypage_point";
     }
 
     @GetMapping("/MyCoupon")
     public String myCoupon(){
-        return "redirect:/html/CsMyPage/Mypage_coupon.html";
+        return "CsMyPage/Mypage_coupon";
     }
 
     @GetMapping("/MyLogInfo")
     public String myLogInfo(){
-        return "redirect:/html/CsMyPage/Mypage_login_info.html";
+        return "CsMyPage/Mypage_login_info";
     }
 
     @GetMapping("/MyProfile")
     public String myProfile(){
-        return "redirect:/html/CsMyPage/Mypage_profile.html";
+        return "CsMyPage/Mypage_profile";
     }
 
     @GetMapping("/MyAddress")
     public String myAddress(){
-        return "redirect:/html/CsMyPage/Mypage_adress.html";
+        return "html/CsMyPage/Mypage_adress";
     }
 
 

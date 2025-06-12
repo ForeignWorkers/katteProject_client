@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>공지사항 작성</title>
+    <link rel="stylesheet" href="/css/CsCenter/CsCenter.css">
+    <link rel="stylesheet" href="/css/fragments/Sidebar.css">
+</head>
+<body>
+<div th:replace="Fragments/Sidebar :: sidebar"></div>
+
+<div class="contentWrapper">
+    <div class = "content">
+        <!-- 1) 탭 내비게이션 -->
+        <div class="cc-tabs">
+            <a href="/announce" class = "cc-tab">
+                <div class = "insideA">
+                    공지사항
+                </div>
+            </a>
+            <a href="/faq" class = "cc-tab active">
+                <div class = "insideA">
+                    자주 묻는 질문
+                </div>
+            </a>
+            <a href="/Inquire_Customer" class = "cc-tab">
+                <div class = "insideA">
+                    1:1문의
+                </div>
+            </a>
+            <a href="/Standard" class = "cc-tab">
+                <div class = "insideA">
+                    검수 기준
+                </div>
+            </a>
+        </div>
+        <form action="/faq/add" method="post" id="cs-common-post-form">
+            <div id="cs-common-post-write">
+                <div class="write-form">
+                    <div class="write-group">
+                        <label>문의 유형</label>
+                        <button type="button" class="type-btn active" data-type="TERM">이용정책</button>
+                        <button type="button" class="type-btn" data-type="GENERAL">공통</button>
+                        <button type="button" class="type-btn" data-type="BUY">구매</button>
+                        <button type="button" class="type-btn" data-type="SELL">판매</button>
+                        <input type="hidden" name="faq_category" id="faq_category" value="TERM">
+
+                    </div>
+                    <div class="write-group">
+                        <label for="cs-common-post-subject">제목</label>
+                        <input type="text" id="cs-common-post-subject" name="faq_title" placeholder="제목을 입력해주세요" required/>
+                    </div>
+                    <div class="write-group">
+                        <label for="cs-common-post-content">내용</label>
+                        <textarea id="cs-common-post-content" name="faq_content" placeholder="문의 내용을 입력해주세요"></textarea>
+                    </div>
+                    <div class="write-actions">
+                        <button class="btn-cancel" type="button" onclick="history.back()">취소</button>
+                        <button class="btn-submit" type="submit">등록</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+    <script>
+        // 문의 하기 - 유형 버튼
+
+        document.querySelectorAll('.type-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.type-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                document.getElementById('faq_category').value = btn.dataset.type;
+            });
+        });
+
+    </script>
+
+</body>
+
+</html>
