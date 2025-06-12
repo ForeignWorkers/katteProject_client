@@ -7,6 +7,7 @@ import me.soldesk.katte_project_client.service.LoginService;
 import me.soldesk.katte_project_client.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,6 +26,10 @@ public class LoginController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
+
 
     @GetMapping("/signUp")
     public String signUp(Model model) {
@@ -98,11 +103,10 @@ public class LoginController {
 
         boolean loginSuccess = loginService.isLogin(userId, password);
 
-        System.out.println("AAAAA" + loginSuccess);
-
         if (loginSuccess) {
-            session.setAttribute("userId", userId);
-            return "Mainpage/Mainpage";
+            UserBean userBean = userService.getUserByEmail(userId);
+            session.setAttribute("currentUser", userBean);
+            return "redirect:/main";
         } else {
             model.addAttribute("loginError", "아이디 또는 비밀번호가 일치하지 않습니다.");
             return "Loginpage/Login";

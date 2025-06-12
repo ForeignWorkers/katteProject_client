@@ -18,7 +18,7 @@ public class LoginService {
 
     public boolean signUp(UserBean userBean){
         // 비밀번호 암호화 예시
-        String encoded = passwordEncoder.encode(userBean.getPassword());
+        String encoded = encodePassword(userBean.getPassword());
         userBean.setPassword(encoded); // 암호화된 비밀번호로 덮어쓰기
 
         // ✅ 객체 자체를 바디로 전송
@@ -37,17 +37,13 @@ public class LoginService {
         }
     }
 
-    public boolean isLogin(String email, String password) {
-        // ✅ 바디 구성 (Map 또는 DTO 가능)
+    public boolean isLogin(String email, String rawPassword) {
+        // 평문 비밀번호 전송 (❗주의: HTTPS로 통신해야 안전)
         Map<String, String> requestBody = new HashMap<>();
-
-        String encoded = encodePassword(password);
-
         requestBody.put("email_id", email);
-        requestBody.put("password", encoded);
+        requestBody.put("password", rawPassword);
 
-
-        // ✅ POST 요청 실행
+        // POST 요청 실행
         ResponseEntity<Boolean> result = ApiManagers.post(
                 "user/login",
                 requestBody,

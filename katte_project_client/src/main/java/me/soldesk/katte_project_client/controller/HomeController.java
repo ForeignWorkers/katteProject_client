@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.util.HashMap;
 import java.util.Map;
 
 @Controller
@@ -16,7 +17,7 @@ public class HomeController {
     //메인 페이지로 이동(사이트 접속 시 최초 페이지)
     @GetMapping("/")
     public String home() {
-        return "Mainpage/Mainpage";
+        return "redirect:/main";
     }
 
     // 메인 페이지 이동 (로고 클릭 포함)
@@ -27,24 +28,25 @@ public class HomeController {
         session.setAttribute("userId", 3);
         session.setAttribute("email", "admin@example.com");
 
-        String userId = String.valueOf(session.getAttribute("userId"));
-        String email = (String) session.getAttribute("email");
+        UserBean userBean = (UserBean) session.getAttribute("currentUser");
 
-        if (userId != null && email != null) {
-            UserBean user = ApiManagers.get("/user", Map.of(
-                    "user_id", userId,
-                    "email_id", email
-            ), UserBean.class).getBody();
+        if (userBean != null) {
+            System.out.println("⚠️ 로그인 세션 있으면");
 
-            UserPaymentBean payment = ApiManagers.get("/user/payment", Map.of(
-                    "user_id", userId
-            ), UserPaymentBean.class).getBody();
+            Map<String, String> requestBody = new HashMap<>();
 
-            model.addAttribute("nickname", user.getNickname());
+            requestBody.put("user_id", Integer.toString(userBean.getUser_id()));
+
+            UserPaymentBean payment = ApiManagers.get("user/payment",
+                    requestBody,
+                    UserPaymentBean.class).getBody();
+
+            model.addAttribute("nickname", userBean.getNickname());
             model.addAttribute("katteMoney", payment.getKatte_money());
             model.addAttribute("point", payment.getPoint());
-            model.addAttribute("isAdmin", user.getIs_admin());
+            model.addAttribute("isAdmin", userBean.getIs_admin());
         }
+
 
         return "Mainpage/Mainpage";
     }
@@ -54,6 +56,4 @@ public class HomeController {
     public String login() {
         return "Loginpage/Login";
     }
-
-
 }
