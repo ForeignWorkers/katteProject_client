@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>상품 검색</title>
+  <style>
+    body {
+      background: #181818;
+      color: white;
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    input, button {
+      padding: 8px;
+      margin-right: 10px;
+    }
+    .result-item {
+      padding: 10px;
+      border-bottom: 1px solid #555;
+      cursor: pointer;
+    }
+    .result-item:hover {
+      background: #333;
+    }
+  </style>
+</head>
+<body>
+<h2>상품 검색</h2>
+
+<input type="text" id="searchInput" placeholder="상품명을 입력하세요" />
+<button onclick="search()">검색</button>
+
+<div id="resultBox"></div>
+
+<script>
+  function search() {
+    const keyword = document.getElementById("searchInput").value;
+
+    fetch(`https://api-katte.jp.ngrok.io/search?keyword=${encodeURIComponent(keyword)}&type=PRODUCT`)
+            .then(res => res.json())
+            .then(data => {
+              const box = document.getElementById("resultBox");
+              box.innerHTML = ""; // 기존 검색결과 비움
+
+              if (data.length === 0) {
+                box.innerHTML = "<p>검색 결과가 없습니다.</p>";
+                return;
+              }
+
+              data.forEach(item => {
+                const div = document.createElement("div");
+                div.className = "result-item";
+                div.innerText = item.product_name;  // ✅ 수정됨
+
+                div.onclick = () => {
+                  // 부모창의 hidden input 값 설정
+                  opener.setProductTag(item.product_name);  // ✅ 수정됨
+
+                  window.close();
+                };
+
+                box.appendChild(div);
+              });
+            });
+  }
+</script>
+</body>
+</html>

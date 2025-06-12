@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Style Detail with Comment Popup</title>
+    <title>Style 등록</title>
     <link rel="stylesheet" href="/css/Stylepage/Style_upload.css" />
 </head>
 <body>
@@ -30,31 +30,134 @@
     </footer>
 </aside>
 
+<div class="div">사진 등록</div>
+<div class="_4">최대 4장 등록</div>
 
-    <div class="rectangle-1692"></div>
-    <div class="rectangle-1691"></div>
-    <div class="rectangle-1689"></div>
-    <div class="rectangle-1693"></div>
-    <div class="div">사진 등록</div>
-    <div class="_4">최대 4장 등록</div>
-    <div class="div2">캡션 추가</div>
-    <div class="div3">상품 태그 등록</div>
-    <div class="div4">해시태그 추가</div>
-    <div class="rectangle-1724"></div>
-    <div class="rectangle-1726"></div>
-    <div class="rectangle-1725"></div>
-    <div class="div5">캡션을 추가하세요</div>
-    <div class="_100">최대 100자 입력 가능</div>
-    <div class="div6">상품명을 입력하세요</div>
-    <div class="_10">최대 10개 가능</div>
-    <div class="div7">해시태그를 추가해 주세요</div>
-    <div class="rectangle-1570"></div>
-    <div class="div8">스타일 등록</div>
-    <img class="btn-1" src="/img/plusbtn.png " />
-    <img class="btn-2" src="/img/plusbtn.png " />
-    <img class="btn-3" src="/img/plusbtn.png " />
-    <img class="btn-4" src="/img/plusbtn.png " />
+<form id="styleForm" action="/styleupload" method="post" enctype="multipart/form-data">
+    <div class="upload-grid">
+        <!-- 업로드 박스 4개 -->
+        <label class="upload-box"><input type="file" name="images" accept="image/*" /><div class="placeholder"><img src="/img/plusbtn.png" alt="+" /></div><button type="button" class="remove">×</button></label>
+        <label class="upload-box"><input type="file" name="images" accept="image/*" /><div class="placeholder"><img src="/img/plusbtn.png" alt="+" /></div><button type="button" class="remove">×</button></label>
+        <label class="upload-box"><input type="file" name="images" accept="image/*" /><div class="placeholder"><img src="/img/plusbtn.png" alt="+" /></div><button type="button" class="remove">×</button></label>
+        <label class="upload-box"><input type="file" name="images" accept="image/*" /><div class="placeholder"><img src="/img/plusbtn.png" alt="+" /></div><button type="button" class="remove">×</button></label>
+    </div>
 
 
+    <div class="input-row">
+
+        <div class="input-box">
+            <label for="style_title">제목 <span class="title-label">(최대 50자 입력 가능)</span></label>
+            <textarea
+                    id="style_title"
+                    name="style_title"
+                    maxlength="50"
+                    placeholder="제목을 추가하세요"
+            ></textarea>
+        </div>
+
+        <div class="input-box">
+            <label for="caption">캡션<span class="sub-label">(최대 100자 입력 가능)</span></label>
+            <textarea id="caption" name="caption" placeholder="캡션을 추가하세요"></textarea>
+        </div>
+        <div class="input-box">
+            <label for="hashtags">해시태그<span class="sub-label">(최대 10개 가능)</span></label>
+            <input type="text" id="hashtags" name="hashtags" placeholder="해시태그를 추가해 주세요" />
+        </div>
+
+
+    </div>
+
+    <div class="tag-box">
+        <label>상품 태그 등록</label>
+        <div id="productTagDisplay">상품명을 검색하세요</div>
+        <button type="button" class="search-popup-btn" onclick="openProductSearch()">검색</button>
+        <input type="hidden" id="productTag" name="productTag" />
+    </div>
+
+    <button type="submit" class="submit-btn">스타일 등록</button>
+</form>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const boxes = document.querySelectorAll('.upload-box');
+        const fileState = [null, null, null, null];
+
+        boxes.forEach((box, idx) => {
+            const input = box.querySelector('input[type=file]');
+            const removeBtn = box.querySelector('.remove');
+
+            input.addEventListener('change', () => {
+                const file = input.files[0];
+                if (!file) return;
+
+                const currentCount = fileState.filter(f => f !== null).length;
+                if (currentCount >= 4) {
+                    alert("최대 4장까지 등록 가능합니다.");
+                    input.value = '';
+                    return;
+                }
+
+                const emptyIndex = fileState.findIndex(f => f === null);
+                if (emptyIndex !== -1) {
+                    fileState[emptyIndex] = file;
+                    updatePreviewUI();
+                }
+
+                input.value = '';
+            });
+
+            removeBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const img = box.querySelector('img.preview');
+                if (img) img.remove();
+                fileState[idx] = null;
+
+                const newState = fileState.filter(f => f !== null);
+                while (newState.length < 4) newState.push(null);
+                for (let i = 0; i < 4; i++) fileState[i] = newState[i];
+
+                updatePreviewUI();
+            });
+        });
+
+        function updatePreviewUI() {
+            boxes.forEach((box, idx) => {
+                box.querySelector('input[type=file]').value = '';
+                const existing = box.querySelector('img.preview');
+                if (existing) existing.remove();
+                box.querySelector('.placeholder').style.display = 'block';
+                box.querySelector('.remove').style.display = 'none';
+
+                const file = fileState[idx];
+                if (file) {
+                    const img = document.createElement('img');
+                    img.className = 'preview';
+                    img.src = URL.createObjectURL(file);
+                    box.appendChild(img);
+                    box.querySelector('.placeholder').style.display = 'none';
+                    box.querySelector('.remove').style.display = 'block';
+                }
+            });
+        }
+    });
+
+    function openProductSearch() {
+        window.open("/product-search-popup", "상품검색");
+    }
+
+    function setProductTag(value) {
+        document.getElementById("productTag").value = value;
+        document.getElementById("productTagDisplay").innerText = value;
+    }
+
+    document.getElementById("styleForm").addEventListener("submit", function (e) {
+        const input = document.getElementById("hashtags");
+        const tags = input.value
+            .split("#")
+            .map(tag => tag.trim())
+            .filter(tag => tag !== "");
+        input.value = JSON.stringify(tags);
+    });
+</script>
 </body>
 </html>
