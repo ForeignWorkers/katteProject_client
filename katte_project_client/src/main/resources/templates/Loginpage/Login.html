@@ -33,17 +33,12 @@
   <a href="/findID" class="findID">ID 찾기</a>
   <a href="/findPW" class="findPW">Password 찾기</a>
 
-  <div class="rectangle-16674"></div>
-  <img class="naverlog" src="/img/naverlog.png" />
-  <a href="/naver" class="naverlogin">네이버로 로그인</a>
-
-  <div class="rectangle-16675"></div>
-  <img class="gglogo" src="/img/gglogo.png" />
-  <a href="/goggle" class="gogglelogin">구글로 로그인</a>
-
-  <div class="rectangle-16676"></div>
-  <img class="kakaologo" src="/img/kakaologo.png" />
-  <a href="/kakao" class="kakaologin">카카오로 로그인</a>
+  <form action="/login/naver" method="GET" class="naver-login-form">
+    <button type="submit" class="naver-login-btn">
+      <img src="/img/naverlog.png" alt="네이버 아이콘" class="naver-icon" />
+      <span class="naver-text">네이버로 로그인</span>
+    </button>
+  </form>
 
   <form action="/signUp" method="GET">
     <div class="rectangle-1668"></div>
@@ -51,4 +46,12 @@
   </form>
 </div>
 </body>
+<script>
+  window.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("signup") === "success") {
+      alert("🎉 회원가입이 완료되었습니다!");
+    }
+  });
+</script>
 </html>

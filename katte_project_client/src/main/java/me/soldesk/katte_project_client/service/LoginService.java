@@ -2,10 +2,18 @@ package me.soldesk.katte_project_client.service;
 
 import common.bean.user.UserBean;
 import me.soldesk.katte_project_client.manager.ApiManagers;
+import org.apache.tomcat.util.json.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -15,6 +23,17 @@ public class LoginService {
 
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
+
+    @Value("${naver.client.id}")
+    private String clientId;
+
+    @Value("${naver.client.secret}")
+    private String clientSecret;
+
+    @Value("${naver.redirect.url}")
+    private String redirectUri;
+
+    private final RestTemplate restTemplate = new RestTemplate();
 
     public boolean signUp(UserBean userBean){
         // 비밀번호 암호화 예시
@@ -92,5 +111,47 @@ public class LoginService {
     // ✅ 비밀번호 암호화
     public String encodePassword(String rawPassword) {
         return passwordEncoder.encode(rawPassword);
+    }
+
+    public NaverUserDTO getUserProfile(String code, String state) {
+
+        // 1. Access Token 요청
+        String tokenUrl = "https://nid.naver.com/oauth2.0/token"
+                + "?grant_type=authorization_code"
+                + "&client_id=" + clientId
+                + "&client_secret=" + clientSecret
+                + "&redirect_uri=" + redirectUri
+                + "&code=" + code
+                + "&state=" + state;
+
+        ResponseEntity<Map> tokenRes = restTemplate.getForEntity(tokenUrl, Map.class);
+        String accessToken = (String) tokenRes.getBody().get("access_token");
+
+        // 2. 사용자 정보 요청
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Authorization", "Bearer " + accessToken);
+        HttpEntity<?> entity = new HttpEntity<>(headers);
+
+        ResponseEntity<Map> userRes = restTemplate.exchange(
+                "https://openapi.naver.com/v1/nid/me",
+                HttpMethod.GET,
+                entity,
+                Map.class
+        );
+
+        Map<String, Object> response = (Map<String, Object>) userRes.getBody().get("response");
+
+        System.out.println(response);
+        // 3. DTO 변환
+        NaverUserDTO user = new NaverUserDTO();
+        user.setEmail((String) response.get("email"));
+        user.setNickname((String) response.get("nickname"));
+        user.setName((String) response.get("name"));
+        user.setId((String) response.get("id"));
+        user.setPhoneNumber((String) response.get("mobile"));
+        user.setBirthday((String) response.get("birthday"));
+        user.setBirthyear((String) response.get("birthyear"));
+
+        return user;
     }
 }

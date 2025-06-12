@@ -1,23 +1,26 @@
 package me.soldesk.katte_project_client.controller;
 
 import common.bean.user.UserBean;
+import common.util.NicknameGenerator;
 import jakarta.servlet.http.HttpSession;
-import lombok.ToString;
 import me.soldesk.katte_project_client.service.LoginService;
+import me.soldesk.katte_project_client.service.NaverUserDTO;
 import me.soldesk.katte_project_client.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.PropertySource;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 public class LoginController {
@@ -30,9 +33,21 @@ public class LoginController {
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
+    //로그인 페이지로 이동
+    @GetMapping("/login")
+    public String login(HttpSession session) {
+        if (session.getAttribute("currentUser") != null) {
+            return "redirect:/";
+        }
+        return "Loginpage/Login";
+    }
 
     @GetMapping("/signUp")
-    public String signUp(Model model) {
+    public String signUp(Model model,HttpSession session) {
+        if (session.getAttribute("currentUser") != null) {
+            return "redirect:/";
+        }
+
         model.addAttribute("apiBaseUrl", "https://api-katte.jp.ngrok.io");
         return "Signuppage/Signup";
     }
@@ -45,10 +60,12 @@ public class LoginController {
             @RequestParam("birthMonth") int birthMonth,
             @RequestParam("birthDay") int birthDay,
             @RequestParam("nickname") String nickname,
-            @RequestParam(value = "terms", required = false) List<String> terms,
+            @RequestParam(value = "over14", required = false) String over14,
+            @RequestParam(value = "terms1", required = false) String terms1,
+            @RequestParam(value = "terms2", required = false) String terms2,
+            @RequestParam(value = "terms3", required = false) String terms3,
             Model model
     ) {
-        System.out.println("signUp_pro In");
         // 🎯 생년월일 조합
         LocalDate birth = LocalDate.of(birthYear, birthMonth, birthDay);
         Date birthDate = java.sql.Date.valueOf(birth);
@@ -66,33 +83,20 @@ public class LoginController {
         System.out.println("✅ 사용자 pass: " + password);
         System.out.println("✅ 사용자 생년월일: " + birthDate);
         System.out.println("✅ 사용자 닉네임: " + nickname);
-        System.out.println("✅ 약관 목록: " + terms);
 
         loginService.signUp(user);
 
         UserBean userBean = userService.getUserByEmail(email);
         if (userBean != null) {
             String user_id = Integer.toString(userBean.getUser_id());
-            for (int i = 0; i < terms.size(); i++) {
-                switch (i) {
-                    case 0:
-                        loginService.addUserTerm(user_id,101, terms.get(i).equals("on"));
-                        break;
-                    case 1:
-                        loginService.addUserTerm(user_id,102, terms.get(i).equals("on"));
-                        break;
-                    case 2:
-                        loginService.addUserTerm(user_id,103, terms.get(i).equals("on"));
-                        break;
-                    case 3:
-                        loginService.addUserTerm(user_id,201, terms.get(i).equals("on"));
-                        break;
 
-                }
+            loginService.addUserTerm(user_id,101, over14.equals("on"));
+            loginService.addUserTerm(user_id,102, terms1.equals("on"));
+            loginService.addUserTerm(user_id,103, terms2.equals("on"));
+            if(terms3 != null) loginService.addUserTerm(user_id,201, terms3.equals("on"));
             }
-        }
 
-        return "Loginpage/Login";
+        return "redirect:/login?signup=success";
     }
 
     @PostMapping("/login")
@@ -111,5 +115,71 @@ public class LoginController {
             model.addAttribute("loginError", "아이디 또는 비밀번호가 일치하지 않습니다.");
             return "Loginpage/Login";
         }
+    }
+
+    @GetMapping("/login/oauth2/naver")
+    public String naverCallback(@RequestParam String code,
+                                @RequestParam String state,
+                                HttpSession session,
+                                Model model) {
+
+        NaverUserDTO naverUser = loginService.getUserProfile(code, state);
+
+        System.out.println("naverCallback In :" + naverUser);
+
+        if (naverUser == null || naverUser.getEmail() == null) {
+            model.addAttribute("loginError", "네이버 로그인 실패");
+            return "Loginpage/Login";
+        }
+
+        // 1. 이미 가입된 유저인지 확인
+        UserBean user = userService.getUserByEmail(naverUser.getEmail());
+        System.out.println("naverCallback In :" + user);
+
+        if (user == null) {
+            user = new UserBean();
+            user.setEmail_id(naverUser.getEmail());
+            user.setIs_admin(false);
+            user.setPassword(naverUser.getId());
+
+            try {
+                String birthday = naverUser.getBirthday(); // ex) "06-30"
+                if (birthday != null && naverUser.getBirthyear() != null) {
+                    String formatted = birthday.replace("-", ""); // "0630"
+                    String birthStr = naverUser.getBirthyear() + "-" + formatted.substring(0, 2) + "-" + formatted.substring(2); // "1994-06-30"
+                    user.setBirth_date(java.sql.Date.valueOf(birthStr));
+                }
+            } catch (Exception e) {
+                System.out.println("⚠️ 생년월일 파싱 실패: " + e.getMessage());
+            }
+
+            //닉네임 세팅
+            user.setNickname(NicknameGenerator.generateRandomString(naverUser.getNickname()));
+
+            user.setRegistration_date(new Date());
+
+            loginService.signUp(user); // ⚠️ 여기서 /user API로 POST
+        }
+
+        // 3. 로그인 처리
+        session.setAttribute("currentUser", user);
+        return "redirect:/main";
+    }
+
+    @Value("${naver.client.id}")
+    private String clientId;
+
+    @Value("${naver.redirect.url}")
+    private String redirectUri;
+
+    @GetMapping("/login/naver")
+    public String redirectToNaver() {
+        String state = UUID.randomUUID().toString();  // CSRF 방지용 랜덤값
+        String url = "https://nid.naver.com/oauth2.0/authorize" +
+                "?response_type=code" +
+                "&client_id=" + clientId +
+                "&redirect_uri=" + URLEncoder.encode(redirectUri, StandardCharsets.UTF_8) +
+                "&state=" + state;
+        return "redirect:" + url;
     }
 }

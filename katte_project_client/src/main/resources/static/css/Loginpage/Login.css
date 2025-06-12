@@ -580,3 +580,48 @@ html, body {
   top: 442px;
   left: 815px;
 }
+
+.naver-login-form {
+  position: absolute;
+  left: 727.6px;
+  top: 626.45px;
+  width: 425px;
+  height: 59.5px;
+  background: #181818;
+  border: 1.7px solid #ccc9c9;
+  border-radius: 34px;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+}
+
+.naver-login-btn {
+  width: 100%;
+  height: 100%;
+  padding: 0 20px;
+  margin: 0;
+  background: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #f9eeee;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.naver-icon {
+  width: 42.5px;
+  height: 42.5px;
+  margin-right: 12px;
+  flex-shrink: 0;
+}
+
+.naver-text {
+  display: inline-block;
+  white-space: nowrap;
+  font-size: 20px;
+  line-height: 1;
+}
