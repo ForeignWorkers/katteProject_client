@@ -1,5 +1,6 @@
 package me.soldesk.katte_project_client.service;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import common.bean.cs.CsAnnounceBean;
 import common.bean.cs.CsFaqBean;
 import me.soldesk.katte_project_client.manager.ApiManagers;
@@ -23,11 +24,12 @@ public class CsCenterService {
         Map<String, String> params = new HashMap<String, String>();
         params.put("count", String.valueOf(count));
         params.put("offset", String.valueOf(offset));
+        TypeReference<List<CsAnnounceBean>> ref = new TypeReference<>() {};
 
-        ResponseEntity<CsAnnounceBean[]> response = ApiManagers.get("cs", params, CsAnnounceBean[].class);
+        ResponseEntity<List<CsAnnounceBean>> response = ApiManagers.get("cs", params, ref);
 
         if (ApiManagers.isSuccessful(response) && response.getBody() != null) {
-            return Arrays.asList(response.getBody());
+            return response.getBody();
         } else {
             throw new RuntimeException("공지사항 목록을 불러오는 데 실패했습니다.");
         }
@@ -39,11 +41,12 @@ public class CsCenterService {
         System.out.println("단일 정보 서비스 탔어요");
         Map<String, String> params = new HashMap<>();
         params.put("announce_id", String.valueOf(announce_id));
+        TypeReference<List<CsAnnounceBean>> ref = new TypeReference<>() {};
 
-        ResponseEntity<CsAnnounceBean[]> response = ApiManagers.get("cs", params, CsAnnounceBean[].class);
+        ResponseEntity<List<CsAnnounceBean>> response = ApiManagers.get("cs", params, ref);
 
-        if (ApiManagers.isSuccessful(response) && response.getBody() != null && response.getBody().length > 0) {
-            return response.getBody()[0];
+        if (ApiManagers.isSuccessful(response) && response.getBody() != null && response.getBody().size() > 0) {
+            return response.getBody().get(0);
         } else {
             throw new RuntimeException("해당 공지사항을 찾을 수 없습니다.");
         }
@@ -52,7 +55,9 @@ public class CsCenterService {
     //공지 작성
     public String postAnnounce(CsAnnounceBean bean) {
         System.out.println("공지 작성 서비스 탔어요");
-        ResponseEntity<String> response = ApiManagers.post("cs/post", bean, String.class);
+        TypeReference<String> ref = new TypeReference<>() {};
+
+        ResponseEntity<String> response = ApiManagers.post("cs/post", bean, ref);
         if (ApiManagers.isSuccessful(response)) {
             return response.getBody();
         } else {
@@ -65,8 +70,9 @@ public class CsCenterService {
         System.out.println("공지 삭제 서비스 탔어요");
         Map<String, Integer> requestBody = new HashMap<>();
         requestBody.put("announce_id", announce_id);
+        TypeReference<String> ref = new TypeReference<>() {};
 
-        ResponseEntity<String> response = ApiManagers.deleteBody("cs/del", requestBody, String.class);
+        ResponseEntity<String> response = ApiManagers.deleteBody("cs/del", requestBody, ref);
 
         if (!ApiManagers.isSuccessful(response)) {
             throw new RuntimeException("공지 삭제에 실패했습니다. 상태 코드: " + response.getStatusCode());
@@ -85,11 +91,12 @@ public class CsCenterService {
         Map<String, String> params = new HashMap<String, String>();
         params.put("count", String.valueOf(count));
         params.put("offset", String.valueOf(offset));
+        TypeReference<List<CsFaqBean>> ref = new TypeReference<>() {};
 
-        ResponseEntity<CsFaqBean[]> response = ApiManagers.get("cs/faq", params, CsFaqBean[].class);
+        ResponseEntity<List<CsFaqBean>> response = ApiManagers.get("cs/faq", params, ref);
 
         if (ApiManagers.isSuccessful(response) && response.getBody() != null) {
-            return Arrays.asList(response.getBody());
+            return response.getBody();
         } else {
             throw new RuntimeException("자주 묻는 질문 목록을 불러오는 데 실패했습니다.");
         }
@@ -102,10 +109,11 @@ public class CsCenterService {
         Map<String, String> params = new HashMap<>();
         params.put("faq_id", String.valueOf(faq_id));
 
-        ResponseEntity<CsFaqBean[]> response = ApiManagers.get("cs/faq", params, CsFaqBean[].class);
+        TypeReference<List<CsFaqBean>> ref = new TypeReference<>() {};
 
-        if (ApiManagers.isSuccessful(response) && response.getBody() != null && response.getBody().length > 0) {
-            return response.getBody()[0];
+        ResponseEntity<List<CsFaqBean>> response = ApiManagers.get("cs/faq", params, ref);
+        if (ApiManagers.isSuccessful(response) && response.getBody() != null && !response.getBody().isEmpty()) {
+            return response.getBody().get(0);
         } else {
             throw new RuntimeException("해당 공지사항을 찾을 수 없습니다.");
         }
@@ -114,7 +122,9 @@ public class CsCenterService {
     //공지 작성
     public String postFaq(CsFaqBean bean) {
         System.out.println("faq 작성 서비스 탔어요");
-        ResponseEntity<String> response = ApiManagers.post("cs/faq/post", bean, String.class);
+        TypeReference<String> ref = new TypeReference<>() {};
+
+        ResponseEntity<String> response = ApiManagers.post("cs/faq/post", bean, ref);
         if (ApiManagers.isSuccessful(response)) {
             return response.getBody();
         } else {
@@ -127,8 +137,9 @@ public class CsCenterService {
         System.out.println("faq 삭제 서비스 탔어요");
         Map<String, Integer> requestBody = new HashMap<>();
         requestBody.put("faq_id", faq_id);
+        TypeReference<String> ref = new TypeReference<>() {};
 
-        ResponseEntity<String> response = ApiManagers.deleteBody("cs/faq/del", requestBody, String.class);
+        ResponseEntity<String> response = ApiManagers.deleteBody("cs/faq/del", requestBody, ref);
 
         if (!ApiManagers.isSuccessful(response)) {
             throw new RuntimeException("faq 삭제에 실패했습니다. 상태 코드: " + response.getStatusCode());

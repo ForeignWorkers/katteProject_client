@@ -1,5 +1,6 @@
 package me.soldesk.katte_project_client.Advice;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import common.bean.user.UserBean;
 import common.bean.user.UserPaymentBean;
 import jakarta.servlet.http.HttpSession;
@@ -27,15 +28,19 @@ public class GlobalLoginInfoAdvice {
             System.out.println(" email = " + email);
 
             try {
+                TypeReference<UserBean> ref = new TypeReference<>() {};
+
                 // 최신 유저 정보 조회 (선택: 생략 가능)
-                UserBean refreshedUser = ApiManagers.get("/user", Map.of(
+                UserBean refreshedUser = ApiManagers.get("user", Map.of(
                         "user_id", userId,
                         "email_id", email
-                ), UserBean.class).getBody();
+                ), ref).getBody();
 
-                UserPaymentBean payment = ApiManagers.get("/user/payment", Map.of(
+                TypeReference<UserPaymentBean> refPay = new TypeReference<>() {};
+
+                UserPaymentBean payment = ApiManagers.get("user/payment", Map.of(
                         "user_id", userId
-                ), UserPaymentBean.class).getBody();
+                ), refPay).getBody();
 
                 if (refreshedUser != null) {
                     model.addAttribute("nickname", refreshedUser.getNickname());

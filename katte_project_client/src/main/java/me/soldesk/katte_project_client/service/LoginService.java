@@ -1,5 +1,6 @@
 package me.soldesk.katte_project_client.service;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import common.bean.user.UserBean;
 import me.soldesk.katte_project_client.manager.ApiManagers;
 import org.apache.tomcat.util.json.JSONParser;
@@ -39,12 +40,13 @@ public class LoginService {
         // 비밀번호 암호화 예시
         String encoded = encodePassword(userBean.getPassword());
         userBean.setPassword(encoded); // 암호화된 비밀번호로 덮어쓰기
+        TypeReference<String> ref = new TypeReference<>() {};
 
         // ✅ 객체 자체를 바디로 전송
         ResponseEntity<String> result = ApiManagers.post(
                 "user",
                 userBean,
-                String.class
+                ref
         );
 
         if (ApiManagers.isSuccessful(result)) {
@@ -61,12 +63,13 @@ public class LoginService {
         Map<String, String> requestBody = new HashMap<>();
         requestBody.put("email_id", email);
         requestBody.put("password", rawPassword);
+        TypeReference<Boolean> ref = new TypeReference<>() {};
 
         // POST 요청 실행
         ResponseEntity<Boolean> result = ApiManagers.post(
                 "user/login",
                 requestBody,
-                Boolean.class
+                ref
         );
 
         if (ApiManagers.isSuccessful(result)) {
@@ -86,12 +89,13 @@ public class LoginService {
         requestBody.put("user_id", user_id);
         requestBody.put("term_code", String.valueOf(term_code));
         requestBody.put("is_agreed", String.valueOf(is_agreed));
+        TypeReference<String> ref = new TypeReference<>() {};
 
         // ✅ 객체 자체를 바디로 전송
         ResponseEntity<String> result = ApiManagers.post(
                 "/user/terms",
                 requestBody,
-                String.class
+                ref
         );
 
         if (ApiManagers.isSuccessful(result)) {

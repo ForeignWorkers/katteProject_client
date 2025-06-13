@@ -36,10 +36,11 @@ public class HomeController {
             Map<String, String> requestBody = new HashMap<>();
 
             requestBody.put("user_id", Integer.toString(userBean.getUser_id()));
+            TypeReference<UserPaymentBean> ref = new TypeReference<>(){};
 
             UserPaymentBean payment = ApiManagers.get("user/payment",
                     requestBody,
-                    UserPaymentBean.class).getBody();
+                                ref).getBody();
 
             model.addAttribute("nickname", userBean.getNickname());
             model.addAttribute("katteMoney", payment.getKatte_money());

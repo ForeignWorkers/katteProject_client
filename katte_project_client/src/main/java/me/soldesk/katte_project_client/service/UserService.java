@@ -1,5 +1,6 @@
 package me.soldesk.katte_project_client.service;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import common.bean.user.UserBean;
 import me.soldesk.katte_project_client.manager.ApiManagers;
 import org.springframework.http.ResponseEntity;
@@ -17,11 +18,12 @@ public class UserService {
 
             requestBody.put("user_id", null);
             requestBody.put("email_id", email);
+            TypeReference<UserBean> ref = new TypeReference<>() {};
 
             ResponseEntity<UserBean> result = ApiManagers.get(
                     "user",
                     requestBody,
-                    UserBean.class
+                    ref
             );
 
             if (ApiManagers.isSuccessful(result)) {
