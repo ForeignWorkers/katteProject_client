@@ -18,7 +18,7 @@ public class ApiManagers {
 
     private static final ObjectMapper objectMapper = new ObjectMapper();
 
-    private static final String BASE_URL = "http://localhost:9000/";
+    private static final String BASE_URL = "https://api-katte.jp.ngrok.io/";
 
     public static <T> ResponseEntity<T> get(String path, Map<String, String> queryParams, Class<T> responseType) {
         try {
