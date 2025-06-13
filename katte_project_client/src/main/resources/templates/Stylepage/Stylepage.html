@@ -1,127 +1,107 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+  <meta charset="UTF-8">
+  <title>Insert title here</title>
 </head>
 <link rel="stylesheet" href="/css/Stylepage/Stylepage.css" />
 <body>
-<aside class="sidebar">
-  <a href="/main">
-  <img class="logo-1" src="/img/logo%20(1).png" alt="로고" />
-  </a>
-  <nav class="sidebar-nav">
-    <ul>
-      <li><a href="/search">검색</a></li>
-      <li><a href="/explore">탐색</a></li>
-      <li><a href="/sell">판매등록</a></li>
-      <li><a href="/wishlist">관심상품</a></li>
-      <li><a href="/style">스타일</a></li>
-      <li><a href="/mypage">마이페이지</a></li>
-      <li><a href="/support">고객센터</a></li>
-    </ul>
-  </nav>
-  <div class="login-area">
-    <a href="/login" class="btn-login">로그인</a>
-  </div>
-  <footer class="sidebar-footer">
-    <p><a href="/support">고객센터</a> | <a href="/terms">이용약관</a></p>
-    <small>&copy; All copyright in soldesk</small>
-  </footer>
-</aside>
+<link rel="stylesheet" href="/css/fragments/Sidebar.css" /> <!-- 사이드바 HTML 분리 -->
+<div th:replace="Fragments/Sidebar :: sidebar"></div>
 
 <div class="wraaper">
-<div class="group-776">
-    <div class="div13">#썸머룩</div>
-    <div class="div14">#반팔코디</div>
-    <div class="div15">#여름코디</div>
-    <div class="div16">#최애신발</div>
-    <div class="div17">#아디다스_코디</div>
-    <div class="div18">#오오티디</div>
-    <div class="div19">#덥다</div>
-    <div class="div20">#느좋</div>
-    <div class="new">#New</div>
-  </div>
-  <div class="_1">
+
+  <section class="today-hashtags">
+    <h2>오늘의 해시태그</h2>
+    <div class="hashtags">
+      <span class="tag">#썸머룩</span>
+      <span class="tag">#반팔코디</span>
+      <span class="tag">#여름코디</span>
+      <span class="tag">#최애신발</span>
+      <span class="tag">#오오티디</span>
+      <span class="tag">#덥다</span>
+      <span class="tag">#느좋</span>
+      <span class="tag">#New</span>
+    </div>
+  </section>
+
     <img class="image-120" src="image-1200.png" />
     <div class="jhyem-17">Jhyem17</div>
-      <div class="div22">
-        <img class="mask-group" src="mask-group0.svg" />
-        <div class="_23">23</div>
-      </div>
-      <div class="_5">#5뭐입챌린지 #슈프림 #스폰지밥 #롱슬리브</div>
-      <img class="image-116" src="/img/image%20116.png" />
+    <div class="div22">
+      <img class="mask-group" src="mask-group0.svg" />
+      <div class="_23">23</div>
+    <div class="_5">#5뭐입챌린지 #슈프림 #스폰지밥 #롱슬리브</div>
+    <img class="image-116" src="/img/image%20116.png" />
   </div>
-  <div class="_2">
+
     <div class="group-972">
       <img class="image-118" src="image-1180.png" />
       <div class="min-x-ili-0">min_x_ili_0</div>
     </div>
-    <div class="div23">
+
       <div class="_72">72</div>
       <img class="mask-group2" src="mask-group1.svg" />
       <div class="div24">성수나들이</div>
-    </div>
+
     <img class="image-117" src="image-1170.png" />
-  </div>
-  <div class="_3">
+
+
     <div class="div25">#오오티디 #여름코디</div>
     <img class="image-121" src="image-1210.png" />
     <div class="_232">23</div>
     <img class="mask-group3" src="mask-group2.svg" />
     <img class="image-1202" src="image-1201.png" />
     <div class="kyoue-dees-12">kyoue_dees12</div>
-  </div>
-  <div class="_4">
+
     <img class="image-122" src="image-1220.png" />
     <img class="mask-group4" src="mask-group3.svg" />
     <img class="image-123" src="image-1230.png" />
     <div class="newjeans-we">newjeans_we</div>
     <div class="div26">
       <div class="_233">23</div>
-    </div>
-    <div class="div27">#거울샷 #셀카</div>
-  </div>
-  
-    <img class="image-119" src="image-1190.png" />
-    <div class="jhyem-172">Jhyem17</div>
-    <div class="group-970">
-      <div class="div22">
-        <img class="mask-group5" src="mask-group4.svg" />
-        <div class="_234">23</div>
-      </div>
-      <div class="_52">#5뭐입챌린지 #슈프림 #스폰지밥 #롱슬리브</div>
-      <img class="image-1162" src="image-1161.png" />
 
-  </div>
-  
-    <img class="image-1182" src="image-1181.png" />
-    <div class="min-x-ili-02">min_x_ili_0</div>
-    <div class="div23">
-      <div class="_722">72</div>
-      <img class="mask-group6" src="mask-group5.svg" />
-      <div class="div28">성수나들이</div>
+    <div class="div27">#거울샷 #셀카</div>
+
+
+  <img class="image-119" src="image-1190.png" />
+  <div class="jhyem-172">Jhyem17</div>
+
+    <div class="div22">
+      <img class="mask-group5" src="mask-group4.svg" />
+      <div class="_234">23</div>
+
+    <div class="_52">#5뭐입챌린지 #슈프림 #스폰지밥 #롱슬리브</div>
+    <img class="image-1162" src="image-1161.png" />
+
+
+
+  <img class="image-1182" src="image-1181.png" />
+  <div class="min-x-ili-02">min_x_ili_0</div>
+
+    <div class="_722">72</div>
+    <img class="mask-group6" src="mask-group5.svg" />
+    <div class="div28">성수나들이</div>
 
     <img class="image-1172" src="image-1171.png" />
-  </div>
 
-    <div class="div29">#오오티디 #여름코디</div>
-    <img class="image-1212" src="image-1211.png" />
-    <div class="_235">23</div>
-    <img class="mask-group7" src="mask-group6.svg" />
-    <img class="image-1203" src="image-1202.png" />
-    <div class="kyoue-dees-122">kyoue_dees12</div>
-  </div>
 
-    <img class="image-1222" src="image-1221.png" />
-    <img class="mask-group8" src="mask-group7.svg" />
-    <img class="image-1232" src="image-1231.png" />
-    <div class="newjeans-we2">newjeans_we</div>
-    <div class="div26">
-      <div class="_236">23</div>
-    </div>
-    <div class="div30">#거울샷 #셀카</div>
-  </div>
+  <div class="div29">#오오티디 #여름코디</div>
+  <img class="image-1212" src="image-1211.png" />
+  <div class="_235">23</div>
+  <img class="mask-group7" src="mask-group6.svg" />
+  <img class="image-1203" src="image-1202.png" />
+  <div class="kyoue-dees-122">kyoue_dees12</div>
+
+
+<img class="image-1222" src="image-1221.png" />
+<img class="mask-group8" src="mask-group7.svg" />
+<img class="image-1232" src="image-1231.png" />
+<div class="newjeans-we2">newjeans_we</div>
+
+  <div class="_236">23</div>
+
+<div class="div30">#거울샷 #셀카</div>
+
 </div>
 </body>
 </html>

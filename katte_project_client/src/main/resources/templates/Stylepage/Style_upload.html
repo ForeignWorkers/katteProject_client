@@ -1,60 +1,188 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Style Detail with Comment Popup</title>
+    <title>Style 등록</title>
+    <link rel="stylesheet" href="/css/fragments/Sidebar.css" />
     <link rel="stylesheet" href="/css/Stylepage/Style_upload.css" />
 </head>
 <body>
-<aside class="sidebar">
-    <a href="/main">
-        <img class="logo-1" src="/img/logo%20(1).png" alt="로고" />
-    </a>
-    <nav class="sidebar-nav">
-        <ul>
-            <li><a href="/search">검색</a></li>
-            <li><a href="/explore">탐색</a></li>
-            <li><a href="/sell">판매등록</a></li>
-            <li><a href="/wishlist">관심상품</a></li>
-            <li><a href="/style">스타일</a></li>
-            <li><a href="/mypage">마이페이지</a></li>
-            <li><a href="/support">고객센터</a></li>
-        </ul>
-    </nav>
-    <div class="login-area">
-        <a href="/login" class="btn-login">로그인</a>
-    </div>
-    <footer class="sidebar-footer">
-        <p><a href="/support">고객센터</a> | <a href="/terms">이용약관</a></p>
-        <small>&copy; All copyright in soldesk</small>
-    </footer>
-</aside>
+<!-- 사이드바 분리 -->
+
+<div th:replace="~{Fragments/Sidebar :: sidebar}"></div>
+
+<form id="styleForm" action="/styleupload" method="post" enctype="multipart/form-data">
+    <!-- ─────────────────────────────────────────────── -->
+    <!-- ▶ 여기에만 header-row 추가 -->
+    <div class="header-row">
+        <div class="page-title">사진 등록</div>
+        <div class="limit-label">최대 4장 등록</div>
+        <button type="button" class="upload-btn" onclick="realUpload.click()">사진 선택</button>
+        <!-- 1) 실제 전송용 파일 input (숨김) -->
+        <input type="file" id="realUpload" name="images" accept="image/*" multiple style="display:none" />
+        <!-- 2) 미리보기 박스 4개 -->
+        <div class="upload-grid">
+            <label class="upload-box" data-idx="0">
+                <div class="placeholder">+</div>
+                <img class="preview" style="display:none;" />
+                <button type="button" class="remove" style="display:none;">×</button>
+            </label>
+            <label class="upload-box" data-idx="1">
+                <div class="placeholder">+</div>
+                <img class="preview" style="display:none;" />
+                <button type="button" class="remove" style="display:none;">×</button>
+            </label>
+            <label class="upload-box" data-idx="2">
+                <div class="placeholder">+</div>
+                <img class="preview" style="display:none;" />
+                <button type="button" class="remove" style="display:none;">×</button>
+            </label>
+            <label class="upload-box" data-idx="3">
+                <div class="placeholder">+</div>
+                <img class="preview" style="display:none;" />
+                <button type="button" class="remove" style="display:none;">×</button>
+            </label>
+        </div>
 
 
-    <div class="rectangle-1692"></div>
-    <div class="rectangle-1691"></div>
-    <div class="rectangle-1689"></div>
-    <div class="rectangle-1693"></div>
-    <div class="div">사진 등록</div>
-    <div class="_4">최대 4장 등록</div>
-    <div class="div2">캡션 추가</div>
-    <div class="div3">상품 태그 등록</div>
-    <div class="div4">해시태그 추가</div>
-    <div class="rectangle-1724"></div>
-    <div class="rectangle-1726"></div>
-    <div class="rectangle-1725"></div>
-    <div class="div5">캡션을 추가하세요</div>
-    <div class="_100">최대 100자 입력 가능</div>
-    <div class="div6">상품명을 입력하세요</div>
-    <div class="_10">최대 10개 가능</div>
-    <div class="div7">해시태그를 추가해 주세요</div>
-    <div class="rectangle-1570"></div>
-    <div class="div8">스타일 등록</div>
-    <img class="btn-1" src="/img/plusbtn.png " />
-    <img class="btn-2" src="/img/plusbtn.png " />
-    <img class="btn-3" src="/img/plusbtn.png " />
-    <img class="btn-4" src="/img/plusbtn.png " />
+        <div class="input-row">
 
+            <div class="input-box">
+                <label for="style_title">제목 <span class="title-label">(최대 50자 입력 가능)</span></label>
+                <textarea id="style_title" name="style_title" maxlength="50" placeholder="제목을 추가하세요"></textarea>
+            </div>
 
+            <div class="input-box">
+                <label for="caption">캡션<span class="sub-label">(최대 100자 입력 가능)</span></label>
+                <textarea id="caption" name="caption" maxlength="100" placeholder="캡션을 추가하세요"></textarea>
+            </div>
+            <div class="input-box">
+                <label for="hashtags">해시태그<span class="sub-label">(최대 10개 가능)</span></label>
+                <input type="text" id="hashtags" name="hashtags" placeholder="해시태그를 추가해 주세요" />
+            </div>
+
+        </div>
+
+        <div class="tag-box">
+            <label>상품 태그 등록</label>
+            <div id="productTagDisplay">상품명을 검색하세요</div>
+            <button type="button" class="search-popup-btn" onclick="openProductSearch()">검색</button>
+            <input type="hidden" id="productTag" name="productTag" />
+        </div>
+
+        <button type="submit" class="submit-btn">스타일 등록</button>
+</form>
+
+    <script>
+
+        const realUpload = document.getElementById('realUpload');
+        window.realUpload = realUpload;
+        const boxes = document.querySelectorAll('.upload-box');
+        const fileState = [null, null, null, null];
+
+        realUpload.addEventListener('change', () => {
+            // 1) 새로 선택된 파일 목록
+            const newFiles = Array.from(realUpload.files);
+
+            // 2) 빈 슬롯을 찾아 차례로 채우기 (최대 4장까지)
+            newFiles.forEach(file => {
+                const emptyIdx = fileState.findIndex(f => f === null);
+                if (emptyIdx !== -1) {
+                    fileState[emptyIdx] = file;
+                }
+            });
+
+            // 3) 화면 갱신 & 실제 input 동기화
+            updatePreviewUI();
+            syncRealUploadFiles();
+
+            // 4) 같은 파일 재선택 시 change 이벤트가 다시 트리거되도록 초기화
+            realUpload.value = '';
+        });
+
+        // 2) X버튼 클릭 시 해당 파일 삭제
+        boxes.forEach(box => {
+            const idx = Number(box.dataset.idx);
+            const removeBtn = box.querySelector('.remove');
+            removeBtn.addEventListener('click', () => {
+                fileState[idx] = null;
+                syncRealUploadFiles();
+                updatePreviewUI();
+            });
+        });
+
+        // 3) 미리보기 UI 업데이트
+        function updatePreviewUI() {
+            boxes.forEach((box, idx) => {
+                const file = fileState[idx];
+                const imgEl = box.querySelector('img.preview');
+                const placeholder = box.querySelector('.placeholder');
+                const removeBtn = box.querySelector('.remove');
+
+                if (file) {
+                    imgEl.src = URL.createObjectURL(file);
+                    imgEl.style.display = 'block';
+                    placeholder.style.display = 'none';
+                    removeBtn.style.display = 'inline';
+                } else {
+                    imgEl.style.display = 'none';
+                    placeholder.style.display = 'flex';
+                    removeBtn.style.display = 'none';
+                }
+            });
+        }
+        // 4) DataTransfer로 realUpload.files 동기화
+        function syncRealUploadFiles() {
+            const dt = new DataTransfer();
+            fileState.filter(f => f).forEach(f => dt.items.add(f));
+            realUpload.files = dt.files;
+        }
+
+        // 5) 폼 제출 전 마지막 동기화 & 검증 & 해시태그 JSON 변환
+        document.getElementById('styleForm').addEventListener('submit', (e) => {
+            // 파일 배열 동기화
+            syncRealUploadFiles();
+
+            // 사진 최소 1장 업로드 확인
+            if (realUpload.files.length === 0) {
+                e.preventDefault();
+                alert('사진을 최소 1장 업로드해주세요.');
+                return;
+            }
+
+            // 상품 태그 선택 확인
+            const productTagValue = document.getElementById('productTag').value;
+            if (!productTagValue) {
+                e.preventDefault();
+                alert('상품을 태그해주세요.');
+                return;
+            }
+
+            // 해시태그 파싱 & 개수 검증
+            const input = document.getElementById('hashtags');
+            const tags = input.value
+                .split('#')
+                .map(t => t.trim())
+                .filter(t => t);
+
+            if (tags.length > 10) {
+                e.preventDefault();
+                alert('해시태그는 최대 10개까지만 입력할 수 있습니다.');
+                return;
+
+            }
+            input.value = JSON.stringify(tags);
+        });
+
+        function openProductSearch() {
+            window.open('/product-search-popup', '상품검색');
+        }
+
+        function setStyleTag(name, id) {
+            document.getElementById("productTag").value = id;
+            document.getElementById("productTagDisplay").innerText = name;
+        }
+
+    </script>
 </body>
 </html>
