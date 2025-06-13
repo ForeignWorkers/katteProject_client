@@ -1,3 +1,10 @@
+@charset "UTF-8";
+.wrapper {
+    transform-origin: top left;
+    width: 100%;
+    min-height: 83vh; /* 100vh * 0.83 */
+}
+
 html, body {
     margin: 0;
     padding: 0;
@@ -87,51 +94,6 @@ html, body {
     margin: 0;
 }
 
-.rectangle-1692 {
-    background: #181818;
-    border-style: solid;
-    border-color: #f9eeee;
-    border-width: 1px;
-    width: 234.45px;
-    height: 275px;
-    position: absolute;
-    left: 798px;
-    top: 104px;
-}
-.rectangle-1691 {
-    background: #181818;
-    border-style: solid;
-    border-color: #f9eeee;
-    border-width: 1px;
-    width: 234.45px;
-    height: 275px;
-    position: absolute;
-    left: 397px;
-    top: 104px;
-}
-.rectangle-1689 {
-    background: #181818;
-    border-style: solid;
-    border-color: #f9eeee;
-    border-width: 1px;
-    width: 234.45px;
-    height: 275px;
-    position: absolute;
-    left: 1598.55px;
-    top: 104px;
-}
-.rectangle-1693 {
-    background: #181818;
-    border-style: solid;
-    border-color: #f9eeee;
-    border-width: 1px;
-    width: 234.45px;
-    height: 275px;
-    position: absolute;
-    left: 1198.03px;
-    top: 104px;
-}
-
 .div {
     color: #ffffff;
     text-align: left;
@@ -157,6 +119,92 @@ html, body {
     left: 483px;
     top: 62px;
     width: 69px;
+    height: 23px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+
+.upload-grid {
+    display: flex;
+    gap: 166px;
+    margin-left: 400px;
+    margin-top: 88px;
+}
+.upload-box {
+    position: relative;
+    width: 200px;
+    height: 234px;
+    border: 1px solid #f9eeee;
+    background: #181818;
+    cursor: pointer;
+}
+
+.upload-box input[type="file"] {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+}
+.upload-box .placeholder,
+.upload-box img.preview {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 90%;
+    max-height: 90%;
+}
+.upload-box button.remove {
+    position: absolute;
+    top: 4px; right: 4px;
+    background: rgba(0,0,0,0.5);
+    border: none;
+    color: #fff;
+    font-size: 18px;
+    display: none;
+    cursor: pointer;
+}
+
+.submit-btn {
+    display: block;
+    padding: 10px 30px;
+    font-size: 18px;
+    background: #eeeeee;
+    color: #464444;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    margin-top: 95px;
+    margin-left: 989px;
+}
+
+
+.div {
+    color: #ffffff;
+    text-align: left;
+    font-family: "LineSeedSansKr-Bold", sans-serif;
+    font-size: 20px;
+    line-height: 40px;
+    font-weight: 700;
+    position: absolute;
+    left: 397px;
+    top: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+._4 {
+    color: #ffffff;
+    text-align: left;
+    font-family: "LineSeedSansKr-Thin", sans-serif;
+    font-size: 12px;
+    line-height: 40px;
+    font-weight: 100;
+    position: absolute;
+    left: 483px;
+    top: 62px;
+    width: 80px;
     height: 23px;
     display: flex;
     align-items: center;
@@ -204,42 +252,7 @@ html, body {
     align-items: center;
     justify-content: flex-start;
 }
-.rectangle-1724 {
-    background: #181818;
-    border-radius: 20px;
-    border-style: solid;
-    border-color: #f9eeee;
-    border-width: 1px;
-    width: 682px;
-    height: 163px;
-    position: absolute;
-    left: 397px;
-    top: 474px;
-}
-.rectangle-1726 {
-    background: #181818;
-    border-radius: 20px;
-    border-style: solid;
-    border-color: #f9eeee;
-    border-width: 1px;
-    width: 1444px;
-    height: 53px;
-    position: absolute;
-    left: 397px;
-    top: 714px;
-}
-.rectangle-1725 {
-    background: #181818;
-    border-radius: 20px;
-    border-style: solid;
-    border-color: #f9eeee;
-    border-width: 1px;
-    width: 682px;
-    height: 163px;
-    position: absolute;
-    left: 1159px;
-    top: 474px;
-}
+
 .div5 {
     color: #ffffff;
     text-align: left;
@@ -264,7 +277,7 @@ html, body {
     position: absolute;
     left: 483px;
     top: 427px;
-    width: 107px;
+    width: 112px;
     height: 40px;
     display: flex;
     align-items: center;
@@ -316,66 +329,196 @@ html, body {
     align-items: center;
     justify-content: flex-start;
 }
-.upload-button {
+
+.cap {
     position: absolute;
-    inset: 0;
-}
-.rectangle-1570 {
-    background: #eeeeee;
-    border-radius: 30px;
-    width: 176.74px;
-    height: 61.18px;
-    position: absolute;
-    left: 1037px;
-    top: 845px;
-}
-.div8 {
-    color: #464444;
-    text-align: center;
-    font-family: "LineSeedSansKr-Bold", sans-serif;
-    font-size: 20px;
-    line-height: 40px;
-    letter-spacing: 0.01em;
-    font-weight: 700;
-    position: absolute;
-    left: 1045px;
-    top: 857px;
-    width: 159.74px;
-    height: 37.39px;
+    top: 480px;       /* 네모 박스와 일치시켜야 함 */
+    left: 400px;
+    width: 680px;     /* rectangle-1724 박스와 동일 */
+    height: 160px;
+    background-color: #181818;
+    color: #fff;
+    font-size: 14px;
+    border: 1px solid #f9eeee;
+    border-radius: 20px;
+    padding: 10px;
+    resize: none;
+    box-sizing: border-box;
+}.input-row {
+     display: flex;
+     gap: 40px;
+     margin-top: 40px;
+     margin-left: 397px;
+ }
+
+.input-box {
+    width: 680px;
     display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.btn-1 {
-    width: 15px;
-    height: 15px;
-    position: absolute;
-    left: 507px;
-    top: 234px;
-    object-fit: cover;
-}
-.btn-2 {
-    width: 15px;
-    height: 15px;
-    position: absolute;
-    left: 908px;
-    top: 234px;
-    object-fit: cover;
-}
-.btn-3 {
-    width: 15px;
-    height: 15px;
-    position: absolute;
-    left: 1308px;
-    top: 234px;
-    object-fit: cover;
-}
-.btn-4 {
-    width: 15px;
-    height: 15px;
-    position: absolute;
-    left: 1709px;
-    top: 241px;
-    object-fit: cover;
+    flex-direction: column;
+    gap: 8px;
+    color: #fff;
+    font-family: "LineSeedSansKr-Regular", sans-serif;
 }
 
+.input-box textarea,
+.input-box input {
+    width: 100%;
+    height: 160px;
+    background: #181818;
+    color: #fff;
+    font-size: 14px;
+    padding: 12px;
+    border: 1px solid #f9eeee;
+    border-radius: 20px;
+    resize: none;
+    box-sizing: border-box;
+}
+
+.input-box input[type="text"] {
+    height: 50px;
+}
+
+.sub-label {
+    font-size: 12px;
+    font-weight: normal;
+    color: #aaa;
+    margin-left: 6px;
+}
+
+.tag-box {
+    margin-top: 90px;
+    margin-left: 397px;
+    width: 1444px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    color: #fff;
+    font-family: "LineSeedSansKr-Regular", sans-serif;
+}
+
+.tag-box input {
+    height: 50px;
+    background: #181818;
+    color: #fff;
+    font-size: 14px;
+    padding: 12px;
+    border: 1px solid #f9eeee;
+    border-radius: 20px;
+    box-sizing: border-box;
+}
+
+.search-popup-btn {
+    width: 60px;
+    padding: 6px 10px;
+    background-color: #f04e6a;  /* 원하는 색상 */
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.search-popup-btn:hover {
+    background-color: #c63b52; /* 호버 시 색상 */
+}
+
+/*.header-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-left: 400px;  !* 상황에 맞춰 조절 *!
+    margin-top: 50px;    !* 상황에 맞춰 조절 *!
+}*/
+
+.header-row .page-title {
+    color: #ffffff;
+    font-family: "LineSeedSansKr-Bold", sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.header-row .limit-label {
+    color: #ffffff;
+    font-family: "LineSeedSansKr-Thin", sans-serif;
+    font-size: 12px;
+    font-weight: 100;
+}
+
+/* 업로드 버튼 */
+.upload-btn {
+    padding: 6px 20px;
+    font-size: 14px;
+    background: #eeeeee;
+    color: #464444;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+.upload-btn:hover {
+    background: #dddddd;
+}
+
+/* 폼 요소 간격 재조정 */
+.upload-grid {
+    margin-top: 64px;    /* header-row 아래 여백 */
+    margin-left: 400px;  /* 필요에 따라 조절 */
+}
+
+
+.input-row {
+    margin-top: 40px;
+    margin-left: 397px;
+}
+
+#styleForm {
+    position: relative;
+}
+
+.upload-btn {
+    position: absolute;
+    /* “최대 4장 등록” 텍스트와 같은 높이로 맞춥니다 */
+    top: 62px;
+    /* “최대 4장 등록” 바로 오른쪽에 붙이려면 이 값을 조절 */
+    left: 580px;
+    padding: 8px 16px;
+    border-radius: 30px;
+    background: #eeeeee;
+    color: #464444;
+    border: none;
+    cursor: pointer;
+}
+
+
+
+.upload-btn {
+    position: absolute;
+    top: -46px;
+    left: 558px;
+    padding: 8px 16px;
+    border-radius: 30px;
+    background: #eeeeee;
+    color: #464444;
+    border: none;
+    cursor: pointer;
+}
+
+
+
+.page-title {
+    position: absolute;
+    top: -50px;
+    left: 383px;
+    padding: 8px 16px;
+    color: #464444;
+}
+
+
+.limit-label {
+    position: absolute;
+    top: -39px;
+    left: 468px;
+    padding: 8px 16px;
+    color: #464444;
+}
