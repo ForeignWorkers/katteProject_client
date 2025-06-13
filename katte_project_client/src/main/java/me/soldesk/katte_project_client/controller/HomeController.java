@@ -25,8 +25,8 @@ public class HomeController {
     public String mainPage(HttpSession session, Model model) {
 
         //세션 test용
-        session.setAttribute("userId", 3);
-        session.setAttribute("email", "admin@example.com");
+        //session.setAttribute("userId", 3);
+        //session.setAttribute("email", "admin@example.com");
 
         UserBean userBean = (UserBean) session.getAttribute("currentUser");
 

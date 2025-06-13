@@ -14,7 +14,7 @@
 
 <div class="mainpage">
   <img class="image-5" src="/img/image%205.png" />
-  <a th:href="@{/product/detail}">
+  <a href="#" onclick="checkLoginAndMove('/product/detail'); return false;">
     <div class="rectangle-1578"></div>
   </a>
   <div class="top"></div>
@@ -92,7 +92,8 @@
   </a>
 
   <!--스타일 메인 카드 (링크 적용)-->
-  <a th:href="@{/style/detail}"><img class="image-65" src="/img/image%2065.png" />
+  <a href="#" onclick="checkLoginAndMove('/style/detail'); return false;">
+    <img class="image-65" src="/img/image%2065.png" />
   <img class="div20" src="/img/프로필.png" />
     <img class="mask-group4" src="/img/heart.png" />
   <div class="_2">스타일 리뷰</div>
@@ -124,7 +125,7 @@
     }
 
     function loadPrevStyle() {
-      loadStyle("prev");
+      loadStyle("prev");n
     }
   </script>
 
