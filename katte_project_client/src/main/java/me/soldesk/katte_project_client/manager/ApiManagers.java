@@ -18,7 +18,7 @@ public class ApiManagers {
 
     private static final ObjectMapper objectMapper = new ObjectMapper();
 
-    private static final String BASE_URL = "https://api-katte.jp.ngrok.io/"; // ✅ 수정: http: → http://
+    private static final String BASE_URL = "http://localhost:9000/"; // ✅ 수정: http: → http://
 
     static {
         objectMapper.registerModule(new com.fasterxml.jackson.datatype.jsr310.JavaTimeModule());
@@ -137,7 +137,6 @@ public class ApiManagers {
         }
     }
 
-    // ✅ 공통 실행 메서드 (TypeReference 기반)
     public static <T> ResponseEntity<T> execute(Request request, TypeReference<T> typeRef) {
         try (Response response = client.newCall(request).execute()) {
             HttpStatus status = HttpStatus.valueOf(response.code());
@@ -148,11 +147,38 @@ public class ApiManagers {
 
             String responseBody = response.body().string();
 
-            // ✅ 비어 있으면 파싱하지 않고 null 반환
+            // ✅ 비어 있으면 null 반환
             if (responseBody == null || responseBody.isBlank()) {
                 return new ResponseEntity<>(null, status);
             }
 
+            String typeName = typeRef.getType().getTypeName();
+
+            // ✅ 기본 타입 분기 처리
+            switch (typeName) {
+                case "java.lang.String" -> {
+                    @SuppressWarnings("unchecked")
+                    T casted = (T) responseBody;
+                    return new ResponseEntity<>(casted, status);
+                }
+                case "java.lang.Boolean", "boolean" -> {
+                    @SuppressWarnings("unchecked")
+                    T casted = (T) Boolean.valueOf(responseBody);
+                    return new ResponseEntity<>(casted, status);
+                }
+                case "java.lang.Integer", "int" -> {
+                    @SuppressWarnings("unchecked")
+                    T casted = (T) Integer.valueOf(responseBody);
+                    return new ResponseEntity<>(casted, status);
+                }
+                case "java.lang.Long", "long" -> {
+                    @SuppressWarnings("unchecked")
+                    T casted = (T) Long.valueOf(responseBody);
+                    return new ResponseEntity<>(casted, status);
+                }
+            }
+
+            // ✅ 그 외엔 JSON 파싱
             T body = objectMapper.readValue(responseBody, typeRef);
             return new ResponseEntity<>(body, status);
         } catch (Exception e) {
