@@ -233,3 +233,36 @@ html, body {
   justify-content: flex-start;
 }
 
+/* 검색 결과 리스트 */
+#search-result-list {
+  position: absolute;
+  top: 130px; /* 입력창 아래 */
+  left: 375px;
+  width: 250px;
+  background-color: #181818;
+  border: 1px solid #444;
+  border-radius: 6px;
+  padding: 10px;
+  list-style: none;
+  z-index: 1000;
+}
+
+#search-result-list li {
+  padding: 8px 12px;
+  color: #f9eeee;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+#search-result-list li:hover {
+  background-color: #2a2a2a;
+}
+
+.register-button {
+  position: absolute;
+  top: 80px;
+  left: 1600px;
+  z-index: 200; /* 검색 결과 리스트보다 위 */
+}

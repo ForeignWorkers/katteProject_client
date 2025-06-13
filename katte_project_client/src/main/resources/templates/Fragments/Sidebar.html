@@ -9,14 +9,27 @@
     </a>
     <nav class="sidebar-nav">
       <ul>
-        <li><a href="/search">검색</a></li>
-        <li><a href="/explore">탐색</a></li>
-        <li><a href="/sell">판매등록</a></li>
-        <li><a href="/wishlist">관심상품</a></li>
-        <li><a href="/style">스타일</a></li>
-        <li><a href="/MyPage">마이페이지</a></li>
-        <li><a href="/announce">고객센터</a></li>
+        <li><a href="#" onclick="checkLoginAndMove('/search'); return false;">검색</a></li>
+        <li><a href="#" onclick="checkLoginAndMove('/explore'); return false;">탐색</a></li>
+        <li><a href="#" onclick="checkLoginAndMove('/sell'); return false;">판매등록</a></li>
+        <li><a href="#" onclick="checkLoginAndMove('/wishlist'); return false;">관심상품</a></li>
+        <li><a href="#" onclick="checkLoginAndMove('/style'); return false;">스타일</a></li>
+        <li><a href="#" onclick="checkLoginAndMove('/Mypage'); return false;">마이페이지</a></li>
+        <li><a href="#" onclick="checkLoginAndMove('/announce'); return false;">고객센터</a></li>
       </ul>
+
+      <!-- 로그인 체크 -->
+      <script th:inline="javascript">
+        const isLogin = /*[[${nickname != null}]]*/ false;
+
+        function checkLoginAndMove(targetUrl) {
+          if (isLogin) {
+            window.location.href = targetUrl;
+          } else {
+            alert("로그인 후 이용해주세요.");
+          }
+        }
+      </script>
     </nav>
 
     <!-- 로그인 여부에 따라 분기 -->

@@ -1,0 +1,86 @@
+/* 기본 레이아웃 */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #181818;
+    color: #f9eeee;
+    font-family: "LineSeedSansKr-Regular", sans-serif;
+}
+
+.wrapper {
+    margin-left: 15vw; /* 사이드바 폭 고려 */
+    padding: 60px 40px;
+}
+
+/* 제목 */
+.search-title {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+/* 검색 라인 */
+.search-line {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.search-line input {
+    width: 400px;
+    height: 40px;
+    background: #181818;
+    color: #fff;
+    border: 1px solid #f9eeee;
+    border-radius: 5px;
+    padding: 0 10px;
+    font-size: 16px;
+}
+
+.search-line button {
+    margin-left: 12px;
+    padding: 8px 18px;
+    background-color: #ff0044;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s ease-in-out;
+}
+
+.search-line button:hover {
+    background-color: #e6003d;
+}
+
+/* 결과 리스트 */
+.result-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.result-item {
+    border: 1px solid #555;
+    padding: 10px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    background-color: #222;
+    transition: background-color 0.2s;
+}
+
+.result-item:hover {
+    background-color: #333;
+}
+
+
+.register-button {
+    position: absolute;
+    top: 80px;
+    left: 650px;
+    z-index: 200; /* 검색 결과 리스트보다 위 */
+}
+
+.register-button:hover {
+    background-color: #e6003d;
+}

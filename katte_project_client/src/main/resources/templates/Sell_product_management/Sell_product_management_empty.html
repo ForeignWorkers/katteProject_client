@@ -1,36 +1,18 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
+<!-- 사이드바 CSS 분리 스타일 적용 -->
+<link rel="stylesheet" href="/css/fragments/Sidebar.css" />
 <link rel="stylesheet" href="/css/Sell_product_management/Sell_product_management_empty.css" />
-<aside class="sidebar">
-  <a href="/main">
-  <img class="logo-1" src="/img/logo%20(1).png" alt="로고" />
-  </a>
-  <nav class="sidebar-nav">
-    <ul>
-      <li><a href="/search">검색</a></li>
-      <li><a href="/explore">탐색</a></li>
-      <li><a href="/sell">판매등록</a></li>
-      <li><a href="/wishlist">관심상품</a></li>
-      <li><a href="/style">스타일</a></li>967
-      <li><a href="/mypage">마이페이지</a></li>
-      <li><a href="/support">고객센터</a></li>
-    </ul>
-  </nav>
-  <div class="login-area">
-    <a href="/login" class="btn-login">로그인</a>
-  </div>
-  <footer class="sidebar-footer">
-    <p><a href="/support">고객센터</a> | <a href="/terms">이용약관</a></p>
-    <small>&copy; All copyright in soldesk</small>
-  </footer>
-</aside>
 
-<div class="wraaper">
+<!-- 사이드바 HTML 분리 -->
+<div th:replace="Fragments/Sidebar :: sidebar"></div>
+<div class="wrapper">
+
 <div class="div">
   <img class="line-136" src="line-1360.svg" />
   <div class="line-264"></div>
@@ -121,10 +103,18 @@
     <div class="rectangle-167712"></div>
     <div class="_23">판매 완료 내역 0건</div>
   </div>
-  <div class="rectangle-1676"></div>
-  <div class="div21">상품 등록</div>
-  <div class="rectangle-1675"></div>
-  <div class="div22">등록 상품 관리</div>
+
+  <!-- 상품 등록 탭 (링크 추가) -->
+  <a href="/sell/registration" class="tab-link">
+    <div class="rectangle-1676"></div>
+    <div class="div21">상품 등록</div>
+  </a>
+
+  <!-- 등록 상품 관리 탭 (링크 추가) -->
+  <a href="/sell/manage" class="tab-link">
+    <div class="rectangle-1675"></div>
+    <div class="div22">등록 상품 관리</div>
+  </a>
   
   <div class = "line-3333"></div>
   <div class = "line-300"></div>

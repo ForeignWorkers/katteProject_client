@@ -1,223 +1,225 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+  <meta charset="UTF-8">
+  <title>상품 등록</title>
+  <link rel="stylesheet" href="/css/fragments/Sidebar.css" />
+  <link rel="stylesheet" href="/css/Sell_product_upload/Sell_product_upload.css" />
 </head>
-<link rel="stylesheet" href="/css/Sell_product_upload/Sell_product_upload.css" />
 <body>
-<aside class="sidebar">
-  <a href="/main">
-  <img class="logo-1" src="/img/logo%20(1).png" alt="로고" />
-  </a>
-  <nav class="sidebar-nav">
-    <ul>
-      <li><a href="/search">검색</a></li>
-      <li><a href="/explore">탐색</a></li>
-      <li><a href="/sell">판매등록</a></li>
-      <li><a href="/wishlist">관심상품</a></li>
-      <li><a href="/style">스타일</a></li>
-      <li><a href="/mypage">마이페이지</a></li>
-      <li><a href="/support">고객센터</a></li>
-    </ul>
-  </nav>
-  <div class="login-area">
-    <a href="/login" class="btn-login">로그인</a>
-  </div>
-  <footer class="sidebar-footer">
-    <p><a href="/support">고객센터</a> | <a href="/terms">이용약관</a></p>
-    <small>&copy; All copyright in soldesk</small>
-  </footer>
-</aside>
+<!-- 사이드바 분리 -->
+<div th:replace="~{Fragments/Sidebar :: sidebar}"></div>
 
-<div class="wraaper">
+<div class="wrapper">
   <img class="line-136" src="line-1360.svg" />
   <div class="line-264"></div>
   <img class="group-767" src="group-7670.svg" />
+
+  <!-- 탭 -->
   <div class="rectangle-1676" id="tab-upload-bg"></div>
-  <div class="div2"  id="tab-upload" >상품 등록</div>
-  <div class="rectangle-1675" id="tab-manage-bg" ></div>
-  <div class="div3" id="tab-manage">등록 상품 관리</div>
-  <div class="rectangle-1677"></div>
-  <div class="div18" id="btn-register">등록</div>
+  <div class="div2" id="tab-upload">상품 등록</div>
+  <a href="/sell/manage" class="tab-link">
+    <div class="rectangle-1675" id="tab-manage-bg"></div>
+    <div class="div3" id="tab-manage">등록 상품 관리</div>
+  </a>
+
+  <div class="rectangle-1677" onclick="openSearchPopup()" style="cursor: pointer;">
+    <div class="div18">등록</div>
+  </div>
+
+  <script>
+    function openSearchPopup() {
+      window.open('/product-search-popup', '상품검색', 'width=600,height=700');
+    }
+  </script>
+
+  <!--숨겨진 category input-->
+  <input type="hidden" id="product-category" name="product_category" />
+
+  <!-- 설명 입력 -->
   <div class="div19">
     <div class="rectangle-16772"></div>
     <div class="div20">상품 설명</div>
   </div>
+  <div class="rectangle-1678"></div>
+  <textarea class="input-desc" placeholder="상품 설명을 작성하세요"></textarea>
 
-     <div class="rectangle-1678"></div>
-    <textarea
-      class="input-desc"
-      placeholder="상품 설명을 작성하세요"
-    ></textarea>
+  <!-- 파일 업로드 -->
+  <input type="file" id="fileUpload" accept="image/*,video/*" style="display:none" />
+  <div class="rectangle-1691" id="fileTrigger"></div>
+  <div id="preview"></div>
 
-    <!-- ■ 이미지 썸네일용 사각형들 ■ -->
-    <div class="rectangle-1692"></div>
-    <div class="rectangle-1691"></div>
-    <div class="rectangle-1694"></div>
-    <div class="rectangle-1689"></div>
-    <div class="rectangle-1693"></div>
+  <!-- 이미지/숏폼 타이틀 -->
+  <div class="rectangle-16773"></div>
+  <div class="div22">상품 이미지 &amp; 숏폼</div>
+  <div class="rectangle-16774"></div>
+  <input type="text" class="input-shorttitle" placeholder="숏폼에 작성할 상품의 타이틀을 작성해주세요" />
 
-    <!-- ■ “상품 이미지 & 숏폼” 제목 ■ -->
-    <div class="rectangle-16773"></div>
-    <div class="div22">상품 이미지 &amp; 숏폼</div>
+  <!-- 상품 제목 -->
+  <div class="div19">
+    <div class="rectangle-16775"></div>
+    <div class="div26">상품제목</div>
+  </div>
 
-    <!-- ■ “숏폼 상품 타이틀” 입력 영역 ■ -->
-    <div class="rectangle-16774"></div>
-    <input
-      type="text"
-      class="input-shorttitle"
-      placeholder="숏폼에 작성할 상품의 타이틀을 작성해주세요"
-    />
-
-    <!-- ■ “상품 제목” 입력 영역 ■ -->
+  <!-- 상품 검색 -->
+  <div class="div27">
     <div class="div19">
-      <div class="rectangle-16775"></div>
-      <div class = "div26" >상품제목</div>
+      <div class="rectangle-16776"></div>
+      <div class="div28">상품검색</div>
     </div>
+    <div class="rectangle-16777"></div>
+    <!-- 숨겨진 product_id -->
+    <input type="hidden" id="product-id" name="product_id" />
+    <input type="text" class="input-search2" readonly placeholder="상품명을 검색해주세요" />
+  </div>
 
-    <!-- ■ “상품 검색” 입력 영역 ■ -->
-    <div class="div27">
-      <div class="div19">
-        <div class="rectangle-16776"></div>
-        <div class = "div28" >상품검색</div>
-      </div>
-      <div class="rectangle-16777"></div>
-      <input
-        type="text"
-        class="input-search2"
-        placeholder="상품명을 검색해주세요"
-      />
+  <!-- 상품 사이즈 입력란 (상품 검색 아래에 위치하도록) -->
+  <div class="div27-size">
+    <div class="div19">
+      <div class="rectangle-16776-size"></div>
+      <div class="div28-size">상품 사이즈</div>
     </div>
+    <div class="rectangle-16777-size"></div>
+    <input type="text" class="input-size" placeholder="예: 270, M, Free 등" />
+  </div>
 
-    <!-- ■ 구분선, 그룹 요소 등 ■ -->
-    <img class="line-13622" src="line-1360.svg" alt="line" />
-    <div class="line-2642"></div>
-    <img class="group-7672" src="group-7670.svg" alt="group" />
+  <!-- 경매 설정 -->
+  <img class="line-13622" src="line-1360.svg" alt="line" />
+  <div class="line-2642"></div>
+  <img class="group-7672" src="group-7670.svg" alt="group" />
+  <div class="rectangle-1677222"></div>
+  <div class="rectangle-16772222"></div>
+  <div class="div32">임시 저장</div>
+  <div class="div42">등록하기</div>
 
-    <!-- ■ “임시 저장” / “등록하기” 버튼 ■ -->
-    <div class="rectangle-1677222"></div>
-    <div class="rectangle-16772222"></div>
-    <div class="div32">임시 저장</div>
-    <div class="div42">등록하기</div>
-
-    <!-- ■ 경매 마감기간: “3일 / 5일 / 7일” 라디오 버튼 ■ -->
-    <div class="rectangle-1677322"></div>
-    <div class="rectangle-1677422"></div>
-    <div class="group-99822">
-      <div class="_3">
-        <div class="_32">3일</div>
-        <input
-          type="radio"
-          name="circle-choice"
-          id="circle1"
-          class="toggle-input"
-        />
-        <label for="circle1" class="ellipse-73"></label>
-      </div>
-
-      <div class="_3">
-        <div class="_5">5일</div>
-        <input
-          type="radio"
-          name="circle-choice"
-          id="circle2"
-          class="toggle-input"
-        />
-        <label for="circle2" class="ellipse-732"></label>
-      </div>
-
-      <div class="div6">경매 마감기간</div>
-
-      <div class="_33">
-        <div class="_7">7일</div>
-        <input
-          type="radio"
-          name="circle-choice"
-          id="circle3"
-          class="toggle-input"
-        />
-        <label for="circle3" class="ellipse-733"></label>
-      </div>
+  <!-- 마감기간 -->
+  <div class="rectangle-1677322"></div>
+  <div class="rectangle-1677422"></div>
+  <div class="group-99822">
+    <div class="_3">
+      <div class="_32">3일</div>
+      <input type="radio" name="circle-choice" id="circle1" class="toggle-input" />
+      <label for="circle1" class="ellipse-73"></label>
     </div>
+    <div class="_3">
+      <div class="_5">5일</div>
+      <input type="radio" name="circle-choice" id="circle2" class="toggle-input" />
+      <label for="circle2" class="ellipse-732"></label>
+    </div>
+    <div class="div6">경매 마감기간</div>
+    <div class="_33">
+      <div class="_7">7일</div>
+      <input type="radio" name="circle-choice" id="circle3" class="toggle-input" />
+      <label for="circle3" class="ellipse-733"></label>
+    </div>
+  </div>
 
-    <!-- ■ “경매 시작가” / “즉시 구매가” 입력 영역 ■ -->
-    <div class="div7">경매 시작가</div>
-    <div class="div8">즉시 구매가</div>
+  <!-- 가격 설정 -->
+  <div class="div7">경매 시작가</div>
+  <div class="div8">즉시 구매가</div>
+  <div class="rectangle-1677522"></div>
+  <input type="number" class="input-minprice1" placeholder="최소 10,000원 이상 입력" min="10000" />
+  <div class="div9">원</div>
+  <div class="rectangle-1677622"></div>
+  <input type="number" class="input-minprice2" placeholder="최소 10,000원 이상 입력" min="10000" />
+  <div class="div10">원</div>
+  <div class="div11">즉시구매 설정 안 함</div>
+  <input type="checkbox" id="square-toggle" class="toggle-input" />
+  <label for="square-toggle" class="rectangle-1695"></label>
+</div>
 
-    <!-- • 첫 번째 입력: 최소 금액 1 -->
-    <div class="rectangle-1677522"></div>
-    <input
-      type="number"
-      class="input-minprice1"
-      placeholder="최소 10,000원 이상 입력"
-      min="10000"
-    />
-    <div class="div9">원</div>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // 탭 전환
+    const tabUploadBg = document.getElementById("tab-upload-bg");
+    const tabUploadText = document.getElementById("tab-upload");
+    const tabManageBg = document.getElementById("tab-manage-bg");
+    const tabManageText = document.getElementById("tab-manage");
 
-    <!-- • 두 번째 입력: 최소 금액 2 -->
-    <div class="rectangle-1677622"></div>
-    <input
-      type="number"
-      class="input-minprice2"
-      placeholder="최소 10,000원 이상 입력"
-      min="10000"
-    />
-    <div class="div10">원</div>
-    <div class="div11">즉시구매 설정 안 함</div>
+    tabUploadText.addEventListener("click", function () {
+      tabUploadBg.style.backgroundColor = "#ff0044";
+      tabUploadText.style.fontWeight = "700";
+      tabManageBg.style.backgroundColor = "#181818";
+      tabManageText.style.fontWeight = "400";
+    });
 
-    <!-- ■ “체크박스(라디오 비슷)” 예: rectangle-1695 → 클릭 시 채워지는 네모 ■ -->
-    <input
-      type="checkbox"
-      id="square-toggle"
-      class="toggle-input"
-    />
-    <label for="square-toggle" class="rectangle-1695"></label>
+    tabManageText.addEventListener("click", function () {
+      tabManageBg.style.backgroundColor = "#ff0044";
+      tabManageText.style.fontWeight = "700";
+      tabUploadBg.style.backgroundColor = "#181818";
+      tabUploadText.style.fontWeight = "400";
+    });
 
-<!-- <div id="content-upload" style="display: none;"> -->
+    // 초기 상태
+    tabUploadBg.style.backgroundColor = "#ff0044";
+    tabUploadText.style.fontWeight = "700";
+    tabManageBg.style.backgroundColor = "#181818";
+    tabManageText.style.fontWeight = "400";
 
+    // 파일 업로드 처리
+    const uploadDiv = document.getElementById("fileTrigger");
+    const fileInput = document.getElementById("fileUpload");
+    const preview = document.getElementById("preview");
 
-  </div> <!-- /.wrapper -->
- <script>
- document.addEventListener("DOMContentLoaded", function() {
-   // ➤ 탭 요소(배경, 텍스트) 각각 가져오기
-   const tabUploadBg   = document.getElementById("tab-upload-bg");   // .rectangle-1676
-   const tabUploadText = document.getElementById("tab-upload");      // .div2
+    uploadDiv.addEventListener("click", () => fileInput.click());
 
-   const tabManageBg   = document.getElementById("tab-manage-bg");   // .rectangle-1675
-   const tabManageText = document.getElementById("tab-manage");      // .div3
+    fileInput.addEventListener("change", function () {
+      const file = this.files[0];
+      if (!file) return;
 
-   // ───────────────────────────────────────────────────
-   // “상품 등록” 탭 클릭 시 활성화
-   tabUploadText.addEventListener("click", function() {
-     // ● 클릭된 쪽(상품 등록) → 빨간 배경(#ff0044), 볼드(700)
-     tabUploadBg.style.backgroundColor = "#ff0044";
-     tabUploadText.style.fontWeight    = "700";
+      const reader = new FileReader();
+      reader.onload = function (e) {
+        if (file.type.startsWith("image/")) {
+          preview.innerHTML = `<img src="${e.target.result}" width="200"/>`;
+        } else if (file.type.startsWith("video/")) {
+          preview.innerHTML = `<video src="${e.target.result}" controls width="200"></video>`;
+        }
+      };
+      reader.readAsDataURL(file);
+    });
+  });
+</script>
 
-     // ● 반대쪽(등록 상품 관리) → 어두운 배경(#181818), 레귤러(400)
-     tabManageBg.style.backgroundColor = "#181818";
-     tabManageText.style.fontWeight    = "400";
-   });
+<script>
+  function openSearchPopup() {
+    window.open('/product-search-popup', '상품검색', 'width=600,height=700');
+  }
 
-   // ───────────────────────────────────────────────────
-   // “등록 상품 관리” 탭 클릭 시 활성화
-   tabManageText.addEventListener("click", function() {
-     // ● 클릭된 쪽(등록 상품 관리) → 빨간 배경(#ff0044), 볼드(700)
-     tabManageBg.style.backgroundColor = "#ff0044";
-     tabManageText.style.fontWeight    = "700";
+  function setProductTag(name, id, category) {
+  document.getElementById("product-id").value = id;
+  document.querySelector(".input-search2").value = name;
 
-     // ● 반대쪽(상품 등록) → 어두운 배경(#181818), 레귤러(400)
-     tabUploadBg.style.backgroundColor = "#181818";
-     tabUploadText.style.fontWeight    = "400";
-   });
+  const allowed = ["신발", "상의", "아우터", "하의"];
+  const trimmedCategory = (category || "").trim();
+  const sizeInput = document.querySelector(".input-size"); // ✅ 이거 추가해야 함
 
-   // ───────────────────────────────────────────────────
-   // (선택 사항) 페이지 로딩 시 “상품 등록”을 기본 활성화 상태로 만들고 싶다면
-   tabUploadBg.style.backgroundColor = "#ff0044";
-   tabUploadText.style.fontWeight    = "700";
-   tabManageBg.style.backgroundColor = "#181818";
-   tabManageText.style.fontWeight    = "400";
- });
+   console.log("카테고리:", trimmedCategory); // ✅ 디버깅용 출력 추가
+
+    console.log("sizeInput:", sizeInput);
+    console.log("카테고리:", trimmedCategory);
+
+  if (allowed.includes(trimmedCategory)) {
+   console.log("✅ 활성화됨");
+  sizeInput.disabled = false;
+  sizeInput.placeholder = "예: 270, M, Free 등";
+} else {
+  console.log("❌ 비활성화됨");
+  sizeInput.disabled = true;
+  sizeInput.value = "";
+  sizeInput.placeholder = "사이즈 입력 불가 (해당 카테고리)";
+}
+
+  document.getElementById("product-category").value = category;
+}
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const sizeInput = document.querySelector(".input-size");
+    sizeInput.disabled = true;
+    sizeInput.value = "";
+    sizeInput.placeholder = "상품 선택 시 입력 가능";
+
+  });
 </script>
 </body>
+
 </html>
