@@ -37,26 +37,30 @@ repositories {
 }
 
 dependencies {
+    // Spring
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-web-services'
     implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 
-    //jsp 제거
-//    implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
-//    implementation 'javax.servlet:jstl:1.2'
+    // 톰캣 (WAR 배포용)
+    providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 
-    providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat' //내장 톰캣을 war로 배포
+    // 공통 라이브러리
+    implementation 'com.github.ForeignWorkers:katteProject_common_lib:1.0.62'
+
+    // Lombok
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
+
+    implementation 'com.squareup.okhttp3:okhttp:4.12.0'
+
+    // 테스트
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 
-    //common-lib
-    implementation 'com.github.ForeignWorkers:katteProject_common_lib:1.0.60'
-
-    //thymeleaf
-    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 }
+
 
 tasks.named('test') {
     useJUnitPlatform()

@@ -1,129 +1,146 @@
 package me.soldesk.katte_project_client.manager;
 
-import org.springframework.http.*;
-import org.springframework.web.client.RestTemplate;
-import org.springframework.web.util.UriComponentsBuilder;
+import okhttp3.*;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
+import java.io.IOException;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 public class ApiManagers {
 
-    private static final RestTemplate restTemplate = new RestTemplate();
+    private static final OkHttpClient client = new OkHttpClient.Builder()
+            .connectTimeout(5, TimeUnit.SECONDS)
+            .readTimeout(5, TimeUnit.SECONDS)
+            .build();
+
+    private static final ObjectMapper objectMapper = new ObjectMapper();
+
     private static final String BASE_URL = "http://localhost:9000/";
 
-    // ✅ GET 요청 - 쿼리 파라미터와 제네릭 응답 처리
     public static <T> ResponseEntity<T> get(String path, Map<String, String> queryParams, Class<T> responseType) {
-        UriComponentsBuilder uriBuilder = UriComponentsBuilder.fromHttpUrl(BASE_URL + path);
+        try {
+            HttpUrl.Builder urlBuilder = HttpUrl.parse(BASE_URL + path).newBuilder();
+            if (queryParams != null) {
+                queryParams.forEach(urlBuilder::addQueryParameter);
+            }
+            Request request = new Request.Builder()
+                    .url(urlBuilder.build())
+                    .get()
+                    .build();
 
-        if (queryParams != null) {
-            queryParams.forEach(uriBuilder::queryParam);
+            return execute(request, responseType);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-
-        String url = uriBuilder.toUriString();
-
-        // 필요 시 헤더 설정 가능
-
-        return restTemplate.exchange(
-                url,
-                HttpMethod.GET,
-                new HttpEntity<>(new HttpHeaders()),  // 필요 시 헤더 설정 가능
-                responseType
-        );
     }
 
-    // ✅ POST 요청 - 바디 + 제네릭 응답 처리
     public static <T> ResponseEntity<T> post(String path, Object requestBody, Class<T> responseType) {
-        String url = BASE_URL + path;
+        try {
+            String json = objectMapper.writeValueAsString(requestBody);
+            RequestBody body = RequestBody.create(json, MediaType.get("application/json"));
+            Request request = new Request.Builder()
+                    .url(BASE_URL + path)
+                    .post(body)
+                    .build();
 
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-
-        HttpEntity<Object> entity = new HttpEntity<>(requestBody, headers);
-
-        System.out.println(entity.getBody());
-
-        return restTemplate.exchange(
-                url,
-                HttpMethod.POST,
-                entity,
-                responseType
-        );
+            return execute(request, responseType);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
-    // ✅ PATCH 요청 - 바디 + 제네릭 응답 처리
-    public static <T> ResponseEntity<T> patchBody(String path, Object requestBody, Class<T> responseType) {
-        String url = BASE_URL + path;
-
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-
-        HttpEntity<Object> entity = new HttpEntity<>(requestBody, headers);
-
-        return restTemplate.exchange(
-                url,
-                HttpMethod.PATCH,
-                entity,
-                responseType
-        );
-    }
-
-    // ✅ PATCH 요청 - 쿼리 + 제네릭 응답 처리
     public static <T> ResponseEntity<T> patchQuery(String path, Map<String, String> queryParams, Class<T> responseType) {
-        UriComponentsBuilder uriBuilder = UriComponentsBuilder.fromHttpUrl(BASE_URL + path);
-
+        HttpUrl.Builder urlBuilder = HttpUrl.parse(BASE_URL + path).newBuilder();
         if (queryParams != null) {
-            queryParams.forEach(uriBuilder::queryParam);
+            queryParams.forEach(urlBuilder::addQueryParameter);
         }
 
-        String url = uriBuilder.toUriString();
+        Request request = new Request.Builder()
+                .url(urlBuilder.build())
+                .patch(RequestBody.create(new byte[0])) // PATCH는 body가 반드시 있어야 하므로 빈 body 전달
+                .build();
 
-        // 필요 시 헤더 설정 가능
-
-        return restTemplate.exchange(
-                url,
-                HttpMethod.PATCH,
-                new HttpEntity<>(new HttpHeaders()),  // 필요 시 헤더 설정 가능
-                responseType
-        );
+        return execute(request, responseType);
     }
 
-    // ✅ DELETE 요청 - (선택적으로) 바디 포함 가능
-    public static <T> ResponseEntity<T> deleteQuery(String path, Map<String, String> queryParams, Class<T> responseType) {
-        UriComponentsBuilder uriBuilder = UriComponentsBuilder.fromHttpUrl(BASE_URL + path);
 
-        if (queryParams != null) {
-            queryParams.forEach(uriBuilder::queryParam);
+    public static <T> ResponseEntity<T> patchBody(String path, Object requestBody, Class<T> responseType) {
+        try {
+            String json = objectMapper.writeValueAsString(requestBody);
+            System.out.println("➡️ PATCH BODY JSON: " + json);
+
+            RequestBody body = RequestBody.create(json, MediaType.get("application/json"));
+            Request request = new Request.Builder()
+                    .url(BASE_URL + path)
+                    .patch(body)
+                    .build();
+
+            return execute(request, responseType);
+
+        } catch (Exception e) {
+            System.err.println("❌ PATCH 요청 중 오류: " + e.getMessage());
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST); // 혹은 커스텀 처리
         }
+    }
 
-        String url = uriBuilder.toUriString();
+    public static <T> ResponseEntity<T> deleteQuery(String path, Map<String, String> queryParams, Class<T> responseType) {
+        try {
+            HttpUrl.Builder urlBuilder = HttpUrl.parse(BASE_URL + path).newBuilder();
+            if (queryParams != null) {
+                queryParams.forEach(urlBuilder::addQueryParameter);
+            }
+            Request request = new Request.Builder()
+                    .url(urlBuilder.build())
+                    .delete()
+                    .build();
 
-        // 필요 시 헤더 설정 가능
-
-        return restTemplate.exchange(
-                url,
-                HttpMethod.DELETE,
-                new HttpEntity<>(new HttpHeaders()),  // 필요 시 헤더 설정 가능
-                responseType
-        );
+            return execute(request, responseType);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     public static <T> ResponseEntity<T> deleteBody(String path, Object requestBody, Class<T> responseType) {
-        String url = BASE_URL + path;
+        try {
+            String json = objectMapper.writeValueAsString(requestBody);
+            RequestBody body = RequestBody.create(json, MediaType.get("application/json"));
+            Request request = new Request.Builder()
+                    .url(BASE_URL + path)
+                    .delete(body)
+                    .build();
 
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_JSON);
-
-        HttpEntity<Object> entity = new HttpEntity<>(requestBody, headers);
-
-        return restTemplate.exchange(
-                url,
-                HttpMethod.DELETE,
-                entity,
-                responseType
-        );
+            return execute(request, responseType);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
-    // ✅ 성공 여부만 체크하는 헬퍼 메서드
+    private static <T> ResponseEntity<T> execute(Request request, Class<T> responseType) {
+        try (Response response = client.newCall(request).execute()) {
+            HttpStatus status = HttpStatus.valueOf(response.code());
+
+            if (!response.isSuccessful() || response.body() == null) {
+                return new ResponseEntity<>(null, status);
+            }
+
+            String responseBody = response.body().string();
+
+            if (responseType == String.class) {
+                @SuppressWarnings("unchecked")
+                T casted = (T) responseBody;
+                return new ResponseEntity<>(casted, status);
+            }
+
+            T bodyObject = objectMapper.readValue(responseBody, responseType);
+            return new ResponseEntity<>(bodyObject, status);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     public static boolean isSuccessful(ResponseEntity<?> response) {
         return response != null && response.getStatusCode().is2xxSuccessful();
     }
