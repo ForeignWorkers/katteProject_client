@@ -134,7 +134,6 @@ public class LoginController {
 
         // 1. 이미 가입된 유저인지 확인
         UserBean user = userService.getUserByEmail(naverUser.getEmail());
-        System.out.println("naverCallback In :" + user);
 
         if (user == null) {
             user = new UserBean();
@@ -158,11 +157,14 @@ public class LoginController {
 
             user.setRegistration_date(new Date());
 
-            loginService.signUp(user); // ⚠️ 여기서 /user API로 POST
-        }
+            UserBean savedUser = loginService.signUp(user); // ⚠️ 여기서 /user API로 POST
 
-        // 3. 로그인 처리
-        session.setAttribute("currentUser", user);
+            if(savedUser != null)
+                session.setAttribute("currentUser", savedUser);// 3. 로그인 처리
+        }
+        else {
+                session.setAttribute("currentUser", user);// 3. 로그인 처리
+        }
         return "redirect:/main";
     }
 

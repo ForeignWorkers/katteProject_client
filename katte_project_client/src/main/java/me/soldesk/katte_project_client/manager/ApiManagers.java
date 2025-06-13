@@ -147,6 +147,12 @@ public class ApiManagers {
             }
 
             String responseBody = response.body().string();
+
+            // ✅ 비어 있으면 파싱하지 않고 null 반환
+            if (responseBody == null || responseBody.isBlank()) {
+                return new ResponseEntity<>(null, status);
+            }
+
             T body = objectMapper.readValue(responseBody, typeRef);
             return new ResponseEntity<>(body, status);
         } catch (Exception e) {

@@ -36,14 +36,14 @@ public class LoginService {
 
     private final RestTemplate restTemplate = new RestTemplate();
 
-    public boolean signUp(UserBean userBean){
+    public UserBean signUp(UserBean userBean){
         // 비밀번호 암호화 예시
         String encoded = encodePassword(userBean.getPassword());
         userBean.setPassword(encoded); // 암호화된 비밀번호로 덮어쓰기
-        TypeReference<String> ref = new TypeReference<>() {};
+        TypeReference<UserBean> ref = new TypeReference<>() {};
 
         // ✅ 객체 자체를 바디로 전송
-        ResponseEntity<String> result = ApiManagers.post(
+        ResponseEntity<UserBean> result = ApiManagers.post(
                 "user",
                 userBean,
                 ref
@@ -51,10 +51,10 @@ public class LoginService {
 
         if (ApiManagers.isSuccessful(result)) {
             System.out.println("회원 가입 성공!");
-            return true;
+            return result.getBody();
         } else {
             System.out.println("회원 가입 실패!");
-            return false;
+            return result.getBody();
         }
     }
 
