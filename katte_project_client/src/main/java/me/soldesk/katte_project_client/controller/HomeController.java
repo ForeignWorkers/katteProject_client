@@ -1,5 +1,6 @@
 package me.soldesk.katte_project_client.controller;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import common.bean.user.UserBean;
 import common.bean.user.UserPaymentBean;
 import jakarta.servlet.http.HttpSession;

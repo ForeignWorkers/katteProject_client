@@ -94,6 +94,19 @@ html, body {
   margin: 0;
 }
 
+.line-3113222 {
+    margin-top: -0.85px;
+    border-style: solid;
+    border-color: #f9eeee;
+    border-width: 0.85px 0px 0px 0px;
+    width: 1258.85px;
+    height: 0px;
+    position: absolute;
+    left: 314.50px;
+    top:  630.75px;
+    transform-origin: 0 0;
+    transform: rotate(0deg) scale(1, 1);
+}
 .line-136 {
   width: 204.88px;
   height: 0px;
@@ -408,6 +421,19 @@ html, body {
   left: 314.50px;
   top: 134.30px;
 }
+
+.rectangle-1679 {
+  background: #181818;
+  border-style: solid;
+  border-color: #f9eeee;
+  border-width: 0.85px;
+  width: 1258px;
+  height: 41.65px;
+  position: absolute;
+  left: 314.50px;
+  top: 582.2px;
+}
+
 .div3 {
   width: 1259.28px;
   height: 41.65px;
@@ -432,10 +458,10 @@ html, body {
   border-style: solid;
   border-color: #f9eeee;
   border-width: 0.85px;
-  width: 73.95px;
+  width: 90.95px;
   height: 28.05px;
   position: absolute;
-  left: 407.15px;
+  left: 400.15px;
   top: 141.10px;
 }
 .div6 {
@@ -446,9 +472,9 @@ html, body {
   line-height: 34px;
   font-weight: 700;
   position: absolute;
-  left: 425.85px;
+  left: 405.85px;
   top: 137.70px;
-  width: 35.22px;
+  width: 80.22px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -495,10 +521,10 @@ html, body {
   border-style: solid;
   border-color: #f9eeee;
   border-width: 0.85px;
-  width: 88.40px;
+  width: 150.40px;
   height: 28.05px;
   position: absolute;
-  left: 899.30px;
+  left: 875.30px;
   top: 141.10px;
 }
 .div9 {
@@ -509,7 +535,7 @@ html, body {
   line-height: 34px;
   font-weight: 700;
   position: absolute;
-  left: 919.70px;
+  left: 885.70px;
   top: 137.70px;
   display: flex;
   align-items: center;
@@ -588,10 +614,10 @@ html, body {
   border-style: solid;
   border-color: #f9eeee;
   border-width: 0.85px;
-  width: 73.95px;
+  width: 86.95px;
   height: 28.05px;
   position: absolute;
-  left: 407.15px;
+  left: 403.15px;
   top: 591.60px;
 }
 .div16 {
@@ -602,9 +628,9 @@ html, body {
   line-height: 34px;
   font-weight: 700;
   position: absolute;
-  left: 425.85px;
+  left: 405.85px;
   top: 588.20px;
-  width: 35.22px;
+  width: 80.22px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -724,7 +750,7 @@ html, body {
   border-style: solid;
   border-color: #f9eeee;
   border-width: 0.85px;
-  width: 90.75px;
+  width: 130.75px;
   height: 28.05px;
   position: absolute;
   left: 317.90px;
@@ -755,7 +781,7 @@ html, body {
   border-style: solid;
   border-color: #f9eeee;
   border-width: 0.85px;
-  width: 134.30px;
+  width: 175.30px;
   height: 28.05px;
   position: absolute;
   left: 317.90px;
@@ -774,6 +800,202 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: flex-start;
+}
+.line-301 {
+  width: 376.55px;
+  height: 0px;
+  position: absolute;
+  left: 314.50px;
+  top: 137.70px;
+  overflow: visible;
+}
+.line-3333 {
+  margin-top: -0.85px;
+  border-style: solid;
+  border-color: #f9eeee;
+  border-width: 0.85px 0px 0px 0px;
+  width: 336.60px;
+  height: 0px;
+  position: absolute;
+  left: 315.35px;
+  top: 136.00px;
+  transform-origin: 0 0;
+  transform: rotate(90deg) scale(1, 1);
+}
+.line-3334 {
+  margin-top: -0.85px;
+  border-style: solid;
+  border-color: #f9eeee;
+  border-width: 0.85px 0px 0px 0px;
+  width: 336.60px;
+  height: 0px;
+  position: absolute;
+  left: 1321.00px;
+  top: 136.00px;
+  transform-origin: 0 0;
+  transform: rotate(90deg) scale(1, 1);
+}
+.line-300 {
+  margin-top: -0.85px;
+  border-style: solid;
+  border-color: #f9eeee;
+  border-width: 0.85px 0px 0px 0px;
+  width: 336.60px;
+  height: 0px;
+  position: absolute;
+  left: 1572.50px;
+  top: 136.00px;
+  transform-origin: 0 0;
+  transform: rotate(90deg) scale(1, 1);
+}
+.line-296 {
+  margin-top: -0.85px;
+  border-style: solid;
+  border-color: #f9eeee;
+  border-width: 0.85px 0px 0px 0px;
+  width: 336.60px;
+  height: 0px;
+  position: absolute;
+  left: 566.10px;
+  top: 135.15px;
+  transform-origin: 0 0;
+  transform: rotate(90deg) scale(1, 1);
+}
+.line-303 {
+  margin-top: -0.85px;
+  border-style: solid;
+  border-color: #f9eeee;
+  border-width: 0.85px 0px 0px 0px;
+  width: 260.95px;
+  height: 0px;
+  position: absolute;
+  left: 566.10px;
+  top: 579.00px;
+  transform-origin: 0 0;
+  transform: rotate(90deg) scale(1, 1);
+}
+.line-304 {
+  margin-top: -0.85px;
+  border-style: solid;
+  border-color: #f9eeee;
+  border-width: 0.85px 0px 0px 0px;
+  width: 260.95px;
+  height: 0px;
+  position: absolute;
+  left: 821.10px;
+  top: 579.00px;
+  transform-origin: 0 0;
+  transform: rotate(90deg) scale(1, 1);
+}
+.line-308888 {
+  margin-top: -0.85px;
+  border-style: solid;
+  border-color: #f9eeee;
+  border-width: 0.85px 0px 0px 0px;
+  width: 260.09px;
+  height: 0px;
+  position: absolute;
+  left: 1572.50px;
+  top: 839.87px;
+  transform-origin: 0 0;
+  transform: rotate(-90deg) scale(1, 1);
+}
+.line-3035555 {
+  margin-top: -0.85px;
+  border-style: solid;
+  border-color: #f9eeee;
+  border-width: 0.85px 0px 0px 0px;
+  width: 260.95px;
+  height: 0px;
+  position: absolute;
+  left: 316.20px;
+  top: 579.00px;
+  transform-origin: 0 0;
+  transform: rotate(90deg) scale(1, 1);
+}
+.line-304444 {
+  margin-top: -0.85px;
+  border-style: solid;
+  border-color: #f9eeee;
+  border-width: 0.85px 0px 0px 0px;
+  width: 260.95px;
+  height: 0px;
+  position: absolute;
+  left: 1317.50px;
+  top: 579.00px;
+  transform-origin: 0 0;
+  transform: rotate(90deg) scale(1, 1);
+}
+.line-306 {
+  width: 260.10px;
+  height: 0px;
+  position: absolute;
+  left: 1321.00px;
+  top: 579.70px;
+  overflow: visible;
+}
+.line-307 {
+  width: 259.25px;
+  height: 0px;
+  position: absolute;
+  left: 1572.93px;
+  top: 580.55px;
+  overflow: visible;
+}
+.line-302 {
+  width: 260.95px;
+  height: 0px;
+  position: absolute;
+  left: 314.93px;
+  top: 579.00px;
+  overflow: visible;
+}
+.line-297 {
+  margin-top: -0.85px;
+  border-style: solid;
+  border-color: #f9eeee;
+  border-width: 0.85px 0px 0px 0px;
+  width: 336.60px;
+  height: 0px;
+  position: absolute;
+  left: 821.10px;
+  top: 471.75px;
+  transform-origin: 0 0;
+  transform: rotate(-90deg) scale(1, 1);
+}
+.line-298 {
+  margin-top: -0.85px;
+  border-style: solid;
+  border-color: #f9eeee;
+  border-width: 0.85px 0px 0px 0px;
+  width: 337.45px;
+  height: 0px;
+  position: absolute;
+  left: 1080.35px;
+  top: 471.75px;
+  transform-origin: 0 0;
+  transform: rotate(-90deg) scale(1, 1);
+}
+.line-308 {
+  margin-top: -0.85px;
+  border-style: solid;
+  border-color: #f9eeee;
+  border-width: 0.85px 0px 0px 0px;
+  width: 260.09px;
+  height: 0px;
+  position: absolute;
+  left: 1084.60px;
+  top: 839.87px;
+  transform-origin: 0 0;
+  transform: rotate(-90deg) scale(1, 1);
+}
+.line-299 {
+  width: 337.45px;
+  height: 0.85px;
+  position: absolute;
+  left: 1321.75px;
+  top: 134.30px;
+  overflow: visible;
 }
 .rectangle-1676 {
   background: #181818;
@@ -825,50 +1047,141 @@ html, body {
   align-items: center;
   justify-content: flex-start;
 }
-
-.line-3333 {
-    margin-top: -0.85px;
-    border-style: solid;
-    border-color: #f9eeee;
-    border-width: 0.85px 0px 0px 0px;
-    width: 336.60px;
-    height: 0px;
-    position: absolute;
-    left: 315.35px;
-    top: 136.00px;
-    transform-origin: 0 0;
-    transform: rotate(90deg) scale(1, 1);   
+.group-999 {
+  position: absolute;
+  inset: 0px;
 }
-
-.line-300 {
-    margin-top: -0.85px;
-    border-style: solid;
-    border-color: #f9eeee;
-    border-width: 0.85px 0px 0px 0px;
-    width: 336.60px;
-    height: 0px;
-    position: absolute;
-    left: 1572.50px;
-    top: 136.00px;
-    transform-origin: 0 0;
-    transform: rotate(90deg) scale(1, 1);
+.div35 {
+  color: rgba(249, 238, 238, 0.7);
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 15.30px;
+  line-height: 17px;
+  font-weight: 400;
+  position: absolute;
+  left: 322.15px;
+  top: 220.15px;
+  width: 243.95px;
+  height: 46.75px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 }
-
-.line-3113 {
-    margin-top: -0.85px;
-    border-style: solid;
-    border-color: #f9eeee;
-    border-width: 0.85px 0px 0px 0px;
-    width: 1258.85px;
-    height: 0px;
-    position: absolute;
-    left: 314.50px;
-    top: 471.75px;
-    transform-origin: 0 0;
-    transform: rotate(0deg) scale(1, 1);
+.stussy-welder-t-shirt-white {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 15.30px;
+  line-height: 34px;
+  font-weight: 400;
+  position: absolute;
+  left: 337.45px;
+  top: 175.95px;
+  width: 213.35px;
+  height: 46.75px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 }
-
-.line-311555 {
+.div36 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 15.30px;
+  line-height: 34px;
+  font-weight: 400;
+  position: absolute;
+  left: 895.25px;
+  top: 203.15px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.div37 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 15.30px;
+  line-height: 34px;
+  font-weight: 400;
+  position: absolute;
+  left: 1172.15px;
+  top: 203.15px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.div38 {
+  color: rgba(255, 0, 68, 0.7);
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 12.75px;
+  line-height: 34px;
+  font-weight: 400;
+  position: absolute;
+  left: 1170.45px;
+  top: 220.15px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.div39 {
+  color: rgba(255, 0, 68, 0.7);
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 12.75px;
+  line-height: 34px;
+  font-weight: 400;
+  position: absolute;
+  left: 1162.80px;
+  top: 317.90px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.div40 {
+  color: rgba(255, 0, 68, 0.7);
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 12.75px;
+  line-height: 34px;
+  font-weight: 400;
+  position: absolute;
+  left: 1170.45px;
+  top: 417.35px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+._78-000 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 15.30px;
+  line-height: 34px;
+  font-weight: 400;
+  position: absolute;
+  left: 669.80px;
+  top: 203.15px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+._2025-04-23 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 15.30px;
+  line-height: 34px;
+  font-weight: 400;
+  position: absolute;
+  left: 1411.00px;
+  top: 203.15px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.line-311 {
   margin-top: -0.85px;
   border-style: solid;
   border-color: #f9eeee;
@@ -876,40 +1189,379 @@ html, body {
   width: 1258px;
   height: 0px;
   position: absolute;
-  left: 315.35px;
-  top: 578px;
+  left: 314.50px;
+  top: 274.55px;
   transform-origin: 0 0;
   transform: rotate(0deg) scale(1, 1);
 }
-
-.line-3035555 {
+.group-1000 {
+  position: absolute;
+  inset: 0px;
+}
+.div41 {
+  color: rgba(249, 238, 238, 0.7);
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 15.30px;
+  line-height: 17px;
+  font-weight: 400;
+  position: absolute;
+  left: 322.15px;
+  top: 318.75px;
+  width: 243.95px;
+  height: 46.75px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.stussy-welder-t-shirt-white2 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 15.30px;
+  line-height: 34px;
+  font-weight: 400;
+  position: absolute;
+  left: 337.45px;
+  top: 274.55px;
+  width: 213.35px;
+  height: 46.75px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+._174-000 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 15.30px;
+  line-height: 34px;
+  font-weight: 400;
+  position: absolute;
+  left: 915.45px;
+  top: 301.75px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.div42 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 15.30px;
+  line-height: 34px;
+  font-weight: 400;
+  position: absolute;
+  left: 1151.75px;
+  top: 301.75px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+._78-0002 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 15.30px;
+  line-height: 34px;
+  font-weight: 400;
+  position: absolute;
+  left: 669.80px;
+  top: 301.75px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+._2025-04-232 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 15.30px;
+  line-height: 34px;
+  font-weight: 400;
+  position: absolute;
+  left: 1411.00px;
+  top: 301.75px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.line-3112 {
   margin-top: -0.85px;
   border-style: solid;
   border-color: #f9eeee;
   border-width: 0.85px 0px 0px 0px;
-  width: 260.95px;
+  width: 1258px;
   height: 0px;
   position: absolute;
-  left: 316.20px;
-  top: 579.00px;
+  left: 314.50px;
+  top: 373.15px;
   transform-origin: 0 0;
-  transform: rotate(90deg) scale(1, 1);
+  transform: rotate(0deg) scale(1, 1);
 }
-
-.line-308888 {
+.group-1001 {
+  position: absolute;
+  inset: 0px;
+}
+.div43 {
+  color: rgba(249, 238, 238, 0.7);
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 15.30px;
+  line-height: 17px;
+  font-weight: 400;
+  position: absolute;
+  left: 322.15px;
+  top: 417.35px;
+  width: 243.95px;
+  height: 46.75px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.stussy-welder-t-shirt-white3 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 15.30px;
+  line-height: 34px;
+  font-weight: 400;
+  position: absolute;
+  left: 337.45px;
+  top: 373.15px;
+  width: 213.35px;
+  height: 46.75px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.div44 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 15.30px;
+  line-height: 34px;
+  font-weight: 400;
+  position: absolute;
+  left: 939.25px;
+  top: 400.35px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.div45 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 15.30px;
+  line-height: 34px;
+  font-weight: 400;
+  position: absolute;
+  left: 1172.15px;
+  top: 400.35px;
+  width: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+._78-0003 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 15.30px;
+  line-height: 34px;
+  font-weight: 400;
+  position: absolute;
+  left: 669.80px;
+  top: 400.35px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+._2025-04-30 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 15.30px;
+  line-height: 34px;
+  font-weight: 400;
+  position: absolute;
+  left: 1411.00px;
+  top: 400.35px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.line-3113 {
   margin-top: -0.85px;
   border-style: solid;
   border-color: #f9eeee;
   border-width: 0.85px 0px 0px 0px;
-  width: 260.09px;
+  width: 1258.85px;
   height: 0px;
   position: absolute;
-  left: 1572.50px;
-  top: 839.87px;
+  left: 314.50px;
+  top: 471.75px;
   transform-origin: 0 0;
-  transform: rotate(-90deg) scale(1, 1);
+  transform: rotate(0deg) scale(1, 1);
+}
+.div46 {
+  color: rgba(249, 238, 238, 0.7);
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 15.30px;
+  line-height: 17px;
+  font-weight: 400;
+  position: absolute;
+  left: 322.15px;
+  top: 667.25px;
+  width: 243.95px;
+  height: 46.75px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.stussy-welder-t-shirt-white4 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 15.30px;
+  line-height: 34px;
+  font-weight: 400;
+  position: absolute;
+  left: 337.45px;
+  top: 628.15px;
+  width: 213.35px;
+  height: 46.75px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.min-qqq-qq-qsdf {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 15.30px;
+  line-height: 34px;
+  font-weight: 400;
+  position: absolute;
+  left: 883.15px;
+  top: 657.90px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 }
 
+._94-000 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 15.30px;
+  line-height: 34px;
+  font-weight: 400;
+  position: absolute;
+  left: 668.95px;
+  top: 657.90px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+._2025-04-27 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 15.30px;
+  line-height: 34px;
+  font-weight: 400;
+  position: absolute;
+  left: 1150.90px;
+  top: 657.90px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.line-3114 {
+  width: 1257.15px;
+  height: 0px;
+  position: absolute;
+  left: 315.35px;
+  top: 733.13px;
+  overflow: visible;
+}
+.div47 {
+  color: rgba(249, 238, 238, 0.7);
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 15.30px;
+  line-height: 17px;
+  font-weight: 400;
+  position: absolute;
+  left: 324.70px;
+  top: 776.90px;
+  width: 243.95px;
+  height: 46.75px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.stussy-welder-t-shirt-white5 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 15.30px;
+  line-height: 34px;
+  font-weight: 400;
+  position: absolute;
+  left: 340.00px;
+  top: 732.70px;
+  width: 213.35px;
+  height: 46.75px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.jiyun-kawaii {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 15.30px;
+  line-height: 34px;
+  font-weight: 400;
+  position: absolute;
+  left: 898.45px;
+  top: 769.25px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+._124-000 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 15.30px;
+  line-height: 34px;
+  font-weight: 400;
+  position: absolute;
+  left: 662.15px;
+  top: 769.25px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+._2025-05-01 {
+  color: #f9eeee;
+  text-align: left;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 15.30px;
+  line-height: 34px;
+  font-weight: 400;
+  position: absolute;
+  left: 1150.90px;
+  top: 769.25px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
 .line-3115 {
   margin-top: -0.85px;
   border-style: solid;
@@ -923,17 +1575,171 @@ html, body {
   transform-origin: 0 0;
   transform: rotate(0deg) scale(1, 1);
 }
+.line-311555 {
+  margin-top: -0.85px;
+  border-style: solid;
+  border-color: #f9eeee;
+  border-width: 0.85px 0px 0px 0px;
+  width: 1258px;
+  height: 0px;
+  position: absolute;
+  left: 315.35px;
+  top: 578px;
+  transform-origin: 0 0;
+  transform: rotate(0deg) scale(1, 1);
+}
+.line-311444 {
+  margin-top: -0.85px;
+  border-style: solid;
+  border-color: #f9eeee;
+  border-width: 0.85px 0px 0px 0px;
+  width: 1258px;
+  height: 0px;
+  position: absolute;
+  left: 315.35px;
+  top: 732px;
+  transform-origin: 0 0;
+  transform: rotate(0deg) scale(1, 1);
+}
 
-.line-3113222 {
-    margin-top: -0.85px;
-    border-style: solid;
-    border-color: #f9eeee;
-    border-width: 0.85px 0px 0px 0px;
-    width: 1258.85px;
-    height: 0px;
-    position: absolute;
-    left: 314.50px;
-    top:  630.75px;
-    transform-origin: 0 0;
-    transform: rotate(0deg) scale(1, 1);
+.div48 {
+  width: 96.90px;
+  height: 34px;
+  position: static;
+}
+
+.div480 {
+  width: 96.90px;
+  height: 34px;
+  position: static;
+}
+.rectangle-1703 {
+  background: #181818;
+  border-radius: 17px;
+  border-style: solid;
+  border-color: #ff0044;
+  border-width: 0.85px;
+  width: 96.90px;
+  height: 28.05px;
+  position: absolute;
+  left: 1410.45px;
+  top: 771.80px;
+}
+.div49 {
+  color: #ff0044;
+  text-align: left;
+  font-family: "LineSeedSansKr-Bold", sans-serif;
+  font-size: 15.30px;
+  line-height: 34px;
+  font-weight: 700;
+  position: absolute;
+  left: 1430.45px;
+  top: 768.40px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.rectangle-17032 {
+  background: #181818;
+  border-radius: 17px;
+  border-style: solid;
+  border-color: #ff0044;
+  border-width: 0.85px;
+  width: 96.90px;
+  height: 28.05px;
+  position: absolute;
+  left: 1410.45px;
+  top: 667.25px;
+}
+.div50 {
+  color: #ff0044;
+  text-align: left;
+  font-family: "LineSeedSansKr-Bold", sans-serif;
+  font-size: 15.30px;
+  line-height: 34px;
+  font-weight: 700;
+  position: absolute;
+  left: 1430.70px;
+  top: 663.85px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.rectangle-17033 {
+  background: #181818;
+  border-radius: 17px;
+  border-style: solid;
+  border-color: #ff0044;
+  border-width: 0.85px;
+  width: 96.90px;
+  height: 28.05px;
+  position: absolute;
+  left: 1463.70px;
+  top: 772.65px;
+}
+.div51 {
+  color: #ff0044;
+  text-align: left;
+  font-family: "LineSeedSansKr-Bold", sans-serif;
+  font-size: 15.30px;
+  line-height: 34px;
+  font-weight: 700;
+  position: absolute;
+  left: 1484.95px;
+  top: 769.25px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.rectangle-17034 {
+  background: #181818;
+  border-radius: 17px;
+  border-style: solid;
+  border-color: #ff0044;
+  border-width: 0.85px;
+  width: 96.90px;
+  height: 28.05px;
+  position: absolute;
+  left: 1463.70px;
+  top: 667.25px;
+}
+.div52 {
+  color: #ff0044;
+  text-align: left;
+  font-family: "LineSeedSansKr-Bold", sans-serif;
+  font-size: 15.30px;
+  line-height: 34px;
+  font-weight: 700;
+  position: absolute;
+  left: 1484.95px;
+  top: 663.85px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+.line-309 {
+  width: 1257.58px;
+  height: 0px;
+  position: absolute;
+  left: 314.50px;
+  top: 513.83px;
+  overflow: visible;
+}
+
+/* 공통: a 태그 링크 스타일 제거 */
+.prev a,
+.next a,
+.prev2 a,
+.next2 a {
+  color: inherit;          /* 부모 색상 상속 */
+  text-decoration: none;   /* 밑줄 제거 */
+}
+
+/* 마우스 오버 시에도 동일하게 유지 */
+.prev a:hover,
+.next a:hover,
+.prev2 a:hover,
+.next2 a:hover {
+  color: inherit;
+  text-decoration: none;
 }

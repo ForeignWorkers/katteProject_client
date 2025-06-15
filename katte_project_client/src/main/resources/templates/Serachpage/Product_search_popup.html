@@ -69,7 +69,8 @@
 
             // 판매 등록 페이지용 함수
             if (typeof opener.setProductTag === "function") {
-            opener.setProductTag(item.product_name, item.product_id, item.category?.join?.(',') || '');
+              const categoryStr = Array.isArray(item.category) ? item.category.join(',') : item.category;
+              opener.setProductTag(item.product_name, item.product_id, categoryStr);
             }
 
             // 스타일 등록 페이지용 함수
