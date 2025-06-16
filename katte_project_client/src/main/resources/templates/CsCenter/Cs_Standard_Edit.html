@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>검수 기준 수정하기</title>
+    <link rel="stylesheet" href="/css/CsCenter/CsCenter.css">
+    <link rel="stylesheet" href="/css/fragments/Sidebar.css" />
+</head>
+<body>
+<div th:replace="~{Fragments/Sidebar :: sidebar}"></div>
+
+
+<!-- 내용 영역 -->
+<div class="contentWrapper">
+    <div class = "content">
+        <!-- 1) 탭 내비게이션 -->
+        <div class="cc-tabs">
+            <a href="/announce" class = "cc-tab">
+                <div class = "insideA">
+                    공지사항
+                </div>
+            </a>
+            <a href="/faq" class = "cc-tab">
+                <div class = "insideA">
+                    자주 묻는 질문
+                </div>
+            </a>
+            <a href="/inquiry" class = "cc-tab">
+                <div class = "insideA">
+                    1:1문의
+                </div>
+            </a>
+            <a href="/standard" class = "cc-tab active">
+                <div class = "insideA">
+                    검수 기준
+                </div>
+            </a>
+        </div>
+
+        <form action="/standard/edit" method="post" id="cs-common-post-form">
+            <input type="hidden" name="standard_id" th:value="${csStandardBean.standard_id}">
+            <div id="cs-common-post-write">
+                <div class="write-form">
+                    <input type="hidden" name="standard_category" id="standard_category" th:value="${csStandardBean.standard_category}"/>
+                    <div class="write-group">
+                        <label for="cs-common-post-content-standard">내용</label>
+                        <textarea id="cs-common-post-content-standard" name="standard_content" placeholder="검수 기준을 입력해주세요"
+                                  th:text="${csStandardBean.standard_content}" required style="white-space: pre"></textarea>
+                    </div>
+                    <div class="write-actions">
+                        <button class="btn-cancel" type="button" onclick="history.back()">취소</button>
+                        <button class="btn-submit" type="submit">수정</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+</body>
+</html>

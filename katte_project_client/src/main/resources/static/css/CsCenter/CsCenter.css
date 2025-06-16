@@ -177,6 +177,9 @@ a:visited{
   font-size : 16px;
 }
 
+.div-content{
+  white-space: pre;
+}
 /* ───────────────────────────────────────────────────────────────────────────
     공지사항 리스트
    ─────────────────────────────────────────────────────────────────────────── */
@@ -208,6 +211,12 @@ a:visited{
 #cs-common-post-content{
   height : 60vh;
   resize : none;
+
+}
+#cs-common-post-content-standard{
+  height : 75vh;
+  resize : none;
+
 }
 
 /* ───────────────────────────────────────────────────────────────────────────
@@ -376,4 +385,11 @@ a:visited{
 }
 .hidden {
   display : none;
+}
+
+.standard-content.hidden {
+  display: none;
+}
+.standard-content.active {
+  display: block;
 }
