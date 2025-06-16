@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>검수 기준</title>
+    <link rel="stylesheet" href="/css/CsCenter/CsCenter.css">
+    <link rel="stylesheet" href="/css/fragments/Sidebar.css" />
+</head>
+<body>
+<div th:replace="~{Fragments/Sidebar :: sidebar}"></div>
+
+
+<!-- 내용 영역 -->
+    <div class="contentWrapper">
+        <div class = "content">
+            <!-- 1) 탭 내비게이션 -->
+            <div class="cc-tabs">
+                <a href="/announce" class = "cc-tab">
+                    <div class = "insideA">
+                        공지사항
+                    </div>
+                </a>
+                <a href="/faq" class = "cc-tab">
+                    <div class = "insideA">
+                        자주 묻는 질문
+                    </div>
+                </a>
+                <a href="/inquiry" class = "cc-tab">
+                    <div class = "insideA">
+                        1:1문의
+                    </div>
+                </a>
+                <a href="/standard" class = "cc-tab active">
+                    <div class = "insideA">
+                        검수 기준
+                    </div>
+                </a>
+            </div>
+        </div>
+        <!-- 6) 검수 기준 -->
+            <div id="standard" class="cc-section">
+                <div class="standard-tabs">
+                    <button class="standard active" id="standard-SHOES"><div>신발</div></button>
+                    <button class="standard" id="standard-CLOTHES"><div>의류</div></button>
+                    <button class="standard" id="standard-BAG"><div>가방</div></button>
+                    <button class="standard" id="standard-ETC"><div>기타</div></button>
+                </div>
+                <div th:each="standard : ${csStandardBean}"
+                     class="standard-content"
+                     th:data-cat="${standard.standard_category}"
+                     th:classappend="
+                      ${standard.standard_category} == 'SHOES' ? ' active' : 'hidden' ">
+                    <p th:text="'[작성 일자] ' + ${standard.create_at}">작성일자</p>
+                    <p th:utext="${standard.standard_content}" class = "div-content">기준 내용</p>
+                    <a th:href="@{'/standard/edit/' + ${standard.standard_id}}" class="edit-btn">
+                        <div class="edit-div">수정</div>
+                    </a>
+                </div>
+            </div>
+    </div>
+
+    <script>
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const tabs = document.querySelectorAll('.standard');
+            const contents = document.querySelectorAll('.standard-content');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    tabs.forEach(t => t.classList.remove('active'));
+                    tab.classList.add('active');
+
+                    const selectedCategory = tab.id.replace('standard-', '').toUpperCase();
+                    contents.forEach(content => {
+                        const isMatch = content.dataset.cat === selectedCategory;
+                        content.classList.toggle('hidden', !isMatch);
+                        content.classList.toggle('active', isMatch);
+                    });
+                });
+            });
+
+            const params = new URLSearchParams(window.location.search);
+            const category = params.get('standard_category') || 'SHOES';
+
+            tabs.forEach(tab => {
+                const isActive = tab.id === `standard-${category.toUpperCase()}`;
+                tab.classList.toggle('active', isActive);
+            });
+
+            contents.forEach(content => {
+                const isMatch = content.dataset.cat === category.toUpperCase();
+                content.classList.toggle('hidden', !isMatch);
+                content.classList.toggle('active', isMatch);
+            });
+        });
+
+        </script>
+    </body>
+</html>
