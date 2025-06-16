@@ -1,37 +1,19 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8" />
   <title>회원 관리</title>
+  <link rel="stylesheet" href="/css/fragments/Sidebar.css" />
   <link rel="stylesheet" href="/css/Membership_management/Membership_management.css" />
 </head>
 <body>
   <!-- ───────────────────────────────────────────────────────────────────
      1) 사이드바 (기존과 동일)
      ─────────────────────────────────────────────────────────────────── -->
-  <aside class="sidebar">
-    <a href="/main">
-      <img class="logo-1" src="/img/logo%20(1).png" alt="로고" />
-    </a>
-    <nav class="sidebar-nav">
-      <ul>
-        <li><a href="/search">검색</a></li>
-        <li><a href="/explore">탐색</a></li>
-        <li><a href="/sell">판매등록</a></li>
-        <li><a href="/wishlist">관심상품</a></li>
-        <li><a href="/style">스타일</a></li>
-        <li><a href="/mypage">마이페이지</a></li>
-        <li><a href="/support">고객센터</a></li>
-      </ul>
-    </nav>
-    <div class="login-area">
-      <a href="/login" class="btn-login">관리자</a>
-    </div>
-    <footer class="sidebar-footer">
-      <p><a href="/support">고객센터</a> | <a href="/terms">이용약관</a></p>
-      <small>&copy; All copyright in soldesk</small>
-    </footer>
-  </aside>
+  <!-- 사이드바 HTML 분리 -->
+  <div th:replace="~{Fragments/Sidebar :: sidebar}"></div>
+
+  <div class="wrapper">
 
   <!-- ───────────────────────────────────────────────────────────────────
      2) 메인 콘텐츠 영역
@@ -43,9 +25,9 @@
        ───────────────────────────────────────────────────────────────── -->
     <div class="tab-toggle-wrapper">
       <div class="tab-container">
-        <div class="tab active" data-target="member-area">회원 관리</div>
-        <div class="tab"       data-target="review-area">검수 관리</div>
-        <div class="tab"       data-target="report-area">신고 관리</div>
+        <div class="tab" th:classappend="${activeTab == 'member-area'} ? ' active'" data-target="member-area">회원 관리</div>
+        <div class="tab" th:classappend="${activeTab == 'review-area'} ? ' active'" data-target="review-area">검수 관리</div>
+        <div class="tab" th:classappend="${activeTab == 'report-area'} ? ' active'" data-target="report-area">신고 관리</div>
       </div>
       <div class="view-toggle-container">
         <button id="viewToggleBtn" class="view-toggle-btn">
@@ -71,14 +53,16 @@
     <div class="search-area">
       <div class="total-count">총 회원 13,334명</div>
       <div class="search-input">
-        <input type="text" placeholder="닉네임 혹은 계정 ID를 검색하세요" />
+        <label>
+          <input type="text" placeholder="닉네임 혹은 계정 ID를 검색하세요" />
+        </label>
       </div>
     </div>
 
     <!-- ─────────────────────────────────────────────────────────────────
        2-3) 회원관리 섹션
        ───────────────────────────────────────────────────────────────── -->
-    <div id="member-area">
+    <div id="member-area" th:classappend="${activeTab != 'member-area'} ? ' hidden'">
       <table class="member-table">
         <thead>
           <tr>
@@ -332,8 +316,8 @@
     <!-- ─────────────────────────────────────────────────────────────────
        2-5) 검수관리 섹션
        ───────────────────────────────────────────────────────────────── -->
-    <div id="review-area" class="hidden">
-      <div class="section-count">검수 내역 3건</div>
+    <div id="review-area" th:classappend="${activeTab != 'review-area'} ? ' hidden'">
+      <div class="section-count" th:text="'검수 내역 ' + ${inspectionCount} + '건'">검수 내역 0건</div>
       <table class="review-table">
         <thead>
           <tr>
@@ -345,55 +329,52 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>
-              Stussy Welder T-Shirt White<br/>
-              <button class="detail-btn">상세 보기</button>
-            </td>
-            <td>스트릿 패션의 기본! 스투시 반팔 판매합니다</td>
-            <td>wefad_1432</td>
-            <td>2025-3-25</td>
-            <td class="review-cell">
-              <button class="review-complete-btn">검수 완료</button>
-              <button class="review-fail-btn">검수 기준 미달</button>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              AAPE Fancy Main Tee Black - 25SS<br/>
-              <button class="detail-btn">상세 보기</button>
-            </td>
-            <td>베이프 신상 티셔츠 판매합니다</td>
-            <td>Lves8934</td>
-            <td>2025-3-24</td>
-            <td class="review-cell">
-              <button class="review-complete-btn">검수 완료</button>
-              <button class="review-fail-btn">검수 기준 미달</button>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              Nike V2K Run Summit White Metallic Silver<br/>
-              <button class="detail-btn">상세 보기</button>
-            </td>
-            <td>[주의] 한 번도 안 신은 나이키 신발 판매합니다! 실물 진짜 예뻐</td>
-            <td>xilio_1_meow</td>
-            <td>2025-3-23</td>
-            <td class="review-cell">
-              <button class="review-complete-btn">검수 완료</button>
-              <button class="review-fail-btn">검수 기준 미달</button>
-            </td>
-          </tr>
+        <tr th:each="item : ${inspectionList}">
+          <td>
+            <span th:text="${item.product_name}">상품명</span><br/>
+            <button class="detail-btn" th:attr="data-id=${item.check_result_id}">상세 보기</button>
+          </td>
+          <td th:text="${item.shortform_title}">타이틀</td>
+          <td th:text="${item.seller_email}">판매자</td>
+          <td th:text="${#dates.format(item.check_start_day, 'yyyy-MM-dd')}">등록일</td>
+          <td class="review-cell">
+            <!-- 검수중일 때만 버튼 -->
+            <th:block th:if="${item.check_step.name() == 'IN_PROGRESS'}">
+              <button class="review-complete-btn" th:attr="data-id=${item.check_result_id}">검수 완료</button>
+              <button class="review-fail-btn" th:attr="data-id=${item.check_result_id}">검수 기준 미달</button>
+            </th:block>
+
+            <!-- 검수 완료 텍스트 -->
+            <th:block th:if="${item.check_step.name() == 'COMPLETED'}">
+              <span style="color: green; font-weight: bold;">검수 완료</span>
+            </th:block>
+
+            <!-- 검수 실패 텍스트 -->
+            <th:block th:if="${item.check_step.name() == 'RETURNED'}">
+              <span style="color: red; font-weight: bold;">검수 기준 미달</span>
+            </th:block>
+          </td>
+        </tr>
         </tbody>
       </table>
       <div class="pagination">
-        <a href="#" class="prev">PREV</a>
-        <span class="current-page">1</span>
-        <a href="#">2</a><a href="#">3</a>
-        <a href="#" class="next">NEXT</a>
+        <!-- PREV 버튼 -->
+        <a th:href="@{/admin/inspection-view(page=${currentPage - 1})}"
+           th:if="${currentPage > 1}" class="prev">PREV</a>
+
+        <!-- 페이지 번호 -->
+        <a th:each="p : ${#numbers.sequence(1, totalPages)}"
+           th:href="@{/admin/inspection-view(page=${p})}"
+           th:text="${p}"
+           th:classappend="${p == currentPage} ? 'current-page' : ''">
+        </a>
+
+        <!-- NEXT 버튼 -->
+        <a th:href="@{/admin/inspection-view(page=${currentPage + 1})}"
+           th:if="${currentPage < totalPages}" class="next">NEXT</a>
       </div>
     </div>
-    <div id="report-area" class="hidden">
+    <div id="report-area" th:classappend="${activeTab != 'report-area'} ? ' hidden'">
       <!-- ▶ 맨 위: 신고 건수 -->
       <div class="section-count">신고 건수 10건</div>
 
@@ -445,15 +426,13 @@
         <a href="#" class="next">NEXT</a>
       </div>
     </div>
-    
+  </div>
 
     <!-- ─────────────────────────────────────────────────────────────────
        2-6) 신고관리 섹션 (플레이스홀더)
        ───────────────────────────────────────────────────────────────── -->
-    <div id="report-area" class="hidden">
-      <p>신고관리 페이지 작업 중…</p>
-    </div>
-  </div>
+
+
 
   <!-- ───────────────────────────────────────────────────────────────────
      3) 게시글 모달
@@ -508,7 +487,12 @@
   <!-- ───────────────────────────────────────────────────────────────────
      5) JavaScript (탭 전환 + 드롭다운 + 상태 팝업 + 모달 + 검수관리)
      ─────────────────────────────────────────────────────────────────── -->
-  <script>
+<script>
+
+</script>
+
+
+    <script>
 document.addEventListener('DOMContentLoaded', () => {
   // (1) 탭 전환
   document.querySelectorAll('.tab').forEach(tab => {
@@ -668,19 +652,41 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // (8) 검수관리 – 검수 상태 버튼 처리
   document.querySelectorAll('.review-complete-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      if (confirm('검수를 완료하시겠습니까?')) {
-        btn.closest('td').innerText = '검수 완료';
-      }
-    });
+  btn.addEventListener('click', () => {
+    const id = btn.dataset.id;
+    if (confirm('검수를 완료하시겠습니까?')) {
+      fetch(`http://localhost:9000/admin/inspection/complete?check_result_id=${id}`, {
+        method: 'PATCH'
+      }).then(res => {
+        if (res.ok) {
+          // 👇 버튼 영역을 '검수 완료'로 대체
+          const td = btn.closest('td');
+          td.innerHTML = '<span style="color: green; font-weight: bold;">검수 완료</span>';
+        } else {
+          alert('검수 완료 처리 실패');
+        }
+      });
+    }
   });
+ });
+
   document.querySelectorAll('.review-fail-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      if (confirm('검수 기준 미달 처리를 하겠습니까?')) {
-        btn.closest('td').innerText = '검수 기준 미달';
-      }
-    });
+  btn.addEventListener('click', () => {
+    const id = btn.dataset.id;
+    if (confirm('검수 기준 미달 처리를 하시겠습니까?')) {
+      fetch(`http://localhost:9000/admin/inspection/fail?check_result_id=${id}`, {
+        method: 'PATCH'
+      }).then(res => {
+        if (res.ok) {
+          const td = btn.closest('td');
+          td.innerHTML = '<span style="color: red; font-weight: bold;">검수 기준 미달</span>';
+        } else {
+          alert('검수 실패 처리 실패');
+        }
+      });
+    }
   });
+});
 
   // (9) 신고관리 – 삭제 버튼 (향후 로직 연결)
   document.querySelectorAll('.delete-btn').forEach(btn => {
@@ -690,6 +696,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 });
-</script>
+  </script>
+  </div>>
 </body>
 </html>
