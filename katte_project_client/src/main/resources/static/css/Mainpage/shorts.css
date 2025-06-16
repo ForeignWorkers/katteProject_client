@@ -2,7 +2,7 @@
     position: absolute;
     right: 0;
     top: 0;
-    width: calc(100vw - 540px); /* 사이드바 너비 제외 */
+    width: calc(100vw - 760px); /* 사이드바 너비 제외 */
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -343,4 +343,66 @@
     accent-color: #ff5f5f;
     position: absolute;
     left: 22px;
+}
+
+.right-panel {
+    position: absolute;
+    top: 0;
+    right: 24px;
+    width: 320px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.price-chart-card, .style-review-card {
+    background: #1f1f1f;
+    border-radius: 16px;
+    padding: 16px;
+    color: white;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+.chart-header, .style-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 12px;
+}
+.range-selector button {
+    background: transparent;
+    color: #aaa;
+    border: none;
+    font-size: 12px;
+    margin-left: 4px;
+    cursor: pointer;
+}
+.range-selector button:hover {
+    color: white;
+}
+
+.style-carousel {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+.nav-btn {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 5;
+}
+#styleReviewContainer {
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+    scroll-behavior: smooth;
+}
+.review-item {
+    min-width: 100%;
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
 }

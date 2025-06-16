@@ -3,6 +3,8 @@ package me.soldesk.katte_project_client.controller;
 import common.bean.auction.AuctionDataBean;
 import common.bean.content.ContentShortBean;
 import common.bean.content.ContentShortformBean;
+import common.bean.ecommerce.EcommerceOrderBean;
+import common.bean.ecommerce.EcommerceTradeLookUp;
 import common.bean.product.ProductPerSaleBean;
 import common.bean.user.UserBean;
 import me.soldesk.katte_project_client.service.AuctionService;
@@ -17,6 +19,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
+
+import java.util.TreeMap;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class ContentController {
@@ -51,6 +57,9 @@ public class ContentController {
             shortform.setCurrentPrice(Integer.toString(auctionDataBean.getCurrent_price()));
             shortform.setInstantPrice(Integer.toString(auctionDataBean.getInstant_price()));
         }
+        //테스트로 하나만
+        shortform.setProduct_id(483229);
+
         return ResponseEntity.ok(shortform);
     }
 
@@ -58,5 +67,18 @@ public class ContentController {
     @ResponseBody
     public boolean toggleLike(@RequestParam("short_id") int shortId, @SessionAttribute("currentUser") UserBean user) {
         return shortformService.toggleLike(user.getUser_id(), shortId);
+    }
+
+    @GetMapping("/price_history")
+    @ResponseBody
+    public List<EcommerceTradeLookUp> getPriceHistory(
+            @RequestParam String range,
+            @RequestParam int productId
+    ) {
+        System.out.println("!@#@!$!$!@#" + range + " " + productId);
+        return shortformService.getTrades(
+                String.valueOf(productId),
+                range
+        );
     }
 }
