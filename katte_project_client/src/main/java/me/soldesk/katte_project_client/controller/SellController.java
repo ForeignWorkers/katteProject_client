@@ -85,11 +85,11 @@ public class SellController {
                     break;
                 case "ON_SALE":
                     saleLinkTextMap.put(i, "보러가기");
-                    saleLinkActionMap.put(i, "/product/detail/" + registered.get(i).getProduct_name()); // 상세페이지로 이동(추후 수정 해야함) getPer_sale_id
+                    saleLinkActionMap.put(i, "/product/detail/" + registered.get(i).getPer_sale_id()); // 상세페이지로 이동(추후 수정 해야함) getPer_sale_id
                     break;
                 case "EXPIRED":
                     saleLinkTextMap.put(i, "삭제");
-                    saleLinkActionMap.put(i, "/product/delete/" + registered.get(i).getProduct_name()); // 삭제 처리 경로 getPer_sale_id
+                    saleLinkActionMap.put(i, "/product/delete/" + registered.get(i).getPer_sale_id()); // 삭제 처리 경로 getPer_sale_id
                     break;
                 default:
                     saleLinkTextMap.put(i, "-");
