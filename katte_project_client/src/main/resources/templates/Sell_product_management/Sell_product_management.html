@@ -312,7 +312,7 @@
 <script>
   function deleteRow(element, auctionId) {
   // 1단계: 삭제 가능 상태로 조정
-  fetch(`http://localhost:9000/admin/inspection/expire-now?auction_id=${auctionId}`, {
+  fetch(`http://localhost:9000/admin/inspection/expire_now?auction_id=${auctionId}`, {
     method: 'PATCH'
   }).then(response => {
     if (response.ok) {

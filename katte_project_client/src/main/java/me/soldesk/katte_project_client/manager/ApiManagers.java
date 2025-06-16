@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import okhttp3.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -133,6 +134,43 @@ public class ApiManagers {
             return execute(request, typeRef);
         } catch (Exception e) {
             e.printStackTrace();
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    //파일 등록 전용 post
+    public static ResponseEntity<String> postFile(String path, Map<String, Object> parts) {
+        try {
+            // Multipart/data 형식으로 http body를 구성할 벌더를 생성
+            MultipartBody.Builder builder = new MultipartBody.Builder().setType(MultipartBody.FORM);
+
+            // 입력된 파라미터 반복
+            for (Map.Entry<String, Object> entry : parts.entrySet()) {
+                Object value = entry.getValue();
+                if (value instanceof MultipartFile file) {
+                    // multipartfile인 경우 파일 본문으로 추가
+                    builder.addFormDataPart(
+                            entry.getKey(),//파라미터 이름 ex)file
+                            file.getOriginalFilename(), //업로드할 파일 이름
+                            RequestBody.create(file.getBytes(), MediaType.parse(file.getContentType()))
+                    );
+                } else {
+                    //일반 문자열 파라미터는 그대로 추가
+                    builder.addFormDataPart(entry.getKey(), String.valueOf(value));
+                }
+            }
+
+            //최종 요청 객체 생성 post , body 포함
+            Request request = new Request.Builder()
+                    .url(BASE_URL + path) // url 세팅 localhost:9000/
+                    .post(builder.build()) // post + body
+                    .build();
+
+            //실제 요청 수행 및 결과 반환
+            return execute(request, new TypeReference<String>() {});
+        } catch (Exception e) {
+            e.printStackTrace();
+            //예외 발생시 500
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }

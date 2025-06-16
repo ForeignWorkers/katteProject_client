@@ -7,17 +7,30 @@ import common.bean.product.ProductPerSaleBean;
 import common.bean.product.ProductSizeBean;
 import common.bean.user.UserBean;
 import jakarta.servlet.http.HttpSession;
+import me.soldesk.katte_project_client.manager.ApiManagers;
+import me.soldesk.katte_project_client.manager.MultipartInputStreamFileResource;
+import me.soldesk.katte_project_client.service.ProductRegisterResult;
 import me.soldesk.katte_project_client.service.ProductRegisterService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
+
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 @Controller
@@ -63,30 +76,9 @@ public class ProductController {
             return "Sell_product_upload/Sell_product_upload";
         }
 
-        //동영상 업로드 → URL 획득
-        String videoUrl;
-        try {
-            if (!file.getContentType().startsWith("video/")) {
-                model.addAttribute("message", "동영상 파일만 업로드 가능합니다.");
-                return "Sell_product_upload/Sell_product_upload";
-            }
-
-            String uploadDir = System.getProperty("user.dir") + "/src/main/resources/static/uploads/videos/";
-            File dir = new File(uploadDir);
-            if (!dir.exists()) dir.mkdirs();
-
-            String fileName = UUID.randomUUID() + "_" + file.getOriginalFilename();
-            File dest = new File(uploadDir + fileName);
-            file.transferTo(dest);
-            videoUrl = "/uploads/videos/" + fileName;
-        } catch (IOException e) {
-            model.addAttribute("message", "동영상 업로드 실패");
-            return "Sell_product_upload/Sell_product_upload";
-        }
 
         //Bean 세팅
         ContentShortformBean shortformBean = new ContentShortformBean();
-        shortformBean.setContent_url(videoUrl);
         shortformBean.setTitle(title);
         shortformBean.setDescription(description);
         shortformBean.setProduct_id(Integer.parseInt(product_id));
@@ -120,10 +112,49 @@ public class ProductController {
         checkResultBean.setCheck_desc("검수 요청합니다");
 
         //서비스 실행
-        String result = productRegisterService.registerProductFlow(shortformBean, sizeBean, auctionBean, perSaleBean, checkResultBean);
-        model.addAttribute("message", result);
+        ProductRegisterResult result = productRegisterService.registerProductFlow(
+                shortformBean, sizeBean, auctionBean, perSaleBean, checkResultBean
+        );
+
+        if (result.getPerSaleId() == -1) {
+            model.addAttribute("message", result.getMessage());
+            return "Sell_product_upload/Sell_product_upload";
+        }
+
+        //파일 업로드
+
+        //파일 업로드 처리
+        try {
+            if (!file.getContentType().startsWith("video/")) {
+                model.addAttribute("message", "동영상 파일만 업로드 가능");
+                return "Sell_product_upload/Sell_product_upload";
+            }
+
+            String postId = String.valueOf(result.getPerSaleId());
+
+            Map<String, Object> parts = new HashMap<>();
+            parts.put("post_id", postId);
+            parts.put("isStyle", false);
+            parts.put("file", file);
+
+            ResponseEntity<String> response = ApiManagers.postFile("media/upload", parts);
+            if (!ApiManagers.isSuccessful(response)) {
+                model.addAttribute("message", "업로드 실패");
+                return "Sell_product_upload/Sell_product_upload";
+            }
+
+            // 동영상 경로 구성
+            String videoUrl = "/media/mp4/short_" + postId + ".mp4";
+            shortformBean.setContent_url(videoUrl); // 필요 시 이후 로직에서 사용
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            model.addAttribute("message", "동영상 업로드 중 오류 발생");
+            return "Sell_product_upload/Sell_product_upload";
+        }
+
+        model.addAttribute("message", result.getMessage());
         System.out.println("submitProduct() 실행됨");
-        System.out.println("result: " + result);
         return "redirect:/sell/manage";
     }
 }
