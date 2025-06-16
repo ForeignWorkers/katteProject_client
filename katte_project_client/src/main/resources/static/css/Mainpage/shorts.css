@@ -1,0 +1,346 @@
+.shorts-feed {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: calc(100vw - 540px); /* 사이드바 너비 제외 */
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.shorts-scroll-wrapper {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    overflow-y: scroll;
+    scroll-snap-type: y mandatory;
+
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.shorts-scroll-wrapper::-webkit-scrollbar {
+    display: none;
+}
+
+.short-item,
+.short-video {
+    width: 400px;
+    height: 100%;
+}
+
+.short-item {
+    position: relative;
+    scroll-snap-align: center;
+    width: 400px;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* ✅ 추가 */
+    border-radius: 20px; /* ✅ 추가: 동일하게 */
+}
+
+.short-video {
+    width: 400px;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+.short-info {
+    position: absolute;
+    bottom: 80px;
+    width: 100%;
+    color: white;
+    padding: 0 16px;
+    z-index: 30;
+}
+
+.short-title {
+    position: absolute;
+    top: 24px; /* ✅ 비디오 내부에서 위에서 24px 내려옴 */
+    left: 55px;
+    right: 24px;
+    font-weight: bold;
+    font-size: 16px;
+    color: white;
+    z-index: 30;
+    text-shadow: 0px 0px 6px rgba(0,0,0,0.7); /* 읽기 쉽게 */
+    white-space: nowrap;        /* 한 줄 처리 */
+    overflow: hidden;           /* 넘치는 글자 숨김 */
+    text-overflow: ellipsis;    /* 넘치면 ... 처리 */
+}
+
+.short-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 8px;
+}
+
+.product-link {
+    position: absolute;
+    bottom: -180px;
+    left: 48%;
+    transform: translate(-50%, -50%);
+
+    width: 380px;   /* ⬅️ 클릭 가능한 네모 박스 */
+    height: 580px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: rgba(0, 0, 0, 0); /* ✅ 완전 투명 */
+    border-radius: 20px;
+
+    z-index: 20;
+}
+
+.product-link:hover {
+    background-color: rgba(0, 0, 0, 0); /* 살짝 핑크빛 */
+}
+
+.short-buttons {
+    position: absolute;
+    bottom: 24px;       /* 아래 여백 */
+    right: 0px;        /* 오른쪽 여백 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 20;
+}
+
+.short-buttons button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.overlay-top,
+.overlay-bottom {
+    position: relative;
+    width: 400px;                /* 👉 쇼츠 너비와 동일 */
+    height: 80px;
+    z-index: 20;
+    pointer-events: none;
+}
+.overlay-top {
+    top: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.7), transparent);
+}
+.overlay-bottom {
+    bottom: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+}
+
+.short-info {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    color: white;
+    padding: 16px;
+    z-index: 15;
+}
+
+.short-buttons-outside {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    left: 20px;
+    top: 250px;
+    gap: 12px;
+}
+
+.short-buttons-outside button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.short-buttons-outside img {
+    width: 36px;
+    height: 36px;
+    object-fit: contain;
+}
+
+.short-buttons-outside .like-count {
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.liked {
+    color: red;
+    font-weight: bold;
+}
+
+.unliked {
+    color: gray;
+}
+
+.short-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    z-index: 5;
+}
+
+.progress-bar {
+    width: 90%;         /* 기존보다 길게 */
+    height: 8px;         /* 높이 증가 */
+    border-radius: 4px;
+    background-color: #eee;
+    accent-color: #ff5f5f; /* 원하는 테마 색상 */
+
+    /* ⬇️ 왼쪽으로 이동 (기존보다 약간 밀기) */
+    margin-right: 30px;
+}
+
+.loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 40px;
+    height: 40px;
+    border: 5px solid rgba(255, 255, 255, 0.3);
+    border-top: 5px solid white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    transform: translate(-50%, -50%);
+    z-index: 999;
+}
+
+@keyframes spin {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+.profile-thumbnail img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%; /* 원형 */
+    object-fit: cover;
+    border: 1px solid #ccc;
+}
+
+.short-title-row {
+    position: absolute;
+    top: 15px;
+    left: 24px;
+    right: 24px;
+    z-index: 30;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: white;
+    text-shadow: 0px 0px 6px rgba(0,0,0,0.7);
+}
+
+.profile-thumbnail {
+    display: block;
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.profile-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.short-title-text {
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    font-weight: bold;
+    overflow: hidden;
+}
+
+.short-title-text .view-count {
+    font-size: 12px;
+    color: lightgray;
+    font-weight: normal;
+}
+
+.short-item-wrapper {
+    position: relative;
+    width: 400px;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.short-item {
+    position: relative;
+    width: 400px;
+    height: 100%;
+    overflow: hidden; /* ✅ 여기에 둥근 radius가 먹음 */
+    border-radius: 20px;
+}
+
+.short-buttons-outside {
+    position: absolute;
+    right: -450px; /* 또는 원하는 만큼 */
+    top: 75%;
+    transform: translateY(-50%);
+    z-index: 999;
+}
+
+.price-info {
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+    font-size: 14px;
+    color: white;
+    font-weight: bold;
+    z-index: 10;
+    position: absolute;
+    bottom: 20px;
+    right: 300px;
+}
+
+.price-info .label {
+    font-size: 12px;
+    color: lightgray;
+    margin-bottom: 2px;
+}
+
+.price-info .value {
+    color: white;
+    font-size: 14px;
+}
+
+.progress-wrapper {
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    z-index: 5;
+}
+
+.progress-bar {
+    width: 90%;
+    height: 8px;
+    border-radius: 4px;
+    background-color: #eee;
+    accent-color: #ff5f5f;
+    position: absolute;
+    left: 22px;
+}

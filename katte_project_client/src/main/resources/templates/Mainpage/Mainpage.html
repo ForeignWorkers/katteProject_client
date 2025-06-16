@@ -6,45 +6,24 @@
   <!-- 사이드바 CSS 분리 스타일 적용 -->
   <link rel="stylesheet" href="/css/fragments/Sidebar.css" />
   <link rel="stylesheet" href="/css/Mainpage/Mainpage.css" />
+  <link rel="stylesheet" href="/css/Mainpage/shorts.css" />
 </head>
 <body>
 <!-- 사이드바 HTML 분리 -->
 <div th:replace="Fragments/Sidebar :: sidebar"></div>
 <div class="wrapper">
 
-<div class="mainpage">
-  <img class="image-5" src="/img/image%205.png" />
-  <a href="#" onclick="checkLoginAndMove('/product/detail'); return false;">
-    <div class="rectangle-1578"></div>
-  </a>
-  <div class="top"></div>
-  <div class="bottom"></div>
-  <img class="div2" src="/img/pro.png" />
-  <div class="div3">[야옹이까페] 이거 고양이 키여운데요... 사세요...</div>
-  <div class="div4">현재가</div>
-  <div class="div5">즉시 구매</div>
-  <div class="_182-302">182,302 ₩</div>
-  <div class="_185-302">185,302 ₩</div>
-  <div class="_280-293">280,293 ₩</div>
-  <div class="_129-000-view">129,000 view</div>
-  <div class="_12-323">12,323</div>
-  <div class="ellipse-12"></div>
-  <div class="line-144"></dgiv>
-  <div class="line-145"></div>
-  <div class="rectangle-1584"></div>
-<div class="div6">
 
-    <img class="mask-group" src="/img/heart.png" />
+  <!-- 쇼츠 피드 시작 -->
+  <div class="shorts-feed">
+    <div class="shorts-scroll-wrapper" id="shortsFeed">
+      <!-- JavaScript로 쇼츠가 여기에 추가됩니다 -->
+    </div>
+  </div>
+  <!-- 쇼츠 피드 끝 -->
 
-  <div class="rectangle-1585"></div>
-<!--   <div class="mask-group2"> -->
-    <div class="ellipse-14"></div>
-    
-    <img class="mask-group3" src="/img/Vector%20(1).png" />
-    <div class="ellipse-142"></div>
-    <img class="_1" src="/img/Vector.png" />
-  <img class="arrow-306" src="/img/Arrow%20306.png" />
 
+  <div class="mainpage">
   <div class="rectangle-1588"></div>
   <div class="div18">시세표</div>
   <div class="_12">1개월</div>
@@ -106,8 +85,48 @@
     이것은 그냥 글에대한 설명 글 ㅋㅋㅋㅋㅋ
   </div>
   </a>
+  <script th:inline="javascript">
+    let hasUserInteracted = false;
 
-  <script>
+    window.addEventListener("click", () => hasUserInteracted = true);
+    window.addEventListener("scroll", () => hasUserInteracted = true);
+
+    let currentIndex = 0;
+    let isLoading = false;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const video = entry.target;
+        if (entry.isIntersecting) {
+          video.muted = false;
+          video.play().catch(err => console.warn("재생 실패:", err));
+        } else {
+          video.pause();
+          video.muted = true;
+        }
+      });
+    }, { threshold: 0.3 });
+
+    async function loadNextShort() {
+      if (isLoading) return;
+      isLoading = true;
+
+      try {
+        const res = await fetch(`/shortform/random`);
+        if (!res.ok) return;
+
+        const short = await res.json();
+        const isFirst = currentIndex === 0;
+
+        appendShortToDOM(short, isFirst);
+        currentIndex++;
+      } catch (e) {
+        console.error("🔥 쇼츠 불러오기 실패:", e);
+      } finally {
+        isLoading = false;
+      }
+    }
+
     async function loadStyle(direction) {
       const response = await fetch(`/style/${direction}`);
       const data = await response.json();
@@ -125,8 +144,218 @@
     }
 
     function loadPrevStyle() {
-      loadStyle("prev");n
+      loadStyle("prev");
     }
+    function appendShortToDOM(short, isFirst = false) {
+      const wrapper = document.getElementById("shortsFeed");
+
+      // ✅ 전체 래퍼: short-item-wrapper
+      const outer = document.createElement("div");
+      outer.className = "short-item-wrapper";
+
+      // ✅ 내부 콘텐츠: short-item + short-inner-wrapper
+      const div = document.createElement("div");
+      div.className = "short-item";
+
+      const isLoggedIn = /*[[${session.currentUser != null}]]*/ false;
+
+      div.innerHTML = `
+    <div class="short-inner-wrapper">
+      <div class="loader"></div>
+      <div class="overlay-top"></div>
+      <video class="short-video" src="${short.content_url}" preload="auto" muted playsinline loop></video>
+
+      <div class="short-title-row">
+        <a href="/user/${short.user_id}" class="profile-thumbnail">
+          <img src="${short.profileImgUrl}" alt="유저 프로필">
+        </a>
+        <div class="short-title-text">
+          ${short.title}
+          <div class="view-count">${short.total_view} view</div>
+        </div>
+      </div>
+<div class="short-info">
+  <div class="price-info">
+    <div>
+      <div class="label">현재가</div>
+      <div class="value">${short.current_price != null ? short.current_price + ' ₩' : '-'}</div>
+    </div>
+    <div>
+      <div class="label">즉시 구매</div>
+      <div class="value">${short.buy_price != null ? short.buy_price + ' ₩' : '-'}</div>
+    </div>
+  </div>
+</div>
+<div class="progress-wrapper">
+  <input type="range" class="progress-bar" value="0" />
+  <a class="product-link" href="/product/${short.product_id}"></a>
+</div>
+
+      <div class="overlay-bottom"></div>
+    </div>
+
+    <div class="no-audio" style="display:none; position:absolute; bottom:20px; right:13px; color:white; background-color:rgba(0,0,0,0.5); padding:5px; border-radius:5px; font-size:12px;">
+      <img src="/img/not_sound.png" style="width:16px; vertical-align:middle; margin-right:5px;"/>
+      소리 없음
+    </div>
+  `;
+
+      // ✅ 버튼은 .short-item-wrapper의 하위로 추가 (overflow 영향 없음)
+      const buttons = document.createElement("div");
+      buttons.className = "short-buttons-outside";
+      buttons.innerHTML = `
+    ${isLoggedIn ? `
+      <button onclick="likeShort(this)" data-id="${short.id}">
+        <img src="/img/heart_icon_no_clicked.png" alt="좋아요" />
+        <span class="like-count">${short.shortform_like_count}</span>
+      </button>` : ''
+      }
+    <button onclick="shareShort(${short.product_id})">
+      <img src="/img/shared.png" alt="공유" />
+    </button>
+    <button onclick="toggleMute(this)">
+      <img src="/img/mute_off.png" alt="음소거" />
+    </button>
+  `;
+
+      // ✅ 조립
+      outer.appendChild(div);
+      outer.appendChild(buttons);
+      wrapper.appendChild(outer);
+
+      // ✅ 비디오 처리
+      const video = div.querySelector("video");
+      const bar = div.querySelector(".progress-bar");
+      const loader = div.querySelector(".loader");
+      const noAudio = div.querySelector(".no-audio");
+
+      video.load();
+
+      const timeout = setTimeout(() => {
+        console.warn("⏰ 로딩 지연 → 강제 재생 시도");
+        video.play().catch(() => {});
+      }, 2000);
+
+      video.addEventListener("loadeddata", () => {
+        clearTimeout(timeout);
+        loader.style.display = "none";
+
+        setTimeout(() => {
+          const hasAudio = typeof video.webkitAudioDecodedByteCount !== "undefined"
+                  ? video.webkitAudioDecodedByteCount > 0
+                  : video.mozHasAudio || (video.audioTracks && video.audioTracks.length > 0);
+          noAudio.style.display = hasAudio ? "none" : "block";
+        }, 300);
+
+        if (isFirst) {
+          video.muted = !hasUserInteracted;
+          video.play().catch(err => console.warn("🎬 첫 영상 재생 실패", err));
+        }
+
+        observer.observe(video);
+      });
+
+      // 🎯 재생바
+      let isSeeking = false;
+      bar.addEventListener("mousedown", () => isSeeking = true);
+      bar.addEventListener("mouseup", () => {
+        isSeeking = false;
+        video.currentTime = bar.value;
+      });
+      video.addEventListener("timeupdate", () => {
+        if (!isSeeking) {
+          bar.max = video.duration || 1;
+          bar.value = video.currentTime;
+        }
+      });
+
+      // ✅ 마지막 방어 재생 시도
+      video.play().catch(() => {});
+    }
+
+    function toggleMute(button) {
+      // 안전하게 탐색
+      let wrapper = button.closest(".short-item-wrapper");
+      if (!wrapper) {
+        console.warn("❗ short-item-wrapper 를 찾을 수 없습니다");
+        return;
+      }
+
+      const video = wrapper.querySelector("video");
+      if (!video) {
+        console.warn("❗ video 요소를 찾을 수 없습니다");
+        return;
+      }
+
+      video.muted = !video.muted;
+
+      const img = button.querySelector("img");
+      img.src = video.muted ? "/img/mute_on.png" : "/img/mute_off.png";
+    }
+
+      function likeShort(button) {
+        const shortId = button.getAttribute("data-id");
+        const countSpan = button.querySelector(".like-count");
+        const img = button.querySelector("img");
+
+        fetch(`/shortform/like?short_id=${shortId}`)
+                .then(res => res.json())
+                .then(isLiked => {
+                  let count = parseInt(countSpan.textContent);
+                  console.log("like  ? " + isLiked)
+                  console.log("count" + count)
+
+                  if (isLiked) {
+                    // 좋아요가 눌림
+                    countSpan.textContent = count + 1;
+                    img.src = "/img/heart_icon_clicked.png";
+                    countSpan.style.color = "red";
+                  } else {
+                    // 좋아요가 취소됨
+                    countSpan.textContent = count - 1;
+                    img.src = "/img/heart_icon_no_clicked.png";
+                    countSpan.style.color = "white";
+                  }
+                  // ✅ 클래스 스타일 업데이트
+                  countSpan.classList.remove("liked", "unliked");
+                  countSpan.classList.add(isLiked ? "liked" : "unliked");
+                })
+                .catch(err => {
+                  console.error("좋아요 요청 실패", err);
+                });
+      }
+
+    function shareShort(short_id) {
+      navigator.clipboard.writeText(window.origin + "/product/" + short_id);
+      alert("링크가 복사되었습니다");
+    }
+
+      window.addEventListener("wheel", (e) => {
+        if (e.deltaY > 0) loadNextShort();
+      });
+
+    window.addEventListener("DOMContentLoaded", () => {
+      if (hasUserInteracted) {
+        loadNextShort();
+      } else {
+        const waitForClick = () => {
+          hasUserInteracted = true;
+          loadNextShort();
+          window.removeEventListener("click", waitForClick);
+        };
+
+        window.addEventListener("click", waitForClick);
+
+        // ⏱ 2초 뒤 자동 실행 (실제 클릭은 아님)
+        setTimeout(() => {
+          if (!hasUserInteracted) {
+            console.warn("⏰ 자동 상호작용 시도 중...");
+            hasUserInteracted = true;
+            loadNextShort();
+          }
+        }, 2000);
+      }
+    });
   </script>
 
   <div class="_139">139</div>
