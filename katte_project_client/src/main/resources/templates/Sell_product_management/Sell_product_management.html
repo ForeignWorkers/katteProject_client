@@ -1,185 +1,417 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+  <meta charset="UTF-8">
+  <title>Insert title here</title>
 </head>
 <body>
-<!-- 사이드바 CSS 분리 스타일 적용 -->
+<!-- 공통 CSS -->
 <link rel="stylesheet" href="/css/fragments/Sidebar.css" />
-<link rel="stylesheet" href="/css/Sell_product_management/Sell_product_management.css" />
+<link rel="stylesheet" href="/css/Sell_product_management/Sell_product_management.css">
+
 <!-- 사이드바 HTML 분리 -->
-<div th:replace="Fragments/Sidebar :: sidebar"></div>
-<div class="wraaper">
-<div class="div">
-  <img class="line-136" src="line-1360.svg" />
-  <div class="line-264"></div>
-  <img class="group-767" src="group-7670.svg" />
-  <div class="group-994">
-    <div class="rectangle-1685"></div>
-    <div class="_2">2</div>
-  </div>
-  <div class="group-995">
-    <div class="rectangle-1684"></div>
-    <div class="_3">3</div>
-  </div>
-  <div class="group-996">
-    <div class="rectangle-1683"></div>
-    <div class="_1">1</div>
-  </div>
-  <div class="next">NEXT</div>
-  <div class="prev">PREV</div>
-  <img class="polygon-29" src="polygon-290.svg" />
-  <img class="polygon-30" src="polygon-300.svg" />
-  <div class="group-994">
-    <div class="rectangle-16852"></div>
-    <div class="_22">2</div>
-  </div>
-  <div class="group-995">
-    <div class="rectangle-16842"></div>
-    <div class="_32">3</div>
-  </div>
-  <div class="group-996">
-    <div class="rectangle-16832"></div>
-    <div class="_12">1</div>
-  </div>
-  <div class="next2">NEXT</div>
-  <div class="prev2">PREV</div>
-  <img class="polygon-292" src="polygon-291.svg" />
-  <img class="polygon-302" src="polygon-301.svg" />
-  <div class="rectangle-1678"></div>
-  <div class="div3">
-  
-    <div class="div5">
-      <div class="rectangle-1677"></div>
-      <div class="div6">상품명</div>
+<div th:replace="~{Fragments/Sidebar :: sidebar}"></div>
+<div class="wrapper"><div>
+
+  <div class="div">
+
+    <!-- 페이지네이션 또는 슬라이드 컨트롤 -->
+
+    <div class="line-264"></div>
+
+    <!--<div class="group-994"><div class="rectangle-1685"></div><div class="_2">2</div></div>
+    <div class="group-995"><div class="rectangle-1684"></div><div class="_3">3</div></div>
+    <div class="group-996"><div class="rectangle-1683"></div><div class="_1">1</div></div>
+
+    <div class="group-994"><div class="rectangle-16852"></div><div class="_22">2</div></div>
+    <div class="group-995"><div class="rectangle-16842"></div><div class="_32">3</div></div>
+    <div class="group-996"><div class="rectangle-16832"></div><div class="_12">1</div></div>-->
+
+    <!-- 등록 상품 페이징 -->
+    <div th:with="groupStart=${groupStart1},
+              groupEnd=${T(java.lang.Math).min(groupStart1 + 2, totalRegisteredPages)}">
+
+      <div th:each="page, stat : ${#numbers.sequence(groupStart, groupEnd)}">
+        <div class="group-996"
+             th:style="${'position:absolute; top:0px; left:' + (40 + stat.index * 30 - 30) + 'px;'}">
+          <div class="rectangle-1683"></div>
+          <a th:href="@{/sell/manage(page1=${page}, page2=${currentPage2})}">
+            <div class="_1" th:text="${page}">1</div>
+          </a>
+        </div>
+      </div>
+
+      <!-- 등록상품리스트 이전 , 다음 -->
+      <!-- NEXT 버튼 -->
+      <div th:if="${groupEnd < totalRegisteredPages}" class="next">
+        <a th:href="@{/sell/manage(page1=${groupStart1 + 3}, page2=${currentPage2})}">NEXT</a>
+      </div>
+
+      <!-- PREV 버튼 -->
+      <div th:if="${groupStart1 > 1}" class="prev">
+        <a th:href="@{/sell/manage(page1=${groupStart1 - 3}, page2=${currentPage2})}">PREV</a>
+      </div>
     </div>
-    <div class="id">
-      <div class="rectangle-16772"></div>
-      <div class="div7">현재 경매가</div>
+
+    <!-- 판매 완료 페이징 -->
+    <div th:with="groupStart=${groupStart2},
+              groupEnd=${T(java.lang.Math).min(groupStart2 + 2, totalSoldoutPages)}">
+
+      <div th:each="page, stat : ${#numbers.sequence(groupStart, groupEnd)}">
+        <div class="group-996"
+             th:style="${'position:absolute; top:0px; left:' + (40 + stat.index * 30 - 30) + 'px;'}">
+          <div class="rectangle-16832"></div>
+          <a th:href="@{/sell/manage(page1=${currentPage1}, page2=${page})}">
+            <div class="_12" th:text="${page}">1</div>
+          </a>
+        </div>
+      </div>
+
+      <!-- NEXT 버튼 -->
+      <div th:if="${groupEnd < totalSoldoutPages}" class="next2">
+        <a th:href="@{/sell/manage(page1=${currentPage1}, page2=${groupStart2 + 3})}">NEXT</a>
+      </div>
+
+      <!-- PREV 버튼 -->
+      <div th:if="${groupStart2 > 1}" class="prev2">
+        <a th:href="@{/sell/manage(page1=${currentPage1}, page2=${groupStart2 - 3})}">PREV</a>
+      </div>
     </div>
-    <div class="div8">
-      <div class="rectangle-16773"></div>
-      <div class="div9">등록 가격</div>
+
+    <!-- 헤더 바 구분선 등록상품리스트 -->
+    <div class="rectangle-1678"></div>
+
+    <!-- 헤더 바 구분선 판매완료리스트 -->
+    <div class="rectangle-1679"></div>
+
+    <!-- 등록 상품 테이블 헤더 -->
+    <div class="div3">
+      <div class="div5"><div class="rectangle-1677"></div><div class="div6">상품명/타이틀</div></div>
+      <div class="id"><div class="rectangle-16772"></div><div class="div7">현재 경매가</div></div>
+      <div class="div8"><div class="rectangle-16773"></div><div class="div9">등록 가격(즉시구매가격)</div></div>
+      <div class="div10"><div class="rectangle-16774"></div><div class="div11">경매 상태</div></div>
+      <div class="div12"><div class="rectangle-16775"></div><div class="div13">종료일</div></div>
     </div>
-    <div class="div10">
-      <div class="rectangle-16774"></div>
-      <div class="div11">경매 상태</div>
+
+    <!-- 판매 완료 상품 테이블 헤더 -->
+    <div class="div14">
+      <div class="div5"><div class="rectangle-16776"></div><div class="div16">상품명/타이틀</div></div>
+      <div class="id"><div class="rectangle-16777"></div><div class="div17">낙찰가</div></div>
+      <div class="div8"><div class="rectangle-16778"></div><div class="div18">구매자</div></div>
+      <div class="div10"><div class="rectangle-16779"></div><div class="div19">낙찰일</div></div>
+      <div class="div12"><div class="rectangle-167710"></div><div class="div20">정산상태</div></div>
     </div>
-    <div class="div12">
-      <div class="rectangle-16775"></div>
-      <div class="div13">종료일</div>
+
+    <!-- n 등록 상품 건수 / n2 .판매 완료 건수 -->
+    <div class="n"><div class="rectangle-167711"></div><div class="_33" th:text="|등록 상품 ${registeredCount}건|">등록 상품 0건</div></div>
+    <div class="n2"><div class="rectangle-167712"></div><div class="_23" th:text="|판매 완료 내역 ${soldoutCount}건|">판매 완료 내역 0건</div></div>
+
+    <!-- 탭 메뉴 (등록 / 관리) -->
+    <a href="/sell/registration">
+      <div class="rectangle-1676"></div>
+      <div class="div21">상품 등록</div>
+    </a>
+
+    <a href="/sell/manage">
+      <div class="rectangle-1675"></div>
+      <div class="div22">등록 상품 관리</div>
+    </a>
+
+    <!-- 등록 상품 리스트 (페이지당 최대 3건)-->
+
+    <!-- 등록 상품 1 -->
+    <!-- div35 등록 상품 1 상품 숏폼 제목 -->
+    <div class="div35" th:text="${registered.size() > 0 ? registered[0].shortform_title : '-'}">-</div>
+    <!-- stussy-welder-t-shirt-white 등록 상품 1 상품명 -->
+    <div class="stussy-welder-t-shirt-white" th:text="${registered.size() > 0 ? registered[0].product_name : '-'}">-</div>
+    <!-- div36 등록 상품 1 등록가격(즉시구매가) -->
+    <div class="div36"
+         th:text="${registered.size() > 0} ?
+                 (registered[0].instant_price != null ?
+                     ${registered[0].start_price} + ' (' + ${registered[0].instant_price} + ')' :
+                     ${registered[0].start_price} + ' (-)') :
+              '-'">-</div>
+    <!-- div37 등록 상품 1 경매상태 (검수중, 검수 기준 미달,경매중, 경매 기간 만료,)-->
+    <div class="div37" th:text="${registered.size() > 0 ? readableSteps[0] : '-'}">-</div>
+    <!-- div38 등록 상품 1 경매상태 링크 -->
+    <div class="div38">
+      <!-- 검수 기준 미달 알림 -->
+      <a th:if="${saleLinkAction[0] == 'ALERT'}"
+         href="#"
+         onclick="alert('품질불량으로 인해 검수 기준에 달성하지 못했습니다. 기준 미달 상품은 고객님께 재발송 됩니다.'); return false;"
+         th:text="${saleLinkText[0]}">자세히보기</a>
+
+      <!-- 상세페이지 이동 -->
+      <a th:if="${saleLinkAction[0] != null and saleLinkAction[0] != '' and saleLinkAction[0] != 'ALERT' and saleLinkText[0] != '삭제'}"
+         th:href="@{${saleLinkAction[0]}}"
+         th:text="${saleLinkText[0]}">-</a>
+
+      <!-- 삭제 버튼 -->
+      <a th:if="${saleLinkText[0] == '삭제'}"
+         href="#"
+         th:onclick="|deleteRow(this, '${registered[0].auction_data_id}'); return false;|"
+         th:text="${saleLinkText[0]}">삭제</a>
+
+      <!-- 링크 없음 -->
+      <span th:if="${saleLinkAction[0] == null or saleLinkAction[0] == ''}"
+            th:text="${saleLinkText[0]}">-</span>
     </div>
-  </div>
-  <div class="div14">
-    <div class="div5">
-      <div class="rectangle-16776"></div>
-      <div class="div16">상품명</div>
+    <!-- _78-000 등록 상품 1 현재 경매가 -->
+    <div class="_78-000"
+         th:text="${registered.size() > 0 and registered[0].current_price != null ?
+                 registered[0].current_price : '-'}">-</div>
+    <!-- _2025-04-23 등록 상품 1 경매 종료일 -->
+    <div class="_2025-04-23"
+         th:text="${registered.size() > 0 and registered[0].auction_end_time != null ?
+                 #dates.format(registered[0].auction_end_time, 'yyyy-MM-dd') : '-'}">-</div>
+    <!-- line-311 등록 상품 1 하단 경계선 -->
+    <div class="line-311"></div>
+
+    <!-- 등록 상품 2 -->
+    <!-- div41 등록 상품 2 상품 숏폼 제목 -->
+    <div class="div41" th:text="${registered.size() > 1 ? registered[1].shortform_title : '-'}">-</div>
+    <!-- stussy-welder-t-shirt-white2 등록 상품 2 상품명 -->
+    <div class="stussy-welder-t-shirt-white2" th:text="${registered.size() > 1 ? registered[1].product_name : '-'}">-</div>
+    <!-- _174-000 등록 상품 2 등록가격 -->
+    <div class="_174-000"
+         th:text="${registered.size() > 1} ?
+                 (registered[1].instant_price != null ?
+                     ${registered[1].start_price} + ' (' + ${registered[1].instant_price} + ')' :
+                     ${registered[1].start_price} + ' (-)') :
+              '-'">-</div>
+    <!-- div42 등록 상품 2 경매상태 -->
+    <div class="div42" th:text="${registered.size() > 1 ? readableSteps[1] : '-'}">-</div>
+    <!-- div39 등록 상품 2 경매상태 링크 위와 내용 동일 -->
+    <div class="div39">
+      <!-- 검수 기준 미달 알림 -->
+      <a th:if="${saleLinkAction[1] == 'ALERT'}"
+         href="#"
+         onclick="alert('품질불량으로 인해 검수 기준에 달성하지 못했습니다. 기준 미달 상품은 고객님께 재발송 됩니다.'); return false;"
+         th:text="${saleLinkText[1]}">자세히보기</a>
+
+      <!-- 상세페이지 이동 -->
+      <a th:if="${saleLinkAction[1] != null and saleLinkAction[1] != '' and saleLinkAction[1] != 'ALERT' and saleLinkText[1] != '삭제'}"
+         th:href="@{${saleLinkAction[1]}}"
+         th:text="${saleLinkText[1]}">-</a>
+
+      <!-- 삭제 버튼 -->
+      <a th:if="${saleLinkText[1] == '삭제'}"
+         href="#"
+         th:onclick="|deleteRow(this, '${registered[1].auction_data_id}'); return false;|"
+         th:text="${saleLinkText[1]}">삭제</a>
+
+      <!-- 링크 없음 -->
+      <span th:if="${saleLinkAction[1] == null or saleLinkAction[1] == ''}"
+            th:text="${saleLinkText[1]}">-</span>
     </div>
-    <div class="id">
-      <div class="rectangle-16777"></div>
-      <div class="div17">낙찰가</div>
+    <!-- _78-0002 등록 상품 2 현재 경매가 -->
+    <div class="_78-0002"
+         th:text="${registered.size() > 1 and registered[1].current_price != null ?
+                 registered[1].current_price : '-'}">-</div>
+    <!-- _2025-04-232 등록 상품 2 종료일 -->
+    <div class="_2025-04-232"
+         th:text="${registered.size() > 1 and registered[1].auction_end_time != null ?
+                 #dates.format(registered[1].auction_end_time, 'yyyy-MM-dd') : '-'}">-</div>
+    <!-- line-3112 등록 상품 2 하단 경계선 -->
+    <div class="line-3112"></div>
+
+    <!-- 등록 상품 3 -->
+    <!-- div43 등록 상품 3 상품 숏폼 제목 -->
+    <div class="div43" th:text="${registered.size() > 2 ? registered[2].shortform_title : '-'}">-</div>
+    <!-- stussy-welder-t-shirt-white3 등록 상품 3 상품명 -->
+    <div class="stussy-welder-t-shirt-white3" th:text="${registered.size() > 2 ? registered[2].product_name : '-'}">-</div>
+    <!-- div44 등록 상품 3 등록가격 -->
+    <div class="div44"
+         th:text="${registered.size() > 2} ?
+                 (registered[2].instant_price != null ?
+                     ${registered[2].start_price} + ' (' + ${registered[2].instant_price} + ')' :
+                     ${registered[2].start_price} + ' (-)') :
+              '-'">-</div>
+    <!-- div45 등록 상품 3 경매상태 -->
+    <div class="div45" th:text="${registered.size() > 2 ? readableSteps[2] : '-'}">-</div>
+    <!-- div40 등록 상품 3 경매상태 링크 위와 내용 동일 -->
+    <div class="div40">
+      <!-- 검수 기준 미달 알림 -->
+      <a th:if="${saleLinkAction[2] == 'ALERT'}"
+         href="#"
+         onclick="alert('품질불량으로 인해 검수 기준에 달성하지 못했습니다. 기준 미달 상품은 고객님께 재발송 됩니다.'); return false;"
+         th:text="${saleLinkText[2]}">자세히보기</a>
+
+      <!-- 상세페이지 이동 -->
+      <a th:if="${saleLinkAction[2] != null and saleLinkAction[2] != '' and saleLinkAction[2] != 'ALERT' and saleLinkText[2] != '삭제'}"
+         th:href="@{${saleLinkAction[2]}}"
+         th:text="${saleLinkText[2]}">-</a>
+
+      <!-- 삭제 버튼 -->
+      <a th:if="${saleLinkText[2] == '삭제'}"
+         href="#"
+         th:onclick="|deleteRow(this, '${registered[2].auction_data_id}'); return false;|"
+         th:text="${saleLinkText[2]}">삭제</a>
+
+      <!-- 링크 없음 -->
+      <span th:if="${saleLinkAction[2] == null or saleLinkAction[2] == ''}"
+            th:text="${saleLinkText[2]}">-</span>
     </div>
-    <div class="div8">
-      <div class="rectangle-16778"></div>
-      <div class="div18">구매자</div>
+    <!-- _78-0003 등록 상품 3 현재 경매가 -->
+    <div class="_78-0003"
+         th:text="${registered.size() > 2 and registered[2].current_price != null ?
+                 registered[2].current_price : '-'}">-</div>
+    <!-- _2025-04-30 등록 상품 3 종료일 -->
+    <div class="_2025-04-30"
+         th:text="${registered.size() > 2 and registered[2].auction_end_time != null ?
+                 #dates.format(registered[2].auction_end_time, 'yyyy-MM-dd') : '-'}">-</div>
+    <!-- line-3113 등록 상품 3 하단 경계선 -->
+    <div class="line-3113"></div>
+
     </div>
-    <div class="div10">
-      <div class="rectangle-16779"></div>
-      <div class="div19">낙찰일</div>
+
+    <!-- 판매 완료 리스트 (페이지당 최대 2건)-->
+
+    <!-- 판매 완료 1 -->
+    <!-- div46 판매완료 1 상품 숏폼 제목 -->
+    <div class="div46" th:text="${soldout.size() > 0 ? soldout[0].shortform_title : '-'}">-</div>
+    <!-- stussy-welder-t-shirt-white4 판매완료 1 상품명 -->
+    <div class="stussy-welder-t-shirt-white4" th:text="${soldout.size() > 0 ? soldout[0].product_name : '-'}">-</div>
+    <!-- min-qqq-qq-qsdf 판매완료 1 구매자 닉네임 -->
+    <div class="min-qqq-qq-qsdf">-</div>
+    <!-- _94-000 판매완료 1 낙찰가 -->
+    <div class="_94-000">-</div>
+    <!-- _2025-04-27 판매완료 1 낙찰일 -->
+    <div class="_2025-04-27">-</div>
+    <!-- div48 판매완료 1 정산하기 버튼 -->
+    <div class="div48">
+      <!-- rectangle-17032 판매완료 1 정산하기 버튼 테두리 -->
+      <div class="rectangle-17032"></div>
+      <!-- div50 판매완료 1 정산하기 버튼 텍스트 -->
+      <div class="div50">정산하기</div></div>
     </div>
-    <div class="div12">
-      <div class="rectangle-167710"></div>
-      <div class="div20">정산상태</div>
+    <!-- line-311444 판매완료 1 하단 경계선 -->
+    <div class="line-311444"></div>
+
+    <!-- 판매 완료2 -->
+    <!-- div47 판매완료 2 상품 숏폼 제목 -->
+    <div class="div47" th:text="${soldout.size() > 1 ? soldout[1].shortform_title : '-'}">-</div>
+    <!-- stussy-welder-t-shirt-white5 판매완료 2 상품명 -->
+    <div class="stussy-welder-t-shirt-white5" th:text="${soldout.size() > 1 ? soldout[1].product_name : '-'}">-</div>
+    <!-- jiyun-kawaii 판매완료 2 구매자 닉네임 -->
+    <div class="jiyun-kawaii">-</div>
+    <!-- _124-000 판매완료 2 낙찰가 -->
+    <div class="_124-000">-</div>
+    <!-- _2025-05-01 판매완료 2 낙찰일 -->
+    <div class="_2025-05-01">-</div>
+    <!-- div480 판매완료 2 정산하기 버튼 -->
+    <div class="div480">
+      <!-- rectangle-1703 판매완료 2 정산하기 버튼 테두리 -->
+      <div class="rectangle-1703"></div>
+      <!-- div49 판매완료 2 정산하기 버튼 텍스트 -->
+      <div class="div49">정산하기</div></div>
     </div>
-  </div>
-  <div class="n">
-    <div class="rectangle-167711"></div>
-    <div class="_33">등록 상품 3건</div>
-  </div>
-  <div class="n2">
-    <div class="rectangle-167712"></div>
-    <div class="_23">판매 완료 내역 2건</div>
-  </div>
-  <img class="line-301" src="line-3010.svg" />
-   <div class="line-3333"></div>
-   <div class="line-3334"></div>
-  <div class="line-300"></div>
-  <div class="line-296"></div>
-  <div class="line-303"></div>
-  <div class="line-304"></div>
-<div class="line-3113222"></div>
-  <div class="line-304444"></div>
-  <img class="line-306" src="line-3060.svg" />
-  <img class="line-307" src="line-3070.svg" />
-  <img class="line-302" src="line-3020.svg" />
-  <div class="line-297"></div>
-  <div class="line-3035555"></div>
-  <div class="line-298"></div>
-  <div class="line-308"></div>
-  <div class="line-308888"></div>
-  <img class="line-299" src="line-2990.svg" />
-  <div class="rectangle-1676"></div>
-  <div class="div21">상품 등록</div>
-  <div class="rectangle-1675"></div>
-  <div class="div22">등록 상품 관리</div>
-  <div class="div35">스트릿 패션의 기본! 스투시 반팔 판매합니다</div>
-  <div class="stussy-welder-t-shirt-white">Stussy Welder T-Shirt White</div>
-  <div class="div36">-</div>
-  <div class="div37">경매중</div>
-  <div class="div38">보러가기</div>
-  <div class="div39">보러가기</div>
-  <div class="div40">자세히 보기</div>
-  <div class="_78-000">78,000</div>
-  <div class="_2025-04-23">2025-04-23</div>
-  <div class="line-311"></div>
-  <div class="div41">스트릿 패션의 기본! 스투시 반팔 판매합니다</div>
-  <div class="stussy-welder-t-shirt-white2">Stussy Welder T-Shirt White</div>
-  <div class="_174-000">174,000</div>
-  <div class="div42">검수 기준 미달</div>
-  <div class="_78-0002">78,000</div>
-  <div class="_2025-04-232">2025-04-23</div>
-  <div class="line-3112"></div>
-  <div class="div43">스트릿 패션의 기본! 스투시 반팔 판매합니다</div>
-  <div class="stussy-welder-t-shirt-white3">Stussy Welder T-Shirt White</div>
-  <div class="div44">-</div>
-  <div class="div45">경매중</div>
-  <div class="_78-0003">78,000</div>
-  <div class="_2025-04-30">2025-04-30</div>
-  <div class="line-3113"></div>
-  <div class="div46">스트릿 패션의 기본! 스투시 반팔 판매합니다</div>
-  <div class="stussy-welder-t-shirt-white4">Stussy Welder T-Shirt White</div>
-  <div class="min-qqq-qq-qsdf">minQqqQQQsdf</div>
-  <div class="_94-000">94,000</div>
-  <div class="_2025-04-27">2025-04-27</div>
-  <img class="line-3114" src="line-3113.svg" />
-  <div class="div47">스트릿 패션의 기본! 스투시 반팔 판매합니다</div>
-  <div class="stussy-welder-t-shirt-white5">Stussy Welder T-Shirt White</div>
-  <div class="jiyun-kawaii">jiyun_kawaii</div>
-  <div class="_124-000">124.000</div>
-  <div class="_2025-05-01">2025-05-01</div>
-  <div class="line-3115"></div>
-  <div class="line-311555"></div>
-  <div class="line-311444"></div>
-  <div class="div48">
-    <div class="rectangle-1703"></div>
-    <div class="div49">정산하기</div>
-  </div>
-  <div class="div48">
-    <div class="rectangle-17032"></div>
-    <div class="div50">정산하기</div>
-  </div>
-  <div class="div48">
-    <div class="rectangle-17033"></div>
-    <div class="div51">정산완료</div>
-  </div>
-  <div class="div48">
-    <div class="rectangle-17034"></div>
-    <div class="div52">정산완료</div>
-  </div>
-  <img class="line-309" src="line-3090.svg" />
- 
-</div>
+    <!-- line-3115 판매완료 2 하단 경계선 -->
+    <div class="line-3115"></div>
+
+<script>
+  function deleteRow(element, auctionId) {
+  // 1단계: 삭제 가능 상태로 조정
+  fetch(`http://localhost:9000/admin/inspection/expire_now?auction_id=${auctionId}`, {
+    method: 'PATCH'
+  }).then(response => {
+    if (response.ok) {
+      // 2단계: 삭제 실행 API 호출
+      fetch(`http://localhost:9000/admin/inspection/delete`, {
+        method: 'DELETE'
+      }).then(res => {
+        if (res.ok) {
+          // 3단계: 삭제 후 UI 업데이트
+          const clickedIndex = findDeletedIndex(element);
+          if (clickedIndex !== -1) {
+            for (let i = clickedIndex; i < 2; i++) {
+              copyRowData(i + 1, i);
+            }
+            clearRow(2);
+          }
+        } else {
+          alert("삭제 실패: 관리자에게 문의해주세요.");
+        }
+      });
+    } else {
+      alert("삭제 예약 실패: 관리자에게 문의해주세요.");
+    }
+  }).catch(() => alert("서버 오류 발생"));
+}
+
+  // 클릭한 요소가 몇 번째 row인지 계산
+  function findDeletedIndex(element) {
+    const row = element.closest('.line-311'); // 기준 라인
+    if (!row) return -1;
+    if (row.classList.contains('line-3113')) return 2;
+    if (row.classList.contains('line-3112')) return 1;
+    if (row.classList.contains('line-311')) return 0;
+    return -1;
+  }
+
+  // 한 줄 데이터 복사
+  function copyRowData(fromIndex, toIndex) {
+  const map = {
+    0: {
+      title: '.div35',
+      name: '.stussy-welder-t-shirt-white',
+      price: '.div36',
+      status: '.div37',
+      link: '.div38',
+      current: '._78-000',
+      end: '._2025-04-23'
+    },
+    1: {
+      title: '.div41',
+      name: '.stussy-welder-t-shirt-white2',
+      price: '._174-000',
+      status: '.div42',
+      link: '.div39',
+      current: '._78-0002',
+      end: '._2025-04-232'
+    },
+    2: {
+      title: '.div43',
+      name: '.stussy-welder-t-shirt-white3',
+      price: '.div44',
+      status: '.div45',
+      link: '.div40',
+      current: '._78-0003',
+      end: '._2025-04-30'
+    }
+  };
+
+  const from = map[fromIndex];
+  const to = map[toIndex];
+
+  if (!from || !to) return;
+
+  for (let key of Object.keys(from)) {
+    const fromEl = document.querySelector(from[key]);
+    const toEl = document.querySelector(to[key]);
+    if (fromEl && toEl) {
+      toEl.innerText = fromEl.innerText;
+    }
+  }
+}
+
+  // 마지막 줄 초기화
+  function clearRow(index) {
+  const map = {
+    0: ['.div35', '.stussy-welder-t-shirt-white', '.div36', '.div37', '.div38', '._78-000', '._2025-04-23'],
+    1: ['.div41', '.stussy-welder-t-shirt-white2', '._174-000', '.div42', '.div39', '._78-0002', '._2025-04-232'],
+    2: ['.div43', '.stussy-welder-t-shirt-white3', '.div44', '.div45', '.div40', '._78-0003', '._2025-04-30']
+  };
+
+  const targets = map[index];
+  if (!targets) return;
+
+  targets.forEach(selector => {
+    const el = document.querySelector(selector);
+    if (el) el.innerText = '-';
+  });
+}
+</script>
 
 </body>
 </html>

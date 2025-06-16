@@ -637,7 +637,7 @@ html, body {
   font-weight: 700;
   display: flex;
   align-items: center;
-    color: #FFF4F4;  
+  color: #FFF4F4;
 }
 
 .div32 {
@@ -760,7 +760,7 @@ html, body {
 #circle2:checked + .ellipse-732,
 #circle3:checked + .ellipse-733 {
   background: #f9eeee;
-} 
+}
 
 
 
@@ -777,7 +777,7 @@ html, body {
   display: flex;
   align-items: center;
   font-size: 12.75px;         /* 15px × 0.85 */
-  line-height: 34px; 
+  line-height: 34px;
   color: #f9eeee;         /* 40px × 0.85 */
 }
 .div6 {
@@ -812,16 +812,16 @@ html, body {
 
 
 .rectangle-1677622 {
-    background: #181818;
-    border-radius: 17px;
-    border-style: solid;
-    border-color: #f9eeee;
-    border-width: 0.85px;
-    width: 132.77px;
-    height: 28.05px;
-    position: absolute;
-    left: 385.05px;
-    top: 1041.55px;
+  background: #181818;
+  border-radius: 17px;
+  border-style: solid;
+  border-color: #f9eeee;
+  border-width: 0.85px;
+  width: 132.77px;
+  height: 28.05px;
+  position: absolute;
+  left: 385.05px;
+  top: 1041.55px;
 }
 
 .div9, .div10 {
@@ -851,7 +851,7 @@ html, body {
   line-height: 34px;       /* 40px × 0.85 */
   font-weight: 400;
   position: absolute;
-  left: 552.5px;           /* 650px × 0.85 */
+  left: 580.5px;           /* 650px × 0.85 */
   top: 1036.15px;          /* 1219px × 0.85 */
   display: flex;
   align-items: center;
@@ -883,7 +883,7 @@ html, body {
   width: 8.5px;                /* 10px × 0.85 */
   height: 8.5px;               /* 10px × 0.85 */
   position: absolute;
-  left: 540.60px;              /* 636px × 0.85 */
+  left: 565.60px;              /* 636px × 0.85 */
   top: 1049.75px;              /* 1235px × 0.85 */
   cursor: pointer;
   transition: background 0.15s;
@@ -924,7 +924,7 @@ html, body {
   top: 675.9px;            /* 714px × 0.85 */
   width: 1212.10px;         /* 1426px × 0.85 */
   height: 278.80px;         /* 328px × 0.85 */
-  resize: none;       
+  resize: none;
 
 }
 
