@@ -1,5 +1,7 @@
 package me.soldesk.katte_project_client.service;
 
+import common.bean.user.UserBanBean;
+import common.bean.user.UserRestrictionBean;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -7,6 +9,7 @@ import me.soldesk.katte_project_client.manager.ApiManagers;
 import common.bean.admin.UserAdminViewBean;
 import org.springframework.http.ResponseEntity;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -61,5 +64,55 @@ public class AdminUserListService {
             return 0; // 또는 에러 던지기
         }
         return response.getBody();
+    }
+
+    //---------------------------------------- 회원 상태 처리 ---------------------------------------------------------//
+
+    public void changeUserStatus(int userId, String actionType, Integer stopDays) {
+        switch (actionType) {
+            // 정지 등록
+            case "ban" -> {
+                UserBanBean bean = new UserBanBean();
+                bean.setUser_id(userId);
+                ApiManagers.post("admin/users/ban", bean, new TypeReference<String>() {});
+            }
+            // 정지 해제
+            case "unban" -> {
+                Map<String, String> params = Map.of("user_id", String.valueOf(userId));
+                ApiManagers.deleteQuery("admin/users/ban", params, new TypeReference<String>() {});
+            }
+            // 스타일 or 댓글 제한 등록
+            case "style", "comment" -> {
+                if (stopDays == null) {
+                    throw new IllegalArgumentException("stop_days 값이 필요합니다.");
+                }
+
+                UserRestrictionBean bean = new UserRestrictionBean();
+                bean.setUser_id(userId);
+                bean.setRestriction_type(actionType);
+                bean.setStop_days(stopDays);
+
+                ApiManagers.post("admin/users/restriction", bean, new TypeReference<String>() {});
+            }
+            // 제한 해제
+            case "normal" -> {
+                // stopDays를 통해 어떤 제한만 해제할지 전달받는 구조로 변경
+                // stopDays가 1이면 style, 2이면 comment, null이면 전체 해제
+                Map<String, String> params;
+
+                if (stopDays != null) {
+                    String type = (stopDays == 1) ? "style" : "comment";
+                    params = Map.of(
+                            "user_id", String.valueOf(userId),
+                            "restriction_type", type
+                    );
+                } else {
+                    // 모든 제한 해제
+                    params = Map.of("user_id", String.valueOf(userId));
+                }
+
+                ApiManagers.deleteQuery("admin/users/restriction", params, new TypeReference<String>() {});
+            }
+        }
     }
 }

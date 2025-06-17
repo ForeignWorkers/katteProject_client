@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import common.bean.admin.*;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
@@ -113,4 +114,15 @@ public class AdminController {
         return "Membership_management/Membership_management";
     }
 
+    //---------------------------------------- 회원 상태 처리 ---------------------------------------------------------//
+    // 상태 관리 중앙 컨트롤러
+    @PostMapping("/admin/change_status")
+    public String changeUserStatus(
+            @RequestParam("user_id") int userId,
+            @RequestParam("action_type") String actionType,
+            @RequestParam(value = "stop_days", required = false) Integer stopDays
+    ) {
+        adminUserListService.changeUserStatus(userId, actionType, stopDays);
+        return "redirect:/admin/user_view";
+    }
 }

@@ -7,13 +7,13 @@
   <link rel="stylesheet" href="/css/Membership_management/Membership_management.css" />
 </head>
 <body>
-  <!-- ───────────────────────────────────────────────────────────────────
-     1) 사이드바 (기존과 동일)
-     ─────────────────────────────────────────────────────────────────── -->
-  <!-- 사이드바 HTML 분리 -->
-  <div th:replace="~{Fragments/Sidebar :: sidebar}"></div>
+<!-- ───────────────────────────────────────────────────────────────────
+   1) 사이드바 (기존과 동일)
+   ─────────────────────────────────────────────────────────────────── -->
+<!-- 사이드바 HTML 분리 -->
+<div th:replace="~{Fragments/Sidebar :: sidebar}"></div>
 
-  <div class="wrapper">
+<div class="wrapper">
 
   <!-- ───────────────────────────────────────────────────────────────────
      2) 메인 콘텐츠 영역
@@ -32,41 +32,41 @@
 
       <!-- 회원 전용 컨트롤: 드롭다운 + 검색창 + 총 회원 -->
       <div th:if="${activeTab == 'member-area'}"> <!--회원 목록에서만 보이도록 처리-->
-      <div class="view-toggle-container">
-        <button id="viewToggleBtn" class="view-toggle-btn">
-          <span class="view-label">총 회원 보기</span>
-          <span class="view-arrow">⬇︎</span>
-        </button>
-        <div id="viewDropdown" class="view-dropdown">
-          <div class="view-option selected" data-value="all">
-            <span class="checkmark">✔</span>
-            <span class="option-label">총 회원 보기</span>
-          </div>
-          <div class="view-option" data-value="reported">
-            <span class="checkmark"></span>
-            <span class="option-label">신고된 회원 보기</span>
+        <div class="view-toggle-container">
+          <button id="viewToggleBtn" class="view-toggle-btn">
+            <span class="view-label">총 회원 보기</span>
+            <span class="view-arrow">⬇︎</span>
+          </button>
+          <div id="viewDropdown" class="view-dropdown">
+            <div class="view-option selected" data-value="all">
+              <span class="checkmark">✔</span>
+              <span class="option-label">총 회원 보기</span>
+            </div>
+            <div class="view-option" data-value="reported">
+              <span class="checkmark"></span>
+              <span class="option-label">신고된 회원 보기</span>
+            </div>
           </div>
         </div>
       </div>
-    </div>
     </div>
     <!-- ─────────────────────────────────────────────────────────────────
        2-2) 검색창 + 총 회원 수
        ───────────────────────────────────────────────────────────────── -->
     <div th:if="${activeTab == 'member-area'}"> <!--회원 목록에서만 보이도록 처리-->
-    <div class="search-area">
-      <div class="total-count" th:text="'총 회원 ' + ${userCount} + '명'">총   회원 0명</div>
+      <div class="search-area">
+        <div class="total-count" th:text="'총 회원 ' + ${userCount} + '명'">총   회원 0명</div>
 
-      <!-- 검색 폼 -->
-      <form method="get" th:action="@{/admin/user_search}" class="search-input">
-        <label>
-          <input type="text" name="keyword"
-                 placeholder="닉네임 혹은 계정 ID를 검색하세요"
-                 th:value="${param.keyword}" />
-        </label>
+        <!-- 검색 폼 -->
+        <form method="get" th:action="@{/admin/user_search}" class="search-input">
+          <label>
+            <input type="text" name="keyword"
+                   placeholder="닉네임 혹은 계정 ID를 검색하세요"
+                   th:value="${param.keyword}" />
+          </label>
           <button type="submit">검색</button>
-      </form>
-    </div>
+        </form>
+      </div>
     </div>
     <!-- 회원 검색 결과 페이지네이션 -->
 
@@ -76,45 +76,139 @@
     <div id="member-area" th:classappend="${activeTab != 'member-area'} ? ' hidden'">
       <table class="member-table">
         <thead>
-          <tr>
-            <th>닉네임</th>
-            <th>계정 ID</th>
-            <th>회원 가입일</th>
-            <th>게시글 &amp; 댓글 수</th>
-            <th>회원 상태 관리</th>
-          </tr>
+        <tr>
+          <th>닉네임</th>
+          <th>계정 ID</th>
+          <th>회원 가입일</th>
+          <th>게시글 &amp; 댓글 수</th>
+          <th>회원 상태 관리</th>
+        </tr>
         </thead>
         <tbody>
-          <!-- ─── 테이블 행 (row-all) ─── -->
-          <tr th:each="user : ${userList}"
-              th:class="${user.ban_status == '정지'} ? 'row-reported' : 'row-all'">
-            <td th:text="${user.nickname}">닉네임</td>
-            <td th:text="${user.email_id}">계정ID</td>
-            <td th:text="${#dates.format(user.registration_date, 'yyyy-MM-dd')}">가입일</td>
-            <td class="post-cell">
-              <span th:text="'게시글: ' + ${user.style_count} + '개'"></span><br />
-              <span th:text="'댓글: ' + ${user.comment_count} + '개'"></span>
-            </td>
-            <td class="status-cell">
-              <div class="status-wrapper">
+        <!-- ─── 테이블 행 (row-all) ─── -->
+        <tr th:each="user : ${userList}"
+            th:class="${user.ban_status == '계정 정지'} ? 'row-reported' : 'row-all'">
+          <td th:text="${user.nickname}">닉네임</td>
+          <td th:text="${user.email_id}">계정ID</td>
+          <td th:text="${#dates.format(user.registration_date, 'yyyy-MM-dd')}">가입일</td>
+          <td class="post-cell">
+            <span th:text="'게시글: ' + ${user.style_count} + '개'"></span><br />
+            <span th:text="'댓글: ' + ${user.comment_count} + '개'"></span>
+          </td>
+          <td class="status-cell">
+            <div class="status-wrapper">
                <span class="status-display"
-                     th:if="${user.ban_status == '정지'}">정지</span>
+                     th:if="${user.ban_status == '계정 정지'}">정지</span>
                 <span class="status-display"
-                      th:if="${user.ban_status != '정지'}"
-                      th:text="${user.restriction_status != null} ? ${user.restriction_status} : '정상'">상태</span>
-                <button class="edit-btn">수정하기</button>
-              </div>
-              <div class="status-popup">
-                <ul>
-                  <li data-value="정상">정상</li>
-                  <li data-value="정지 3일">정지 3일</li>
-                  <li data-value="정지 7일">정지 7일</li>
-                  <li data-value="정지 30일">정지 30일</li>
-                  <li data-value="추방">추방</li>
-                </ul>
-              </div>
-            </td>
-          </tr>
+                    th:if="${user.ban_status != '계정 정지'}"
+                    th:text="${user.restriction_status != null} ? ${user.restriction_status} : '정상'">상태</span>
+              <button class="edit-btn">수정하기</button>
+            </div>
+            <div class="status-popup">
+              <ul class="status-menu">
+                <!-- 상태 제어 버튼들 -->
+                <li data-value="정상"
+                    th:attr="data-userid=${user.user_id}, data-ban=${user.ban_status}, data-restrict=${user.restriction_status}"
+                    onclick="handleStatusAction(this)">
+                  정상
+                </li>
+                <li data-value="스타일 작성 제한"
+                    th:attr="data-userid=${user.user_id}, data-ban=${user.ban_status}, data-restrict=${user.restriction_status}"
+                    onclick="handleStatusAction(this)">
+                  스타일 작성 제한
+                </li>
+
+                <li data-value="댓글 작성 제한"
+                    th:attr="data-userid=${user.user_id}, data-ban=${user.ban_status}, data-restrict=${user.restriction_status}"
+                    onclick="handleStatusAction(this)">
+                  댓글 작성 제한
+                </li>
+
+                <li data-value="계정 정지"
+                    th:attr="data-userid=${user.user_id}, data-ban=${user.ban_status}, data-restrict=${user.restriction_status}"
+                    onclick="handleStatusAction(this)">
+                  계정 정지
+                </li>
+              </ul>
+
+              <!-- 상태 변경용 숨겨진 폼 -->
+              <form id="statusForm" method="post" action="/admin/change_status" style="display:none;"></form>
+
+              <script>
+                function handleStatusAction(element) {
+                  const userId = element.dataset.userid;
+                  const banStatus = element.dataset.ban || "";
+                  const restrictStatus = element.dataset.restrict || "";
+                  const actionType = element.dataset.value;
+
+                  const form = document.getElementById("statusForm");
+                  const currentStatus = banStatus + restrictStatus;
+
+                  if (actionType === '계정 정지') {
+                    if (currentStatus.includes("계정 정지")) {
+                      alert("이미 정지된 회원입니다.");
+                      return;
+                    }
+                    if (confirm("정말로 해당 계정을 정지시키시겠습니까?")) {
+                      submitStatusForm(userId, "ban");
+                    }
+
+                  } else if (actionType === '정상') {
+                    if (banStatus === '계정 정지') {
+                      if (confirm("정지 상태를 해제하시겠습니까?")) {
+                        submitStatusForm(userId, "unban");
+                      }
+                    } else if (restrictStatus) {
+                      if (confirm("제한 상태를 해제하고 정상으로 되돌리시겠습니까?")) {
+                        submitStatusForm(userId, "normal"); //전체 제한 해제
+                      }
+                    } else {
+                      alert("이미 정상 상태입니다.");
+                    }
+                  } else if (actionType === '스타일 작성 제한' || actionType === '댓글 작성 제한') {
+
+                    const isStyleRestricted = restrictStatus.includes("스타일 작성 제한") || restrictStatus.includes("게시글 작성 제한");
+                    const isCommentRestricted = restrictStatus.includes("댓글 작성 제한");
+
+                    if (actionType === '스타일 작성 제한') {
+                      if (isStyleRestricted) {
+                        if (confirm(`${actionType} 상태를 해제하시겠습니까?`)) {
+                          submitStatusForm(userId, "normal", 1); // 개별 해제
+                        }
+                        return;
+                      }
+                    }
+
+                    if (actionType === '댓글 작성 제한') {
+                      if (isCommentRestricted) {
+                        if (confirm(`${actionType} 상태를 해제하시겠습니까?`)) {
+                          submitStatusForm(userId, "normal", 2); // 개별 해제
+                        }
+                        return;
+                      }
+                    }
+                    // ✅ 여기에 typeKey 정의 추가
+                    const typeKey = actionType === '스타일 작성 제한' ? 'style' : 'comment';
+                    // 새로 제한 추가
+                    const days = prompt("제한 일수를 입력하세요:");
+                    if (!days || isNaN(days)) return alert("유효한 숫자를 입력하세요.");
+
+                    submitStatusForm(userId, typeKey, parseInt(days));
+                  }
+                }
+
+                function submitStatusForm(userId, actionType, stopDays = null) {
+                  const form = document.getElementById("statusForm");
+                  form.innerHTML = `
+                    <input name="user_id" value="${userId}">
+                    <input name="action_type" value="${actionType}">
+                    ${stopDays !== null ? `<input name="stop_days" value="${stopDays}">` : ""}`;
+                  form.submit(); // 이후 서버 응답에서 redirect로 반영됨
+                }
+              </script>
+            </div>
+          </td>
+        </tr>
         </tbody>
       </table>
 
@@ -157,13 +251,13 @@
       <div class="section-count" th:text="'검수 내역 ' + ${inspectionCount} + '건'">검수 내역 0건</div>
       <table class="review-table">
         <thead>
-          <tr>
-            <th>상품명</th>
-            <th>상품 타이틀</th>
-            <th>판매자 아이디</th>
-            <th>등록일</th>
-            <th>검수 상태</th>
-          </tr>
+        <tr>
+          <th>상품명</th>
+          <th>상품 타이틀</th>
+          <th>판매자 아이디</th>
+          <th>등록일</th>
+          <th>검수 상태</th>
+        </tr>
         </thead>
         <tbody>
         <tr th:each="item : ${inspectionList}">
@@ -224,39 +318,39 @@
       <!-- ▶ 신고 관리 테이블 -->
       <table class="report-table">
         <thead>
-          <tr>
-            <th>분류</th>
-            <th>신고분류</th>
-            <th>신고글</th>
-            <th>작성자</th>
-            <th>신고횟수</th>
-            <th>신고자</th>
-            <th>신고날짜</th>
-            <th>삭제</th>
-          </tr>
+        <tr>
+          <th>분류</th>
+          <th>신고분류</th>
+          <th>신고글</th>
+          <th>작성자</th>
+          <th>신고횟수</th>
+          <th>신고자</th>
+          <th>신고날짜</th>
+          <th>삭제</th>
+        </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>게시글 신고</td>
-            <td>홍보 및 상업적인 내용이 들어간 글</td>
-            <td>빵댕이가예브네여</td>
-            <td>minQQQQQ1</td>
-            <td>게시글: 1회<br/>댓글: 1회</td>
-            <td>wedsㅏ_23xXy</td>
-            <td>2025-01-13</td>
-            <td><button class="delete-btn">삭제</button></td>
-          </tr>
-          <tr>
-            <td>댓글 신고</td>
-            <td>악의적 욕설이 포함된 글</td>
-            <td>오 개별루띠닝ww</td>
-            <td>sungkeun0728</td>
-            <td>게시글: 2회<br/>댓글: 3회</td>
-            <td>gdxLLILxXXXx</td>
-            <td>2025-01-14</td>
-            <td><button class="delete-btn">삭제</button></td>
-          </tr>
-          <!-- … 추가 행 가능 … -->
+        <tr>
+          <td>게시글 신고</td>
+          <td>홍보 및 상업적인 내용이 들어간 글</td>
+          <td>빵댕이가예브네여</td>
+          <td>minQQQQQ1</td>
+          <td>게시글: 1회<br/>댓글: 1회</td>
+          <td>wedsㅏ_23xXy</td>
+          <td>2025-01-13</td>
+          <td><button class="delete-btn">삭제</button></td>
+        </tr>
+        <tr>
+          <td>댓글 신고</td>
+          <td>악의적 욕설이 포함된 글</td>
+          <td>오 개별루띠닝ww</td>
+          <td>sungkeun0728</td>
+          <td>게시글: 2회<br/>댓글: 3회</td>
+          <td>gdxLLILxXXXx</td>
+          <td>2025-01-14</td>
+          <td><button class="delete-btn">삭제</button></td>
+        </tr>
+        <!-- … 추가 행 가능 … -->
         </tbody>
       </table>
       <!-- ───────────────────────────────────────────────────────────────────
@@ -285,13 +379,13 @@
       </div>
       <table class="modal-table">
         <thead>
-          <tr>
-            <th>글 번호</th>
-            <th>글 제목</th>
-            <th>작성일</th>
-            <th>조회수</th>
-            <th>좋아요</th>
-          </tr>
+        <tr>
+          <th>글 번호</th>
+          <th>글 제목</th>
+          <th>작성일</th>
+          <th>조회수</th>
+          <th>좋아요</th>
+        </tr>
         </thead>
         <tbody></tbody>
       </table>
@@ -310,11 +404,11 @@
       </div>
       <table class="modal-table">
         <thead>
-          <tr>
-            <th>글 번호</th>
-            <th>작성한 댓글</th>
-            <th>작성일</th>
-          </tr>
+        <tr>
+          <th>글 번호</th>
+          <th>작성한 댓글</th>
+          <th>작성일</th>
+        </tr>
         </thead>
         <tbody></tbody>
       </table>
@@ -324,216 +418,215 @@
   <!-- ───────────────────────────────────────────────────────────────────
      5) JavaScript (탭 전환 + 드롭다운 + 상태 팝업 + 모달 + 검수관리)
      ─────────────────────────────────────────────────────────────────── -->
-<script>
+  <script>
 
-</script>
+  </script>
 
 
-    <script>
-document.addEventListener('DOMContentLoaded', () => {
-  // (1) 탭 전환
-  document.querySelectorAll('.tab').forEach(tab => {
-    tab.addEventListener('click', () => {
-      // 탭 스타일 토글
-      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
-      // 섹션 표시 토글
-      ['member-area','review-area','report-area'].forEach(id => {
-        document.getElementById(id).classList.toggle('hidden', tab.dataset.target !== id);
-      });
-    });
-  });
-
-  // (2) “총 회원 보기” 드롭다운 (회원 관리 탭에서만 사용)
-  const viewToggleBtn = document.getElementById('viewToggleBtn');
-  const viewDropdown  = document.getElementById('viewDropdown');
-  const options       = viewDropdown.querySelectorAll('.view-option');
-  const viewLabel     = viewToggleBtn.querySelector('.view-label');
-  let currentView = 'all';
-
-  viewToggleBtn.addEventListener('click', e => {
-    e.stopPropagation();
-    const isOpen = viewDropdown.style.display === 'block';
-    viewDropdown.style.display = isOpen ? 'none' : 'block';
-    viewToggleBtn.classList.toggle('open', !isOpen);
-  });
-
-  options.forEach(opt => {
-    opt.addEventListener('click', () => {
-      const v = opt.dataset.value;
-      if (v !== currentView) {
-        options.forEach(o => o.classList.remove('selected'));
-        opt.classList.add('selected');
-        viewLabel.innerText = opt.querySelector('.option-label').innerText;
-        currentView = v;
-        document.querySelectorAll('#member-area .member-table tbody tr').forEach(r => {
-          r.style.display = (v === 'all' || r.classList.contains('row-reported')) ? '' : 'none';
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // (1) 탭 전환
+      document.querySelectorAll('.tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+          // 탭 스타일 토글
+          document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+          tab.classList.add('active');
+          // 섹션 표시 토글
+          ['member-area','review-area','report-area'].forEach(id => {
+            document.getElementById(id).classList.toggle('hidden', tab.dataset.target !== id);
+          });
         });
-      }
-      viewDropdown.style.display = 'none';
-      viewToggleBtn.classList.remove('open');
-    });
-  });
-
-  document.addEventListener('click', () => {
-    if (viewDropdown.style.display === 'block') {
-      viewDropdown.style.display = 'none';
-      viewToggleBtn.classList.remove('open');
-    }
-  });
-
-  // (3) “수정하기” 버튼 → 상태 팝업
-  document.querySelectorAll('.status-cell').forEach(cell => {
-    const btn   = cell.querySelector('.edit-btn');
-    const popup = cell.querySelector('.status-popup');
-    const disp  = cell.querySelector('.status-display');
-
-    btn.addEventListener('click', e => {
-      e.stopPropagation();
-      document.querySelectorAll('.status-popup').forEach(p => p.style.display = 'none');
-      popup.style.display = popup.style.display === 'block' ? 'none' : 'block';
-    });
-
-    popup.querySelectorAll('li').forEach(li => {
-      li.addEventListener('click', () => {
-        popup.querySelectorAll('li').forEach(o => o.classList.remove('selected'));
-        li.classList.add('selected');
-        disp.innerText = li.dataset.value;
-        popup.style.display = 'none';
       });
-    });
-  });
 
-  document.addEventListener('click', () => {
-    document.querySelectorAll('.status-popup').forEach(popup => {
-      if (popup.style.display === 'block') popup.style.display = 'none';
-    });
-  });
+      // (2) “총 회원 보기” 드롭다운 (회원 관리 탭에서만 사용)
+      const viewToggleBtn = document.getElementById('viewToggleBtn');
+      const viewDropdown  = document.getElementById('viewDropdown');
+      const options       = viewDropdown.querySelectorAll('.view-option');
+      const viewLabel     = viewToggleBtn.querySelector('.view-label');
+      let currentView = 'all';
 
-  // (4) 예시 데이터
-  const postData = {
-    need_u_neko: [
-      { no:109, title:'오늘의 룩 넘 귀여이잉', date:'2024년 10월 17일 22시 13분', views:143, likes:12 },
-      { no:231, title:'너무너무 춥던 날이에욤', date:'2024년 11월 01일 22시 13분', views:3423, likes:43 },
-      { no:353, title:'생일 기념 ootd', date:'2024년 12월 17일 22시 13분', views:1217, likes:121 },
-      { no:356, title:'날씨 좋다 ㅇㅇ', date:'2025년 01월 23일 22시 13분', views:43, likes:3 }
-    ],
-    jyuhebs: [], sdsafdssfd: [], dfwwwwwbabo: [], sndfbsfwad: []
-  };
-  const commentData = {
-    need_u_neko: [
-      { no:32, comment:'여기 어디인가요? 너무 예뻐용', date:'2024년 10월 17일 22시 13분' },
-      { no:1321, comment:'핵 저 옷 사고 싶어서 고민하고 있었는데~+♥', date:'2024년 11월 01일 22시 13분' },
-      { no:232, comment:'살찌 듬뻐용 ㅎㅎ', date:'2024년 12월 17일 22시 13분' },
-      { no:2415, comment:'오늘 룩 너무 맹해용', date:'2025년 01월 23일 22시 13분' }
-    ],
-    jyuhebs: [], sdsafdssfd: [], dfwwwwwbabo: [], sndfbsfwad: []
-  };
+      viewToggleBtn.addEventListener('click', e => {
+        e.stopPropagation();
+        const isOpen = viewDropdown.style.display === 'block';
+        viewDropdown.style.display = isOpen ? 'none' : 'block';
+        viewToggleBtn.classList.toggle('open', !isOpen);
+      });
 
-  // (5) 모달 공통 셋업
-  function setupModal(id) {
-    const m = document.getElementById(id);
-    m.querySelector('.modal-overlay').onclick = () => m.style.display = 'none';
-    m.querySelector('.modal-close').onclick   = () => m.style.display = 'none';
-  }
-  setupModal('postsModal');
-  setupModal('commentsModal');
+      options.forEach(opt => {
+        opt.addEventListener('click', () => {
+          const v = opt.dataset.value;
+          if (v !== currentView) {
+            options.forEach(o => o.classList.remove('selected'));
+            opt.classList.add('selected');
+            viewLabel.innerText = opt.querySelector('.option-label').innerText;
+            currentView = v;
+            document.querySelectorAll('#member-area .member-table tbody tr').forEach(r => {
+              r.style.display = (v === 'all' || r.classList.contains('row-reported')) ? '' : 'none';
+            });
+          }
+          viewDropdown.style.display = 'none';
+          viewToggleBtn.classList.remove('open');
+        });
+      });
 
-  // (6) 게시글 클릭 → postsModal
-  document.querySelectorAll('.post-count').forEach(el => {
-    el.style.cursor = 'pointer';
-    el.onclick = () => {
-      const uid = el.closest('tr').cells[1].innerText.trim();
-      const list = postData[uid] || [];
-      const m    = document.getElementById('postsModal');
-      m.querySelector('.modal-title').innerText = `${uid}님의 작성 게시글`;
-      m.querySelector('.modal-count').innerText = `작성한 게시글 수: 총 ${String(list.length).padStart(2,'0')}개`;
-      const tb = m.querySelector('tbody'); tb.innerHTML = '';
-      list.forEach(p => {
-        tb.insertAdjacentHTML('beforeend',
-          `<tr>
+      document.addEventListener('click', () => {
+        if (viewDropdown.style.display === 'block') {
+          viewDropdown.style.display = 'none';
+          viewToggleBtn.classList.remove('open');
+        }
+      });
+
+      // (3) “수정하기” 버튼 → 상태 팝업
+      document.querySelectorAll('.status-cell').forEach(cell => {
+        const btn   = cell.querySelector('.edit-btn');
+        const popup = cell.querySelector('.status-popup');
+        const disp  = cell.querySelector('.status-display');
+
+        btn.addEventListener('click', e => {
+          e.stopPropagation();
+          document.querySelectorAll('.status-popup').forEach(p => p.style.display = 'none');
+          popup.style.display = popup.style.display === 'block' ? 'none' : 'block';
+        });
+
+        popup.querySelectorAll('li').forEach(li => {
+          li.addEventListener('click', () => {
+            popup.querySelectorAll('li').forEach(o => o.classList.remove('selected'));
+            li.classList.add('selected');
+            popup.style.display = 'none';
+          });
+        });
+      });
+
+      document.addEventListener('click', () => {
+        document.querySelectorAll('.status-popup').forEach(popup => {
+          if (popup.style.display === 'block') popup.style.display = 'none';
+        });
+      });
+
+      // (4) 예시 데이터
+      const postData = {
+        need_u_neko: [
+          { no:109, title:'오늘의 룩 넘 귀여이잉', date:'2024년 10월 17일 22시 13분', views:143, likes:12 },
+          { no:231, title:'너무너무 춥던 날이에욤', date:'2024년 11월 01일 22시 13분', views:3423, likes:43 },
+          { no:353, title:'생일 기념 ootd', date:'2024년 12월 17일 22시 13분', views:1217, likes:121 },
+          { no:356, title:'날씨 좋다 ㅇㅇ', date:'2025년 01월 23일 22시 13분', views:43, likes:3 }
+        ],
+        jyuhebs: [], sdsafdssfd: [], dfwwwwwbabo: [], sndfbsfwad: []
+      };
+      const commentData = {
+        need_u_neko: [
+          { no:32, comment:'여기 어디인가요? 너무 예뻐용', date:'2024년 10월 17일 22시 13분' },
+          { no:1321, comment:'핵 저 옷 사고 싶어서 고민하고 있었는데~+♥', date:'2024년 11월 01일 22시 13분' },
+          { no:232, comment:'살찌 듬뻐용 ㅎㅎ', date:'2024년 12월 17일 22시 13분' },
+          { no:2415, comment:'오늘 룩 너무 맹해용', date:'2025년 01월 23일 22시 13분' }
+        ],
+        jyuhebs: [], sdsafdssfd: [], dfwwwwwbabo: [], sndfbsfwad: []
+      };
+
+      // (5) 모달 공통 셋업
+      function setupModal(id) {
+        const m = document.getElementById(id);
+        m.querySelector('.modal-overlay').onclick = () => m.style.display = 'none';
+        m.querySelector('.modal-close').onclick   = () => m.style.display = 'none';
+      }
+      setupModal('postsModal');
+      setupModal('commentsModal');
+
+      // (6) 게시글 클릭 → postsModal
+      document.querySelectorAll('.post-count').forEach(el => {
+        el.style.cursor = 'pointer';
+        el.onclick = () => {
+          const uid = el.closest('tr').cells[1].innerText.trim();
+          const list = postData[uid] || [];
+          const m    = document.getElementById('postsModal');
+          m.querySelector('.modal-title').innerText = `${uid}님의 작성 게시글`;
+          m.querySelector('.modal-count').innerText = `작성한 게시글 수: 총 ${String(list.length).padStart(2,'0')}개`;
+          const tb = m.querySelector('tbody'); tb.innerHTML = '';
+          list.forEach(p => {
+            tb.insertAdjacentHTML('beforeend',
+                    `<tr>
             <td>${p.no}</td>
             <td>${p.title}</td>
             <td>${p.date}</td>
             <td>${p.views}</td>
             <td>${p.likes}</td>
           </tr>`
-        );
+            );
+          });
+          m.style.display = 'block';
+        };
       });
-      m.style.display = 'block';
-    };
-  });
 
-  // (7) 댓글 클릭 → commentsModal
-  document.querySelectorAll('.comment-count').forEach(el => {
-    el.style.cursor = 'pointer';
-    el.onclick = () => {
-      const uid = el.closest('tr').cells[1].innerText.trim();
-      const list = commentData[uid] || [];
-      const m    = document.getElementById('commentsModal');
-      m.querySelector('.modal-title').innerText = `${uid}님의 작성 댓글`;
-      m.querySelector('.modal-count').innerText = `작성한 댓글 수: 총 ${String(list.length).padStart(2,'0')}개`;
-      const tb = m.querySelector('tbody'); tb.innerHTML = '';
-      list.forEach(c => {
-        tb.insertAdjacentHTML('beforeend',
-          `<tr>
+      // (7) 댓글 클릭 → commentsModal
+      document.querySelectorAll('.comment-count').forEach(el => {
+        el.style.cursor = 'pointer';
+        el.onclick = () => {
+          const uid = el.closest('tr').cells[1].innerText.trim();
+          const list = commentData[uid] || [];
+          const m    = document.getElementById('commentsModal');
+          m.querySelector('.modal-title').innerText = `${uid}님의 작성 댓글`;
+          m.querySelector('.modal-count').innerText = `작성한 댓글 수: 총 ${String(list.length).padStart(2,'0')}개`;
+          const tb = m.querySelector('tbody'); tb.innerHTML = '';
+          list.forEach(c => {
+            tb.insertAdjacentHTML('beforeend',
+                    `<tr>
             <td>${c.no}</td>
             <td>${c.comment}</td>
             <td>${c.date}</td>
           </tr>`
-        );
+            );
+          });
+          m.style.display = 'block';
+        };
       });
-      m.style.display = 'block';
-    };
-  });
 
-  // (8) 검수관리 – 검수 상태 버튼 처리
-  document.querySelectorAll('.review-complete-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const id = btn.dataset.id;
-    if (confirm('검수를 완료하시겠습니까?')) {
-      fetch(`http://localhost:9000/admin/inspection/complete?check_result_id=${id}`, {
-        method: 'PATCH'
-      }).then(res => {
-        if (res.ok) {
-          // 👇 버튼 영역을 '검수 완료'로 대체
-          const td = btn.closest('td');
-          td.innerHTML = '<span style="color: green; font-weight: bold;">검수 완료</span>';
-        } else {
-          alert('검수 완료 처리 실패');
-        }
+      // (8) 검수관리 – 검수 상태 버튼 처리
+      document.querySelectorAll('.review-complete-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const id = btn.dataset.id;
+          if (confirm('검수를 완료하시겠습니까?')) {
+            fetch(`http://localhost:9000/admin/inspection/complete?check_result_id=${id}`, {
+              method: 'PATCH'
+            }).then(res => {
+              if (res.ok) {
+                // 👇 버튼 영역을 '검수 완료'로 대체
+                const td = btn.closest('td');
+                td.innerHTML = '<span style="color: green; font-weight: bold;">검수 완료</span>';
+              } else {
+                alert('검수 완료 처리 실패');
+              }
+            });
+          }
+        });
       });
-    }
-  });
- });
 
-  document.querySelectorAll('.review-fail-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const id = btn.dataset.id;
-    if (confirm('검수 기준 미달 처리를 하시겠습니까?')) {
-      fetch(`http://localhost:9000/admin/inspection/fail?check_result_id=${id}`, {
-        method: 'PATCH'
-      }).then(res => {
-        if (res.ok) {
-          const td = btn.closest('td');
-          td.innerHTML = '<span style="color: red; font-weight: bold;">검수 기준 미달</span>';
-        } else {
-          alert('검수 실패 처리 실패');
-        }
+      document.querySelectorAll('.review-fail-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const id = btn.dataset.id;
+          if (confirm('검수 기준 미달 처리를 하시겠습니까?')) {
+            fetch(`http://localhost:9000/admin/inspection/fail?check_result_id=${id}`, {
+              method: 'PATCH'
+            }).then(res => {
+              if (res.ok) {
+                const td = btn.closest('td');
+                td.innerHTML = '<span style="color: red; font-weight: bold;">검수 기준 미달</span>';
+              } else {
+                alert('검수 실패 처리 실패');
+              }
+            });
+          }
+        });
       });
-    }
-  });
-});
 
-  // (9) 신고관리 – 삭제 버튼 (향후 로직 연결)
-  document.querySelectorAll('.delete-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      // TODO: 삭제 API 호출 또는 행 제거
-      console.log('삭제 클릭:', btn.closest('tr'));
+      // (9) 신고관리 – 삭제 버튼 (향후 로직 연결)
+      document.querySelectorAll('.delete-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          // TODO: 삭제 API 호출 또는 행 제거
+          console.log('삭제 클릭:', btn.closest('tr'));
+        });
+      });
     });
-  });
-});
   </script>
-  </div>
+</div>
 </body>
 </html>
