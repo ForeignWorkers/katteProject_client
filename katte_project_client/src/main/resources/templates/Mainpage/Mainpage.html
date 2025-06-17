@@ -20,72 +20,46 @@
       <!-- JavaScript로 쇼츠가 여기에 추가됩니다 -->
     </div>
   </div>
-  <!-- 쇼츠 피드 끝 -->
 
 
-  <div class="mainpage">
-  <div class="rectangle-1588"></div>
-  <div class="div18">시세표</div>
-  <div class="_12">1개월</div>
-  <div class="_3">3개월</div>
-  <div class="_6">6개월</div>
-  <div class="_13">1년</div>
-  <div class="div19">전체</div>
-  <div class="_0">0</div>
-  <div class="_2-3">2.3</div>
-  <div class="_3-3">3.3</div>
-  <div class="_5-3">5.3</div>
-  <div class="_6-3">6.3</div>
-  <div class="_7-3">7.3</div>
-  <div class="_50-000">50,000</div>
-  <div class="_150-000">150,000</div>
-  <div class="_300-000">300,000</div>
-  <div class="_350-000">350,000</div>
-  <div class="line-146"></div>
-  <div class="line-147"></div>
-  <div class="line-148"></div>
-  <div class="line-149"></div>
-  <div class="line-150"></div>
-  <div class="line-151"></div>
-  <div class="line-152"></div>
-  <div class="line-153"></div>
-  <div class="line-154"></div>
-  <div class="line-155"></div>
-  <div class="line-156"></div>
-  <div class="line-157"></div>
-  <div class="line-158"></div>
-  <div class="_100-000">100,000</div>
-  <div class="_200-000">200,000</div>
-  <div class="_250-000">250,000</div>
-  <div class="_400-000">400,000</div>
-  <div class="rectangle-1589"></div>
+  <!-- 📦 오른쪽 사이드 카드 레이아웃 -->
+  <div class="right-panel">
+    <!-- 📊 시세표 카드 -->
+    <div class="price-chart-card">
+      <div class="chart-header">
+        <h3>시세표 <span id="chartProductName"></span></h3>
+        <span></span>
+        <div class="range-selector">
+          <button onclick="onChartRangeButtonClick('1m')">1개월</button>
+          <button onclick="onChartRangeButtonClick('3m')">3개월</button>
+          <button onclick="onChartRangeButtonClick('6m')">6개월</button>
+          <button onclick="onChartRangeButtonClick('1y')">1년</button>
+          <button onclick="onChartRangeButtonClick('all')">전체</button>
+        </div>
+      </div>
+      <canvas id="priceChart"></canvas>
+    </div>
 
-  <!--왼쪽 화살표-->
-  <a href="#" onclick="loadPrevStyle(); return false;">
-    <img class="image-67" src="/img/image%2065.png" alt="이전" />
-  </a>
-
-  <!--오른쪽 화살표-->
-  <a href="#" onclick="loadNextStyle(); return false;">
-    <img class="image-66" src="/img/image%2065.png" alt="다음" />
-  </a>
-
-  <!--스타일 메인 카드 (링크 적용)-->
-  <a href="#" onclick="checkLoginAndMove('/style/detail'); return false;">
-    <img class="image-65" src="/img/image%2065.png" />
-  <img class="div20" src="/img/프로필.png" />
-    <img class="mask-group4" src="/img/heart.png" />
-  <div class="_2">스타일 리뷰</div>
-  <div class="_730-em-0">730em0</div>
-  <div class="_4">
-    #크림미챌린지 #봄맞이 #4월코디 #전준호짱
-    <br />
-    #권성근게이야.. #바지가이뻐 #태그다!
-    <br />
-    이것은 그냥 글에대한 설명 글 ㅋㅋㅋㅋㅋ
+    <!-- 👗 스타일 리뷰 카드 -->
+    <div class="style-review-card">
+      <div class="style-header">
+        <h3>스타일 리뷰</h3>
+      </div>
+      <div class="style-carousel">
+        <button class="nav-btn left" onclick="prevReview()">‹</button>
+        <div id="styleReviewContainer" style="flex: 1; display: flex; justify-content: center;">
+          <!-- JavaScript에서 style review 아이템 동적으로 추가 -->
+        </div>
+        <button class="nav-btn right" onclick="nextReview()">›</button>
+      </div>
+    </div>
   </div>
-  </a>
-  <script th:inline="javascript">
+
+  <!-- ✅ 먼저 CDN을 로드 -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+  <script th:inline="javascript" >
     let hasUserInteracted = false;
 
     window.addEventListener("click", () => hasUserInteracted = true);
@@ -152,6 +126,9 @@
       // ✅ 전체 래퍼: short-item-wrapper
       const outer = document.createElement("div");
       outer.className = "short-item-wrapper";
+
+      // ✅ 여기 추가!
+      outer.dataset.productId = short.product_id;
 
       // ✅ 내부 콘텐츠: short-item + short-inner-wrapper
       const div = document.createElement("div");
@@ -356,14 +333,157 @@
         }, 2000);
       }
     });
+
+    function getCurrentProductId() {
+      const shorts = document.querySelectorAll(".short-item-wrapper");
+      for (let el of shorts) {
+        const rect = el.getBoundingClientRect();
+        const inView = rect.top >= 0 && rect.bottom <= window.innerHeight;
+        if (inView) {
+          return el.dataset.productId;
+        }
+      }
+      return null;
+    }
+
+//오른쪽 사이드 기능구현
+    let currentReviewIndex = 0;
+    let reviewItems = [];
+
+    function changeChartRange(range, product_id) {
+      fetch(`/price_history?range=${range}&productId=${product_id}`) // 예시
+              .then(res => res.json())
+              .then(data => {
+                const labels = data.map(d => d.ordered_at);
+                const prices = data.map(d => d.final_price);
+                updateChart(labels, prices);
+              });
+    }
+
+    function updateChart(labels, data) {
+      if (window.priceChart) {
+        window.priceChart.data.labels = labels;
+        window.priceChart.data.datasets[0].data = data;
+        window.priceChart.update();
+      }
+    }
+
+    function initChart() {
+      const ctx = document.getElementById('priceChart').getContext('2d');
+      window.priceChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: [],
+          datasets: [{
+            label: '가격',
+            data: [],
+            borderColor: '#ff5f5f',
+            borderWidth: 2,
+            fill: false,
+            tension: 0.3
+          }]
+        },
+        options: {
+          responsive: true,
+          scales: {
+            y: {
+              ticks: {
+                color: '#ccc'
+              }
+            },
+            x: {
+              ticks: {
+                color: '#ccc'
+              }
+            }
+          }
+        }
+      });
+    }
+
+    function loadStyleReviews(product_id) {
+      fetch(`/content/styleProductId?product_id=${product_id}`)
+              .then(res => res.json())
+              .then(data => {
+                reviewItems = data;
+                renderReview(currentReviewIndex);
+              });
+    }
+
+    resourceURL = "https://resources-katte.jp.ngrok.io/";
+    function renderReview(index) {
+      const container = document.getElementById('styleReviewContainer');
+      container.innerHTML = '';
+      if (!reviewItems.length) return;
+
+      const review = reviewItems[index];
+      const div = document.createElement('div');
+      const sumitURL = resourceURL+"style/"+review.id+"/"+review.id+"_1.png";
+      div.className = 'review-item';
+      div.style = `
+                  text-align: center;
+                  max-width: 250px;
+                  `;
+      div.innerHTML = `
+        <a href="/style/${review.styleId}" style="display: inline-block;">
+        <img src="${sumitURL}"
+           alt="스타일 이미지"
+           style="width: 100%; object-fit: cover; border-radius: 12px;" />
+        </a>
+        <div style="margin-top: 8px; font-size: 14px; color: #ddd; word-break: keep-all;">
+            ${review.caption}
+    </div>
+  `;
+      container.appendChild(div);
+    }
+
+    function prevReview() {
+      currentReviewIndex = (currentReviewIndex - 1 + reviewItems.length) % reviewItems.length;
+      renderReview(currentReviewIndex);
+    }
+
+    function nextReview() {
+      currentReviewIndex = (currentReviewIndex + 1) % reviewItems.length;
+      renderReview(currentReviewIndex);
+    }
+
+    window.addEventListener('load', () => {
+      initChart();
+      console.log("AAAAAA")
+
+      const productId = getCurrentProductId();
+      console.log("BBBBBB" + productId)
+      if (productId) {
+        console.log("AAAAAA" +productId)
+        changeChartRange('1m', productId);
+        loadStyleReviews(productId);
+      }
+    });
+
+    const shortItemObserver = new MutationObserver(() => {
+      const productId = getCurrentProductId();
+      if (productId !== null) {
+        console.log("✅ productId:", productId);
+        changeChartRange('1m', productId);
+        loadStyleReviews(productId);
+        shortItemObserver.disconnect();
+      }
+    });
+
+    shortItemObserver.observe(document.body, {
+      childList: true,
+      subtree: true
+    });
+
+    function onChartRangeButtonClick(range) {
+      const productId = getCurrentProductId();
+      if (!productId) {
+        alert("현재 재생 중인 제품 정보를 찾을 수 없습니다.");
+        return;
+      }
+      changeChartRange(range, productId);
+    }
   </script>
-
-  <div class="_139">139</div>
-  <div class="div23">호시이</div>
-  <div class="rectangle-1591"></div>
   </div>
-
-</div></div>
-</div>
 </body>
 </html>

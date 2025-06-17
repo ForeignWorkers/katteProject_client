@@ -1,13 +1,12 @@
 package me.soldesk.katte_project_client.controller;
 
 import common.bean.auction.AuctionDataBean;
-import common.bean.content.ContentShortBean;
-import common.bean.content.ContentShortformBean;
+import common.bean.content.*;
+import common.bean.ecommerce.EcommerceOrderBean;
+import common.bean.ecommerce.EcommerceTradeLookUp;
 import common.bean.product.ProductPerSaleBean;
 import common.bean.user.UserBean;
-import me.soldesk.katte_project_client.service.AuctionService;
-import me.soldesk.katte_project_client.service.ShortformService;
-import me.soldesk.katte_project_client.service.UserService;
+import me.soldesk.katte_project_client.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +16,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
+
+import java.util.ArrayList;
+import java.util.TreeMap;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class ContentController {
@@ -29,6 +33,12 @@ public class ContentController {
 
     @Autowired
     private AuctionService auctionService;
+
+    @Autowired
+    private ContentService contentService;
+
+    @Autowired
+    private StyleService styleService;
 
     @Value("${server.resource.url}")
     private String resourceUrl;
@@ -51,6 +61,9 @@ public class ContentController {
             shortform.setCurrentPrice(Integer.toString(auctionDataBean.getCurrent_price()));
             shortform.setInstantPrice(Integer.toString(auctionDataBean.getInstant_price()));
         }
+        //테스트로 하나만
+//        shortform.setProduct_id(440882);
+
         return ResponseEntity.ok(shortform);
     }
 
@@ -58,5 +71,30 @@ public class ContentController {
     @ResponseBody
     public boolean toggleLike(@RequestParam("short_id") int shortId, @SessionAttribute("currentUser") UserBean user) {
         return shortformService.toggleLike(user.getUser_id(), shortId);
+    }
+
+    @GetMapping("/price_history")
+    @ResponseBody
+    public List<EcommerceTradeLookUp> getPriceHistory(
+            @RequestParam String range,
+            @RequestParam int productId
+    ) {
+        return shortformService.getTrades(
+                String.valueOf(productId),
+                range
+        );
+    }
+
+    @GetMapping("/content/styleProductId")
+    @ResponseBody
+    public List<ContentStyleBean> getStyleProducts(@RequestParam String product_id) {
+        System.out.println(product_id);
+        List<ContentStyleBean> listBena = new ArrayList<>();
+        List<ContentStyleProductJoinBean> result = contentService.getContentStyleProducts(product_id);
+        for (ContentStyleProductJoinBean contentStyleProductJoinBean : result) {
+            System.out.println(contentStyleProductJoinBean);
+            listBena.add(contentService.getContentStyle(contentStyleProductJoinBean.getStyle_id()));
+        }
+        return listBena;
     }
 }
