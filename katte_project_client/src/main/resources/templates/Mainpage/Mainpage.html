@@ -47,7 +47,7 @@
       </div>
       <div class="style-carousel">
         <button class="nav-btn left" onclick="prevReview()">‹</button>
-        <div id="styleReviewContainer">
+        <div id="styleReviewContainer" style="flex: 1; display: flex; justify-content: center;">
           <!-- JavaScript에서 style review 아이템 동적으로 추가 -->
         </div>
         <button class="nav-btn right" onclick="nextReview()">›</button>
@@ -401,15 +401,16 @@
       });
     }
 
-    function loadStyleReviews() {
-      // fetch('/api/style-reviews?productId=')
-      //         .then(res => res.json())
-      //         .then(data => {
-      //           reviewItems = data;
-      //           renderReview(currentReviewIndex);
-      //         });
+    function loadStyleReviews(product_id) {
+      fetch(`/content/styleProductId?product_id=${product_id}`)
+              .then(res => res.json())
+              .then(data => {
+                reviewItems = data;
+                renderReview(currentReviewIndex);
+              });
     }
 
+    resourceURL = "https://resources-katte.jp.ngrok.io/";
     function renderReview(index) {
       const container = document.getElementById('styleReviewContainer');
       container.innerHTML = '';
@@ -417,11 +418,20 @@
 
       const review = reviewItems[index];
       const div = document.createElement('div');
+      const sumitURL = resourceURL+"style/"+review.id+"/"+review.id+"_1.png";
       div.className = 'review-item';
+      div.style = `
+                  text-align: center;
+                  max-width: 250px;
+                  `;
       div.innerHTML = `
-    <img src="${review.imageUrl}" style="width: 100%; border-radius: 12px;">
-    <div style="margin-top: 8px; font-size: 14px; color: #ddd;">
-      ${review.text}
+        <a href="/style/${review.styleId}" style="display: inline-block;">
+        <img src="${sumitURL}"
+           alt="스타일 이미지"
+           style="width: 100%; object-fit: cover; border-radius: 12px;" />
+        </a>
+        <div style="margin-top: 8px; font-size: 14px; color: #ddd; word-break: keep-all;">
+            ${review.caption}
     </div>
   `;
       container.appendChild(div);
@@ -437,16 +447,32 @@
       renderReview(currentReviewIndex);
     }
 
-    window.addEventListener('DOMContentLoaded', () => {
+    window.addEventListener('load', () => {
       initChart();
+      console.log("AAAAAA")
 
       const productId = getCurrentProductId();
+      console.log("BBBBBB" + productId)
       if (productId) {
         console.log("AAAAAA" +productId)
         changeChartRange('1m', productId);
+        loadStyleReviews(productId);
       }
+    });
 
-      loadStyleReviews();
+    const shortItemObserver = new MutationObserver(() => {
+      const productId = getCurrentProductId();
+      if (productId !== null) {
+        console.log("✅ productId:", productId);
+        changeChartRange('1m', productId);
+        loadStyleReviews(productId);
+        shortItemObserver.disconnect();
+      }
+    });
+
+    shortItemObserver.observe(document.body, {
+      childList: true,
+      subtree: true
     });
 
     function onChartRangeButtonClick(range) {

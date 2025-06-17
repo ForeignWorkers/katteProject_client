@@ -47,7 +47,7 @@ dependencies {
     providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 
     // 공통 라이브러리
-    implementation 'com.github.ForeignWorkers:katteProject_common_lib:1.0.75'
+    implementation 'com.github.ForeignWorkers:katteProject_common_lib:1.0.78'
 
     // Lombok
     compileOnly 'org.projectlombok:lombok'
