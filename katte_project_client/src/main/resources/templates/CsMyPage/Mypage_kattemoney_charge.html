@@ -3,30 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <title>Favorite</title>
+  <link rel="stylesheet" href="/css/fragments/Sidebar.css" />
   <link rel="stylesheet" href="/css/CsMyPage/Mypage_kattemoney_charge.css">
 </head>
 <body>
-<aside class = "sidebar"> <!--사이드 바-->
-  <a href="/main"><img class="logo-1" src="/img/logo%20(1).png" alt="로고"></a>
-  <nav class="sidebar-nav">
-    <ul>
-      <li><a href="/search">검색</a></li>
-      <li><a href="/explore">탐색</a></li>
-      <li><a href="/sell">판매등록</a></li>
-      <li><a href="/wishlist">관심상품</a></li>
-      <li><a href="/style">스타일</a></li>
-      <li><a href="/mypage">마이페이지</a></li>
-      <li><a href="/support">고객센터</a></li>
-    </ul>
-  </nav>
-   <div class="login-area">
-    <a href="/login" class="btn-login">로그인</a>
-  </div>
-  <footer class="sidebar-footer">
-    <p><a href="/support">고객센터</a> | <a href="/terms">이용약관</a></p>
-    <small>&copy; All copyright in soldesk</small>
-  </footer>
-</aside>
+<!-- ───────────────────────────────────────────────────────────────────
+   1) 사이드바 (기존과 동일)
+   ─────────────────────────────────────────────────────────────────── -->
+<!-- 사이드바 HTML 분리 -->
+<div th:replace="~{Fragments/Sidebar :: sidebar}"></div>
+<div class="wrapper">
 <div id = "MyPageBar"> <!--상단 마이페이지 바-->
   <div id = "MyPageText">MyPage</div>
   <div id = "ClickBox">
@@ -59,24 +45,23 @@
     </div>
   </div>
 </div>
-  
+
   <div class="rectangle-1570"></div>
-  <div class="div2">카카오 페이</div>
+  <div class="div2">토스 페이</div>
   <img class="image-105" src="../img/kakaopayimage.png" />
-  <div class="rectangle-1571"></div>
-  <div class="div3">네이버 페이</div>
-  <img class="image-107" src="../img/neverpayimage.png" />
-  <div class="rectangle-1570"></div>
-  <div class="div2">카카오 페이</div>
-  <img class="image-105" src="image-1051.png" />
-  <div class="rectangle-1571"></div>
-  <div class="div3">네이버 페이</div>
-  <img class="image-107" src="image-1071.png" />
+
   <div class="div4">캇테머니 충전</div>
   <div class="div5">보유 캇테머니</div>
   <div class="_133-000-katte">133,000katte</div>
-  
-  <script>
+
+  <!-- 기존 div들 아래에 추가 -->
+  </div>
+<div class="charge-box">
+  <label for="chargeAmount">충전 금액 입력</label>
+  <input type="number" id="chargeAmount" name="chargeAmount" placeholder="예: 10000">
+</div>
+</body>
+<script>
   document.addEventListener("DOMContentLoaded", function () {
     const items = document.querySelectorAll("#ClickList > div");
     items.forEach(item => {
@@ -88,7 +73,30 @@
       });
     });
   });
-</script>
 
-</body>
+  // 충전 버튼 클릭 시 처리
+  document.getElementById("chargeBtnBox").addEventListener("click", function () {
+    const amount = parseInt(document.getElementById("chargeAmount").value);
+    if (isNaN(amount) || amount <= 0) {
+      alert("충전할 금액을 정확히 입력하세요.");
+      return;
+    }
+
+    // 🔁 실제 충전 처리 API 호출 예정 (현재는 임시 경고창)
+    alert(amount + "원 충전 요청 전송됨");
+
+    // ⚠️ 이후에는 아래와 같은 API 호출 로직이 들어가야 함
+    // fetch('/api/kattemoney/charge', {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json'
+    //   },
+    //   body: JSON.stringify({ amount: amount })
+    // }).then(res => res.json()).then(data => {
+    //   alert("충전 완료!");
+    //   location.reload();
+    // });
+  });
+  });
+</script>
 </html>
