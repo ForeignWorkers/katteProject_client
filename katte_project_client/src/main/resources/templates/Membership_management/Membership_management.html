@@ -43,7 +43,7 @@
               <span class="option-label">총 회원 보기</span>
             </div>
             <div class="view-option" data-value="reported">
-              <span class="checkmark"></span>
+              <span class="checkmark">✔</span>
               <span class="option-label">신고된 회원 보기</span>
             </div>
           </div>
@@ -453,7 +453,7 @@
       const viewDropdown  = document.getElementById('viewDropdown');
       const options       = viewDropdown.querySelectorAll('.view-option');
       const viewLabel     = viewToggleBtn.querySelector('.view-label');
-      let currentView = 'all';
+
 
       viewToggleBtn.addEventListener('click', e => {
         e.stopPropagation();
@@ -466,15 +466,18 @@
         opt.addEventListener('click', () => {
           const selectedValue = opt.dataset.value;
 
-          // 현재 페이지, 키워드 추출
           const params = new URLSearchParams(window.location.search);
           const page = params.get('page') || 1;
           const keyword = params.get('keyword');
 
+          //현재 경로에 따라 user_view 또는 user_search 구분
+          const isSearchPage = window.location.pathname.includes('user_search');
+          let targetUrl = isSearchPage
+                  ? `/admin/user_search?page=${page}&filter=${selectedValue}`
+                  : `/admin/user_view?page=${page}&filter=${selectedValue}`;
 
-          let targetUrl = `/admin/user_view?page=${page}&filter=${selectedValue}`;
+
           if (keyword) targetUrl += `&keyword=${keyword}`;
-
           window.location.href = targetUrl;
         });
       });
