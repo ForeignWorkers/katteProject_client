@@ -41,6 +41,7 @@
       <section class = content_box>
           <div class = "address-big-box">
               <button type="button" class = "post-btn">주소 추가</button>
+              <br>
               <div class = "main-address-box" th:if="${mainAddress != null}">
                   <div class = "address-main-content-box" id = "main-address-div">
                     <span class="section-label">기본 주소</span>
@@ -51,11 +52,7 @@
                     <div class = "address-post-box" th:text="'우편번호 : ' + ${mainAddress.post_num}">우편번호</div>
                   </div>
                   <div class = "address-main-form-box">
-                      <form method="get" th:action="@{/MyAddress/edit}">
-                          <input type="hidden" name="user_id" th:value="${mainAddress.user_id}" />
-                          <input type="hidden" name="address_id" th:value="${mainAddress.id}" />
-                          <button type="submit" class = "edit-btn">수정</button>
-                      </form>
+                      <button type="button" class="edit-btn" th:onclick = "'openEditPopup(' + ${mainAddress.id} + ');'">수정</button>
                       <form method="post" th:action="@{/MyAddress/del}" onsubmit="return confirm('삭제하시겠습니까?');">
                           <input type="hidden" name="address_id" th:value="${mainAddress.id}" />
                           <button type="submit" class = "delete-btn">삭제</button>
@@ -78,11 +75,7 @@
                         <input type="hidden" name="address_id" th:value="${al.id}" />
                         <button type="submit" class = "set-main-btn">기본 배송지로 설정</button>
                       </form>
-                      <form method="get" th:action="@{/MyAddress/edit}">
-                          <input type="hidden" name="user_id" th:value="${al.user_id}" />
-                          <input type="hidden" name="address_id" th:value="${al.id}" />
-                          <button type="submit" class = "edit-btn">수정</button>
-                      </form>
+                          <button type="button" class="edit-btn" th:onclick = "'openEditPopup(' + ${al.id} + ');'">수정</button>
                       <form method="post" th:action="@{/MyAddress/del}" onsubmit="return confirm('삭제하시겠습니까?');">
                         <input type="hidden" name="address_id" th:value="${al.id}" />
                         <button type="submit" class = "delete-btn">삭제</button>
@@ -105,7 +98,17 @@
                     "width=600,height=600,resizable=no,scrollbars=no"
                 );
             });
+
         });
+
+       function openEditPopup(address_id) {
+            window.open(
+                '/MyAddress/edit?address_id=' + address_id,
+                '주소지 수정',
+                'width=600,height=600,resizable=no,scrollbars=no'
+            );
+       }
+
     </script>
 </body>
 </html>

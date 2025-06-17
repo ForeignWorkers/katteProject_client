@@ -69,6 +69,8 @@ html, body {
   display: flex;
   align-items : center;
   justify-content: center;
+  color : #CCC9C9CC;
+  text-decoration: none;
 }
 #MyPageText {
   padding : 20px;
@@ -79,17 +81,17 @@ html, body {
 #MyPageBar a{
   text-decoration: none;
   text-align: center;
-  color: #f9eeee;
+  color : #CCC9C9CC;
 }
 
 #MyPageBar a:visited{
   text-decoration: none;
   text-align: center;
-  color: #f9eeee;
+  color : #CCC9C9CC;
 }
 
-div.selected a {
-  color: rgb(255, 255, 255);
+#ClickBox .selected {
+  color: rgb(255, 255, 255) !important;
   text-decoration: none;
   font-weight : bold;
 }
@@ -156,13 +158,9 @@ div.selected a {
 }
 
 .main-address-box{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
   align-items: flex-start;
   border-bottom: 0.8px solid;
-  width: 60vw;
-  gap: 20px; /
+  width: 84%;
 }
 
 .address-main-content-box {
@@ -170,9 +168,8 @@ div.selected a {
 }
 
 .address-main-form-box {
-  flex: 1;
   display: flex;
-  flex-direction: column;
+  flex: 1;
   gap: 10px;
 }
 
@@ -187,5 +184,10 @@ div.selected a {
 }
 .address-list-content-box{
   flex-direction: column;
+  gap: 10px;
+}
+.address-form-box{
+  display: flex;
+  flex: 1;
   gap: 10px;
 }

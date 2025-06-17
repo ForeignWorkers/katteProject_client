@@ -98,10 +98,8 @@ public class MyPageController {
                 model.addAttribute("addressList", address);
             } else {
                 System.out.println("주소 정보를 불러올 수 없습니다");
-                // 예외 처리나 오류 메시지를 넣을 수 있음
             }
-
-            return "CsMyPage/MyPage_address_edit"; // 주소 수정 페이지로 이동
+            return "CsMyPage/MyPage_address_edit";
         }
 
         @PostMapping("/MyAddress/edit")
@@ -117,7 +115,7 @@ public class MyPageController {
 
             ResponseEntity<String> response = myPageService.editAddress(bean);
             model.addAttribute("addressDetail", response.getBody());
-            return "redirect:/MyAddress";
+            return "CsMyPage/MyPage_address_ok";
         }
 
         // 작성 폼
@@ -136,13 +134,7 @@ public class MyPageController {
         bean.setUser_id(user_id);
         myPageService.addAddress(bean);
         System.out.println("닫혀라");
-        // JavaScriptをそのまま返す
-        return """
-        <html><head><script>
-            window.opener.location.href = '/MyAddress';
-            window.close();
-        </script></head><body>등록 완료. 창을 닫는 중...</body></html>
-    """;
+        return "CsMyPage/MyPage_address_ok";
     }
 
     // 메인 주소 설정
