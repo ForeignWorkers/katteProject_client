@@ -5,10 +5,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import common.bean.user.UserBean;
 import jakarta.servlet.http.HttpSession;
 import me.soldesk.katte_project_client.service.StyleService;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -24,20 +26,20 @@ public class StyleuploadController {
 
     @GetMapping("/styleupload")
     public String styleUpload() {
-
         return "/Stylepage/Style_upload";
     }
 
-    @PostMapping("/styleupload")
+    @PostMapping(
+            value = "/styleupload",
+            consumes = MediaType.MULTIPART_FORM_DATA_VALUE
+    )
     public String uploadStyle(
-
             @RequestParam("images") MultipartFile[] images,
             @RequestParam("style_title") String style_title,
             @RequestParam("caption") String caption,
             @RequestParam("productTag") String productTag,
             @RequestParam("hashtags") String hashtagsJson,
             HttpSession session
-
     ) throws Exception {
         // ① 비어 있지 않은 파일만 세서 실제 업로드 개수 계산
         int realCount = (int) Arrays.stream(images)
@@ -50,23 +52,25 @@ public class StyleuploadController {
                 new TypeReference<List<String>>() {}
         );
 
-        UserBean userBean = (UserBean) session.getAttribute("currentUser");
+        // ③ 로그인 유저 ID 추출
+        UserBean current = (UserBean) session.getAttribute("currentUser");
+        int userId = current.getUser_id();
 
-        int user_Id = ((UserBean) session.getAttribute("currentUser")).getUser_id();
+        List<String> productTags = new ArrayList<String>();
+        productTags.add(productTag);
 
-        // ③ 서비스 호출
+        // ④ 스타일 + 이미지 일괄 저장 호출
         styleService.save(
                 style_title,
                 realCount,
                 images,
                 caption,
-                productTag,
+                productTags,
                 hashtags,
-                user_Id
+                userId
         );
-
-        // 등록 완료 후 이동
-        /*styleService.save(style_title,realCount,images, caption, productTag, hashtags);*/
+        System.out.println("2323233");
+        // ⑤ 업로드 완료 후 마이페이지로 리다이렉트
         return "/CsMypage/Mypage_mystyle";
     }
 }

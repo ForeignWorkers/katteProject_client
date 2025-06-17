@@ -1,16 +1,19 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <title>Insert title here</title>
+  <meta charset="UTF-8" />
+  <title>Style Page</title>
+  <!-- 기존 CSS -->
+  <link rel="stylesheet" href="/css/Stylepage/Stylepage.css" />
+  <link rel="stylesheet" href="/css/fragments/Sidebar.css" />
 </head>
-<link rel="stylesheet" href="/css/Stylepage/Stylepage.css" />
 <body>
-<link rel="stylesheet" href="/css/fragments/Sidebar.css" /> <!-- 사이드바 HTML 분리 -->
+
+<!-- 사이드바 -->
 <div th:replace="Fragments/Sidebar :: sidebar"></div>
 
-<div class="wraaper">
-
+<div class="wrapper">
+  <!-- 오늘의 해시태그 (위쪽 탐색용) -->
   <section class="today-hashtags">
     <h2>오늘의 해시태그</h2>
     <div class="hashtags">
@@ -25,83 +28,130 @@
     </div>
   </section>
 
-    <img class="image-120" src="image-1200.png" />
-    <div class="jhyem-17">Jhyem17</div>
-    <div class="div22">
-      <img class="mask-group" src="mask-group0.svg" />
-      <div class="_23">23</div>
-    <div class="_5">#5뭐입챌린지 #슈프림 #스폰지밥 #롱슬리브</div>
-    <img class="image-116" src="/img/image%20116.png" />
-  </div>
+  <!-- 스타일 카드 컨테이너 -->
+  <div id="style-container" class="style-grid"></div>
 
-    <div class="group-972">
-      <img class="image-118" src="image-1180.png" />
-      <div class="min-x-ili-0">min_x_ili_0</div>
+  <!-- 카드 템플릿 -->
+  <template id="style-card-template">
+    <div class="style-card">
+      <div class="card-header">
+        <img class="avatar" src="" alt="프사" />
+        <span class="username"></span>
+      </div>
+      <div class="card-image">
+        <!-- JS에서 imageUrls 만큼 <img> 태그를 동적으로 삽입 -->
+      </div>
+      <div class="card-body">
+        <h3 class="title"></h3>
+        <p class="caption"></p>
+        <!-- 캡션 바로 아래: 등록된 해시태그를 여기에 렌더링 -->
+        <div class="hashtags-list"></div>
+      </div>
+      <div class="card-footer">
+        <button class="like-button">♡</button>
+        <span class="like-count">0</span>
+      </div>
     </div>
-
-      <div class="_72">72</div>
-      <img class="mask-group2" src="mask-group1.svg" />
-      <div class="div24">성수나들이</div>
-
-    <img class="image-117" src="image-1170.png" />
-
-
-    <div class="div25">#오오티디 #여름코디</div>
-    <img class="image-121" src="image-1210.png" />
-    <div class="_232">23</div>
-    <img class="mask-group3" src="mask-group2.svg" />
-    <img class="image-1202" src="image-1201.png" />
-    <div class="kyoue-dees-12">kyoue_dees12</div>
-
-    <img class="image-122" src="image-1220.png" />
-    <img class="mask-group4" src="mask-group3.svg" />
-    <img class="image-123" src="image-1230.png" />
-    <div class="newjeans-we">newjeans_we</div>
-    <div class="div26">
-      <div class="_233">23</div>
-
-    <div class="div27">#거울샷 #셀카</div>
-
-
-  <img class="image-119" src="image-1190.png" />
-  <div class="jhyem-172">Jhyem17</div>
-
-    <div class="div22">
-      <img class="mask-group5" src="mask-group4.svg" />
-      <div class="_234">23</div>
-
-    <div class="_52">#5뭐입챌린지 #슈프림 #스폰지밥 #롱슬리브</div>
-    <img class="image-1162" src="image-1161.png" />
-
-
-
-  <img class="image-1182" src="image-1181.png" />
-  <div class="min-x-ili-02">min_x_ili_0</div>
-
-    <div class="_722">72</div>
-    <img class="mask-group6" src="mask-group5.svg" />
-    <div class="div28">성수나들이</div>
-
-    <img class="image-1172" src="image-1171.png" />
-
-
-  <div class="div29">#오오티디 #여름코디</div>
-  <img class="image-1212" src="image-1211.png" />
-  <div class="_235">23</div>
-  <img class="mask-group7" src="mask-group6.svg" />
-  <img class="image-1203" src="image-1202.png" />
-  <div class="kyoue-dees-122">kyoue_dees12</div>
-
-
-<img class="image-1222" src="image-1221.png" />
-<img class="mask-group8" src="mask-group7.svg" />
-<img class="image-1232" src="image-1231.png" />
-<div class="newjeans-we2">newjeans_we</div>
-
-  <div class="_236">23</div>
-
-<div class="div30">#거울샷 #셀카</div>
-
+  </template>
 </div>
+
+<script>
+  const container = document.getElementById('style-container');
+  const tpl       = document.getElementById('style-card-template');
+  let page        = 0;
+  const size      = 10;
+  let loading     = false;
+
+  async function fetchuserBean(userId) {
+    const res = await fetch(`http://localhost:9000/user?user_id=${userId}&email_id=`);
+    if (!res.ok) {
+      return { nickname: '익명', profile_url: null };
+    }
+    return await res.json();
+  }
+
+  async function loadStyles() {
+    if (loading) return;
+    loading = true;
+
+    // endpoint 및 offset 반영
+    const offset = page * size;
+    const res    = await fetch(
+            `http://localhost:9000/content/style/recent?size=${size}&offset=${offset}`
+    );
+    const data   = await res.json();
+    const resourceUrl = "https://resources-katte.jp.ngrok.io/";
+
+    if (!data || data.length === 0) {
+      window.removeEventListener('scroll', handleScroll);
+      loading = false;
+      return;
+    }
+
+    for (const item of data) {
+      const card = tpl.content.cloneNode(true);
+
+      // 닉네임·프로필 가져오기
+      const userBean = await fetchuserBean(item.user_id);
+      card.querySelector('.username').textContent = userBean.nickname;
+      card.querySelector('.avatar').src = userBean.profile_url
+              ? userBean.profile_url
+              : resourceUrl + "profile/basic_profile_00.png";
+
+      // 이미지 렌더링 (첫 장만 예시)
+      const imgContainer = card.querySelector('.card-image');
+      imgContainer.innerHTML = '';
+      const img = document.createElement('img');
+      img.src = resourceUrl + "style/" + item.id + "/" + item.id + "_1.png";
+      img.alt = item.caption || '';
+      img.style = 'margin-right:4px;';
+      imgContainer.appendChild(img);
+
+      // 제목·캡션
+      card.querySelector('.title').textContent   = item.style_title || '';
+      card.querySelector('.caption').textContent = item.caption     || '';
+
+      // -- 여기서 등록된 해시태그(item.hashtags) 렌더링 --
+      const tagContainer = card.querySelector('.hashtags-list');
+      tagContainer.innerHTML = '';
+      (item.hashtags || []).forEach(ht => {
+        const span = document.createElement('span');
+        span.className   = 'tag';
+        span.textContent = `#${ht}`;
+        tagContainer.append(span);
+      });
+
+
+      // 좋아요 버튼 초기 상태
+      const likeBtn = card.querySelector('.like-button');
+      const likeCnt = card.querySelector('.like-count');
+      likeCnt.textContent = item.like_count ?? 0;
+      likeBtn.textContent = item.likedByCurrentUser ? '❤️' : '♡';
+
+      likeBtn.addEventListener('click', async () => {
+        const resp  = await fetch(`/style/like?style_id=${item.id}`)
+        const liked = await resp.json();
+        likeBtn.textContent = liked ? '❤️' : '♡';
+        likeCnt.textContent = liked
+                ? (+likeCnt.textContent + 1)
+                : (+likeCnt.textContent - 1);
+      });
+
+      container.appendChild(card);
+    }
+
+    page++;
+    loading = false;
+  }
+
+  function handleScroll() {
+    if (window.innerHeight + window.pageYOffset >= document.body.offsetHeight - 200) {
+      loadStyles();
+    }
+  }
+
+  window.addEventListener('scroll', handleScroll);
+  window.addEventListener('load', loadStyles);
+</script>
 </body>
 </html>

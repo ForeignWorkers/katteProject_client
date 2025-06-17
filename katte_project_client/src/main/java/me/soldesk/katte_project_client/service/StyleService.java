@@ -1,109 +1,133 @@
 package me.soldesk.katte_project_client.service;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import common.bean.content.ContentStyleBean;
+import common.bean.user.UserPaymentBean;
 import me.soldesk.katte_project_client.manager.ApiManagers;
-import org.springframework.http.*;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
-import org.springframework.web.util.UriComponentsBuilder;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.client.RestTemplate;
 
-import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Arrays;
-import java.util.List;
+import java.util.Map;
 
 @Service
 public class StyleService {
 
-
-    /*private final RestTemplate restTemplate = new RestTemplate();*/
+    private final RestTemplate rt = new RestTemplate();
 
     /**
-     * @param style_title 제목
-     * @param imgCount    실제 업로드된 이미지 개수
-     * @param images      MultipartFile 배열 (나중에 이미지 API에 그대로 전달용)
-     * @param caption     캡션
-     * @param productTag  상품 태그
-     * @param hashtags    해시태그 리스트 (컨트롤러에서 JSON → List로 파싱 후 전달)
+     * 스타일 메타 정보 저장 후 생성된 ID 리턴
      */
-    public void save(
+    public int save(
             String style_title,
             int imgCount,
             MultipartFile[] images,
             String caption,
-            String productTag,
+            List<String> productTags,
             List<String> hashtags,
-            int user_id) {
-
-        // 1) ContentStyleBean 세팅
+            int user_id
+    ) throws IOException {
+        // 1) 스타일 메타 정보 POST → Integer ID 반환
         ContentStyleBean style = new ContentStyleBean();
         style.setStyle_title(style_title);
         style.setCaption(caption);
-        style.setUser_id(user_id);          // TODO: 실제 로그인 유저 ID로 교체
+        style.setUser_id(user_id);
         style.setImg_count(imgCount);
         style.setHashtags(hashtags);
-        TypeReference<Integer> ref = new TypeReference<Integer>() {};
+        style.setProductTag(productTags);
 
-        // ✅ 객체 자체를 바디로 전송
         ResponseEntity<Integer> result = ApiManagers.post(
                 "content/style",
                 style,
-                ref
+                new TypeReference<Integer>() {}
         );
 
-        System.out.println("images size " + images.length);
+        if (!ApiManagers.isSuccessful(result) || result.getBody() == null) {
+            throw new IOException("스타일 등록 실패: " + result.getStatusCode());
+        }
+        int styleId = result.getBody();
 
-        try {
-            for(MultipartFile item: images){
-                saveStyleImage(result.getBody(),item);
+        // 2) 이미지 일괄 업로드
+        uploadMediaFiles(styleId, images);
+        System.out.printf("Successfully uploaded style %d with %d images%n", styleId, imgCount);
+
+        //프로덕트 아이디 업로드
+        Map<String, String> reqQuery = new HashMap<>();
+
+        reqQuery.put("style_id", Integer.toString(style.getId()));
+        reqQuery.put("product_id", hashtags.get(0));
+
+        TypeReference<Boolean> ref = new TypeReference<>(){};
+
+        Boolean productResult = ApiManagers.get("content/style/add_product_id",
+                reqQuery,
+                ref).getBody();
+        if (Boolean.FALSE.equals(productResult))
+            System.out.println("프로덕트 아이디 등록 실패");
+
+        return styleId;
+    }
+
+    /**
+     * 페이지 단위로 스타일 리스트 + imageUrls 가져오기
+     */
+    public List<ContentStyleBean> getPage(int page, int size) throws IOException {
+        // 1) query 파라미터 준비
+        Map<String,String> params = Map.of(
+                "page",  String.valueOf(page),
+                "size",  String.valueOf(size)
+        );
+
+        // 2) GET /api/styles?page={page}&size={size}
+        ResponseEntity<List<ContentStyleBean>> resp = ApiManagers.get(
+                "/api/styles",                        // <-- **슬래시(/)** 붙였습니다.
+                params,
+                new TypeReference<List<ContentStyleBean>>(){} // <-- 명시적으로 List<ContentStyleBean> 으로
+        );
+
+        // 3) 에러 체크
+        if (!ApiManagers.isSuccessful(resp) || resp.getBody() == null) {
+            throw new IOException("스타일 목록 불러오기 실패: " + resp.getStatusCode());
+        }
+
+        // 4) 결과 반환
+        return resp.getBody();
+    }
+    /**
+     * Multipart/form-data 로 한 번에 여러 file 파트를 보내는 메서드
+     */
+    private void uploadMediaFiles(int styleId, MultipartFile[] files) throws IOException {
+
+        for (int i = 0; i < files.length; i++) {
+            Map<String, Object> parts = new HashMap<>();
+            parts.put("post_id", styleId+"_"+(i+1));
+            parts.put("isStyle", true);
+            parts.put("file", files[i]);
+
+            ResponseEntity<String> response = ApiManagers.postFile("media/upload", parts);
+            if (!ApiManagers.isSuccessful(response)) {
+                System.out.println(response.getBody());
             }
-        }
-        catch (Exception e) {
-            System.out.println("이미지 저장 실패 " + e.getMessage());
-        }
-
-        if(ApiManagers.isSuccessful(result)) {
-            System.out.printf("Successfully uploaded style %s\n", result.getBody());
-        }
-        else  {
-            System.out.printf("Failed to upload style %s\n", result.getBody());
         }
     }
 
+    public boolean toggleLike(int user_id, int style_id) {
+        Map<String, String> params = new HashMap<>();
+        params.put("user_id", Integer.toString(user_id));
+        params.put("style_id", Integer.toString(style_id));
 
-    // 저장할 실제 파일 시스템 경로 (ngrok 으로 매핑된 폴더)
-    private static final String STYLE_IMAGE_DIR = "https://resources-katte.jp.ngrok.io/images/style/";
-
-    /**
-     * style/{styleId}/image 로 받은 단일 파일을
-     * STYLE_IMAGE_DIR/style_{styleId}.png 로 저장
-     */
-    public void saveStyleImage(int styleId, MultipartFile file) throws IOException, IOException {
-        // 1) 디렉토리 없으면 생성
-        Path dir = Paths.get(STYLE_IMAGE_DIR);
-        if (!Files.exists(dir)) {
-            Files.createDirectories(dir);
-        }
-
-        // 2) 확장자 추출 (원본 파일명 예: foo.png → png)
-        String original = file.getOriginalFilename();
-        String ext = "";
-        if (original != null && original.contains(".")) {
-            ext = original.substring(original.lastIndexOf('.') + 1);
-        }
-
-        // 3) 저장할 파일명 (항상 .png 확장자로 통일하고 싶으면 ext 대신 "png" 고정)
-        String filename = "style_" + styleId + (ext.isEmpty() ? "" : "." + ext);
-
-        // 4) 실제 저장
-        Path target = dir.resolve(filename);
-        file.transferTo(target.toFile());
+        TypeReference<Boolean> ref = new TypeReference<>() {};
+        ResponseEntity<Boolean> response = ApiManagers.patchQuery("content/style/like" ,params ,ref);
+        return Boolean.TRUE.equals(response.getBody());
     }
 }
