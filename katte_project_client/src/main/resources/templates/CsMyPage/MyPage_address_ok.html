@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <script>
+    window.onload = function () {
+        if (window.opener && window.opener.opener) {
+            window.opener.opener.location.href = '/MyAddress';
+        }
+        if (window.opener) {
+            window.opener.close();
+        }
+        window.close();
+  </script>
+</head>
+<body>
+<p>주소지가 성공적으로 등록되었습니다. 창이 곧 닫힙니다...</p>
+
+</body>
+</html>
