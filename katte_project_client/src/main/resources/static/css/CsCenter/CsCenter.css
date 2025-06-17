@@ -41,13 +41,13 @@ html, body {
 /* ───────────────────────────────────────────────────────────────────────────
    상단 탭
    ─────────────────────────────────────────────────────────────────────────── */
-a{
+.cc-tabs a{
   text-decoration: none;
   text-align: center;
   color: #f9eeee;
 }
 
-a:visited{
+.cc-tabs a:visited{
   text-decoration: none;
   text-align: center;
   color: #f9eeee;
@@ -66,6 +66,7 @@ a:visited{
   cursor: pointer;
   background: transparent;
   color: #f9eeee;
+
 }
 .cc-tab.active {
   background: #ff0044;
