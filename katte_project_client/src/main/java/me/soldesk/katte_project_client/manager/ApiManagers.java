@@ -19,7 +19,7 @@ public class ApiManagers {
 
     private static final ObjectMapper objectMapper = new ObjectMapper();
 
-    private static final String BASE_URL = "http://localhost:9000/"; // ✅ 수정: http: → http://
+    private static final String BASE_URL = "https://api-katte.jp.ngrok.io/"; // ✅ 수정: http: → http://
 
     static {
         objectMapper.registerModule(new com.fasterxml.jackson.datatype.jsr310.JavaTimeModule());
@@ -44,6 +44,31 @@ public class ApiManagers {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    // ✅ POST QuERY
+    public static <T> ResponseEntity<T> postQuery(String path, Map<String, String> queryParams, TypeReference<T> typeRef) {
+        try {
+            // URL + Query 파라미터 조립
+            HttpUrl.Builder urlBuilder = HttpUrl.parse(BASE_URL + path).newBuilder();
+            if (queryParams != null) {
+                queryParams.forEach(urlBuilder::addQueryParameter);
+            }
+
+            HttpUrl urlWithParams = urlBuilder.build();
+
+            // POST지만 바디 없이 보낼 수 있음 (폼 전송이 아닌 URL에 붙여서 전송)
+            Request request = new Request.Builder()
+                    .url(urlWithParams)
+                    .post(RequestBody.create("", null)) // POST인데 바디는 없음 (빈 바디)
+                    .build();
+
+            return execute(request, typeRef);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 
     // ✅ POST
     public static <T> ResponseEntity<T> post(String path, Object requestBody, TypeReference<T> typeRef) {
