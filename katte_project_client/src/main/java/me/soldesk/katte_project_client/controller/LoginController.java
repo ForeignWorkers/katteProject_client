@@ -109,6 +109,13 @@ public class LoginController {
 
         if (loginSuccess) {
             UserBean userBean = userService.getUserByEmail(userId);
+
+            //정지 상태 확인
+            if (loginService.isBanned(userBean.getUser_id())) {
+                model.addAttribute("loginError", "해당 계정은 현재 정지 상태입니다.");
+                return "Loginpage/Login";
+            }
+
             session.setAttribute("currentUser", userBean);
             return "redirect:/main";
         } else {
