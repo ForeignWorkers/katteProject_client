@@ -115,3 +115,49 @@ html, body {
 .coupon-back-list { font-size: 0.97rem; color: #eee; margin: 0 0 18px 18px; padding: 0; list-style: disc; }
 /* 뒷면 닫기버튼 오른쪽 상단 */
 .coupon-close-btn { position: absolute; top: 16px; right: 22px; font-size: 21px; color: #ffdada; border-radius: 50%; z-index: 10; padding: 2px 10px; }
+
+
+-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
+    gap: 24px;
+    padding: 40px 80px;
+}
+
+.coupon-card-static {
+    border: 1.5px solid #f9eeee;
+    border-radius: 20px;
+    background-color: #181818;
+    color: #f9eeee;
+    padding: 24px 32px 16px 24px;
+    box-shadow: 0 4px 24px #0005;
+}
+
+.coupon-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+
+.coupon-desc, .coupon-expire {
+    font-size: 14px;
+    color: #ccc;
+    margin-bottom: 6px;
+}
+
+.coupon-expire {
+    color: #ff0044;
+}
+
+.contentWrapper {
+    margin-left: 250px; /* 사이드바 여백 확보 */
+    padding-top: 60px;
+}
+
+.coupon-grid {
+    margin-top: 160px; /* 🔧 추가: 상단 탭과의 간격 확보 */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
+    gap: 24px;
+    padding: 40px 80px;
+}

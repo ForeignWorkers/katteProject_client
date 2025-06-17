@@ -3,6 +3,7 @@ package me.soldesk.katte_project_client.controller;
 import common.bean.user.UserBean;
 import common.util.NicknameGenerator;
 import jakarta.servlet.http.HttpSession;
+import me.soldesk.katte_project_client.service.CouponService;
 import me.soldesk.katte_project_client.service.LoginService;
 import me.soldesk.katte_project_client.service.NaverUserDTO;
 import me.soldesk.katte_project_client.service.UserService;
@@ -29,6 +30,9 @@ public class LoginController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private CouponService couponService;
 
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
@@ -94,6 +98,11 @@ public class LoginController {
             loginService.addUserTerm(user_id,102, terms1.equals("on"));
             loginService.addUserTerm(user_id,103, terms2.equals("on"));
             if(terms3 != null) loginService.addUserTerm(user_id,201, terms3.equals("on"));
+
+            for (int i = 1; i < 6; i++) {
+                couponService.addCoupon(i,userBean.getUser_id());
+            }
+
             }
 
         return "redirect:/login?signup=success";
