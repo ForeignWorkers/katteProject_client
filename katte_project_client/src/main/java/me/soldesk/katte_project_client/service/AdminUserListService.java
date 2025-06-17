@@ -35,11 +35,14 @@ public class AdminUserListService {
         return response.getBody(); //혹은 null 체크 필요시 처리
     }
 
-    //전체 회원 수 조회
-    public int getUserTotalCount() {
+    // AdminUserListService.java
+    public int getUserTotalCount(String filter) {
+        Map<String, String> params = new HashMap<>();
+        if (filter != null) params.put("filter", filter);
+
         ResponseEntity<Integer> response = ApiManagers.get(
                 "admin/users/count",
-                null,
+                params,
                 new TypeReference<>() {}
         );
         return response.getBody() != null ? response.getBody() : 0;

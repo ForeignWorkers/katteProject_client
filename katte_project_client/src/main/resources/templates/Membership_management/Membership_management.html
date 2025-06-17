@@ -59,6 +59,7 @@
 
         <!-- 검색 폼 -->
         <form method="get" th:action="@{/admin/user_search}" class="search-input">
+          <input type="hidden" name="filter" th:value="${filter}" />
           <label>
             <input type="text" name="keyword"
                    placeholder="닉네임 혹은 계정 ID를 검색하세요"
@@ -87,7 +88,7 @@
         <tbody>
         <!-- ─── 테이블 행 (row-all) ─── -->
         <tr th:each="user : ${userList}"
-            th:class="${user.ban_status == '계정 정지'} ? 'row-reported' : 'row-all'">
+            th:class="${user.ban_status == '계정 정지' or user.restriction_status != null} ? 'row-reported' : 'row-all'">
           <td th:text="${user.nickname}">닉네임</td>
           <td th:text="${user.email_id}">계정ID</td>
           <td th:text="${#dates.format(user.registration_date, 'yyyy-MM-dd')}">가입일</td>
@@ -199,10 +200,19 @@
 
                 function submitStatusForm(userId, actionType, stopDays = null) {
                   const form = document.getElementById("statusForm");
+
+                  // 현재 URL에서 page와 keyword 추출
+                  const urlParams = new URLSearchParams(window.location.search);
+                  const page = urlParams.get('page') || 1;
+                  const keyword = urlParams.get('keyword') || '';
+
                   form.innerHTML = `
-                    <input name="user_id" value="${userId}">
-                    <input name="action_type" value="${actionType}">
-                    ${stopDays !== null ? `<input name="stop_days" value="${stopDays}">` : ""}`;
+                  <input name="user_id" value="${userId}">
+                  <input name="action_type" value="${actionType}">
+                  <input name="page" value="${page}">
+                  ${keyword ? `<input name="keyword" value="${keyword}">` : ""}
+                  ${stopDays !== null ? `<input name="stop_days" value="${stopDays}">` : ""}`;
+
                   form.submit(); // 이후 서버 응답에서 redirect로 반영됨
                 }
               </script>
@@ -454,18 +464,18 @@
 
       options.forEach(opt => {
         opt.addEventListener('click', () => {
-          const v = opt.dataset.value;
-          if (v !== currentView) {
-            options.forEach(o => o.classList.remove('selected'));
-            opt.classList.add('selected');
-            viewLabel.innerText = opt.querySelector('.option-label').innerText;
-            currentView = v;
-            document.querySelectorAll('#member-area .member-table tbody tr').forEach(r => {
-              r.style.display = (v === 'all' || r.classList.contains('row-reported')) ? '' : 'none';
-            });
-          }
-          viewDropdown.style.display = 'none';
-          viewToggleBtn.classList.remove('open');
+          const selectedValue = opt.dataset.value;
+
+          // 현재 페이지, 키워드 추출
+          const params = new URLSearchParams(window.location.search);
+          const page = params.get('page') || 1;
+          const keyword = params.get('keyword');
+
+
+          let targetUrl = `/admin/user_view?page=${page}&filter=${selectedValue}`;
+          if (keyword) targetUrl += `&keyword=${keyword}`;
+
+          window.location.href = targetUrl;
         });
       });
 
@@ -473,6 +483,19 @@
         if (viewDropdown.style.display === 'block') {
           viewDropdown.style.display = 'none';
           viewToggleBtn.classList.remove('open');
+        }
+      });
+
+      // (2-1) URL 파라미터 기반으로 드롭다운 선택 반영
+      const filterParam = new URLSearchParams(window.location.search).get('filter') || 'all';
+      options.forEach(opt => {
+        const isSelected = opt.dataset.value === filterParam;
+
+        opt.classList.toggle('selected', isSelected);
+        const checkmark = opt.querySelector('.checkmark');
+        if (checkmark) checkmark.textContent = isSelected ? '✔' : '';
+        if (isSelected) {
+          viewLabel.textContent = opt.querySelector('.option-label').textContent;
         }
       });
 
