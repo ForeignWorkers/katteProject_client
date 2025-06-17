@@ -1,32 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="UTF-8">
   <title>Favorite</title>
+  <link rel="stylesheet" href="/css/fragments/Sidebar.css" />
   <link rel="stylesheet" href="/css/CsMyPage/Mypage_kattemoney_refund.css">
 </head>
 <body>
-<aside class = "sidebar"> <!--사이드 바-->
-  <a href="/main"><img class="logo-1" src="/img/logo%20(1).png" alt="로고"></a>
-  <nav class="sidebar-nav">
-    <ul>
-      <li><a href="/search">검색</a></li>
-      <li><a href="/explore">탐색</a></li>
-      <li><a href="/sell">판매등록</a></li>
-      <li><a href="/wishlist">관심상품</a></li>
-      <li><a href="/style">스타일</a></li>
-      <li><a href="/mypage">마이페이지</a></li>
-      <li><a href="/support">고객센터</a></li>
-    </ul>
-  </nav>
-   <div class="login-area">
-    <a href="/login" class="btn-login">로그인</a>
-  </div>
-  <footer class="sidebar-footer">
-    <p><a href="/support">고객센터</a> | <a href="/terms">이용약관</a></p>
-    <small>&copy; All copyright in soldesk</small>
-  </footer>
-</aside>
+<!-- ───────────────────────────────────────────────────────────────────
+   1) 사이드바 (기존과 동일)
+   ─────────────────────────────────────────────────────────────────── -->
+<!-- 사이드바 HTML 분리 -->
+<div th:replace="~{Fragments/Sidebar :: sidebar}"></div>
+
+<div class="wrapper">
 <div id = "MyPageBar"> <!--상단 마이페이지 바-->
   <div id = "MyPageText">MyPage</div>
   <div id = "ClickBox">
@@ -59,10 +46,15 @@
     </div>
   </div>
 </div>
+  <!-- 충전/환불 탭 버튼 (상단 위치) -->
+  <div class="katte-tab-buttons">
+    <a th:class="${tab} == 'charge' ? 'selected-tab' : ''" href="/mypage/kattemoney">충전</a>
+    <a th:class="${tab} == 'refund' ? 'selected-tab' : ''" href="/mypage/kattemoney/refund">환불</a>
+  </div>
   <div class="refund-wrapper">
   <div class="refund-title">캇테머니 환불</div>
   <div class="refund-balance-label">보유 캇테머니</div>
-  <div class="refund-balance">342,000katte</div>
+    <div class="refund-balance" th:text="${#numbers.formatInteger(katteMoney, 3, 'COMMA') + 'katte'}">0 katte</div>
   <div class="refund-label">환불 신청 금액</div>
   <input class="refund-input" type="text" placeholder="katte">
   <select class="refund-bank-select">
@@ -74,6 +66,47 @@
     <option value="nh">NH농협은행</option>
     <!-- 필요시 추가 -->
   </select>
-  <input class="refund-account-input" type="text" placeholder="환불 계좌를 입력해 주세요">
-  <button class="refund-btn">확인</button>
-  </div></div></body></html>
+    <input class="refund-account-input" type="text" placeholder="12345678">
+    <button class="refund-btn" onclick="submitRefund()">확인</button>
+  </div></div></body>
+
+<script>
+  function submitRefund() {
+    const amount = document.querySelector(".refund-input").value;
+    const account = document.querySelector(".refund-account-input").value;
+    const bank = document.querySelector(".refund-bank-select").value;
+
+    if (!amount || !account || !bank) {
+      alert("모든 항목을 입력해 주세요.");
+      return;
+    }
+
+    const form = document.createElement("form");
+    form.method = "POST";
+    form.action = "/ecommerce/refund";
+
+    const amountInput = document.createElement("input");
+    amountInput.name = "amount";
+    amountInput.value = amount;
+    form.appendChild(amountInput);
+
+    const accountInput = document.createElement("input");
+    accountInput.name = "account_number";
+    accountInput.value = account;
+    form.appendChild(accountInput);
+
+    const bankInput = document.createElement("input");
+    bankInput.name = "bank_type";
+    bankInput.value = bank;
+    form.appendChild(bankInput);
+
+    document.body.appendChild(form);
+    form.submit();
+  }
+</script>
+
+<script th:inline="javascript">
+  const message = /*[[${message}]]*/ null;
+  if (message) alert(message);
+</script>
+</html>

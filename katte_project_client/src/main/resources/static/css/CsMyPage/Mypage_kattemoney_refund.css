@@ -172,3 +172,63 @@ html, body {
       .refund-bank-select,
       .refund-account-input { width: 90vw; min-width: 120px; }
     }
+
+    .refund-tab {
+      display: flex;
+      justify-content: center;
+      margin-top: 140px;
+      gap: 18px;
+    }
+
+    .tab-btn {
+      padding: 10px 24px;
+      background-color: #333;
+      color: #ccc;
+      text-decoration: none;
+      border-radius: 12px;
+      font-weight: bold;
+      font-family: "LineSeedSansKr-Bold", sans-serif;
+      transition: all 0.2s ease-in-out;
+    }
+
+    .tab-btn:hover {
+      background-color: #555;
+      color: #fff;
+    }
+
+    .tab-btn.active {
+      background-color: #fff;
+      color: #181818;
+    }
+
+    .katte-tab-buttons {
+      position: absolute;
+      top: 180px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 24px;
+      z-index: 10;
+    }
+
+    .katte-tab-buttons a {
+      padding: 8px 20px;
+      border-radius: 16px;
+      text-decoration: none;
+      font-size: 16px;
+      color: #ccc;
+      border: 1px solid transparent;
+      transition: all 0.2s ease;
+    }
+
+    .katte-tab-buttons a:hover {
+      color: #fff;
+      border-color: #555;
+    }
+
+    .katte-tab-buttons a.selected-tab {
+      background-color: #fff;
+      color: #181818;
+      font-weight: bold;
+      border-color: #fff;
+    }

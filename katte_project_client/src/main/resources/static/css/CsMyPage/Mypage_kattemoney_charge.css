@@ -190,7 +190,7 @@ html, body {
     line-height: 34px;       /* 40px × 0.85 */
     font-weight: 100;
     position: absolute;
-    left: 872.95px;          /* 1027px × 0.85 */
+    left: 885.95px;          /* 1027px × 0.85 */
     top: 362.1px;            /* 426px × 0.85 */
     display: flex;
     align-items: center;
@@ -235,4 +235,63 @@ html, body {
 
 .charge-box button:hover {
     background-color: #0056b3;
+}
+.refund-tab {
+  display: flex;
+  justify-content: center;
+  margin-top: 140px;
+  gap: 18px;
+}
+
+.tab-btn {
+  padding: 10px 24px;
+  background-color: #333;
+  color: #ccc;
+  text-decoration: none;
+  border-radius: 12px;
+  font-weight: bold;
+  font-family: "LineSeedSansKr-Bold", sans-serif;
+  transition: all 0.2s ease-in-out;
+}
+
+.tab-btn:hover {
+  background-color: #555;
+  color: #fff;
+}
+
+.tab-btn.active {
+  background-color: #fff;
+  color: #181818;
+}
+
+.katte-tab-buttons {
+  position: absolute;
+  top: 180px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 24px;
+  z-index: 10;
+}
+
+.katte-tab-buttons a {
+  padding: 8px 20px;
+  border-radius: 16px;
+  text-decoration: none;
+  font-size: 16px;
+  color: #ccc;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.katte-tab-buttons a:hover {
+  color: #fff;
+  border-color: #555;
+}
+
+.katte-tab-buttons a.selected-tab {
+  background-color: #fff;
+  color: #181818;
+  font-weight: bold;
+  border-color: #fff;
 }
