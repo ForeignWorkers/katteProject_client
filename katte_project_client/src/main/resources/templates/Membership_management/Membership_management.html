@@ -25,10 +25,13 @@
        ───────────────────────────────────────────────────────────────── -->
     <div class="tab-toggle-wrapper">
       <div class="tab-container">
-        <div class="tab" th:classappend="${activeTab == 'member-area'} ? ' active'" data-target="member-area">회원 관리</div>
-        <div class="tab" th:classappend="${activeTab == 'review-area'} ? ' active'" data-target="review-area">검수 관리</div>
+        <a class="tab" th:classappend="${activeTab == 'member-area'} ? ' active'" href="/admin/user_view">회원 관리</a>
+        <a class="tab" th:classappend="${activeTab == 'review-area'} ? ' active'" href="/admin/inspection_view">검수 관리</a>
         <div class="tab" th:classappend="${activeTab == 'report-area'} ? ' active'" data-target="report-area">신고 관리</div>
       </div>
+
+      <!-- 회원 전용 컨트롤: 드롭다운 + 검색창 + 총 회원 -->
+      <div th:if="${activeTab == 'member-area'}"> <!--회원 목록에서만 보이도록 처리-->
       <div class="view-toggle-container">
         <button id="viewToggleBtn" class="view-toggle-btn">
           <span class="view-label">총 회원 보기</span>
@@ -46,18 +49,26 @@
         </div>
       </div>
     </div>
-
+    </div>
     <!-- ─────────────────────────────────────────────────────────────────
        2-2) 검색창 + 총 회원 수
        ───────────────────────────────────────────────────────────────── -->
+    <div th:if="${activeTab == 'member-area'}"> <!--회원 목록에서만 보이도록 처리-->
     <div class="search-area">
-      <div class="total-count">총 회원 13,334명</div>
-      <div class="search-input">
+      <div class="total-count" th:text="'총 회원 ' + ${userCount} + '명'">총   회원 0명</div>
+
+      <!-- 검색 폼 -->
+      <form method="get" th:action="@{/admin/user_search}" class="search-input">
         <label>
-          <input type="text" placeholder="닉네임 혹은 계정 ID를 검색하세요" />
+          <input type="text" name="keyword"
+                 placeholder="닉네임 혹은 계정 ID를 검색하세요"
+                 th:value="${param.keyword}" />
         </label>
-      </div>
+          <button type="submit">검색</button>
+      </form>
     </div>
+    </div>
+    <!-- 회원 검색 결과 페이지네이션 -->
 
     <!-- ─────────────────────────────────────────────────────────────────
        2-3) 회원관리 섹션
@@ -74,218 +85,23 @@
           </tr>
         </thead>
         <tbody>
-          <!-- ─── 예시 1행 (row-all) ─── -->
-          <tr class="row-all">
-            <td>니쥬냥</td>
-            <td>need_u_neko</td>
-            <td>2025-1-4</td>
+          <!-- ─── 테이블 행 (row-all) ─── -->
+          <tr th:each="user : ${userList}"
+              th:class="${user.ban_status == '정지'} ? 'row-reported' : 'row-all'">
+            <td th:text="${user.nickname}">닉네임</td>
+            <td th:text="${user.email_id}">계정ID</td>
+            <td th:text="${#dates.format(user.registration_date, 'yyyy-MM-dd')}">가입일</td>
             <td class="post-cell">
-              <span class="post-count">게시글: 4개</span><br />
-              <span class="comment-count">댓글: 10개</span>
+              <span th:text="'게시글: ' + ${user.style_count} + '개'"></span><br />
+              <span th:text="'댓글: ' + ${user.comment_count} + '개'"></span>
             </td>
             <td class="status-cell">
               <div class="status-wrapper">
-                <span class="status-display"></span>
-                <button class="edit-btn">수정하기</button>
-              </div>
-              <div class="status-popup">
-                <ul>
-                  <li data-value="정상">정상</li>
-                  <li data-value="정지 3일">정지 3일</li>
-                  <li data-value="정지 7일">정지 7일</li>
-                  <li data-value="정지 30일">정지 30일</li>
-                  <li data-value="추방">추방</li>
-                </ul>
-              </div>
-            </td>
-          </tr>
-          <!-- ─── 예시 2행 (row-reported) ─── -->
-          <tr class="row-reported">
-            <td>주노띠</td>
-            <td>jyuhebs</td>
-            <td>2025-1-12</td>
-            <td class="post-cell">
-              <span class="post-count">게시글: 13개</span><br />
-              <span class="comment-count">댓글: 120개</span>
-            </td>
-            <td class="status-cell">
-              <div class="status-wrapper">
-                <span class="status-display"></span>
-                <button class="edit-btn">수정하기</button>
-              </div>
-              <div class="status-popup">
-                <ul>
-                  <li data-value="정상">정상</li>
-                  <li data-value="정지 3일">정지 3일</li>
-                  <li data-value="정지 7일">정지 7일</li>
-                  <li data-value="정지 30일">정지 30일</li>
-                  <li data-value="추방">추방</li>
-                </ul>
-              </div>
-            </td>
-          </tr>
-          <!-- ─── 예시 3행 (row-all) ─── -->
-          <tr class="row-all">
-            <td>재연짱</td>
-            <td>sdsafdssfd</td>
-            <td>2025-1-4</td>
-            <td class="post-cell">
-              <span class="post-count">게시글: 12개</span><br />
-              <span class="comment-count">댓글: 4개</span>
-            </td>
-            <td class="status-cell">
-              <div class="status-wrapper">
-                <span class="status-display"></span>
-                <button class="edit-btn">수정하기</button>
-              </div>
-              <div class="status-popup">
-                <ul>
-                  <li data-value="정상">정상</li>
-                  <li data-value="정지 3일">정지 3일</li>
-                  <li data-value="정지 7일">정지 7일</li>
-                  <li data-value="정지 30일">정지 30일</li>
-                  <li data-value="추방">추방</li>
-                </ul>
-              </div>
-            </td>
-          </tr>
-          <!-- ─── 예시 4행 (row-all) ─── -->
-          <tr class="row-all">
-            <td>정민규바보</td>
-            <td>dfwwwwwbabo</td>
-            <td>2025-1-4</td>
-            <td class="post-cell">
-              <span class="post-count">게시글: 42개</span><br />
-              <span class="comment-count">댓글: 120개</span>
-            </td>
-            <td class="status-cell">
-              <div class="status-wrapper">
-                <span class="status-display"></span>
-                <button class="edit-btn">수정하기</button>
-              </div>
-              <div class="status-popup">
-                <ul>
-                  <li data-value="정상">정상</li>
-                  <li data-value="정지 3일">정지 3일</li>
-                  <li data-value="정지 7일">정지 7일</li>
-                  <li data-value="정지 30일">정지 30일</li>
-                  <li data-value="추방">추방</li>
-                </ul>
-              </div>
-            </td>
-          </tr>
-          <!-- ─── 예시 5행 (row-reported) ─── -->
-          <tr class="row-reported">
-            <td>성근냥</td>
-            <td>sndfbsfwad</td>
-            <td>2025-1-4</td>
-            <td class="post-cell">
-              <span class="post-count">게시글: 4개</span><br />
-              <span class="comment-count">댓글: 1개</span>
-            </td>
-            <td class="status-cell">
-              <div class="status-wrapper">
-                <span class="status-display"></span>
-                <button class="edit-btn">수정하기</button>
-              </div>
-              <div class="status-popup">
-                <ul>
-                  <li data-value="정상">정상</li>
-                  <li data-value="정지 3일">정지 3일</li>
-                  <li data-value="정지 7일">정지 7일</li>
-                  <li data-value="정지 30일">정지 30일</li>
-                  <li data-value="추방">추방</li>
-                </ul>
-              </div>
-            </td>
-          </tr>
-          <!-- ─── 예시 6행 (row-all) ─── -->
-          <tr class="row-all">
-            <td>졸린고양이</td>
-            <td>need_u_neko</td>
-            <td>2025-1-4</td>
-            <td class="post-cell">
-              <span class="post-count">게시글: 0개</span><br />
-              <span class="comment-count">댓글: 1개</span>
-            </td>
-            <td class="status-cell">
-              <div class="status-wrapper">
-                <span class="status-display"></span>
-                <button class="edit-btn">수정하기</button>
-              </div>
-              <div class="status-popup">
-                <ul>
-                  <li data-value="정상">정상</li>
-                  <li data-value="정지 3일">정지 3일</li>
-                  <li data-value="정지 7일">정지 7일</li>
-                  <li data-value="정지 30일">정지 30일</li>
-                  <li data-value="추방">추방</li>
-                </ul>
-              </div>
-            </td>
-          </tr>
-          <!-- ─── 예시 7행 (row-reported) ─── -->
-          <tr class="row-reported">
-            <td>꿍지</td>
-            <td>need_u_neko</td>
-            <td>2025-1-4</td>
-            <td class="post-cell">
-              <span class="post-count">게시글: 0개</span><br />
-              <span class="comment-count">댓글: 10개</span>
-            </td>
-            <td class="status-cell">
-              <div class="status-wrapper">
-                <span class="status-display"></span>
-                <button class="edit-btn">수정하기</button>
-              </div>
-              <div class="status-popup">
-                <ul>
-                  <li data-value="정상">정상</li>
-                  <li data-value="정지 3일">정지 3일</li>
-                  <li data-value="정지 7일">정지 7일</li>
-                  <li data-value="정지 30일">정지 30일</li>
-                  <li data-value="추방">추방</li>
-                </ul>
-              </div>
-            </td>
-          </tr>
-          <!-- ─══ 예시 8행 (row-all) ─══ -->
-          <tr class="row-all">
-            <td>소루데스쿠</td>
-            <td>need_u_neko</td>
-            <td>2025-1-4</td>
-            <td class="post-cell">
-              <span class="post-count">게시글: 4개</span><br />
-              <span class="comment-count">댓글: 10개</span>
-            </td>
-            <td class="status-cell">
-              <div class="status-wrapper">
-                <span class="status-display"></span>
-                <button class="edit-btn">수정하기</button>
-              </div>
-              <div class="status-popup">
-                <ul>
-                  <li data-value="정상">정상</li>
-                  <li data-value="정지 3일">정지 3일</li>
-                  <li data-value="정지 7일">정지 7일</li>
-                  <li data-value="정지 30일">정지 30일</li>
-                  <li data-value="추방">추방</li>
-                </ul>
-              </div>
-            </td>
-          </tr>
-          <!-- ─══ 예시 9행 (row-all) ─══ -->
-          <tr class="row-all">
-            <td>나즈나</td>
-            <td>need_u_neko</td>
-            <td>2025-1-4</td>
-            <td class="post-cell">
-              <span class="post-count">게시글: 4개</span><br />
-              <span class="comment-count">댓글: 10개</span>
-            </td>
-            <td class="status-cell">
-              <div class="status-wrapper">
-                <span class="status-display"></span>
+               <span class="status-display"
+                     th:if="${user.ban_status == '정지'}">정지</span>
+                <span class="status-display"
+                      th:if="${user.ban_status != '정지'}"
+                      th:text="${user.restriction_status != null} ? ${user.restriction_status} : '정상'">상태</span>
                 <button class="edit-btn">수정하기</button>
               </div>
               <div class="status-popup">
@@ -303,13 +119,34 @@
       </table>
 
       <!-- ───────────────────────────────────────────────────────────────────
-         2-4) 페이징 네비게이션
+         2-4) 회원 관리 페이징 네비게이션
          ─────────────────────────────────────────────────────────────────── -->
-      <div class="pagination">
-        <a href="#" class="prev">PREV</a>
-        <span class="current-page">1</span>
-        <a href="#">2</a><a href="#">3</a>
-        <a href="#" class="next">NEXT</a>
+      <!-- 회원 검색 결과 페이지네이션 -->
+      <div class="pagination"
+           th:if="${param.keyword != null and memberTotalPages > 1}">
+        <a th:href="@{/admin/user_search(page=${memberCurrentPage - 1}, keyword=${param.keyword})}"
+           th:if="${memberCurrentPage > 1}" class="prev">PREV</a>
+        <a th:each="p : ${#numbers.sequence(1, memberTotalPages)}"
+           th:href="@{/admin/user_search(page=${p}, keyword=${param.keyword})}"
+           th:text="${p}"
+           th:classappend="${p == memberCurrentPage} ? 'current-page' : ''">
+        </a>
+        <a th:href="@{/admin/user_search(page=${memberCurrentPage + 1}, keyword=${param.keyword})}"
+           th:if="${memberCurrentPage < memberTotalPages}" class="next">NEXT</a>
+      </div>
+
+      <!-- 일반 회원 목록 페이지네이션 -->
+      <div class="pagination"
+           th:if="${param.keyword == null and memberTotalPages > 1}">
+        <a th:href="@{/admin/user_view(page=${memberCurrentPage - 1})}"
+           th:if="${memberCurrentPage > 1}" class="prev">PREV</a>
+        <a th:each="p : ${#numbers.sequence(1, memberTotalPages)}"
+           th:href="@{/admin/user_view(page=${p})}"
+           th:text="${p}"
+           th:classappend="${p == memberCurrentPage} ? 'current-page' : ''">
+        </a>
+        <a th:href="@{/admin/user_view(page=${memberCurrentPage + 1})}"
+           th:if="${memberCurrentPage < memberTotalPages}" class="next">NEXT</a>
       </div>
     </div>
 
@@ -357,23 +194,29 @@
         </tr>
         </tbody>
       </table>
-      <div class="pagination">
+      <!-- ───────────────────────────────────────────────────────────────────
+         2-6) 검수 관리 페이징 네비게이션
+         ─────────────────────────────────────────────────────────────────── -->
+      <div class="pagination" th:if="${reviewTotalPages != null and reviewTotalPages > 1}">
         <!-- PREV 버튼 -->
-        <a th:href="@{/admin/inspection-view(page=${currentPage - 1})}"
-           th:if="${currentPage > 1}" class="prev">PREV</a>
+        <a th:href="@{/admin/inspection_view(page=${reviewCurrentPage - 1})}"
+           th:if="${reviewCurrentPage > 1}" class="prev">PREV</a>
 
         <!-- 페이지 번호 -->
-        <a th:each="p : ${#numbers.sequence(1, totalPages)}"
-           th:href="@{/admin/inspection-view(page=${p})}"
+        <a th:each="p : ${#numbers.sequence(1, reviewTotalPages)}"
+           th:href="@{/admin/inspection_view(page=${p})}"
            th:text="${p}"
-           th:classappend="${p == currentPage} ? 'current-page' : ''">
+           th:classappend="${p == reviewCurrentPage} ? 'current-page' : ''">
         </a>
 
         <!-- NEXT 버튼 -->
-        <a th:href="@{/admin/inspection-view(page=${currentPage + 1})}"
-           th:if="${currentPage < totalPages}" class="next">NEXT</a>
+        <a th:href="@{/admin/inspection_view(page=${reviewCurrentPage + 1})}"
+           th:if="${reviewCurrentPage < reviewTotalPages}" class="next">NEXT</a>
       </div>
     </div>
+    <!-- ───────────────────────────────────────────────────────────────────
+         2-7) 신고 관리 섹션
+         ─────────────────────────────────────────────────────────────────── -->
     <div id="report-area" th:classappend="${activeTab != 'report-area'} ? ' hidden'">
       <!-- ▶ 맨 위: 신고 건수 -->
       <div class="section-count">신고 건수 10건</div>
@@ -416,7 +259,9 @@
           <!-- … 추가 행 가능 … -->
         </tbody>
       </table>
-
+      <!-- ───────────────────────────────────────────────────────────────────
+         2-8) 신고 관리 페이지 네이션
+         ─────────────────────────────────────────────────────────────────── -->
       <!-- ▶ 페이징 네비게이션 (기존과 동일한 스타일) -->
       <div class="pagination">
         <a href="#" class="prev">PREV</a>
@@ -427,13 +272,6 @@
       </div>
     </div>
   </div>
-
-    <!-- ─────────────────────────────────────────────────────────────────
-       2-6) 신고관리 섹션 (플레이스홀더)
-       ───────────────────────────────────────────────────────────────── -->
-
-
-
   <!-- ───────────────────────────────────────────────────────────────────
      3) 게시글 모달
      ─────────────────────────────────────────────────────────────────── -->
@@ -459,7 +297,6 @@
       </table>
     </div>
   </div>
-
   <!-- ───────────────────────────────────────────────────────────────────
      4) 댓글 모달
      ─────────────────────────────────────────────────────────────────── -->
@@ -697,6 +534,6 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
   </script>
-  </div>>
+  </div>
 </body>
 </html>

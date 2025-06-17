@@ -8,30 +8,19 @@ import common.bean.product.ProductSizeBean;
 import common.bean.user.UserBean;
 import jakarta.servlet.http.HttpSession;
 import me.soldesk.katte_project_client.manager.ApiManagers;
-import me.soldesk.katte_project_client.manager.MultipartInputStreamFileResource;
 import me.soldesk.katte_project_client.service.ProductRegisterResult;
 import me.soldesk.katte_project_client.service.ProductRegisterService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartFile;
 
-
-import java.io.File;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 
 @Controller
 public class ProductController {
@@ -122,7 +111,6 @@ public class ProductController {
         }
 
         //파일 업로드
-
         //파일 업로드 처리
         try {
             if (!file.getContentType().startsWith("video/")) {
