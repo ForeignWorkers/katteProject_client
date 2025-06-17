@@ -44,7 +44,7 @@ public class AdminController {
 
         List<UserAdminViewBean> userList = adminUserListService.getUserList(offset, size, filter);
 
-        int totalCount = adminUserListService.getUserTotalCount(); //총 회원 수
+        int totalCount = adminUserListService.getUserTotalCount(filter); //filter 적용된 count
         int totalPages = Math.max(1, (int) Math.ceil((double) totalCount / size));
 
 
@@ -56,6 +56,9 @@ public class AdminController {
 
         System.out.println("➡️ userList size: " + (userList != null ? userList.size() : "null"));
         System.out.println("➡️ userCount: " + totalCount);
+
+        //viewToggle을 위해 filter 값을 그대로 넘김
+        model.addAttribute("filter", filter);
 
         return "Membership_management/Membership_management";
     }
@@ -120,9 +123,16 @@ public class AdminController {
     public String changeUserStatus(
             @RequestParam("user_id") int userId,
             @RequestParam("action_type") String actionType,
-            @RequestParam(value = "stop_days", required = false) Integer stopDays
+            @RequestParam(value = "stop_days", required = false) Integer stopDays,
+            @RequestParam(value = "page", defaultValue = "1") int page,
+            @RequestParam(value = "keyword", required = false) String keyword
     ) {
         adminUserListService.changeUserStatus(userId, actionType, stopDays);
-        return "redirect:/admin/user_view";
+
+        if (keyword != null && !keyword.isEmpty()) {
+            return "redirect:/admin/user_search?page=" + page + "&keyword=" + keyword;
+        } else {
+            return "redirect:/admin/user_view?page=" + page;
+        }
     }
 }
