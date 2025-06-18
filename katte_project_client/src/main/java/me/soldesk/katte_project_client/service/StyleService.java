@@ -1,6 +1,7 @@
 package me.soldesk.katte_project_client.service;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import common.bean.auction.AuctionDataBean;
 import common.bean.content.ContentStyleBean;
 import common.bean.user.UserPaymentBean;
 import me.soldesk.katte_project_client.manager.ApiManagers;
@@ -16,6 +17,7 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -127,7 +129,51 @@ public class StyleService {
         params.put("style_id", Integer.toString(style_id));
 
         TypeReference<Boolean> ref = new TypeReference<>() {};
-        ResponseEntity<Boolean> response = ApiManagers.patchQuery("content/style/like" ,params ,ref);
+        ResponseEntity<Boolean> response = ApiManagers.postQuery("content/style/like" ,params ,ref);
         return Boolean.TRUE.equals(response.getBody());
+    }
+
+    public ContentStyleBean getStyleById(int style_id) {
+        Map<String, String> params = new HashMap<>();
+        params.put("style_id", Integer.toString(style_id));
+        TypeReference<ContentStyleBean> ref = new TypeReference<>() {};
+
+        ResponseEntity<ContentStyleBean> res = ApiManagers.get("content/style",params,ref);
+        return res.getBody();
+    }
+
+    public List<Integer> isLikeStyle(int user_id, int size, int offset) {
+        Map<String, String> params = new HashMap<>();
+        params.put("user_id", Integer.toString(user_id));
+        params.put("size", Integer.toString(size));
+        params.put("offset", Integer.toString(offset));
+
+        TypeReference<List<ContentStyleBean>> ref = new TypeReference<>() {};
+        ResponseEntity<List<ContentStyleBean>> res = ApiManagers.get("content/style/like/user",params,ref);
+
+        List<Integer> list = new ArrayList<>();
+        for (ContentStyleBean style : res.getBody()) {
+            list.add(style.getId());
+        }
+
+        return list;
+    }
+
+    public List<Integer> isLikeStyleAll(int user_id) {
+        Map<String, String> params = new HashMap<>();
+        params.put("user_id", Integer.toString(user_id));
+
+        TypeReference<List<ContentStyleBean>> ref = new TypeReference<>() {};
+        ResponseEntity<List<ContentStyleBean>> res = ApiManagers.get("content/style/like/userAll",params,ref);
+
+        List<Integer> list = new ArrayList<>();
+
+        assert res.getBody() != null;
+        for (ContentStyleBean style : res.getBody()) {
+            list.add(style.getId());
+        }
+
+        System.out.println("AAAAA" + list);
+        return list;
     }
 }

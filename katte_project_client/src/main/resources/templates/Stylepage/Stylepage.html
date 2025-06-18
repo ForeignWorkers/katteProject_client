@@ -33,7 +33,7 @@
 
   <!-- 카드 템플릿 -->
   <template id="style-card-template">
-    <div class="style-card">
+    <div class="style-card" data-style-id="">
       <div class="card-header">
         <img class="avatar" src="" alt="프사" />
         <span class="username"></span>
@@ -48,7 +48,12 @@
         <div class="hashtags-list"></div>
       </div>
       <div class="card-footer">
-        <button class="like-button">♡</button>
+        <img
+            class="like-button"
+            src="/img/heart_icon_no_clicked.png"
+            alt="좋아요"
+            style="cursor:pointer; width:24px; height:24px;"
+        />
         <span class="like-count">0</span>
       </div>
     </div>
@@ -56,63 +61,79 @@
 </div>
 
 <script>
-  const container = document.getElementById('style-container');
-  const tpl       = document.getElementById('style-card-template');
-  let page        = 0;
-  const size      = 10;
-  let loading     = false;
-
+  // ——————————————————————————
+  // 0) 전역 변수 선언
+  const container = document.getElementById('style-container'); // 카드들이 들어갈 부모 요소
+  const tpl       = document.getElementById('style-card-template'); // <template> 요소
+  let page        = 0;    // 페이지 번호 (0부터 시작)
+  const size      = 10;   // 한 번에 불러올 개수
+  let loading     = false;// 중복 호출 방지 플래그
+  const baseURL   = "http://localhost:9000/"
+  // ——————————————————————————
+  // 1) 유저 정보(fetchuserBean) 가져오는 함수
   async function fetchuserBean(userId) {
-    const res = await fetch(`http://localhost:9000/user?user_id=${userId}&email_id=`);
+    const res = await fetch(`${baseURL}user?user_id=${userId}&email_id=`);
     if (!res.ok) {
+      // 실패 시 익명 처리
       return { nickname: '익명', profile_url: null };
     }
     return await res.json();
   }
 
+  // ——————————————————————————
+  // 2) 스타일 리스트를 불러와서 화면에 렌더링하는 함수
   async function loadStyles() {
-    if (loading) return;
+    if (loading) return;    // 이미 로딩 중이면 중복 방지
     loading = true;
 
-    // endpoint 및 offset 반영
+    // 2-1) 페이지네이션용 offset 계산
     const offset = page * size;
     const res    = await fetch(
-            `http://localhost:9000/content/style/recent?size=${size}&offset=${offset}`
+            `${baseURL}content/style/recent?size=${size}&offset=${offset}`
     );
     const data   = await res.json();
     const resourceUrl = "https://resources-katte.jp.ngrok.io/";
 
+    // 2-2) 더 이상 불러올 데이터가 없으면 스크롤 이벤트 제거
     if (!data || data.length === 0) {
       window.removeEventListener('scroll', handleScroll);
       loading = false;
       return;
     }
 
-    for (const item of data) {
-      const card = tpl.content.cloneNode(true);
+    const getUserlikeData = await fetch(`/content/isUserLike?size=${size}&offset=${offset}`);
+    const list = await getUserlikeData.json();
 
-      // 닉네임·프로필 가져오기
+    // 2-3) 받아온 각 스타일(item)을 순회하며 카드 생성
+    for (const item of data) {
+      // (a) 템플릿 복제
+      const cardFragment = tpl.content.cloneNode(true);
+      // (b) 실제 카드 루트 요소 선택
+      const cardEl       = cardFragment.querySelector('.style-card');
+      console.log(cardEl.dataset.styleId)
+
+      // — 기존 구현: 닉네임·프로필 설정 —
       const userBean = await fetchuserBean(item.user_id);
-      card.querySelector('.username').textContent = userBean.nickname;
-      card.querySelector('.avatar').src = userBean.profile_url
+      cardEl.querySelector('.username').textContent = userBean.nickname;
+      cardEl.querySelector('.avatar').src = userBean.profile_url
               ? userBean.profile_url
               : resourceUrl + "profile/basic_profile_00.png";
 
-      // 이미지 렌더링 (첫 장만 예시)
-      const imgContainer = card.querySelector('.card-image');
+      // — 기존 구현: 이미지 렌더링 (첫 장만 예시) —
+      const imgContainer = cardEl.querySelector('.card-image');
       imgContainer.innerHTML = '';
       const img = document.createElement('img');
-      img.src = resourceUrl + "style/" + item.id + "/" + item.id + "_1.png";
-      img.alt = item.caption || '';
-      img.style = 'margin-right:4px;';
+      img.src    = resourceUrl + "style/" + item.id + "/" + item.id + "_1.png";
+      img.alt    = item.caption || '';
+      img.style  = 'margin-right:4px;';
       imgContainer.appendChild(img);
 
-      // 제목·캡션
-      card.querySelector('.title').textContent   = item.style_title || '';
-      card.querySelector('.caption').textContent = item.caption     || '';
+      // — 기존 구현: 제목·캡션 바인딩 —
+      cardEl.querySelector('.title').textContent   = item.style_title || '';
+      cardEl.querySelector('.caption').textContent = item.caption     || '';
 
-      // -- 여기서 등록된 해시태그(item.hashtags) 렌더링 --
-      const tagContainer = card.querySelector('.hashtags-list');
+      // — 기존 구현: 해시태그(item.hashtags) 렌더링 —
+      const tagContainer = cardEl.querySelector('.hashtags-list');
       tagContainer.innerHTML = '';
       (item.hashtags || []).forEach(ht => {
         const span = document.createElement('span');
@@ -121,37 +142,67 @@
         tagContainer.append(span);
       });
 
+      // — 기존 구현: 좋아요 버튼 초기 상태 및 클릭 처리 —
+      const likeBtn = cardEl.querySelector('.like-button');
+      const likeCnt = cardEl.querySelector('.like-count');
+      const isLiked = list.includes(item.id);
 
-      // 좋아요 버튼 초기 상태
-      const likeBtn = card.querySelector('.like-button');
-      const likeCnt = card.querySelector('.like-count');
+      // 초기 하트 & 카운트 세팅
       likeCnt.textContent = item.like_count ?? 0;
-      likeBtn.textContent = item.likedByCurrentUser ? '❤️' : '♡';
+      likeBtn.src = isLiked
+              ? '/img/heart_icon_clicked.png'
+              : '/img/heart_icon_no_clicked.png';
 
       likeBtn.addEventListener('click', async () => {
-        const resp  = await fetch(`/style/like?style_id=${item.id}`)
+        const resp  = await fetch(`/style/like?style_id=${item.id}`);
         const liked = await resp.json();
-        likeBtn.textContent = liked ? '❤️' : '♡';
+        console.log("AAAAA" + liked);
+        // 이미지 교체
+        likeBtn.src = liked
+                ? '/img/heart_icon_clicked.png'
+                : '/img/heart_icon_no_clicked.png';
+        // 카운트 증감
         likeCnt.textContent = liked
                 ? (+likeCnt.textContent + 1)
                 : (+likeCnt.textContent - 1);
       });
 
-      container.appendChild(card);
+
+      // — 신규 추가: 카드 클릭 이벤트 등록 (푸터 클릭은 무시) —
+      // 1) data-style-id 속성에도 item.id 저장 (디버깅이나 추가 로직에 활용 가능)
+      cardEl.dataset.styleId = item.id;
+      // 2) 클릭 시 상세 페이지로 이동
+      cardEl.addEventListener('click', e => {
+        // e.target.closest('.card-footer')가 true면
+        // .card-footer 또는 그 내부 요소(좋아요 버튼 등) 클릭한 경우이므로 무시
+        if (e.target.closest('.card-footer')) return;
+        console.log('넘어가는 style_id:', item.id);
+        // 그 외 영역 클릭 시 상세 페이지로 이동
+        window.location.href = `/style/detail?style_id=${item.id}`;
+      });
+
+      // (c) 완성된 카드 fragment를 컨테이너에 추가
+      container.appendChild(cardFragment);
     }
 
+    // 2-4) 다음 페이지를 위해 page++, 로딩 플래그 해제
     page++;
     loading = false;
   }
 
+  // ——————————————————————————
+  // 3) 스크롤 핸들러: 페이지 끝 근처에서 loadStyles 호출
   function handleScroll() {
     if (window.innerHeight + window.pageYOffset >= document.body.offsetHeight - 200) {
       loadStyles();
     }
   }
 
+  // ——————————————————————————
+  // 4) 이벤트 리스너 등록
   window.addEventListener('scroll', handleScroll);
   window.addEventListener('load', loadStyles);
 </script>
+
 </body>
 </html>

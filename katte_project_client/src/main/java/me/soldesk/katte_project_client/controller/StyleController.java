@@ -57,4 +57,25 @@ public class StyleController {
     public boolean styleToggle(@RequestParam("style_id") int style_id, @SessionAttribute("currentUser") UserBean user){
         return styleService.toggleLike(user.getUser_id(),style_id);
     }
+
+    @GetMapping("/content/style")
+    @ResponseBody
+    public ContentStyleBean getStyleById(@RequestParam("style_id") int style_id){
+        System.out.println("HELLO");
+        return styleService.getStyleById(style_id);
+    }
+
+    @GetMapping("/content/isUserLike")
+    @ResponseBody
+    public List<Integer> getIsUserLike(@RequestParam("size") int size,
+                                        @RequestParam("offset") int offset,
+                                        @SessionAttribute("currentUser") UserBean user){
+        return styleService.isLikeStyle(user.getUser_id(),size,offset);
+    }
+
+    @GetMapping("/content/isUserLikeAll")
+    @ResponseBody
+    public List<Integer> getIsUserLike(@SessionAttribute("currentUser") UserBean user){
+        return styleService.isLikeStyleAll(user.getUser_id());
+    }
 }
