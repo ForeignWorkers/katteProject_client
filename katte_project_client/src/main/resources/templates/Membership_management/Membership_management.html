@@ -611,7 +611,7 @@
         btn.addEventListener('click', () => {
           const id = btn.dataset.id;
           if (confirm('검수를 완료하시겠습니까?')) {
-            fetch(`http://localhost:9000/admin/inspection/complete?check_result_id=${id}`, {
+            fetch(`https://api-katte.jp.ngrok.io/admin/inspection/complete?check_result_id=${id}`, {
               method: 'PATCH'
             }).then(res => {
               if (res.ok) {
@@ -630,7 +630,7 @@
         btn.addEventListener('click', () => {
           const id = btn.dataset.id;
           if (confirm('검수 기준 미달 처리를 하시겠습니까?')) {
-            fetch(`http://localhost:9000/admin/inspection/fail?check_result_id=${id}`, {
+            fetch(`https://api-katte.jp.ngrok.io/admin/inspection/fail?check_result_id=${id}`, {
               method: 'PATCH'
             }).then(res => {
               if (res.ok) {
