@@ -1,0 +1,193 @@
+@charset "UTF-8";
+
+/* ───────────────────────────────────────────────────────────────────────────
+   공통 리셋
+   ─────────────────────────────────────────────────────────────────────────── */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  transform-origin: top left;
+  background-color: #181818;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  color: #f9eeee;
+}
+
+/* ───────────────────────────────────────────────────────────────────────────
+   콘텐츠 래퍼 (Customer Center)
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.wrapper {
+  transform-origin: top left;
+  width: 100%;
+  min-height: 83vh;
+}
+
+
+/* ───────────────────────────────────────────────────────────────────────────
+   컨텐츠 영역 좌측 여백
+   ─────────────────────────────────────────────────────────────────────────── */
+.contentWrapper {
+  margin-left: calc(11.866vw + 2.1675vw + 17px);
+  padding: 20px;
+}
+
+.content{
+  width : 75vw;
+  max-width : 100%;
+}
+
+/* ───────────────────────────────────────────────────────────────────────────
+   상단 탭
+   ─────────────────────────────────────────────────────────────────────────── */
+
+#MyPageBar{
+  display : block;
+  position : absolute;
+  width : 75vw;
+  height : 9vh;
+  right : 85px;
+}
+#ClickBox{
+  position : absolute;
+  left : 10px;
+  margin : 0 auto;
+  align-items: center;
+  display : flex;
+}
+#ClickBox > a {
+  width: 160px;
+  height: 30px;
+  margin-right: 14px;
+  padding : 10px;
+  display: flex;
+  align-items : center;
+  justify-content: center;
+  color : #CCC9C9CC;
+  text-decoration: none;
+}
+#MyPageText {
+  padding : 20px;
+  font-size : 32px;
+  color : #EEEEEE;
+}
+
+#MyPageBar a{
+  text-decoration: none;
+  text-align: center;
+  color : #CCC9C9CC;
+}
+
+#MyPageBar a:visited{
+  text-decoration: none;
+  text-align: center;
+  color : #CCC9C9CC;
+}
+
+#ClickBox .selected {
+  color: rgb(255, 255, 255) !important;
+  text-decoration: none;
+  font-weight : bold;
+}
+
+/* ───────────────────────────────────────────────────────────────────────────
+                                 주소록 박스
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.content_box {
+    width: 75vw;
+    border-radius: 8px;
+    padding: 0 32px;
+    min-height: 400px; /* 必要に応じて高さ調整 */
+    position : relative;
+    margin-left : 5vw;
+    top : 15vh;
+}
+
+.address-big-box{
+  display: flex;
+  flex-direction: column;
+}
+
+.delete-btn{
+  flex: 1;
+  padding: 8px;
+  text-align: center;
+  cursor: pointer;
+  background: #ff0044;
+  color: #f9eeee;
+  border-color: #ff0044;
+}
+
+.edit-btn{
+  flex: 1;
+  padding: 8px;
+  text-align: center;
+  border: 1px solid #555;
+  cursor: pointer;
+  background: transparent;
+  color: #f9eeee;
+}
+
+.set-main-btn{
+  flex: 1;
+  padding: 8px;
+  text-align: center;
+  border: 1px solid #555;
+  cursor: pointer;
+  background: transparent;
+  color: #f9eeee;
+}
+
+.post-btn{
+  display: block;
+  width: 60vw;
+  flex: 1;
+  padding: 8px;
+  text-align: center;
+  border: 1px solid #555;
+  cursor: pointer;
+  background: transparent;
+  color: #f9eeee;
+}
+
+.main-address-box{
+  align-items: flex-start;
+  border-bottom: 0.8px solid;
+  width: 84%;
+}
+
+.address-main-content-box {
+  flex: 2;
+}
+
+.address-main-form-box {
+  display: flex;
+  flex: 1;
+  gap: 10px;
+}
+
+
+.address-list-content-box{
+  border-bottom: 0.8px solid;
+  width: 60vw;
+}
+
+.section-label{
+  font-size : 25px;
+}
+.address-list-content-box{
+  flex-direction: column;
+  gap: 10px;
+}
+.address-form-box{
+  display: flex;
+  flex: 1;
+  gap: 10px;
+}

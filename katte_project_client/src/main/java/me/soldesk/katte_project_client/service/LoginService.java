@@ -158,4 +158,16 @@ public class LoginService {
 
         return user;
     }
+
+    // 밴유저 처리
+    public boolean isBanned(int userId) {
+        Map<String, String> params = Map.of("user_id", String.valueOf(userId));
+        ResponseEntity<Boolean> response = ApiManagers.get(
+                "admin/users/ban", //정지 여부 조회
+                params,
+                new TypeReference<>() {}
+        );
+        return Boolean.TRUE.equals(response.getBody()); // null-safe 처리
+    }
+
 }

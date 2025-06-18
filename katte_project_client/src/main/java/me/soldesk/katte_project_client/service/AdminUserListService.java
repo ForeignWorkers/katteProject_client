@@ -118,4 +118,40 @@ public class AdminUserListService {
             }
         }
     }
+
+    //현재 유저 제한 목록 조회
+    public List<UserRestrictionBean> getUserRestrictions(int userId) {
+        Map<String, String> params = Map.of("user_id", String.valueOf(userId));
+
+        System.out.println("요청 URI: admin/users/restrictions?user_id=" + userId);
+        System.out.println("params: " + params);
+
+        ResponseEntity<List<UserRestrictionBean>> response = ApiManagers.get(
+                "admin/users/restrictions",
+                params,
+                new TypeReference<>() {}
+        );
+
+        System.out.println("🧪 응답 본문: " + response.getBody());
+        return response.getBody() != null ? response.getBody() : List.of();
+    }
+
+    //특정 제한 여부 (style/comment) 여부 확인
+    public boolean isUserRestricted(int userId, String restrictionType) {
+        Map<String, String> params = Map.of(
+                "user_id", String.valueOf(userId),
+                "restriction_type", restrictionType
+        );
+
+        ResponseEntity<Boolean> response = ApiManagers.get(
+                "admin/users/restriction/check",
+                params,
+                new TypeReference<>() {}
+        );
+
+        return Boolean.TRUE.equals(response.getBody());
+    }
+
+
+
 }

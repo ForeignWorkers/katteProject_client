@@ -4,201 +4,105 @@
   <meta charset="UTF-8">
   <title>Favorite</title>
   <link rel="stylesheet" href="/css/CsMyPage/Mypage_coupon.css">
+  <link rel="stylesheet" href="/css/fragments/Sidebar.css">
+  <style>
+    .coupon-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
+      gap: 24px;
+      padding: 40px 80px;
+    }
+
+    .coupon-card {
+      border: 1.5px solid #f9eeee;
+      border-radius: 20px;
+      background-color: #181818;
+      color: #f9eeee;
+      padding: 24px 32px 16px 24px;
+      box-shadow: 0 4px 24px #0005;
+    }
+
+    .coupon-card h3 {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 12px;
+    }
+
+    .coupon-card ul {
+      font-size: 14px;
+      color: #ccc;
+      margin: 0;
+      padding-left: 20px;
+      list-style: disc;
+    }
+
+    .coupon-card ul li:last-child {
+      color: #ff0044;
+    }
+  </style>
 </head>
 <body>
-<aside class = "sidebar"> <!--사이드 바-->
-  <a href="/main"><img class="logo-1" src="/img/logo%20(1).png" alt="로고"></a>
-  <nav class="sidebar-nav">
-    <ul>
-      <li><a href="/search">검색</a></li>
-      <li><a href="/explore">탐색</a></li>
-      <li><a href="/sell">판매등록</a></li>
-      <li><a href="/wishlist">관심상품</a></li>
-      <li><a href="/style">스타일</a></li>
-      <li><a href="/mypage">마이페이지</a></li>
-      <li><a href="/support">고객센터</a></li>
-    </ul>
-  </nav>
-   <div class="login-area">
-    <a href="/login" class="btn-login">로그인</a>
-  </div>
-  <footer class="sidebar-footer">
-    <p><a href="/support">고객센터</a> | <a href="/terms">이용약관</a></p>
-    <small>&copy; All copyright in soldesk</small>
-  </footer>
-</aside>
-<div id = "MyPageBar"> <!--상단 마이페이지 바-->
-  <div id = "MyPageText">MyPage</div>
-  <div id = "ClickBox">
-    <div id = "buyList">
-      <a href="/MyPage">구매 내역</a>
-    </div>
-    <div id = "favorite">
-      <a href="/Favorite">관심</a>
-    </div>
-    <div id = "MyStyle">
-      <a href="/MyStyle">내 스타일</a>
-    </div>
-    <div id = "MyKatteMoney">
-      <a href="/MyKatteMoney">캇테머니</a>
-    </div>
-    <div id = "MyPoint">
-      <a href="/MyPoint">포인트</a>
-    </div>
-    <div id = "MyCoupon" class = "selected">
-      <a href="/MyCoupon">쿠폰함</a>
-    </div>
-    <div id = "MyLogInfo">
-      <a href="/MyLogInfo">로그인 정보</a>
-    </div>
-    <div id = "MyProfile">
-      <a href="/MyProfile">프로필 관리</a>
-    </div>
-    <div id = "MyAddress">
-      <a href="/MyAddress">주소록 관리</a>
+
+<!-- ✅ 사이드바 -->
+<div th:replace="~{Fragments/Sidebar :: sidebar}"></div>
+
+<!-- ✅ 마이페이지 상단 탭 -->
+<div class="contentWrapper">
+  <div id="MyPageBar">
+    <div id="MyPageText">MyPage</div>
+    <div id="ClickBox">
+      <a href="/MyPage" id="buyList"><div>구매내역</div></a>
+      <a href="/Favorite" id="favorite"><div>관심</div></a>
+      <a href="/MyStyle" id="MyStyle"><div>스타일</div></a>
+      <a href="/MyKatteMoney" id="MyKatteMoney"><div>캇테머니</div></a>
+      <a href="/MyPoint" id="MyPoint"><div>포인트</div></a>
+      <a href="/MyCoupon" id="MyCoupon" class="selected"><div>쿠폰함</div></a>
+      <a href="/MyAddress" id="MyAddress"><div>주소록 관리</div></a>
     </div>
   </div>
-</div>
-  
-<!-- Welcome 10,000원 쿠폰 -->
-<div class="coupon-card" style="position:absolute; left:306.85px; top:249.05px; width:625.6px; height:170px;">
-  <div class="coupon-inner">
-    <!-- 앞면 -->
-    <div class="coupon-front">
-      <div class="coupon-header">
-        <img src="/img/logo%20(1).png" alt="로고" class="coupon-logo">
-        <button class="coupon-more-btn" title="유의사항">⋯</button>
-      </div>
-      <div class="coupon-title">[Welcome] 첫구매 10,000원 할인 쿠폰</div>
-      <div class="coupon-desc">200,000₩ 이상 구매시 사용 가능</div>
-      <div class="coupon-date">~ 2025-6-30 23:59</div>
-    </div>
-    <!-- 뒷면 -->
-    <div class="coupon-back">
-      <button class="coupon-close-btn" title="닫기">✕</button>
-      <div class="coupon-back-title">유의사항</div>
-      <ul class="coupon-back-list">
-        <li>최소 200,000원 이상 구매시 할인쿠폰 적용이 가능합니다.</li>
-        <li>쿠폰은 다른 계정으로 양도할 수 없습니다.</li>
-        <li>다른 쿠폰과 중복사용하실 수 없습니다(배송비 할인쿠폰 제외).</li>
-        <li>쿠폰 유효기간 내에만 사용 가능합니다.</li>
-      </ul>
-    </div>
-  </div>
+
+  <!-- ✅ 쿠폰 그리드 영역 -->
+  <div class="coupon-grid" id="couponContainer"></div>
 </div>
 
-<!-- Welcome 5,000원 쿠폰 -->
-<div class="coupon-card" style="position:absolute; left:951.15px; top:249.05px; width:625.6px; height:170px;">
-  <div class="coupon-inner">
-    <div class="coupon-front">
-      <div class="coupon-header">
-        <img src="/img/logo%20(1).png" alt="로고" class="coupon-logo">
-        <button class="coupon-more-btn" title="유의사항">⋯</button>
-      </div>
-      <div class="coupon-title">[Welcome] 첫구매 5,000원 할인 쿠폰</div>
-      <div class="coupon-desc">100,000₩ 이상 구매시 사용 가능</div>
-      <div class="coupon-date">~ 2025-6-30 23:59</div>
-    </div>
-    <div class="coupon-back">
-      <button class="coupon-close-btn" title="닫기">✕</button>
-      <div class="coupon-back-title">유의사항</div>
-      <ul class="coupon-back-list">
-        <li>최소 100,000원 이상 구매시 할인쿠폰 적용이 가능합니다.</li>
-        <li>쿠폰은 다른 계정으로 양도할 수 없습니다.</li>
-        <li>다른 쿠폰과 중복사용하실 수 없습니다(배송비 할인쿠폰 제외).</li>
-        <li>쿠폰 유효기간 내에만 사용 가능합니다.</li>
-      </ul>
-    </div>
-  </div>
-</div>
+<!-- ✅ JS -->
+<script>
+  document.addEventListener("DOMContentLoaded", async () => {
+    const container = document.getElementById("couponContainer");
 
-<!-- Happy Birthday 10,000원 쿠폰 -->
-<div class="coupon-card" style="position:absolute; left:953.7px; top:459px; width:625.6px; height:170px;">
-  <div class="coupon-inner">
-    <div class="coupon-front">
-      <div class="coupon-header">
-        <img src="/img/logo%20(1).png" alt="로고" class="coupon-logo">
-        <button class="coupon-more-btn" title="유의사항">⋯</button>
-      </div>
-      <div class="coupon-title">[Happy Birthday] 생일 10,000원 할인 쿠폰</div>
-      <div class="coupon-desc">20,000₩ 이상 구매시 사용 가능</div>
-      <div class="coupon-date">~ 2025-7-30 23:59</div>
-    </div>
-    <div class="coupon-back">
-      <button class="coupon-close-btn" title="닫기">✕</button>
-      <div class="coupon-back-title">유의사항</div>
-      <ul class="coupon-back-list">
-        <li>최소 20,000원 이상 구매시 할인쿠폰 적용이 가능합니다.</li>
-        <li>쿠폰은 다른 계정으로 양도할 수 없습니다.</li>
-        <li>다른 쿠폰과 중복사용하실 수 없습니다(배송비 할인쿠폰 제외).</li>
-        <li>쿠폰 유효기간 내에만 사용 가능합니다.</li>
-      </ul>
-    </div>
-  </div>
-</div>
+    try {
+      const res = await fetch("/coupon/user");
+      const coupons = await res.json();
 
-<!-- Happy Birthday 5,000원 쿠폰 -->
-<div class="coupon-card" style="position:absolute; left:307.7px; top:459px; width:625.6px; height:170px;">
-  <div class="coupon-inner">
-    <div class="coupon-front">
-      <div class="coupon-header">
-        <img src="/img/logo%20(1).png" alt="로고" class="coupon-logo">
-        <button class="coupon-more-btn" title="유의사항">⋯</button>
-      </div>
-      <div class="coupon-title">[Happy Birthday] 생일 5,000원 할인 쿠폰</div>
-      <div class="coupon-desc">20,000₩ 이상 구매시 사용 가능</div>
-      <div class="coupon-date">~ 2025-7-30 23:59</div>
-    </div>
-    <div class="coupon-back">
-      <button class="coupon-close-btn" title="닫기">✕</button>
-      <div class="coupon-back-title">유의사항</div>
-      <ul class="coupon-back-list">
-        <li>최소 20,000원 이상 구매시 할인쿠폰 적용이 가능합니다.</li>
-        <li>쿠폰은 다른 계정으로 양도할 수 없습니다.</li>
-        <li>다른 쿠폰과 중복사용하실 수 없습니다(배송비 할인쿠폰 제외).</li>
-        <li>쿠폰 유효기간 내에만 사용 가능합니다.</li>
-      </ul>
-    </div>
-  </div>
-</div>
+      coupons.forEach(coupon => {
+        const card = document.createElement("div");
+        card.className = "coupon-card";
 
-<!-- Appreciation Coupon 배송비 3,000원 쿠폰 (중복 사용 가능) -->
-<div class="coupon-card" style="position:absolute; left:307.7px; top:669.05px; width:625.6px; height:170px;">
-  <div class="coupon-inner">
-    <div class="coupon-front">
-      <div class="coupon-header">
-        <img src="/img/logo%20(1).png" alt="로고" class="coupon-logo">
-        <button class="coupon-more-btn" title="유의사항">⋯</button>
-      </div>
-      <div class="coupon-title">[Appreciation Coupon] 배송비 3,000원 할인 쿠폰</div>
-      <div class="coupon-desc">0₩ 이상 구매시 사용 가능</div>
-      <div class="coupon-date">~ 2025-7-15 23:59</div>
-    </div>
-    <div class="coupon-back">
-      <button class="coupon-close-btn" title="닫기">✕</button>
-      <div class="coupon-back-title">유의사항</div>
-      <ul class="coupon-back-list">
-        <li>최소 0원 이상 구매시 할인쿠폰 적용이 가능합니다.</li>
-        <li>쿠폰은 다른 계정으로 양도할 수 없습니다.</li>
-        <li>**중복 사용 가능합니다.**</li>
-        <li>쿠폰 유효기간 내에만 사용 가능합니다.</li>
-      </ul>
-    </div>
-  </div>
-</div>
+        // ✅ 날짜 가공
+        const rawDate = coupon.end_date;
+        let formattedDate = "-";
+        if (rawDate) {
+          const date = new Date(rawDate);
+          formattedDate = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
+        }
 
 
-  <script>
+        card.innerHTML = `
+          <h3>${coupon.name}</h3>
+          <ul>
+            <li>${coupon.coupon_desc}</li>
+            <li>${coupon.caution_desc}</li>
+            <li>${formattedDate} 까지</li>
+          </ul>
+        `;
 
-  document.querySelectorAll('.coupon-card').forEach(card => {
-	  card.querySelector('.coupon-more-btn').onclick = function() {
-	    card.classList.add('flipped');
-	  };
-	  card.querySelector('.coupon-close-btn').onclick = function() {
-	    card.classList.remove('flipped');
-	  };
-	});
+        container.appendChild(card);
+      });
+    } catch (err) {
+      console.error("❌ 쿠폰 데이터를 불러오는 중 오류:", err);
+    }
+  });
+</script>
 
-  </script>
 </body>
 </html>

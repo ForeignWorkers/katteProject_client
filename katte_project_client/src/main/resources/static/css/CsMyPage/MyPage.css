@@ -92,11 +92,14 @@ html, body {
     display: block;
     margin: 0;
 }
+/* ───────────────────────────────────────────────────────────────────────────
+   상단 탭
+   ─────────────────────────────────────────────────────────────────────────── */
 
 #MyPageBar{
+    display : block;
     position : absolute;
     width : 75vw;
-    max-width : 100%;
     height : 9vh;
     right : 85px;
 }
@@ -107,14 +110,16 @@ html, body {
     align-items: center;
     display : flex;
 }
-#ClickBox > div {
-    width: 112px;
+#ClickBox > a {
+    width: 160px;
     height: 30px;
     margin-right: 14px;
     padding : 10px;
     display: flex;
     align-items : center;
     justify-content: center;
+    color : #CCC9C9CC;
+    text-decoration: none;
 }
 #MyPageText {
     padding : 20px;
@@ -122,17 +127,20 @@ html, body {
     color : #EEEEEE;
 }
 
-a {
-    color : #CCC9C9CC;
+#MyPageBar a{
     text-decoration: none;
-}
-a:visited{
+    text-align: center;
     color : #CCC9C9CC;
-    text-decoration: none;
 }
 
-div.selected a {
-    color: rgb(255, 255, 255);
+#MyPageBar a:visited{
+    text-decoration: none;
+    text-align: center;
+    color : #CCC9C9CC;
+}
+
+#ClickBox .selected {
+    color: rgb(255, 255, 255) !important;
     text-decoration: none;
     font-weight : bold;
 }

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>내 주소록 관리</title>
+  <link rel="stylesheet" href="/css/CsMyPage/Mypage_address.css">
+  <link rel="stylesheet" href="/css/fragments/Sidebar.css">
+</head>
+<body>
+    <div th:replace="~{Fragments/Sidebar :: sidebar}">
+
+    </div><div class="contentWrapper">
+        <div id = "MyPageBar"> <!--상단 마이페이지 바-->
+            <div id = "MyPageText">MyPage</div>
+            <div id = "ClickBox">
+                <a href="/MyPage" id = "buyList">
+                    <div>구매내역</div>
+                </a>
+                <a href="/Favorite" id = "favorite">
+                    <div>관심</div>
+                </a>
+                <a href="/MyStyle" id = "MyStyle">
+                    <div>스타일</div>
+                </a>
+                <a href="/MyKatteMoney" id = "MyKatteMoney">
+                    <div>캇테머니</div>
+                </a>
+                <a href="/MyPoint" id = "MyPoint">
+                    <div>포인트</div>
+                </a>
+                <a href="/MyCoupon" id = "MyCoupon">
+                    <div>쿠폰함</div>
+                </a>
+                <a href="/MyAddress" id = "MyAddress" class = "selected">
+                    <div>주소록 관리</div>
+                </a>
+            </div>
+        </div>
+
+
+      <section class = content_box>
+          <div class = "address-big-box">
+              <button type="button" class = "post-btn">주소 추가</button>
+              <br>
+              <div class = "main-address-box" th:if="${mainAddress != null}">
+                  <div class = "address-main-content-box" id = "main-address-div">
+                    <span class="section-label">기본 주소</span>
+                    <div class = "main-address-name-box" th:text="'이름 : ' + ${mainAddress.name}">이름</div>
+                    <div class = "main-address-phone-box" th:text="'전화번호 : 0' + ${mainAddress.phone_number}">전화번호</div>
+                    <div class = "address-line1-box" th:text="'도로명주소 : ' + ${mainAddress.address_line01}">주소1</div>
+                    <div class = "address-line2-box" th:text="'상세 주소' + ${mainAddress.address_line02}">주소2</div>
+                    <div class = "address-post-box" th:text="'우편번호 : ' + ${mainAddress.post_num}">우편번호</div>
+                  </div>
+                  <div class = "address-main-form-box">
+                      <button type="button" class="edit-btn" th:onclick = "'openEditPopup(' + ${mainAddress.id} + ');'">수정</button>
+                      <form method="post" th:action="@{/MyAddress/del}" onsubmit="return confirm('삭제하시겠습니까?');">
+                          <input type="hidden" name="address_id" th:value="${mainAddress.id}" />
+                          <button type="submit" class = "delete-btn">삭제</button>
+                      </form>
+                  </div>
+                  <br>
+              </div>
+              <span class="section-label">저장된 주소</span>
+              <th:block th:each = "al : ${addressList}" >
+                  <div class = "address-list-content-box">
+                      <div class = "address-text-content-box" id = "address-content-box-id">
+                        <div class = "main-address-name-box" th:text="'이름 : ' +${al.name}">이름</div>
+                        <div class = "main-address-phone-box" th:text="'전화번호 : 0' + ${al.phone_number}">전화번호</div>
+                        <div class = "address-line1-box" th:text="'도로명주소 : ' + ${al.address_line01}">주소1</div>
+                        <div class = "address-line2-box" th:text="'상세 주소 : ' + ${al.address_line02}">주소2</div>
+                        <div class = "address-post-box" th:text="'우편번호 : ' + ${al.post_num}">우편번호</div>
+                      </div>
+                      <div class = "address-form-box">
+                      <form method="post" th:action="@{/MyAddress/set-main}"onsubmit="return confirm('기본 배송지로 설정하시겠습니까?');">
+                        <input type="hidden" name="address_id" th:value="${al.id}" />
+                        <button type="submit" class = "set-main-btn">기본 배송지로 설정</button>
+                      </form>
+                          <button type="button" class="edit-btn" th:onclick = "'openEditPopup(' + ${al.id} + ');'">수정</button>
+                      <form method="post" th:action="@{/MyAddress/del}" onsubmit="return confirm('삭제하시겠습니까?');">
+                        <input type="hidden" name="address_id" th:value="${al.id}" />
+                        <button type="submit" class = "delete-btn">삭제</button>
+                      </form>
+                      </div>
+                      <br>
+                 </div>
+              </th:block>
+          </div>
+      </section>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const openBtn = document.querySelector(".post-btn");
+
+            openBtn.addEventListener("click", function () {
+                window.open(
+                    "MyAddress/post",  // 새 창에 열고 싶은 URL
+                    "주소지 추가",            // 새 창의 이름
+                    "width=600,height=600,resizable=no,scrollbars=no"
+                );
+            });
+
+        });
+
+       function openEditPopup(address_id) {
+            window.open(
+                '/MyAddress/edit?address_id=' + address_id,
+                '주소지 수정',
+                'width=600,height=600,resizable=no,scrollbars=no'
+            );
+       }
+
+    </script>
+</body>
+</html>
