@@ -450,10 +450,11 @@
 
       // (2) “총 회원 보기” 드롭다운 (회원 관리 탭에서만 사용)
       const viewToggleBtn = document.getElementById('viewToggleBtn');
-      const viewDropdown  = document.getElementById('viewDropdown');
-      const options       = viewDropdown.querySelectorAll('.view-option');
-      const viewLabel     = viewToggleBtn.querySelector('.view-label');
-
+      const viewDropdown = document.getElementById('viewDropdown');
+      if (viewDropdown) {
+      const options = viewDropdown.querySelectorAll('.view-option');
+      const viewToggleBtn = document.getElementById('viewToggleBtn');
+      const viewLabel = viewToggleBtn.querySelector('.view-label');
 
       viewToggleBtn.addEventListener('click', e => {
         e.stopPropagation();
@@ -501,7 +502,7 @@
           viewLabel.textContent = opt.querySelector('.option-label').textContent;
         }
       });
-
+    }
       // (3) “수정하기” 버튼 → 상태 팝업
       document.querySelectorAll('.status-cell').forEach(cell => {
         const btn   = cell.querySelector('.edit-btn');
