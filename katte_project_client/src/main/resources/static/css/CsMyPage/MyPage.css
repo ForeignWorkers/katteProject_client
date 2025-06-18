@@ -152,16 +152,18 @@ html, body {
     top : 15vh;
     right : 70px;
 }
-#OneHistory{
+#OneHistory {
     background-color: #2a2929;
-    width : 75vw;
-    max-width : 1130px;
-    height : 186px;
-    align-items : center;
-    display : flex;
+    width: 75vw;
+    max-width: 1130px;
+    height: 186px;
+    align-items: center;
+    display: flex;
+    border-radius: 45px;
 }
 #OneHistory div{
     color: #f9eeee;
+    position : relative;
 }
 
 #OneHistory a{
@@ -181,8 +183,15 @@ html, body {
     height : 180px;
     left : 0;
 }
+#ProductPicture img{
+    width:180px;
+    height:180px;
+    background-color: #EEEEEE;
+    border-radius : 45px;
+}
 #ProductInfo{
     width : 950px;
+    left : 15px;
 }
 #ProductStatus{
     height : 37px;
@@ -205,4 +214,5 @@ html, body {
     text-align: right;
     margin-left : auto;
     font-size : 24px;
+    left : -30px;
 }

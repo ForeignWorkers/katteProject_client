@@ -37,27 +37,34 @@
         </div>
     </div>
 
-<div id = "HistoryListWrapper">
-    <div id = "HistoryList">
-        <div id = "OneHistory">
-            <div id = "ProductPicture">
-                <img src="/img/pro.png" alt="이미지">
-            </div>
-            <div id = "ProductInfo">
-                <div id = "ProductStatus">
-                    ${order_status}
+    <div id = "HistoryListWrapper">
+        <div id = "HistoryList">
+            <div id = "OneHistory" th:each="order:${orderList}">
+                <div id = "ProductPicture">
+                    <a th:href="@{'/product/'+ ${order.product_id}}">
+                        <img th:src= "'https://resources-katte.jp.ngrok.io/images/'+${order.product_id} + '/' +${order.product_id} + '_1.png'" alt="이미지">
+                    </a>
                 </div>
-                <div id = "ProductBrand">
-                    <a href="">${}</a>
-                </div>
-                <div id = "ProductName">
-                    <a href="">상품명</a>
-                </div>
-                <div id = "ProductPrice">
-                    상품 가격
-                </div>
-                <div id = "ProductSize">
-                    내가 선택한 상품 사이즈
+                <div id = "ProductInfo">
+                    <div id = "ProductStatus" th:text="(${order.is_buy_complete} ? '구매 확정 완료' : '구매 중')">
+                        배송 상태
+                    </div>
+                    <div id = "ProductBrand" th:text="${productInfoMap[order.product_id].brand_name}">
+                        브랜드명
+                    </div>
+                    <div id = "ProductName" th:text="'상품명 : ' + ${productInfoMap[order.product_id].product_name_kor}">
+                        상품명
+                    </div>
+                    <div id = "ProductPrice" th:text="${#numbers.formatInteger(order.final_price, 3, 'COMMA')} + '원'">>
+                        상품 가격
+                    </div>
+                    <button
+                            type="button"
+                            th:if="!${order.is_buy_complete}"
+                            th:onclick="'confirmOrder(' + ${order.order_id} + ')'"
+                    >
+                        구매 확정
+                    </button>
                 </div>
             </div>
         </div>
@@ -76,18 +83,31 @@
                 this.classList.add("selected");
             });
         });
-    });
 
-    document.addEventListener("DOMContentLoaded", function () {
-        const items = document.querySelectorAll("#BuySortClickBox > div");
-        items.forEach(item => {
-            item.addEventListener("click", function () {
-                // 모든 div에서 selected를 해제
-                items.forEach(i => i.classList.remove("selected"));
-                // 클릭한 div에 selected를 부여
-                this.classList.add("selected");
-            });
+    // ✅ 구매 확정 버튼 처리
+    const confirmButtons = document.querySelectorAll(".confirm-btn");
+
+    confirmButtons.forEach(button => {
+        button.addEventListener("click", function () {
+            const orderId = this.getAttribute("data-order-id");
+
+            fetch("/MyPage/confirm", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded"
+                },
+                body: new URLSearchParams({
+                    order_id: orderId
+                })
+            })
+                .then(res => res.text())
+                .then(message => {
+                    alert(message);
+                    location.reload();
+                })
+                .catch(err => alert("요청 실패: " + err));
         });
+    });
     });
 
 </script>
