@@ -1,422 +1,364 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>Style Detail with Comment Popup</title>
   <link rel="stylesheet" href="/css/Stylepage/Style_detail.css" />
+  <link rel="stylesheet" href="/css/fragments/Sidebar.css" />
 </head>
 <body>
-  <aside class="sidebar">
-    <a href="/main">
-      <img class="logo-1" src="/img/logo%20(1).png" alt="로고" />
-    </a>
-    <nav class="sidebar-nav">
-      <ul>
-        <li><a href="/search">검색</a></li>
-        <li><a href="/explore">탐색</a></li>
-        <li><a href="/sell">판매등록</a></li>
-        <li><a href="/wishlist">관심상품</a></li>
-        <li><a href="/style">스타일</a></li>
-        <li><a href="/mypage">마이페이지</a></li>
-        <li><a href="/support">고객센터</a></li>
-      </ul>
-    </nav>
-    <div class="login-area">
-      <a href="/login" class="btn-login">로그인</a>
-    </div>
-    <footer class="sidebar-footer">
-      <p><a href="/support">고객센터</a> | <a href="/terms">이용약관</a></p>
-      <small>&copy; All copyright in soldesk</small>
-    </footer>
-  </aside>
+<!-- 사이드바 -->
+<div th:replace="Fragments/Sidebar :: sidebar"></div>
 
-  <!-- ============================================ -->
-  <!-- 2) 메인 래퍼(원래 있던 콘텐츠)                    -->
-  <!-- ============================================ -->
-  <!-- <div class="wraaper"> -->
-    <div class="div13">
-      <img class="image-118" src="image-1180.png" />
-      <div class="min-x-ili-0">min_x_ili_0</div>
-      <div class="_2025-3-23">2025-3-23</div>
-    </div>
-    <img class="image-119" src="/img/imagestyledetail.png" />
-    <div class="_5">상품 태그 5개</div>
-    <div class="group-975">
-      <div class="_1">
-        <img class="image-125" src="image-1250.png" />
-        <div class="hysteric-glamour-hyst-280-000">
-          <span>
-            <span class="hysteric-glamour-hyst-280-000-span">
-              Hysteric GlamourHyst...
-              <br /><br />
-            </span>
-            <span class="hysteric-glamour-hyst-280-000-span2">280,000원</span>
-          </span>
-        </div>
-      </div>
-      <div class="_2">
-        <img class="image-126" src="image-1260.png" />
-        <div class="bape-baby-milo-mobile-85-000">
-          <span>
-            <span class="bape-baby-milo-mobile-85-000-span">
-              BAPE Baby Milo Mobile...
-              <br /><br />
-            </span>
-            <span class="bape-baby-milo-mobile-85-000-span2">85,000원</span>
-          </span>
-        </div>
-      </div>
-      <div class="_3">
-        <img class="image-127" src="image-1270.png" />
-        <div class="human-made-heart-keyring-54-000">
-          <span>
-            <span class="human-made-heart-keyring-54-000-span">
-              Human Made Heart Keyring...
-              <br /><br />
-            </span>
-            <span class="human-made-heart-keyring-54-000-span2">54,000원</span>
-          </span>
-        </div>
-      </div>
-      <div class="_4">
-        <img class="image-128" src="image-1280.png" />
-        <div class="karactor-vintage-emble-131-000">
-          <span>
-            <span class="karactor-vintage-emble-131-000-span">
-              Karactor Vintage Emble...
-              <br /><br />
-            </span>
-            <span class="karactor-vintage-emble-131-000-span2">131,000원</span>
-          </span>
-        </div>
-      </div>
-      <div class="_52">
-        <img class="image-129" src="image-1290.png" />
-        <div class="asics-x-story-mfg-gel-ven-280-000">
-          <span>
-            <span class="asics-x-story-mfg-gel-ven-280-000-span">
-              Asics x Story mfg. Gel-Ven ...
-              <br /><br />
-            </span>
-            <span class="asics-x-story-mfg-gel-ven-280-000-span2">280,000원</span>
-          </span>
-        </div>
-      </div>
-    </div>
-
-    <div class="div14">
-      <div class="div15">
-        <div class="_23">23</div>
-        <img class="mask-group" src="/img/heartpro.png" />
-      </div>
-      <div class="div16">
-        <!-- 댓글 버튼 (말풍선 아이콘) -->
-        <img class="ellipse-71" src="/img/comment-btn.png" alt="댓글 버튼" />
-        <div class="_12">1</div>
-      </div>
-    </div>
-
-    <div class="jeans">내 jeans 봐.</div>
-    <div class="hashtag">
-      #5뭐입챌린지 #여름준비 #반팔코디 #데일리슈즈 #여름필수템 #캐주얼룩
-    </div>
-
-    <!-- 인디케이터 점들 (첫 번째 빨강 / 나머지 회색) -->
-    <div class="ellipse-48"></div>
-    <div class="ellipse-49"></div>
-    <div class="ellipse-50"></div>
-    <div class="ellipse-47"></div>
-
-    <!-- 슬라이드용 버튼들 -->
-    <img class="div17" src="/img/nextbutton.png" />
-    <img class="btn-prev" src="/img/returnbutton.png" alt="이전 버튼" style="display: none;" />
-
-    <!-- 신고 버튼 (예시) -->
-    <img class="report_button" src="/img/report_button.png" />
-  </div> <!-- /.wraaper -->
-
-    <div id="report-overlay" class="report-overlay" style="display: none;"></div>
-
-  <!-- 3-2) 실제 팝업 박스 -->
-  <div id="report-modal" class="report-modal" style="display: none;">
-    <!-- 팝업 헤더: 제목 + 닫기 버튼 -->
-    <div class="report-modal-header">
-      <span class="report-title">신고하기</span>
-      <span id="report-close" class="report-close">&times;</span>
-    </div>
-
-    <!-- 팝업 바디: 폼 전체 -->
-    <div class="report-modal-body">
-      <!-- 안내문구 -->
-      <p class="report-subtitle">신고사유를 선택해주세요</p>
-
-      <!-- ★ 3-3) 라디오버튼 리스트 -->
-      <form id="report-form" class="report-form">
-        <label>
-          <input type="radio" name="reason" value="irrelevant" />
-          게시판 목적과 무관한 글
-        </label>
-        <label>
-          <input type="radio" name="reason" value="insult" />
-          악의적 욕설이 포함된 글
-        </label>
-        <label>
-          <input type="radio" name="reason" value="sexual" />
-          성적인 글 및 성희롱 발언
-        </label>
-        <label>
-          <input type="radio" name="reason" value="promotion" />
-          홍보 및 상업적인 내용이 들어간 글
-        </label>
-        <label>
-          <input type="radio" name="reason" value="other" />
-          기타
-        </label>
-
-        <!-- ★ 3-4) 텍스트 입력란 -->
-        <textarea
-          id="report-text"
-          class="report-text"
-          rows="4"
-          placeholder="신고 사유를 입력해주세요"
-        ></textarea>
-
-        <!-- ★ 3-5) 제출 버튼 -->
-        <button type="button" id="report-submit" class="report-submit-btn">
-          신고하기
-        </button>
-      </form>
-    </div>
-  </div>
 <!-- ============================================ -->
-<!-- 3) 댓글 팝업용 오버레이 & 패널 (수정된 HTML) -->
+<!-- 2) 메인 래퍼(원래 있던 콘텐츠)                -->
+<!-- ============================================ -->
+<div class="div13">
+  <img class="image-118" src="" />
+  <div class="min-x-ili-0"></div>
+  <!-- JS에서 날짜 채워 넣음 -->
+  <div id="style-date"></div>
+</div>
+
+<!-- 슬라이드 대표 이미지가 찍힐 곳 -->
+<div id="detail-images" class="detail-images"></div>
+
+<div class="_5">상품 태그</div>
+<div class="group-975"></div>
+
+<div class="div14">
+  <div class="div15">
+    <!-- 스타일 좋아요 -->
+    <div id="like-count" class="_23"></div>
+    <img
+            id="like-btn"
+            class="mask-group"
+            src="/img/heart_icon_no_clicked.png"
+            alt="좋아요 버튼"
+            style="cursor:pointer;"
+    />
+  </div>
+  <div class="div16">
+    <!-- 댓글 버튼 -->
+    <img class="ellipse-71" src="/img/comment-btn.png" alt="댓글 버튼" />
+    <div class="_12">1</div>
+  </div>
+</div>
+
+<div class="styletitle"></div>
+<div class="stylecaption"></div>
+
+<div class="hashtag"></div>
+
+<!-- 슬라이드용 버튼들 -->
+<img class="btn-prev" src="/img/leftbtn.png" alt="이전 버튼" style="display:none; cursor:pointer;" />
+<img class="btn-next" src="/img/rightbtn.png" alt="다음 버튼" style="cursor:pointer;" />
+
+<!-- ============================================ -->
+<!-- 3) 댓글 팝업용 오버레이 & 패널                 -->
 <!-- ============================================ -->
 <div class="overlay" style="display: none;"></div>
-
 <div class="comment-panel" style="display: none;">
-  <!-- 상단 헤더 (닫기 버튼) -->
   <div class="comment-header">
     <span class="close-btn">&times;</span>
   </div>
-
-  <!-- 게시글 작성자 정보 + 본문 -->
   <div class="comment-post">
     <div class="post-author">
-      <img class="author-avatar" src="image-1180.png" alt="아바타" />
-      <span class="author-name">min_x_ili_0</span>
+      <img class="author-avatar" src="" alt="아바타" />
+      <span class="author-name">작성자 닉네임</span>
     </div>
     <div class="post-text">
-      내 jeans 봐.
-      <span class="post-hashtags">
-        #5뭐입챌린지 #여름준비 #반팔코디 #데일리슈즈 #여름필수템 #캐주얼룩
-      </span>
+      <span class="caption-text">본문 텍스트</span>
+      <br />
+      <span class="post-hashtags">#태그1 #태그2</span>
     </div>
-    <!-- ★ 날짜를 해시태그 바로 아래로 옮긴 부분 ★ -->
-    <div class="post-date">2025-3-23</div>
+    <div class="post-date">YYYY-MM-DD</div>
   </div>
-
-  <!-- 댓글 입력창 -->
   <div class="comment-input">
     <input type="text" class="comment-text" placeholder="댓글을 입력하세요..." />
   </div>
+  <div class="comment-list"></div>
+</div>
 
-  <!-- 실제 댓글 목록 -->
-  <div class="comment-list">
-    <!-- 댓글 아이템 1 -->
-    <div class="comment-item">
-      <!-- 1) 아바타 -->
-      <img class="comment-avatar" src="image-1250.png" alt="아바타" />
+<!-- ============================================ -->
+<!-- 4) JavaScript                                -->
+<!-- ============================================ -->
+<script>
+  const baseURL   = "http://localhost:9000/";
+  const resourceUrl = "https://resources-katte.jp.ngrok.io/";
+  const params = new URLSearchParams(window.location.search);
+  const styleId = params.get('style_id');  // ✅ 전역 선언
 
-      <!-- 2) 댓글 본문 + 메타를 감싸는 컨테이너 -->
-      <div class="comment-main">
-        <!-- 작성자 아이디 -->
-        <span class="comment-author">cat_love</span>
-
-        <!-- 댓글 내용 -->
-        <div class="comment-text-item">정말 기가막힌 옷이네</div>
-
-        <!-- 하단 메타: 날짜, 답글쓰기, 신고 -->
-        <div class="comment-meta">
-          <span class="comment-date">2025-3-23</span>
-          <span class="reply-link">답글쓰기</span>
-          <img class="comment-report-btn" src="/img/report_button.png" alt="신고" />
-        </div>
-      </div>
-
-      <!-- 3) 좋아요 아이콘 (댓글 우측 끝) -->
-      <span class="like-icon">🤍</span>
-    </div>
-
-    <!-- 댓글 아이템 2 -->
-    <div class="comment-item">
-      <img class="comment-avatar" src="image-1260.png" alt="아바타" />
-
-      <div class="comment-main">
-        <span class="comment-author">xililo_wedx</span>
-        <div class="comment-text-item">신발 너무 예뻐요ㅜ</div>
-        <div class="comment-meta">
-          <span class="comment-date">2시간 전</span>
-          <span class="reply-link">답글쓰기</span>
-          <img class="comment-report-btn" src="/img/report_button.png" alt="신고" />
-        </div>
-      </div>
-
-      <span class="like-icon liked">❤️</span>
-    </div>
-
-    <!-- 댓글 아이템 3 (대댓글) -->
-    <div class="comment-item reply">
-      <img class="comment-avatar" src="image-1270.png" alt="아바타" />
-
-      <div class="comment-main">
-        <span class="comment-author">min_x_ili_0</span>
-        <div class="comment-text-item">헤헤 감사합니다</div>
-        <div class="comment-meta">
-          <span class="comment-date">2시간 전</span>
-          <span class="reply-link">답글쓰기</span>
-          <img class="comment-report-btn" src="/img/report_button.png" alt="신고" />
-        </div>
-      </div>
-
-      <span class="like-icon">🤍</span>
-    </div>
-  </div> <!-- /.comment-list -->
-</div> <!-- /.comment-panel -->
-
-  <!-- ============================================ -->
-  <!-- 4) JavaScript (오버레이 및 댓글 로직)         -->
-  <!-- ============================================ -->
-  <script>
-document.addEventListener('DOMContentLoaded', function() {
-  /* ============================================
-     (A) 슬라이드 이미지 전환 로직 (기존 사용)
-     ============================================ */
-  const mainImage = document.querySelector('.image-119');
-  const nextBtn   = document.querySelector('.div17');
-  const prevBtn   = document.querySelector('.btn-prev');
-  const dot1      = document.querySelector('.ellipse-48');
-  const dot2      = document.querySelector('.ellipse-47');
-  let isSecondVisible = false;
-
-  nextBtn.addEventListener('click', function() {
-    if (isSecondVisible) return;
-    mainImage.src = '../img/imagestyledetail2.png';
-    dot1.style.background = '#ccc9c9';
-    dot2.style.background = '#c90036';
-    prevBtn.style.display = 'block';
-    isSecondVisible = true;
-  });
-
-  prevBtn.addEventListener('click', function() {
-    if (!isSecondVisible) return;
-    mainImage.src = '../img/imagestyledetail.png';
-    dot1.style.background = '#c90036';
-    dot2.style.background = '#ccc9c9';
-    prevBtn.style.display = 'none';
-    isSecondVisible = false;
-  });
-
-
-  /* ============================================
-     (B) 댓글 팝업 열기/닫기 로직 (기존 사용)
-     ============================================ */
-  const commentBtn   = document.querySelector('.ellipse-71');       // 말풍선 아이콘
-  const overlay      = document.querySelector('.overlay');
-  const commentPanel = document.querySelector('.comment-panel');
-  const closeBtn     = document.querySelector('.comment-panel .close-btn');
-  const commentInput = document.querySelector('.comment-text');
-
-  commentBtn.addEventListener('click', function() {
-    overlay.style.display = 'block';
-    commentPanel.style.display = 'flex';
-  });
-  closeBtn.addEventListener('click', function() {
-    overlay.style.display = 'none';
-    commentPanel.style.display = 'none';
-  });
-  overlay.addEventListener('click', function() {
-    overlay.style.display = 'none';
-    commentPanel.style.display = 'none';
-  });
-
-  // 입력란 포커스 시 플레이스홀더 지우고 글자색 변경, blur 시 복원
-  commentInput.addEventListener('focus', function() {
-    commentInput.placeholder = '';
-    commentInput.style.color = '#f9eeee';
-  });
-  commentInput.addEventListener('blur', function() {
-    if (commentInput.value.trim() === '') {
-      commentInput.placeholder = '댓글을 입력하세요...';
-      commentInput.style.color = '#ccc';
-    }
-  });
-
-
-  /* ============================================
-     (C) 신고하기 모달 열기/닫기 + 제출 로직
-     ============================================ */
-  // 1) 신고 버튼(메인 화면) 또는 댓글창 내부 신고 버튼
-  const reportButtons = document.querySelectorAll(
-    '.report_button, .comment-report-btn'
-  );
-  const reportOverlay = document.getElementById('report-overlay');
-  const reportModal   = document.getElementById('report-modal');
-  const reportClose   = document.getElementById('report-close');
-  const reportSubmit  = document.getElementById('report-submit');
-  const reportTextarea = document.getElementById('report-text');
-  const reportForm    = document.getElementById('report-form');
-
-  // 2) 모달 열기 함수
-  function openReportModal() {
-    reportOverlay.style.display = 'block';
-    reportModal.style.display = 'flex';
+  // 유저 정보 가져오는 헬퍼
+  async function fetchuserBean(userId) {
+    const res = await fetch(`${baseURL}user?user_id=${userId}&email_id=`);
+    if (!res.ok) return { nickname: '익명', profile_url: null };
+    return await res.json();
   }
 
-  // 3) 모달 닫기 함수
-  function closeReportModal() {
-    reportOverlay.style.display = 'none';
-    reportModal.style.display = 'none';
-    // 폼 초기화
-    reportForm.reset();
-    reportTextarea.value = '';
-  }
+  document.addEventListener('DOMContentLoaded', async function () {
 
-  // 4) 신고 버튼(여러 개) 클릭 시 모달 열기
-  reportButtons.forEach((btn) => {
-    btn.style.cursor = 'pointer';
-    btn.addEventListener('click', openReportModal);
+    const res = await fetch(`/comment/list?style_id=${styleId}`);
+    const comments = await res.json();
+
+
+    // 댓글 팝업 열기/닫기 로직
+    const commentBtn = document.querySelector('.div16');
+    const overlay = document.querySelector('.overlay');
+    const commentPanel = document.querySelector('.comment-panel');
+    const closeBtn = document.querySelector('.comment-panel .close-btn');
+    const commentInput = document.querySelector('.comment-text');
+    document.querySelector('._12').textContent = comments.length;
+
+
+    commentBtn.addEventListener('click', () => {
+      overlay.style.display = 'block';
+      commentPanel.style.display = 'flex';
+    });
+    closeBtn.addEventListener('click', () => {
+      overlay.style.display = 'none';
+      commentPanel.style.display = 'none';
+    });
+    overlay.addEventListener('click', () => {
+      overlay.style.display = 'none';
+      commentPanel.style.display = 'none';
+    });
+
+    commentInput.addEventListener('focus', () => {
+      commentInput.placeholder = '';
+      commentInput.style.color = '#f9eeee';
+    });
+    commentInput.addEventListener('blur', () => {
+      if (commentInput.value.trim() === '') {
+        commentInput.placeholder = '댓글을 입력하세요...';
+        commentInput.style.color = '#ccc';
+      }
+    });
   });
 
-  // 5) 모달 닫기 클릭
-  reportClose.addEventListener('click', closeReportModal);
-  reportOverlay.addEventListener('click', closeReportModal);
+  document.addEventListener('DOMContentLoaded', async () => {
+    const styleId = params.get('style_id');
+    if (!styleId) return;
 
-  // 6) 신고하기(제출) 버튼 클릭
-  reportSubmit.addEventListener('click', function() {
-    const chosenReason = document.querySelector(
-      'input[name="reason"]:checked'
-    );
-    const textValue = reportTextarea.value.trim();
+    const prevBtn = document.querySelector('.btn-prev');
+    const nextBtn = document.querySelector('.btn-next');
+    const imgRoot = document.getElementById('detail-images');
+    const likeCountEl = document.getElementById('like-count');
+    const likeBtnImg = document.getElementById('like-btn');
 
-    if (!chosenReason) {
-      alert('신고 사유를 선택해주세요.');
-      return;
+    const getUserlikeData = await fetch(`/content/isUserLikeAll`);
+    const list = await getUserlikeData.json();
+
+    fetch(`/content/style?style_id=${styleId}`)
+            .then(res => res.ok ? res.json() : Promise.reject(res.statusText))
+            .then(async data => {
+              console.log(data);
+
+              await loadComments(styleId);
+
+              // 날짜 세팅
+              const rawDate = data.created_date || '';
+              const dateOnly = rawDate.split('T')[0] || '';
+              document.getElementById('style-date').textContent = dateOnly;
+              document.querySelector('.comment-post .post-date').textContent = dateOnly;
+
+              // 헤더 유저 세팅
+              const userBean = await fetchuserBean(data.user_id);
+
+              //댓글 창 세팅
+              document.querySelector('.author-name').textContent = userBean.nickname;
+
+              document.querySelector('.caption-text').textContent = data.caption ?? '';
+              document.querySelector('.post-hashtags').textContent =
+                      (data.hashtags || []).map(ht => `#${ht}`).join(' ');
+
+              document.querySelector('.author-avatar').src = userBean.profile_url
+                      ? userBean.profile_url
+                      : resourceUrl + "profile/basic_profile_00.png";
+
+              document.querySelector('.min-x-ili-0').textContent = userBean.nickname;
+              document.querySelector('.image-118').src = userBean.profile_url
+                      ? userBean.profile_url
+                      : resourceUrl + "profile/basic_profile_00.png";
+
+              // 제목/캡션/해시태그 세팅
+              document.querySelector('.styletitle').textContent = data.style_title || '';
+              document.querySelector('.stylecaption').textContent = data.caption || '';
+              const htContainer = document.querySelector('.hashtag');
+              htContainer.innerHTML = '';
+              (data.hashtags || []).forEach(ht => {
+                const span = document.createElement('span');
+                span.classList.add('tag');
+                span.textContent = `#${ht}`;
+                htContainer.appendChild(span);
+              });
+
+              // 스타일 좋아요 초기화
+              likeCountEl.textContent = data.like_count ?? 0;
+              const resLike = await fetch(`/style/isLikeExist?style_id=${styleId}`)
+              const isHave = await resLike.json();
+
+              console.log("@#@#@#!@#!@#!@#" + isHave);
+              likeBtnImg.src = isHave
+                      ? '/img/heart_icon_clicked.png'
+                      : '/img/heart_icon_no_clicked.png';
+
+              // 스타일 좋아요 클릭 토글
+              likeBtnImg.addEventListener('click', async () => {
+                const resp = await fetch(`/style/like?style_id=${styleId}`);
+                const liked = await resp.json();
+                likeBtnImg.src = liked
+                        ? '/img/heart_icon_clicked.png'
+                        : '/img/heart_icon_no_clicked.png';
+                likeCountEl.textContent = liked
+                        ? (+likeCountEl.textContent + 1)
+                        : (+likeCountEl.textContent - 1);
+              });
+
+              // 댓글 좋아요 버튼 초기 위치 설정 & 클릭 토글
+              document.querySelectorAll('.comment-like-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                  const liked = btn.dataset.liked === 'true';
+                  btn.src = liked
+                          ? '/img/heart_icon_no_clicked.png'
+                          : '/img/heart_icon_clicked.png';
+                  btn.dataset.liked = (!liked).toString();
+                });
+              });
+
+              //태그 이미지 추가
+              const tagContainer = document.querySelector(".group-975");
+              tagContainer.innerHTML = ''; // 기존 내용 제거
+              const res = await fetch(`/content/stylePrdouct?style_id=${styleId}`)
+              const products = await res.json();
+
+              for (const productId of products) {
+                const wrapper = document.createElement("div");
+                const res = await fetch(`/content/getProduct?product_id=${productId}`)
+                const productData = await res.json();
+                wrapper.className = "_1";
+
+                wrapper.innerHTML = `
+  <a class="product-link" href="/product/${productId}" style="text-decoration: none; color: inherit;">
+    <img class="image-125" src="${resourceUrl}images/${productId}/${productId}_1.png" />
+    <div class="hysteric-glamour-hyst-280-000">
+      <span>
+        <span class="hysteric-glamour-hyst-280-000-span">
+          ${productData.product_name_kor ?? '상품명 없음'}<br><br>
+        </span>
+        <span class="hysteric-glamour-hyst-280-000-span2">
+          ${Number(productData.release_price).toLocaleString() ?? '-'} 원
+        </span>
+      </span>
+    </div>
+  </a>
+`;
+
+                tagContainer.appendChild(wrapper);
+              }
+
+              // 이미지 슬라이드 로직
+              const count = data.img_count;
+              console.log("count" + count);
+
+              if (count <= 0) {
+                imgRoot.textContent = '등록된 이미지가 없습니다.';
+                return;
+              }
+              const urls = Array.from(
+                      {length: count},
+                      (_, i) => `${resourceUrl}style/${styleId}/${styleId}_${i + 1}.png`
+              );
+              const mainImg = document.createElement('img');
+              mainImg.classList.add('detail-img');
+              imgRoot.appendChild(mainImg);
+              let idx = 0;
+
+              function render() {
+                mainImg.src = urls[idx];
+                prevBtn.style.display = idx > 0 ? 'block' : 'none';
+                nextBtn.style.display = idx < urls.length - 1 ? 'block' : 'none';
+              }
+
+              nextBtn.addEventListener('click', () => {
+                if (idx < urls.length - 1) {
+                  idx++;
+                  render();
+                }
+              });
+              prevBtn.addEventListener('click', () => {
+                if (idx > 0) {
+                  idx--;
+                  render();
+                }
+              });
+              render();
+            })
+            .catch(err => {
+              console.error('이미지 로드 실패:', err);
+              imgRoot.textContent = '이미지를 불러올 수 없습니다.';
+            });
+
+    //댓글 영역
+    const commentList = document.querySelector('.comment-list');
+    const commentInput = document.querySelector('.comment-text');
+
+    // 댓글 렌더링 함수
+    async function loadComments() {
+      const res = await fetch(`/comment/list?style_id=${styleId}`);
+      const comments = await res.json();
+
+      commentList.innerHTML = ''; // 초기화
+      for (const c of comments) {
+        const user = await fetchuserBean(c.user_id);
+        const item = document.createElement('div');
+        item.className = 'comment-item';
+        item.dataset.commentId = c.id;
+
+        item.innerHTML = `
+      <img class="comment-avatar" src="${user.profile_url || resourceUrl + 'profile/basic_profile_00.png'}" />
+      <div class="comment-main">
+        <span class="comment-author">${user.nickname}</span>
+        <div class="comment-text-item">${c.content}</div>
+        <div class="comment-meta">
+          <span class="comment-date">${formatDate(c.create_at)}</span>
+        </div>
+      </div>
+    `;
+
+        commentList.appendChild(item);
+      }
     }
-    if (textValue === '') {
-      alert('신고 사유를 입력해주세요.');
-      return;
+
+// 댓글 등록 (Enter 입력 시)
+    commentInput.addEventListener('keypress', async (e) => {
+      if (e.key === 'Enter' && commentInput.value.trim() !== '') {
+        const comment = commentInput.value.trim();
+        const res = await fetch(`/comment/add?style_id=${styleId}&content=${comment}`);
+        const result = await res.json();
+
+        if (result) {
+          commentInput.value = '';
+          await loadComments(); // 새로고침
+        } else {
+          alert("댓글 등록 실패");
+        }
+      }
+    });
+
+// 날짜 포맷 함수
+    function formatDate(isoString) {
+      const date = new Date(isoString);
+      const now = new Date();
+      const diffMin = Math.floor((now - date) / 60000);
+
+      if (diffMin < 1) return '방금 전';
+      if (diffMin < 60) return `${diffMin}분 전`;
+      const diffHour = Math.floor(diffMin / 60);
+      if (diffHour < 24) return `${diffHour}시간 전`;
+      return date.toISOString().split('T')[0]; // YYYY-MM-DD
     }
-    
-    alert('신고가 정상적으로 접수되었습니다.');
-
-/*     // 예시: 서버로 전송하는 대신 콘솔에 출력
-    console.log('선택된 사유:', chosenReason.value);
-    console.log('입력된 상세 사유:', textValue); */
-
-    // 모달 닫기
-    closeReportModal();
   });
-});
-  </script>
+</script>
 </body>
 </html>

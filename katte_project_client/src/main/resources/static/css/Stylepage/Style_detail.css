@@ -21,85 +21,6 @@ html, body {
 }
 
 /* ============================================ */
-/* 1) 사이드바 (기존) */
-/* ============================================ */
-.sidebar {
-  position: fixed;
-  top: 1.649vh;
-  left: 2.1675vw;
-  width: 11.866vw;
-  padding: 0.884vw;
-  background: #181818;
-  display: flex;
-  flex-direction: column;
-  z-index: 1000; /* 오버레이보다 위에 표시 */
-}
-
-.sidebar .logo-1 {
-  width: 62.77px;
-  height: 76.5px;
-  object-fit: cover;
-  margin-bottom: 34px;
-}
-
-.sidebar-nav {
-  margin-bottom: 51px;
-}
-.sidebar-nav ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-.sidebar-nav ul li {
-  margin-bottom: 17px;
-}
-.sidebar-nav ul li a {
-  display: block;
-  text-decoration: none;
-  color: #f9eeee;
-  font-family: "LineSeedSansKr-Regular", sans-serif;
-  font-size: 22.1px;
-  line-height: 34px;
-}
-
-.login-area {
-  margin-bottom: 51px;
-}
-.btn-login {
-  width: 100%;
-  height: 48.45px;      /* 57 * 0.85 */
-  background: #ff0044;
-  border: none;
-  border-radius: 11.9px; /* 14 * 0.85 */
-  color: #fff4f4;
-  font-family: "LineSeedSansKr-Regular", sans-serif;
-  font-size: 21.25px;   /* 25 * 0.85 */
-  line-height: 48.45px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-}
-.sidebar-footer {
-  margin-top: auto;
-  font-size: 12.75px;
-  color: #787878;
-  font-family: "LineSeedSansKr-Regular", sans-serif;
-}
-.sidebar-footer a {
-  color: #787878;
-  text-decoration: none;
-}
-.sidebar-footer p {
-  margin: 0 0 6.8px;
-}
-.sidebar-footer small {
-  display: block;
-  margin: 0;
-}
-
-/* ============================================ */
 /* 2) 메인 콘텐츠 (원래 있던 스타일)             */
 /* ============================================ */
 .div13 {
@@ -136,7 +57,7 @@ html, body {
 
 
 
-.image-119 {
+/*.image-119 {
   border-radius: 17.00px;
   width: 354.45px;
   height: 497.25px;
@@ -144,7 +65,7 @@ html, body {
   left: 766.70px;
   top: 99.45px;
   object-fit: cover;
-}
+}*/
 
 ._5 {
   color: #eeeeee;
@@ -154,7 +75,7 @@ html, body {
   font-weight: 700;
   position: absolute;
   left: 766.70px;
-  top: 623.05px;
+  top: 621.05px;;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -178,7 +99,7 @@ html, body {
   height: 63.31px;
   position: absolute;
   left: 766.70px;
-  top: 670.65px;
+  top: 654.65px;
   object-fit: cover;
 }
 
@@ -378,13 +299,12 @@ html, body {
   align-items: center;
   justify-content: flex-start;
 }
-
 .mask-group {
-  width: 13.23px;
-  height: 13.23px;
+  width: 14.23px;
+  height: 14.23px;
   position: absolute;
   left: 1052.15px;
-  top: 803.91px;
+  top: 801.91px;
   overflow: visible;
 }
 
@@ -398,11 +318,11 @@ html, body {
 /* 3) 말풍선(댓글) 버튼 (image-ellipse-71)       */
 /* ============================================ */
 .ellipse-71 {
-  background: #181818;   /* 배경은 검정 혹은 이미지만 표시 */
+  background: #181818;
   width: 14.51px;
-  height: 12.65px;
+  height: 13.65px;
   position: absolute;
-  left: 1090.16px;
+  left: 1088.16px;
   top: 802.83px;
   cursor: pointer;
 }
@@ -424,16 +344,31 @@ html, body {
   justify-content: flex-start;
 }
 
-/* 게시글 텍스트 */
-.jeans {
+.styletitle {
   color: #f9eeee;
   font-family: "LineSeedSansKr-Regular", sans-serif;
   font-size: 12.75px;
   line-height: 34px;
-  font-weight: 400;
+  font-weight: 700;
   position: absolute;
   left: 768.40px;
-  top: 824.50px;
+  top: 820.5px;
+  width: 85.85px;
+  height: 13.60px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.stylecaption {
+  color: #f9eeee;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  font-size: 12.75px;
+  line-height: 34px;
+  font-weight: 300;
+  position: absolute;
+  left: 768.40px;
+  top: 839.5px;
   width: 85.85px;
   height: 13.60px;
   display: flex;
@@ -450,7 +385,7 @@ html, body {
   font-weight: 700;
   position: relative;
   left: 768.40px;
-  top: 659.50px;
+  top: 669.5px;
   height: 18.70px;
   display: flex;
   align-items: center;
@@ -730,6 +665,16 @@ html, body {
   cursor: pointer;
   user-select: none;
 }
+.btn-next {
+  height: auto;
+  position: absolute;
+  left: 1066.2px;
+  top: 333.20px;
+  overflow: visible;
+  cursor: pointer;
+  user-select: none;
+}
+
 
 /* 본문 밖에서 쓰이는 신고 버튼(필요 시 남겨 두세요) */
 .report_button {
@@ -750,114 +695,82 @@ html, body {
   background: rgba(0, 0, 0, 0.6);
   z-index: 700; /* 다른 요소보다 위에 표시 */
 }
-
-/* =====================================
-   신고하기 팝업 모달
-   ===================================== */
-.report-modal {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  width: 400px;
-  max-width: 90%;
-  background: #181818;
-  border: 1px solid #fff;
+.detail-images {
+  display: flex;
+  gap: 8px;
+  margin: 16px 0;
+  border-radius: 17.00px;
+  width: 354.45px;
+  height: 497.25px;
+  position: absolute;
+  left: 766.70px;
+  top: 99.45px;
+  object-fit: cover;
+}
+.detail-images .detail-img {
+  max-width: 100px;
+  height: auto;
   border-radius: 8px;
-  transform: translate(-50%, -50%);
-  z-index: 701;
-  display: none;         /* JS로 열 때 flex 로 변경 */
-  flex-direction: column;
-  color: #f9eeee;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
 }
 
-/* 팝업 헤더: 제목 + 닫기 버튼 */
-.report-modal-header {
-  display: flex;
-  justify-content: space-between;
+
+/*.detail-images {
+  border-radius: 17.00px;
+  width: 354.45px;
+  height: 497.25px;
+  position: absolute;
+  left: 766.70px;
+  top: 99.45px;
+  object-fit: cover;
+}*/
+
+/* 슬라이드 컨테이너: 특정 크기(예: 354×497)에 딱 맞게 */
+.detail-images {
+  position: absolute;
+  width: 354.45px;
+  height: 497.25px;
+  left: 766.70px;
+  top: 99.45px;
+
+  display: flex;               /* 자식 img 중앙 정렬을 위해 */
+  justify-content: center;
   align-items: center;
-  padding: 12px 16px;
-  border-bottom: 1px solid #333;
+
+  overflow: hidden;            /* 컨테이너를 벗어난 나머지 영역 잘라내기 */
 }
-.report-modal-header .report-title {
-  font-size: 18px;
-  font-weight: 700;
+
+/* 슬라이드에 들어가는 img */
+.detail-images .detail-img {
+  max-width: 100%;             /* 너비가 컨테이너 100%에 닿으면 멈춤 */
+  max-height: 100%;            /* 높이가 컨테이너 100%에 닿으면 멈춤 */
+
+  /* 아래 둘 중 하나만 써도 되지만, object-fit 쓰면 브라우저마다 더 안정적 */
+  /* object-fit: contain; */   /* 비율 유지하며 모두 보이게 맞춤(여백 발생 가능) */
+  /* object-fit: cover;  */     /* 비율 유지하며 꽉 채움(일부 잘림 발생 가능) */
 }
-.report-modal-header .report-close {
-  font-size: 24px;
-  cursor: pointer;
+#style-date {
   color: #f9eeee;
-}
-
-/* 팝업 바디 영역 */
-.report-modal-body {
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-}
-
-/* 안내문구 (신고사유를 선택해주세요) */
-.report-subtitle {
-  margin: 0 0 8px 0;
-  font-size: 14px;
-}
-
-/* 라디오버튼 리스트 */
-.report-form label {
-  display: flex;
-  align-items: center;
-  margin-bottom: 8px;
-  font-size: 14px;
-  cursor: pointer;
-}
-.report-form label input[type="radio"] {
-  margin-right: 8px;
-  accent-color: #ff0044; /* 체크 시 빨간색 */
-}
-
-/* 텍스트 입력란 */
-.report-text {
-  width: 100%;
-  padding: 8px 12px;
-  margin-top: 12px;
-  background: #1f1f1f;
-  border: 1px solid #333;
-  border-radius: 4px;
-  resize: vertical;
-  color: #f9eeee;              /* 입력된 텍스트 색상 */
   font-family: "LineSeedSansKr-Regular", sans-serif;
-  font-size: 14px;
-}
-.report-text::placeholder {
-  color: #777;                 /* 플레이스홀더 색상 */
-}
-
-/* 신고하기 버튼 */
-.report-submit-btn {
-  margin-top: 16px;
-  align-self: center;          /* 버튼을 가로 중앙에 */
-  padding: 8px 24px;
-  background: transparent;
-  border: 1px solid #f9eeee;
-  border-radius: 4px;
-  color: #f9eeee;
-  font-size: 14px;
-  cursor: pointer;
-  transition: background 0.2s, color 0.2s;
-}
-.report-submit-btn:hover {
-  background: #f9eeee;
-  color: #181818;
+  font-size: 12.75px;    /* 원래 ._2025-3-23 에 쓰던 폰트 사이즈로 맞춰주세요 */
+  line-height: 34px;
+  font-weight: 400;
+  position: absolute;
+  left: 814.30px;        /* 원래 클래스에 쓰던 left 값 */
+  top: 66.95px;         /* 원래 클래스에 쓰던 top 값 */
+  width: 98.60px;        /* 원래 클래스에 쓰던 width/height */
+  height: 28.05px;
+  display: flex;
+  align-items: center;
 }
 
-/* =====================================
-   댓글창 내부 신고 버튼(작게, 메타 안쪽)
-   ===================================== */
-/* 기존 .comment-report-btn 에 추가된 규칙 */
-.comment-list .comment-report-btn {
-  width: 14px;
-  height: 14px;
+
+
+/* 기존 mask-group과 동일한 위치/크기로 덮어씌우기 */
+.heart-icon {
+  position: absolute;
+  left: 13px;     /* mask-group 의 left 값 재조정 (px 단위로 미세조정) */
+  top: 11px;      /* mask-group 의 top 값 재조정 */
+  font-size: 13px;/* mask-group 의 크기(13.23px)와 비슷하게 */
   cursor: pointer;
-  margin-left: 4px;  /* 답글쓰기 옆 간격 */
-  margin-top: 2px;   /* flex-start 상태에서 아래로 살짝 내리기 */
+  user-select: none;
 }

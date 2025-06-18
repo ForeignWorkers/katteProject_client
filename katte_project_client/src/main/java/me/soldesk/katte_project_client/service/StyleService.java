@@ -1,7 +1,10 @@
 package me.soldesk.katte_project_client.service;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import common.bean.auction.AuctionDataBean;
 import common.bean.content.ContentStyleBean;
+import common.bean.content.ContentStyleComment;
+import common.bean.product.ProductInfoBean;
 import common.bean.user.UserPaymentBean;
 import me.soldesk.katte_project_client.manager.ApiManagers;
 import org.springframework.http.ResponseEntity;
@@ -16,9 +19,7 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class StyleService {
@@ -95,10 +96,10 @@ public class StyleService {
                 new TypeReference<List<ContentStyleBean>>(){} // <-- 명시적으로 List<ContentStyleBean> 으로
         );
 
-        // 3) 에러 체크
-        if (!ApiManagers.isSuccessful(resp) || resp.getBody() == null) {
-            throw new IOException("스타일 목록 불러오기 실패: " + resp.getStatusCode());
-        }
+//        // 3) 에러 체크
+//        if (!ApiManagers.isSuccessful(resp) || resp.getBody() == null) {
+//            throw new IOException("스타일 목록 불러오기 실패: " + resp.getStatusCode());
+//        }
 
         // 4) 결과 반환
         return resp.getBody();
@@ -127,7 +128,108 @@ public class StyleService {
         params.put("style_id", Integer.toString(style_id));
 
         TypeReference<Boolean> ref = new TypeReference<>() {};
-        ResponseEntity<Boolean> response = ApiManagers.patchQuery("content/style/like" ,params ,ref);
+        ResponseEntity<Boolean> response = ApiManagers.postQuery("content/style/like" ,params ,ref);
         return Boolean.TRUE.equals(response.getBody());
+    }
+
+    public ContentStyleBean getStyleById(int style_id) {
+        Map<String, String> params = new HashMap<>();
+        params.put("style_id", Integer.toString(style_id));
+        TypeReference<ContentStyleBean> ref = new TypeReference<>() {};
+
+        ResponseEntity<ContentStyleBean> res = ApiManagers.get("content/style",params,ref);
+        return res.getBody();
+    }
+
+    public List<Integer> isLikeStyle(int user_id, int size, int offset) {
+        Map<String, String> params = new HashMap<>();
+        params.put("user_id", Integer.toString(user_id));
+        params.put("size", Integer.toString(size));
+        params.put("offset", Integer.toString(offset));
+
+        TypeReference<List<ContentStyleBean>> ref = new TypeReference<>() {};
+        ResponseEntity<List<ContentStyleBean>> res = ApiManagers.get("content/style/like/user",params,ref);
+
+        List<Integer> list = new ArrayList<>();
+        for (ContentStyleBean style : res.getBody()) {
+            list.add(style.getId());
+        }
+
+        return list;
+    }
+
+    public List<Integer> isLikeStyleAll(int user_id) {
+        Map<String, String> params = new HashMap<>();
+        params.put("user_id", Integer.toString(user_id));
+
+        TypeReference<List<ContentStyleBean>> ref = new TypeReference<>() {};
+        ResponseEntity<List<ContentStyleBean>> res = ApiManagers.get("content/style/like/userAll", params, ref);
+
+        List<Integer> list = new ArrayList<>();
+
+        List<ContentStyleBean> body = res.getBody();
+        if (body != null) {
+            for (ContentStyleBean style : body) {
+                list.add(style.getId());
+            }
+        }
+
+        System.out.println("✅ 좋아요한 스타일 ID 목록: " + list);
+        return list;
+    }
+
+    public List<Integer> getStyleProductId(int style_id) {
+        Map<String, String> params = new HashMap<>();
+        params.put("style_id", Integer.toString(style_id));
+
+        TypeReference<List<Integer>> ref = new TypeReference<>() {};
+        ResponseEntity<List<Integer>> res = ApiManagers.get("content/style/getTagProduct", params, ref);
+
+        System.out.println("✅ 좋아요한 스타일 ID 목록: " + res);
+        return res.getBody();
+    }
+
+    public ProductInfoBean getProductById(int product_id) {
+        Map<String, String> params = new HashMap<>();
+        params.put("product_id", Integer.toString(product_id));
+
+        TypeReference<ProductInfoBean> ref = new TypeReference<>() {};
+        ResponseEntity<ProductInfoBean> res = ApiManagers.get("product", params, ref);
+
+        return res.getBody();
+    }
+
+    public List<ContentStyleComment> getCommentsByStyleId(int style_id) {
+        Map<String, String> params = new HashMap<>();
+        params.put("style_id", Integer.toString(style_id));
+        TypeReference<List<ContentStyleComment>> ref = new TypeReference<>() {};
+        ResponseEntity<List<ContentStyleComment>> res = ApiManagers.get("content/style/comment", params, ref);
+
+        return res.getBody();
+    }
+
+    public boolean addComment(int user_id, int style_id, String content) {
+        ContentStyleComment comment = new ContentStyleComment();
+        comment.setUser_id(user_id);
+        comment.setStyle_id(style_id);
+        comment.setContent(content);
+        comment.setCreate_at(new Date());
+
+        TypeReference<String> ref = new TypeReference<>() {};
+        ResponseEntity<String> res = ApiManagers.post("content/style/comment", comment, ref);
+        return res.getStatusCode().is2xxSuccessful();
+    }
+
+    public boolean isExitLikeByUserId(int style_id, int user_id) {
+        Map<String, String> params = new HashMap<>();
+        params.put("style_id", Integer.toString(style_id));
+        params.put("user_id", Integer.toString(user_id));
+
+        TypeReference<Boolean> ref = new TypeReference<>() {};
+        ResponseEntity<Boolean> res = ApiManagers.get("content/isStyleLikeExist", params, ref);
+        System.out.println(res.getBody());
+        System.out.println(res.getStatusCode().is2xxSuccessful());
+
+        return Boolean.TRUE.equals(res.getBody());
     }
 }
