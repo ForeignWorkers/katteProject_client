@@ -166,7 +166,7 @@ html, body {
   table-layout: fixed;     /* 열 너비 균등 분배 */
   background: #2a2929;
   border-radius: 6.8px;    /* 8px × 0.85 */
-  overflow: hidden;
+  overflow: visible;
   margin-bottom: 20.4px;   /* 24px × 0.85 */
 }
 .member-table thead {

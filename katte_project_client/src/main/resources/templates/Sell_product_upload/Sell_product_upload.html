@@ -113,10 +113,10 @@
   <div class="div7">경매 시작가</div>
   <div class="div8">즉시 구매가</div>
   <div class="rectangle-1677522"></div>
-  <input type="number" class="input-minprice1" placeholder="최소 1Katte 이상" min="1" />
+  <input type="number" class="input-minprice1" placeholder="최소 1000 k" min="1000" step="1000" />
   <div class="div9">Katte</div>
   <div class="rectangle-1677622"></div>
-  <input type="number" class="input-minprice2" placeholder="경매 시작가 이상" min="1" />
+  <input type="number" class="input-minprice2" placeholder="시작가 이상" min="1000" step="1000" />
   <div class="div10">Katte</div>
   <div class="div11">즉시구매 설정</div>
   <input type="checkbox" id="square-toggle" class="toggle-input" />
@@ -245,16 +245,33 @@
     instantPriceInput.disabled = true;
 
     // 경매 시작가 입력 감지 → 체크박스 활성화
-    startPriceInput.addEventListener("input", function () {
+    startPriceInput.addEventListener("blur", function () {
       const startValue = parseInt(startPriceInput.value, 10);
-      if (!isNaN(startValue) && startValue >= 1) {
-        instantToggle.disabled = false;
-      } else {
+
+      if (isNaN(startValue)) return;
+
+      if (startValue < 1000) {
+        alert("⚠️ 최소 1,000원 이상 입력해주세요.");
+        startPriceInput.value = "";
         instantToggle.disabled = true;
         instantToggle.checked = false;
         instantPriceInput.disabled = true;
         instantPriceInput.value = "";
+        return;
       }
+
+      if (startValue % 1000 !== 0) {
+        alert("⚠️ 1,000원 단위로만 입력해주세요.");
+        startPriceInput.value = "";
+        instantToggle.disabled = true;
+        instantToggle.checked = false;
+        instantPriceInput.disabled = true;
+        instantPriceInput.value = "";
+        return;
+      }
+
+      // 통과 시 → 즉시구매 토글 활성화
+      instantToggle.disabled = false;
     });
 
     // 체크박스에 따라 즉구가 입력란 활성화/비활성화
@@ -299,16 +316,25 @@
             ? document.querySelector(".input-minprice2").value
             : 0;
 
-    const startValue = parseInt(document.querySelector(".start-hidden").value, 10);
-    const instantValue = parseInt(document.querySelector(".instant-hidden").value, 10);
-
-    if (isInstantSale && instantValue < startValue) {
-      alert("즉시구매가는 경매 시작가보다 작을 수 없습니다.");
-      return;
-    }
+      const startValue = parseInt(document.querySelector(".start-hidden").value, 10);
+      const instantValue = parseInt(document.querySelector(".instant-hidden").value, 10);
 
 
+      if (isNaN(startValue) || startValue < 1000 || startValue % 1000 !== 0) {
+        alert("경매 시작가는 1,000원 이상이며 1,000원 단위로 입력해야 합니다.");
+        return;
+      }
 
+      if (isInstantSale) {
+        if (isNaN(instantValue) || instantValue < 1000 || instantValue % 1000 !== 0) {
+          alert("즉시 구매가는 1,000원 단위로 입력해야 합니다.");
+          return;
+        }
+
+        if (instantValue < startValue) {
+          alert("즉시구매가는 경매 시작가보다 작을 수 없습니다.");
+          return;
+        }
 
     // 마감일 선택 처리 (3/5/7 중 선택된 라디오의 label 값을 sale_period에 저장)
     const selectedPeriod = document.querySelector('input[name="circle-choice"]:checked');
@@ -325,7 +351,7 @@
       alert("이미지 또는 영상을 업로드해주세요.");
       return;
     }
-
+}
     document.getElementById("productForm").submit();
     } catch (e) {
       console.error("폼 제출 중 에러 발생", e);

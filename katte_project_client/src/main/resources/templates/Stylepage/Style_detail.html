@@ -84,7 +84,7 @@
 <!-- 4) JavaScript                                -->
 <!-- ============================================ -->
 <script>
-  const baseURL   = "http://localhost:9000/";
+  const baseURL   = "https://api-katte.jp.ngrok.io/";
   const resourceUrl = "https://resources-katte.jp.ngrok.io/";
   const params = new URLSearchParams(window.location.search);
   const styleId = params.get('style_id');  // ✅ 전역 선언
@@ -333,13 +333,23 @@
 // 댓글 등록 (Enter 입력 시)
     commentInput.addEventListener('keypress', async (e) => {
       if (e.key === 'Enter' && commentInput.value.trim() !== '') {
+        if (currentUserId === -1) {
+          alert("로그인이 필요합니다.");
+          return;
+        }
+
+        if (commentRestricted) {
+          alert("🚫 현재 댓글 작성이 제한된 상태입니다.");
+          return;
+        }
+
         const comment = commentInput.value.trim();
         const res = await fetch(`/comment/add?style_id=${styleId}&content=${comment}`);
         const result = await res.json();
 
         if (result) {
           commentInput.value = '';
-          await loadComments(); // 새로고침
+          await loadComments();
         } else {
           alert("댓글 등록 실패");
         }
@@ -359,6 +369,10 @@
       return date.toISOString().split('T')[0]; // YYYY-MM-DD
     }
   });
+</script>
+<script th:inline="javascript">
+  const currentUserId = [[${userId}]];
+  const commentRestricted = [[${commentRestricted}]]; // true or false
 </script>
 </body>
 </html>
