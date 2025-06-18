@@ -128,7 +128,9 @@
   <div class="div9">연락처</div>
   <div class="div10">주소</div>
   <div class="div11">요청 사항 없음</div>
-  <div class="div12">사용한 쿠폰이 없음</div>
+  <div class="div12"
+       th:text="'사용 가능한 쿠폰 ' + ${#lists.size(userCoupons)} + '개 있음'">
+  </div>
   <div class="div13">정민규</div>
   <div class="_010-2011-6847">010-2011-6847</div>
   <div class="_12345-123-1234">
@@ -231,7 +233,10 @@
   </div>
   <div class="coupon-list">
     <th:block th:each="coupon : ${userCoupons}">
-      <div class="coupon-card" th:attr="data-discount=${coupon.sale_amount}">
+      <div class="coupon-card"
+           th:attr="data-discount=${coupon.sale_amount},
+                    data-name=${coupon.name},
+                    data-id=${coupon.id}">
         <p th:text="${coupon.name}">쿠폰명</p>
         <p th:text="'-' + ${#numbers.formatInteger(coupon.sale_amount, 3, 'COMMA')} + ' katte'">-할인금액</p>
       </div>
@@ -500,6 +505,7 @@ document.addEventListener('DOMContentLoaded', async function () {
   const couponModal = document.querySelector(".coupon-modal");
   const couponCards = document.querySelectorAll(".coupon-card");
   const couponDisplay = document.getElementById("couponDiscountText");
+  const couponView = document.querySelector(".div12");
 
   // 쿠폰 모달 열기
   document.querySelector(".rectangle-1617").addEventListener("click", () => {
@@ -520,6 +526,7 @@ document.addEventListener('DOMContentLoaded', async function () {
       const discount = parseInt(card.dataset.discount);
       couponDiscount = discount;
 
+      couponView.textContent = card.dataset.name.toLocaleString();
       couponDisplay.textContent = `-${discount.toLocaleString()} katte`;
 
       // 결제 금액 다시 계산

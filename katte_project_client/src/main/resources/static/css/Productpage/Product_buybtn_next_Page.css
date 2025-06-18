@@ -1921,8 +1921,32 @@ html, body {
   background: rgba(0, 0, 0, 0.4);
 }
 .coupon-card {
-  background: #eee;
-  margin: 10px 0;
-  padding: 15px;
+   border: 1px solid #ddd;
+   border-radius: 12px;
+   padding: 1rem;
+   margin: 0.5rem 0;
+   background-color: #fff;
+   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+   cursor: pointer;
+   transition: all 0.2s ease-in-out;
+ }
+
+.coupon-card:hover {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+.modal-header {
+  position: relative;
+  padding: 1rem;
+}
+
+.modal-close-btn {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
   cursor: pointer;
+  color: #555;
 }
