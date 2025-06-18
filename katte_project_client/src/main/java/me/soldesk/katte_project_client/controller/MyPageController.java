@@ -1,13 +1,10 @@
 package me.soldesk.katte_project_client.controller;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import common.bean.cs.CsAnnounceBean;
+import common.bean.product.ProductBrandLikeBean;
 import common.bean.user.UserAddressBean;
 import common.bean.user.UserBean;
 import jakarta.servlet.http.HttpSession;
-import me.soldesk.katte_project_client.manager.ApiManagers;
 import me.soldesk.katte_project_client.service.MyPageService;
-import me.soldesk.katte_project_client.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,66 +19,128 @@ public class MyPageController {
 
     public MyPageController(MyPageService myPageService) { this.myPageService = myPageService;}
 
+    /* ───────────────────────────────────────────────────────────────────────────
+                                    구매 이력
+   ─────────────────────────────────────────────────────────────────────────── */
+
     @GetMapping("/MyPage")
     public String myPage(){
         return "CsMyPage/MyPage";
     }
 
+    /* ───────────────────────────────────────────────────────────────────────────
+                                    관심
+   ─────────────────────────────────────────────────────────────────────────── */
+
+
+    //관심 브랜드 조회 user_id 필요
+    /*@GetMapping("/Favorite")
+    public String getFavoriteBrand(HttpSession session, Model model){
+        UserBean user = (UserBean) session.getAttribute("currentUser");
+        if(user == null){
+            System.out.println("user_id 비어있음");
+            return "redirect:/login";
+        }
+
+        String user_id = String.valueOf(user.getUser_id());
+        System.out.println("받아 온 user_id: " + user_id);
+
+        ResponseEntity<List<ProductBrandLikeBean>> response = myPageService.getAllBrandLike(user_id);
+
+        System.out.println(response.getBody());
+
+        if (response == null || response.getBody() == null || response.getBody().isEmpty()) {
+            System.out.println("관심 브랜드가 없습니다.");
+            return "CsMyPage/Wishlist_brand_empty";
+        }
+
+        model.addAttribute("likeBrand", response.getBody());
+        System.out.println("모델에 ProductBrandLikeBean 담겼어요");
+
+        return "CsMyPage/Wishlist_brand";
+    }*/
+
     @GetMapping("/Favorite")
-    public String favorite(){
-        return "CsMyPage/Favorite";
+    public String showFavoriteBrandPage(HttpSession session, Model model) {
+        Object currentUserObj = session.getAttribute("currentUser");
+
+        if (currentUserObj instanceof UserBean user) {
+            String user_id = String.valueOf(user.getUser_id());
+
+            model.addAttribute("favoriteBrands", myPageService.getUserFavoriteBrands(user_id));
+            return "CsMyPage/Wishlist_brand";
+        }
+
+        return "redirect:/login";
     }
+
+    /* ───────────────────────────────────────────────────────────────────────────
+                                  내 스타일
+   ─────────────────────────────────────────────────────────────────────────── */
 
     @GetMapping("/MyStyle")
     public String myStyle(){
         return "CsMyPage/Mypage_mystyle";
     }
 
+    /* ───────────────────────────────────────────────────────────────────────────
+                                  캇테 머니
+   ─────────────────────────────────────────────────────────────────────────── */
+
     @GetMapping("/MyKatteMoney")
     public String myKatteMoney(){
         return "CsMyPage/Mypage_kattemoney_page";
     }
+
+    /* ───────────────────────────────────────────────────────────────────────────
+                                   내 포인트
+   ─────────────────────────────────────────────────────────────────────────── */
 
     @GetMapping("/MyPoint")
     public String myPoint(){
         return "CsMyPage/Mypage_point";
     }
 
+    /* ───────────────────────────────────────────────────────────────────────────
+                                   내 쿠폰
+   ─────────────────────────────────────────────────────────────────────────── */
+
     @GetMapping("/MyCoupon")
     public String myCoupon(){
         return "CsMyPage/Mypage_coupon";
     }
 
- /*   @GetMapping("/MyAddress")
-    public String myAddress(){
-        return "CsMyPage/MyPage_address";
-    }*/
 
-    //주소 조회 user_id 필요
-    @GetMapping("/MyAddress")
-    public String addressPage(HttpSession session, Model model) {
-        UserBean user = (UserBean) session.getAttribute("currentUser");
-        session.setAttribute("user_id", String.valueOf(user.getUser_id()));
-        System.out.println(user.getUser_id());
-        String user_id = (String) session.getAttribute("user_id");
-        System.out.println("받은 유저 ID : " + user_id);
+    /* ───────────────────────────────────────────────────────────────────────────
+                                        주소록 관리
+       ─────────────────────────────────────────────────────────────────────────── */
 
-        if (user_id == null) {
-            return "redirect:/login";
+        //주소 조회 user_id 필요
+        @GetMapping("/MyAddress")
+        public String addressPage(HttpSession session, Model model) {
+            UserBean user = (UserBean) session.getAttribute("currentUser");
+            session.setAttribute("user_id", String.valueOf(user.getUser_id()));
+            System.out.println(user.getUser_id());
+            String user_id = (String) session.getAttribute("user_id");
+            System.out.println("받은 유저 ID : " + user_id);
+
+            if (user_id == null) {
+                return "redirect:/login";
+            }
+
+            // 주소 목록
+            ResponseEntity<List<UserAddressBean>> response = myPageService.getUserAddressList(user_id);
+            System.out.println("받은 주소 목록 리스트 : " + response.getBody());
+            model.addAttribute("addressList", response.getBody());
+
+            // 메인 주소도 함께 가져오기
+            ResponseEntity<UserAddressBean> mainResponse = myPageService.getUserMainAddress(user_id);
+            System.out.println("메인 주소 리스트 : " + mainResponse.getBody());
+            model.addAttribute("mainAddress", mainResponse.getBody());
+
+            return "CsMyPage/MyPage_address";
         }
 
-        // 주소 목록
-        ResponseEntity<List<UserAddressBean>> response = myPageService.getUserAddressList(user_id);
-        System.out.println("받은 주소 목록 리스트 : " + response.getBody());
-        model.addAttribute("addressList", response.getBody());
-
-        // 메인 주소도 함께 가져오기
-        ResponseEntity<UserAddressBean> mainResponse = myPageService.getUserMainAddress(user_id);
-        System.out.println("메인 주소 리스트 : " + mainResponse.getBody());
-        model.addAttribute("mainAddress", mainResponse.getBody());
-
-        return "CsMyPage/MyPage_address";
-    }
         //수정을 위한 단일 정보 취득
         @GetMapping("/MyAddress/edit")
         public String showEditForm(@RequestParam("address_id") String address_id,
@@ -154,7 +213,5 @@ public class MyPageController {
         myPageService.deleteAddress(Integer.parseInt(userId), address_id);
         return "redirect:/MyAddress";
     }
-
-
 
 }

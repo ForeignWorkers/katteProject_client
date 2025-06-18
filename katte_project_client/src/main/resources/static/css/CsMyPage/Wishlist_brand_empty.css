@@ -1,18 +1,42 @@
+
+/* ───────────────────────────────────────────────────────────────────────────
+   공통 리셋
+   ─────────────────────────────────────────────────────────────────────────── */
 * {
     box-sizing: border-box;
-}
-html, body {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    transform-origin: top left;
+}
+html, body {
     height: 100%;
-    color : #EEEEEE;
     background-color: #181818;
+    font-family: "LineSeedSansKr-Regular", sans-serif;
+    color: #f9eeee;
 }
-* {
-  box-sizing: border-box;
+
+/* ───────────────────────────────────────────────────────────────────────────
+   콘텐츠 래퍼 (Customer Center)
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.wrapper {
+    transform-origin: top left;
+    width: 100%;
+    min-height: 83vh;
 }
+
+/* ───────────────────────────────────────────────────────────────────────────
+   컨텐츠 영역 좌측 여백
+   ─────────────────────────────────────────────────────────────────────────── */
+.contentWrapper {
+    margin-left: calc(11.866vw + 2.1675vw + 17px);
+    padding: 20px;
+}
+
+.content{
+    width : 75vw;
+    max-width : 100%;
+}
+
 /* ───────────────────────────────────────────────────────────────────────────
    상단 탭
    ─────────────────────────────────────────────────────────────────────────── */
@@ -66,6 +90,17 @@ html, body {
     font-weight : bold;
 }
 
+
+.button-list{
+    position: relative;
+    display: flex;
+    width: 100%;
+    top: 17vh;
+    align-items: center;
+    right: 16%;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
 
 .div24 {
   color: rgba(249, 238, 238, 0.595);
