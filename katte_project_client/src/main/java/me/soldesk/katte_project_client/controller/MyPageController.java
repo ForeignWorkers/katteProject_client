@@ -1,6 +1,8 @@
 package me.soldesk.katte_project_client.controller;
 
+import common.bean.ecommerce.EcommerceOrderHistoryBean;
 import common.bean.product.ProductBrandLikeBean;
+import common.bean.product.ProductInfoBean;
 import common.bean.user.UserAddressBean;
 import common.bean.user.UserBean;
 import jakarta.servlet.http.HttpSession;
@@ -10,7 +12,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class MyPageController {
@@ -22,9 +26,40 @@ public class MyPageController {
     /* ───────────────────────────────────────────────────────────────────────────
                                     구매 이력
    ─────────────────────────────────────────────────────────────────────────── */
+/*
+    @GetMapping("/MyPage")
+    public String orderHistoryPage(@RequestParam("user_id") int user_id, Model model) {
+        List<EcommerceOrderHistoryBean> orderList = myPageService.getOrderHistory(user_id);
+        model.addAttribute("orderList", orderList);
+        return "CsMyPage/MyPage";
+    }*/
 
     @GetMapping("/MyPage")
-    public String myPage(){
+    public String getOrderListPage(HttpSession session , Model model) {
+        UserBean user = (UserBean) session.getAttribute("currentUser");
+        session.setAttribute("user_id", String.valueOf(user.getUser_id()));
+        String user_id = (String)session.getAttribute("user_id");
+        System.out.println("user_id : " + user_id);
+        List<EcommerceOrderHistoryBean> orderList = myPageService.getOrderHistory(user_id);
+
+        Map<Integer, ProductInfoBean> productInfoMap = new HashMap<>();
+        if (orderList != null) {
+            for (EcommerceOrderHistoryBean order : orderList) {
+                int product_id = order.getProduct_id();
+                ProductInfoBean productInfo = myPageService.getProductInfo(product_id);
+                System.out.println(productInfo);
+                if (productInfo != null) {
+                    productInfoMap.put(product_id, productInfo);
+                }
+            }
+        }
+
+        model.addAttribute("orderList", orderList);
+        model.addAttribute("productInfoMap", productInfoMap);
+
+        System.out.println(orderList);
+        System.out.println(productInfoMap);
+
         return "CsMyPage/MyPage";
     }
 
