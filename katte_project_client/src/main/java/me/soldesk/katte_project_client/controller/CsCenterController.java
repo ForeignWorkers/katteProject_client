@@ -173,15 +173,16 @@ public class CsCenterController {
         return "redirect:/Cs_Inquire_Customer";
     }
 
-    @GetMapping("/Inquire_Customer")
-    public String csInquireCustomer() {
-        return "CsCenter/Cs_Inquire_Customer";
-    }
 
     @GetMapping("/Inquire_Admin")
     public String csInquireAdmin() {
         return "CsCenter/Cs_Inquire_Admin";
     }*/
+
+    @GetMapping("/Inquire_Customer")
+    public String csInquireCustomer() {
+        return "CsCenter/Cs_Inquire_X";
+    }
 
     /* ───────────────────────────────────────────────────────────────────────────
                                    검수 기준

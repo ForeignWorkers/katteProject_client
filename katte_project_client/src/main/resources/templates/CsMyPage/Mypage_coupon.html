@@ -44,22 +44,36 @@
 <body>
 
 <!-- ✅ 사이드바 -->
-<div th:replace="~{Fragments/Sidebar :: sidebar}"></div>
+<div th:replace="Fragments/Sidebar :: sidebar"></div>
 
-<!-- ✅ 마이페이지 상단 탭 -->
 <div class="contentWrapper">
-  <div id="MyPageBar">
-    <div id="MyPageText">MyPage</div>
-    <div id="ClickBox">
-      <a href="/MyPage" id="buyList"><div>구매내역</div></a>
-      <a href="/Favorite" id="favorite"><div>관심</div></a>
-      <a href="/MyStyle" id="MyStyle"><div>스타일</div></a>
-      <a href="/MyKatteMoney" id="MyKatteMoney"><div>캇테머니</div></a>
-      <a href="/MyPoint" id="MyPoint"><div>포인트</div></a>
-      <a href="/MyCoupon" id="MyCoupon" class="selected"><div>쿠폰함</div></a>
-      <a href="/MyAddress" id="MyAddress"><div>주소록 관리</div></a>
+  <div id = "MyPageBar"> <!--상단 마이페이지 바-->
+    <div id = "MyPageText">MyPage</div>
+    <div id = "ClickBox">
+      <a href="/MyPage" id = "buyList">
+        <div>구매내역</div>
+      </a>
+      <a href="/Favorite" id = "favorite">
+        <div>관심</div>
+      </a>
+      <a href="/MyStyle" id = "MyStyle">
+        <div>스타일</div>
+      </a>
+      <a href="/MyKatteMoney" id = "MyKatteMoney">
+        <div>캇테머니</div>
+      </a>
+      <a href="/MyPoint" id = "MyPoint">
+        <div>포인트</div>
+      </a>
+      <a href="/MyCoupon" id = "MyCoupon"  class = "selected">
+        <div>쿠폰함</div>
+      </a>
+      <a href="/MyAddress" id = "MyAddress">
+        <div>주소록 관리</div>
+      </a>
     </div>
   </div>
+
 
   <!-- ✅ 쿠폰 그리드 영역 -->
   <div class="coupon-grid" id="couponContainer"></div>
