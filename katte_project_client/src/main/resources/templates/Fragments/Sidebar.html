@@ -46,7 +46,7 @@
         <p class="value" th:text="${#numbers.formatInteger(katteMoney, 3, 'COMMA') + 'katte'}"></p>
         <p class="label">보유 포인트</p>
         <p class="value" th:text="${point + 'Point'}"></p>
-        <button class="charge-btn">충전하기</button>
+        <button class="charge-btn" onclick="location.href='/mypage/kattemoney';">충전하기</button>
       </div>
     </div>
 
@@ -54,7 +54,6 @@
     <div class="admin-area" th:if="${isAdmin}">
       <a href="/admin" class="admin-btn">관리자</a>
     </div>
-
 
     <footer class="sidebar-footer">
       <p><a href="/announce">고객센터</a> | <a href="/terms">이용약관</a></p>

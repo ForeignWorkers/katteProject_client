@@ -1,32 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="UTF-8">
   <title>Favorite</title>
+  <link rel="stylesheet" href="/css/fragments/Sidebar.css" />
   <link rel="stylesheet" href="/css/CsMyPage/Mypage_kattemoney_charge.css">
 </head>
 <body>
-<aside class = "sidebar"> <!--사이드 바-->
-  <a href="/main"><img class="logo-1" src="/img/logo%20(1).png" alt="로고"></a>
-  <nav class="sidebar-nav">
-    <ul>
-      <li><a href="/search">검색</a></li>
-      <li><a href="/explore">탐색</a></li>
-      <li><a href="/sell">판매등록</a></li>
-      <li><a href="/wishlist">관심상품</a></li>
-      <li><a href="/style">스타일</a></li>
-      <li><a href="/mypage">마이페이지</a></li>
-      <li><a href="/support">고객센터</a></li>
-    </ul>
-  </nav>
-   <div class="login-area">
-    <a href="/login" class="btn-login">로그인</a>
-  </div>
-  <footer class="sidebar-footer">
-    <p><a href="/support">고객센터</a> | <a href="/terms">이용약관</a></p>
-    <small>&copy; All copyright in soldesk</small>
-  </footer>
-</aside>
+<!-- ───────────────────────────────────────────────────────────────────
+   1) 사이드바 (기존과 동일)
+   ─────────────────────────────────────────────────────────────────── -->
+<!-- 사이드바 HTML 분리 -->
+<div th:replace="~{Fragments/Sidebar :: sidebar}"></div>
+<div class="wrapper">
 <div id = "MyPageBar"> <!--상단 마이페이지 바-->
   <div id = "MyPageText">MyPage</div>
   <div id = "ClickBox">
@@ -59,36 +45,86 @@
     </div>
   </div>
 </div>
-  
-  <div class="rectangle-1570"></div>
-  <div class="div2">카카오 페이</div>
-  <img class="image-105" src="../img/kakaopayimage.png" />
-  <div class="rectangle-1571"></div>
-  <div class="div3">네이버 페이</div>
-  <img class="image-107" src="../img/neverpayimage.png" />
-  <div class="rectangle-1570"></div>
-  <div class="div2">카카오 페이</div>
-  <img class="image-105" src="image-1051.png" />
-  <div class="rectangle-1571"></div>
-  <div class="div3">네이버 페이</div>
-  <img class="image-107" src="image-1071.png" />
+
   <div class="div4">캇테머니 충전</div>
   <div class="div5">보유 캇테머니</div>
-  <div class="_133-000-katte">133,000katte</div>
-  
-  <script>
+  <div class="_133-000-katte"
+       th:text="${#numbers.formatInteger(katteMoney, 3, 'COMMA') + ' katte'}">0 katte</div>
+
+  <!-- 충전 금액 입력 -->
+  <div class="charge-box">
+    <label for="chargeAmount">충전 금액 입력</label>
+    <input type="number" id="chargeAmount" name="chargeAmount"
+           placeholder="예: 10000" min="10000" max="1000000" step="10000">
+  </div>
+
+
+  <!-- 충전 버튼 -->
+  <div id="toss-pay-button" class="rectangle-1570" style="display: flex; align-items: center; justify-content: center; gap: 10px; cursor: pointer;">
+    <img class="image-105"
+         src="/img/tosspay.png"
+         style="position: static !important; width: 32px; height: 32px;" />
+    <div class="div2" style="position: static; font-size: 18px;">토스 페이</div>
+  </div>
+</div>
+
+<!-- 충전/환불 탭 버튼 (상단 위치) -->
+<div class="katte-tab-buttons">
+  <a th:class="${tab} == 'charge' ? 'selected-tab' : ''" href="/mypage/kattemoney">충전</a>
+  <a th:class="${tab} == 'refund' ? 'selected-tab' : ''" href="/mypage/kattemoney/refund">환불</a>
+</div>
+
+  <!-- 기존 div들 아래에 추가 -->
+</body>
+
+<script src="https://js.tosspayments.com/v1/payment"></script>
+
+<script th:inline="javascript">
+  const customerName = /*[[${userName}]]*/ "게스트";
+</script>
+
+<script>
   document.addEventListener("DOMContentLoaded", function () {
+    // 마이페이지 상단 메뉴 클릭 이벤트
     const items = document.querySelectorAll("#ClickList > div");
     items.forEach(item => {
       item.addEventListener("click", function () {
-        // 모든 div에서 selected를 해제
         items.forEach(i => i.classList.remove("selected"));
-        // 클릭한 div에 selected를 부여
         this.classList.add("selected");
       });
+    });
+
+    // 토스 페이 충전 버튼 클릭
+    document.getElementById("toss-pay-button").addEventListener("click", function () {
+      const amount = parseInt(document.getElementById("chargeAmount").value);
+
+      if (isNaN(amount) || amount < 10000 || amount > 1000000 || amount % 10000 !== 0) {
+        alert("⚠️ 충전 금액은 10,000원 이상, 1,000,000원 이하이며 10,000원 단위로만 가능합니다.");
+        return;
+      }
+
+      // 테스트 api key
+      TossPayments("test_ck_QbgMGZzorzy7xdqWdyNjVl5E1em4")
+        .requestPayment("카드", {
+          amount: amount,
+          orderId: "order-" + new Date().getTime(),
+          orderName: "캇테머니 충전",
+          customerName: customerName,
+          successUrl: "http://localhost:8080/ecommerce/charge/success?amount=" + amount,
+          failUrl: "http://localhost:8080/ecommerce/charge/fail"
+        });
     });
   });
 </script>
 
-</body>
+<script th:inline="javascript">
+  //충전 성공 메시지
+  /*<![CDATA[*/
+  const message = /*[[${message}]]*/ null;
+  if (message) {
+    alert(message);
+  }
+  /*]]>*/
+</script>
+
 </html>

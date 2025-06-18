@@ -3,30 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <title>Favorite</title>
+  <link rel="stylesheet" href="/css/fragments/Sidebar.css" />
   <link rel="stylesheet" href="/css/CsMyPage/Mypage_kattemoney_page.css">
 </head>
 <body>
-<aside class = "sidebar"> <!--사이드 바-->
-  <a href="/main"><img class="logo-1" src="/img/logo%20(1).png" alt="로고"></a>
-  <nav class="sidebar-nav">
-    <ul>
-      <li><a href="/search">검색</a></li>
-      <li><a href="/explore">탐색</a></li>
-      <li><a href="/sell">판매등록</a></li>
-      <li><a href="/wishlist">관심상품</a></li>
-      <li><a href="/style">스타일</a></li>
-      <li><a href="/mypage">마이페이지</a></li>
-      <li><a href="/support">고객센터</a></li>
-    </ul>
-  </nav>
-   <div class="login-area">
-    <a href="/login" class="btn-login">로그인</a>
-  </div>
-  <footer class="sidebar-footer">
-    <p><a href="/support">고객센터</a> | <a href="/terms">이용약관</a></p>
-    <small>&copy; All copyright in soldesk</small>
-  </footer>
-</aside>
+<!-- ───────────────────────────────────────────────────────────────────
+   1) 사이드바 (기존과 동일)
+   ─────────────────────────────────────────────────────────────────── -->
+<!-- 사이드바 HTML 분리 -->
+<div th:replace="~{Fragments/Sidebar :: sidebar}"></div>
+<div class="wrapper">
 <div id = "MyPageBar"> <!--상단 마이페이지 바-->
   <div id = "MyPageText">MyPage</div>
   <div id = "ClickBox">
@@ -127,8 +113,9 @@
   </div>
   <div class="_240-300-katte">+240,300katte</div>
   <div class="line-2716"></div>
-
-  <script>
+</div>
+  </body>
+<script>
   document.addEventListener("DOMContentLoaded", function () {
     const items = document.querySelectorAll("#ClickList > div");
     items.forEach(item => {
@@ -141,6 +128,5 @@
     });
   });
 </script>
-  </body>
   </html>
   
