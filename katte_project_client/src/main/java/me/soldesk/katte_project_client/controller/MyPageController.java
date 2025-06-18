@@ -105,7 +105,7 @@ public class MyPageController {
 
     @GetMapping("/MyKatteMoney")
     public String myKatteMoney(){
-        return "CsMyPage/Mypage_kattemoney_page";
+        return "CsMyPage/Mypage_kattemoney_charge";
     }
 
     /* ───────────────────────────────────────────────────────────────────────────
@@ -202,15 +202,6 @@ public class MyPageController {
         }
 
 
-/*    @PostMapping("/MyAddress/add")
-    @ResponseBody
-    public String postAddress(@ModelAttribute UserAddressBean bean, HttpSession session) {
-        int user_id = Integer.parseInt((String) session.getAttribute("user_id"));
-        bean.setUser_id(user_id);
-        myPageService.addAddress(bean);
-        System.out.println("닫혀라");
-        return "CsMyPage/MyPage_address";
-    }*/
     @PostMapping("/MyAddress/add")
     public String postAddress(@ModelAttribute UserAddressBean bean, HttpSession session, Model model) {
         int user_id = Integer.parseInt((String) session.getAttribute("user_id"));
