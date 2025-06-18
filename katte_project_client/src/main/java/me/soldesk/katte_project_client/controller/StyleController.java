@@ -1,8 +1,11 @@
 package me.soldesk.katte_project_client.controller;
 
 import common.bean.content.ContentStyleBean;
+import common.bean.content.ContentStyleComment;
+import common.bean.product.ProductInfoBean;
 import common.bean.user.UserBean;
 import me.soldesk.katte_project_client.service.StyleService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,7 +21,6 @@ import java.util.List;
 public class StyleController {
 
     private final StyleService styleService;
-
     public StyleController(StyleService styleService) {
         this.styleService = styleService;
     }
@@ -76,6 +78,43 @@ public class StyleController {
     @GetMapping("/content/isUserLikeAll")
     @ResponseBody
     public List<Integer> getIsUserLike(@SessionAttribute("currentUser") UserBean user){
+        System.out.println("!!!!!!" + user.getUser_id());
+        System.out.println("%$%$%$%$" + styleService.isLikeStyleAll(user.getUser_id()));
+
         return styleService.isLikeStyleAll(user.getUser_id());
+    }
+
+    @GetMapping("/content/stylePrdouct")
+    @ResponseBody
+    public List<Integer> getStylePrdouct(@RequestParam("style_id") int style_id){
+        return styleService.getStyleProductId(style_id);
+    }
+
+    @GetMapping("/content/getProduct")
+    @ResponseBody
+    public ProductInfoBean getProduct(@RequestParam("product_id") int product_id){
+        return styleService.getProductById(product_id);
+    }
+
+    @GetMapping("/comment/list")
+    @ResponseBody
+    public List<ContentStyleComment> getComments(@RequestParam("style_id") int style_id){
+        return styleService.getCommentsByStyleId(style_id);
+    }
+
+    @GetMapping("/comment/add")
+    @ResponseBody
+    public boolean addComment(@RequestParam("style_id") int style_id,
+                             @RequestParam("content") String content,
+                             @SessionAttribute("currentUser") UserBean user) {
+        return styleService.addComment(user.getUser_id(), style_id,content);
+    }
+
+    @GetMapping("/style/isLikeExist")
+    @ResponseBody
+    public boolean isExsit(@RequestParam("style_id") int style_id,
+                           @SessionAttribute("currentUser") UserBean user) {
+
+        return styleService.isExitLikeByUserId(style_id,user.getUser_id());
     }
 }

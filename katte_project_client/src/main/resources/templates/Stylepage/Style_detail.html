@@ -14,7 +14,7 @@
 <!-- 2) 메인 래퍼(원래 있던 콘텐츠)                -->
 <!-- ============================================ -->
 <div class="div13">
-  <img class="image-118" src="image-1180.png" />
+  <img class="image-118" src="" />
   <div class="min-x-ili-0"></div>
   <!-- JS에서 날짜 채워 넣음 -->
   <div id="style-date"></div>
@@ -24,20 +24,7 @@
 <div id="detail-images" class="detail-images"></div>
 
 <div class="_5">상품 태그</div>
-<div class="group-975">
-  <div class="_1">
-    <img class="image-125" src="" />
-    <div class="hysteric-glamour-hyst-280-000">
-      <span>
-        <span class="hysteric-glamour-hyst-280-000-span">
-          Hysteric GlamourHyst...
-          <br /><br />
-        </span>
-        <span class="hysteric-glamour-hyst-280-000-span2">280,000원</span>
-      </span>
-    </div>
-  </div>
-</div>
+<div class="group-975"></div>
 
 <div class="div14">
   <div class="div15">
@@ -77,90 +64,30 @@
   </div>
   <div class="comment-post">
     <div class="post-author">
-      <img class="author-avatar" src="image-1180.png" alt="아바타" />
-      <span class="author-name">min_x_ili_0</span>
+      <img class="author-avatar" src="" alt="아바타" />
+      <span class="author-name">작성자 닉네임</span>
     </div>
     <div class="post-text">
-      내 jeans 봐.
-      <span class="post-hashtags">
-        #5뭐입챌린지 #여름준비 #반팔코디 #데일리슈즈 #여름필수템 #캐주얼룩
-      </span>
+      <span class="caption-text">본문 텍스트</span>
+      <br />
+      <span class="post-hashtags">#태그1 #태그2</span>
     </div>
-    <div class="post-date">2025-3-23</div>
+    <div class="post-date">YYYY-MM-DD</div>
   </div>
   <div class="comment-input">
     <input type="text" class="comment-text" placeholder="댓글을 입력하세요..." />
   </div>
-  <div class="comment-list">
-    <!-- 댓글 아이템 1 -->
-    <div class="comment-item" data-comment-id="1">
-      <img class="comment-avatar" src="image-1250.png" alt="아바타" />
-      <div class="comment-main">
-        <span class="comment-author">cat_love</span>
-        <div class="comment-text-item">정말 기가막힌 옷이네</div>
-        <div class="comment-meta">
-          <span class="comment-date">2025-3-23</span>
-          <span class="reply-link">답글쓰기</span>
-          <img class="comment-report-btn" src="/img/report_button.png" alt="신고" />
-        </div>
-      </div>
-      <!-- 댓글 좋아요 버튼 -->
-      <img
-              class="comment-like-btn"
-              src="/img/heart_icon_no_clicked.png"
-              alt="댓글 좋아요"
-              style="cursor:pointer; width:16px; height:16px;"
-              data-liked="false"
-      />
-    </div>
-    <!-- 댓글 아이템 2 -->
-    <div class="comment-item" data-comment-id="2">
-      <img class="comment-avatar" src="image-1260.png" alt="아바타" />
-      <div class="comment-main">
-        <span class="comment-author">xililo_wedx</span>
-        <div class="comment-text-item">신발 너무 예뻐요ㅜ</div>
-        <div class="comment-meta">
-          <span class="comment-date">2시간 전</span>
-          <span class="reply-link">답글쓰기</span>
-          <img class="comment-report-btn" src="/img/report_button.png" alt="신고" />
-        </div>
-      </div>
-      <img
-              class="comment-like-btn"
-              src="/img/heart_icon_clicked.png"
-              alt="댓글 좋아요"
-              style="cursor:pointer; width:16px; height:16px;"
-              data-liked="true"
-      />
-    </div>
-    <!-- 댓글 아이템 3 (대댓글) -->
-    <div class="comment-item reply" data-comment-id="3">
-      <img class="comment-avatar" src="image-1270.png" alt="아바타" />
-      <div class="comment-main">
-        <span class="comment-author">min_x_ili_0</span>
-        <div class="comment-text-item">헤헤 감사합니다</div>
-        <div class="comment-meta">
-          <span class="comment-date">2시간 전</span>
-          <span class="reply-link">답글쓰기</span>
-          <img class="comment-report-btn" src="/img/report_button.png" alt="신고" />
-        </div>
-      </div>
-      <img
-              class="comment-like-btn"
-              src="/img/heart_icon_no_clicked.png"
-              alt="댓글 좋아요"
-              style="cursor:pointer; width:16px; height:16px;"
-              data-liked="false"
-      />
-    </div>
-  </div>
+  <div class="comment-list"></div>
 </div>
 
 <!-- ============================================ -->
 <!-- 4) JavaScript                                -->
 <!-- ============================================ -->
 <script>
-  const baseURL   = "http://localhost:9000/"
+  const baseURL   = "http://localhost:9000/";
+  const resourceUrl = "https://resources-katte.jp.ngrok.io/";
+  const params = new URLSearchParams(window.location.search);
+  const styleId = params.get('style_id');  // ✅ 전역 선언
 
   // 유저 정보 가져오는 헬퍼
   async function fetchuserBean(userId) {
@@ -169,13 +96,20 @@
     return await res.json();
   }
 
-  document.addEventListener('DOMContentLoaded', function() {
+  document.addEventListener('DOMContentLoaded', async function () {
+
+    const res = await fetch(`/comment/list?style_id=${styleId}`);
+    const comments = await res.json();
+
+
     // 댓글 팝업 열기/닫기 로직
-    const commentBtn   = document.querySelector('.ellipse-71');
-    const overlay      = document.querySelector('.overlay');
+    const commentBtn = document.querySelector('.div16');
+    const overlay = document.querySelector('.overlay');
     const commentPanel = document.querySelector('.comment-panel');
-    const closeBtn     = document.querySelector('.comment-panel .close-btn');
+    const closeBtn = document.querySelector('.comment-panel .close-btn');
     const commentInput = document.querySelector('.comment-text');
+    document.querySelector('._12').textContent = comments.length;
+
 
     commentBtn.addEventListener('click', () => {
       overlay.style.display = 'block';
@@ -203,8 +137,6 @@
   });
 
   document.addEventListener('DOMContentLoaded', async () => {
-    const resourceUrl = "https://resources-katte.jp.ngrok.io/";
-    const params = new URLSearchParams(window.location.search);
     const styleId = params.get('style_id');
     if (!styleId) return;
 
@@ -220,6 +152,10 @@
     fetch(`/content/style?style_id=${styleId}`)
             .then(res => res.ok ? res.json() : Promise.reject(res.statusText))
             .then(async data => {
+              console.log(data);
+
+              await loadComments(styleId);
+
               // 날짜 세팅
               const rawDate = data.created_date || '';
               const dateOnly = rawDate.split('T')[0] || '';
@@ -228,6 +164,18 @@
 
               // 헤더 유저 세팅
               const userBean = await fetchuserBean(data.user_id);
+
+              //댓글 창 세팅
+              document.querySelector('.author-name').textContent = userBean.nickname;
+
+              document.querySelector('.caption-text').textContent = data.caption ?? '';
+              document.querySelector('.post-hashtags').textContent =
+                      (data.hashtags || []).map(ht => `#${ht}`).join(' ');
+
+              document.querySelector('.author-avatar').src = userBean.profile_url
+                      ? userBean.profile_url
+                      : resourceUrl + "profile/basic_profile_00.png";
+
               document.querySelector('.min-x-ili-0').textContent = userBean.nickname;
               document.querySelector('.image-118').src = userBean.profile_url
                       ? userBean.profile_url
@@ -247,7 +195,11 @@
 
               // 스타일 좋아요 초기화
               likeCountEl.textContent = data.like_count ?? 0;
-              likeBtnImg.src = list.includes(Number(styleId))
+              const resLike = await fetch(`/style/isLikeExist?style_id=${styleId}`)
+              const isHave = await resLike.json();
+
+              console.log("@#@#@#!@#!@#!@#" + isHave);
+              likeBtnImg.src = isHave
                       ? '/img/heart_icon_clicked.png'
                       : '/img/heart_icon_no_clicked.png';
 
@@ -274,10 +226,41 @@
                 });
               });
 
-              document.querySelector(".image-125").src = resourceUrl+'/';
+              //태그 이미지 추가
+              const tagContainer = document.querySelector(".group-975");
+              tagContainer.innerHTML = ''; // 기존 내용 제거
+              const res = await fetch(`/content/stylePrdouct?style_id=${styleId}`)
+              const products = await res.json();
+
+              for (const productId of products) {
+                const wrapper = document.createElement("div");
+                const res = await fetch(`/content/getProduct?product_id=${productId}`)
+                const productData = await res.json();
+                wrapper.className = "_1";
+
+                wrapper.innerHTML = `
+  <a class="product-link" href="/product/${productId}" style="text-decoration: none; color: inherit;">
+    <img class="image-125" src="${resourceUrl}images/${productId}/${productId}_1.png" />
+    <div class="hysteric-glamour-hyst-280-000">
+      <span>
+        <span class="hysteric-glamour-hyst-280-000-span">
+          ${productData.product_name_kor ?? '상품명 없음'}<br><br>
+        </span>
+        <span class="hysteric-glamour-hyst-280-000-span2">
+          ${Number(productData.release_price).toLocaleString() ?? '-'} 원
+        </span>
+      </span>
+    </div>
+  </a>
+`;
+
+                tagContainer.appendChild(wrapper);
+              }
 
               // 이미지 슬라이드 로직
               const count = data.img_count;
+              console.log("count" + count);
+
               if (count <= 0) {
                 imgRoot.textContent = '등록된 이미지가 없습니다.';
                 return;
@@ -315,6 +298,66 @@
               console.error('이미지 로드 실패:', err);
               imgRoot.textContent = '이미지를 불러올 수 없습니다.';
             });
+
+    //댓글 영역
+    const commentList = document.querySelector('.comment-list');
+    const commentInput = document.querySelector('.comment-text');
+
+    // 댓글 렌더링 함수
+    async function loadComments() {
+      const res = await fetch(`/comment/list?style_id=${styleId}`);
+      const comments = await res.json();
+
+      commentList.innerHTML = ''; // 초기화
+      for (const c of comments) {
+        const user = await fetchuserBean(c.user_id);
+        const item = document.createElement('div');
+        item.className = 'comment-item';
+        item.dataset.commentId = c.id;
+
+        item.innerHTML = `
+      <img class="comment-avatar" src="${user.profile_url || resourceUrl + 'profile/basic_profile_00.png'}" />
+      <div class="comment-main">
+        <span class="comment-author">${user.nickname}</span>
+        <div class="comment-text-item">${c.content}</div>
+        <div class="comment-meta">
+          <span class="comment-date">${formatDate(c.create_at)}</span>
+        </div>
+      </div>
+    `;
+
+        commentList.appendChild(item);
+      }
+    }
+
+// 댓글 등록 (Enter 입력 시)
+    commentInput.addEventListener('keypress', async (e) => {
+      if (e.key === 'Enter' && commentInput.value.trim() !== '') {
+        const comment = commentInput.value.trim();
+        const res = await fetch(`/comment/add?style_id=${styleId}&content=${comment}`);
+        const result = await res.json();
+
+        if (result) {
+          commentInput.value = '';
+          await loadComments(); // 새로고침
+        } else {
+          alert("댓글 등록 실패");
+        }
+      }
+    });
+
+// 날짜 포맷 함수
+    function formatDate(isoString) {
+      const date = new Date(isoString);
+      const now = new Date();
+      const diffMin = Math.floor((now - date) / 60000);
+
+      if (diffMin < 1) return '방금 전';
+      if (diffMin < 60) return `${diffMin}분 전`;
+      const diffHour = Math.floor(diffMin / 60);
+      if (diffHour < 24) return `${diffHour}시간 전`;
+      return date.toISOString().split('T')[0]; // YYYY-MM-DD
+    }
   });
 </script>
 </body>
