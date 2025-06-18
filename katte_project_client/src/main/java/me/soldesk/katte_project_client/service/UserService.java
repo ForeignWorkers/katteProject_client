@@ -1,6 +1,8 @@
 package me.soldesk.katte_project_client.service;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import common.bean.ecommerce.EcommerceCoupon;
+import common.bean.ecommerce.EcommerceCouponHistory;
 import common.bean.user.UserBean;
 import common.bean.user.UserPaymentBean;
 import me.soldesk.katte_project_client.manager.ApiManagers;
@@ -9,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -57,6 +60,23 @@ public class UserService {
         TypeReference<UserPaymentBean> ref = new TypeReference<>() {};
         ResponseEntity<UserPaymentBean> result = ApiManagers.get("user/payment", requestBody, ref);
 
+        return result.getBody();
+    }
+
+    public List<EcommerceCouponHistory> getUserCouponHistory(int user_id) {
+        Map<String, String> requestBody = new HashMap<>();
+        requestBody.put("user_id", Integer.toString(user_id));
+
+        TypeReference<List<EcommerceCouponHistory>> ref = new TypeReference<>() {};
+        ResponseEntity<List<EcommerceCouponHistory>> result = ApiManagers.get("coupon/user", requestBody, ref);
+        return result.getBody();
+    }
+
+    public EcommerceCoupon getUserCoupon(int coupon_id) {
+        Map<String, String> requestBody = new HashMap<>();
+        requestBody.put("coupon_id", Integer.toString(coupon_id));
+        TypeReference<EcommerceCoupon> ref = new TypeReference<>() {};
+        ResponseEntity<EcommerceCoupon> result = ApiManagers.get("coupon/data", requestBody, ref);
         return result.getBody();
     }
 }

@@ -230,15 +230,12 @@
     <button class="modal-close-btn" id="closeCouponModal">&times;</button>
   </div>
   <div class="coupon-list">
-    <!-- 예시 카드 -->
-    <div class="coupon-card" data-discount="5700">
-      <p>신규 가입 쿠폰</p>
-      <p>-5,700 katte</p>
-    </div>
-    <div class="coupon-card" data-discount="10000">
-      <p>10,000원 할인 쿠폰</p>
-      <p>-10,000 katte</p>
-    </div>
+    <th:block th:each="coupon : ${userCoupons}">
+      <div class="coupon-card" th:attr="data-discount=${coupon.sale_amount}">
+        <p th:text="${coupon.name}">쿠폰명</p>
+        <p th:text="'-' + ${#numbers.formatInteger(coupon.sale_amount, 3, 'COMMA')} + ' katte'">-할인금액</p>
+      </div>
+    </th:block>
   </div>
 </div>
 
@@ -246,7 +243,7 @@
 </div>
 <!-- HTML 하단에 삽입할 수정된 JS 코드 -->
 <script th:inline="javascript">
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', async function () {
   // ─────────────────────────────────────────────────────────────
   // 1) 공통 오버레이(모달 뒤 어두운 배경) 가져오기
   // ─────────────────────────────────────────────────────────────
@@ -255,38 +252,39 @@ document.addEventListener('DOMContentLoaded', function() {
   // ─────────────────────────────────────────────────────────────
   // 2) 첫 번째 모달(주소록) 관련 요소 가져오기
   // ─────────────────────────────────────────────────────────────
-  const changeBtn       = document.getElementById('changeAddressButton');           // “주소 변경” 버튼
-  const addressModal    = document.querySelector('.address-modal');                 // 첫 번째 주소록 모달
-  const closeAddrBtn    = document.querySelector('.address-modal .modal-close-btn');// 첫 번째 모달 닫기(X) 버튼
-  const openAddFormBtn  = document.querySelector('.add-address-btn');               // 첫 번째 모달 내 “+ 새 주소 추가하기” 버튼
+  const changeBtn = document.getElementById('changeAddressButton');           // “주소 변경” 버튼
+  const addressModal = document.querySelector('.address-modal');                 // 첫 번째 주소록 모달
+  const closeAddrBtn = document.querySelector('.address-modal .modal-close-btn');// 첫 번째 모달 닫기(X) 버튼
+  const openAddFormBtn = document.querySelector('.add-address-btn');               // 첫 번째 모달 내 “+ 새 주소 추가하기” 버튼
 
   // ─────────────────────────────────────────────────────────────
   // 3) 두 번째 모달(주소 추가 폼) 관련 요소 가져오기
   // ─────────────────────────────────────────────────────────────
-  const addFormModal    = document.querySelector('.add-address-modal');             // 두 번째 주소 추가 폼 모달
+  const addFormModal = document.querySelector('.add-address-modal');             // 두 번째 주소 추가 폼 모달
   const closeAddFormBtn = document.getElementById('closeAddFormBtn');               // 두 번째 모달 닫기(X) 버튼
-  const zipSearchBtn    = document.querySelector('.zip-search-btn');                // 우편번호 검색 버튼
-  const zipCodeInput    = document.getElementById('zipCode');                       // 우편번호 입력란
-  const addressInput    = document.getElementById('address');                       // 주소 입력란
-  const addForm         = document.getElementById('addAddressForm');                 // 두 번째 모달 폼 전체
+  const zipSearchBtn = document.querySelector('.zip-search-btn');                // 우편번호 검색 버튼
+  const zipCodeInput = document.getElementById('zipCode');                       // 우편번호 입력란
+  const addressInput = document.getElementById('address');                       // 주소 입력란
+  const addForm = document.getElementById('addAddressForm');                 // 두 번째 모달 폼 전체
 
   // ─────────────────────────────────────────────────────────────
   // 4) 세 번째 모달(결제 완료) 관련 요소 가져오기
   // ─────────────────────────────────────────────────────────────
-  const completePurchaseBtn   = document.getElementById('completePurchaseBtn');      // “결제하기” 버튼
-  const purchaseModal         = document.querySelector('.purchase-complete-modal');   // 결제 완료 모달
-  const closePurchaseBtn      = document.getElementById('closePurchaseCompleteBtn');  // 결제 완료 모달 내 “닫기” 버튼
+  const completePurchaseBtn = document.getElementById('completePurchaseBtn');      // “결제하기” 버튼
+  const purchaseModal = document.querySelector('.purchase-complete-modal');   // 결제 완료 모달
+  const closePurchaseBtn = document.getElementById('closePurchaseCompleteBtn');  // 결제 완료 모달 내 “닫기” 버튼
 
   // ─────────────────────────────────────────────────────────────
   // 5) 첫 번째 모달 열기/닫기 함수 정의
   // ─────────────────────────────────────────────────────────────
   function openAddressModal() {
-    overlay.style.display      = 'block';
+    overlay.style.display = 'block';
     addressModal.style.display = 'block';
     document.body.style.overflow = 'hidden'; // 스크롤 방지
   }
+
   function closeAddressModal() {
-    overlay.style.display      = 'none';
+    overlay.style.display = 'none';
     addressModal.style.display = 'none';
     document.body.style.overflow = 'auto';
   }
@@ -299,12 +297,13 @@ document.addEventListener('DOMContentLoaded', function() {
     closeAddressModal();
     // 두 번째 모달을 열기
     addFormModal.style.display = 'block';
-    overlay.style.display      = 'block';
+    overlay.style.display = 'block';
     document.body.style.overflow = 'hidden';
   }
+
   function closeAddAddressModal() {
     addFormModal.style.display = 'none';
-    overlay.style.display      = 'none';
+    overlay.style.display = 'none';
     document.body.style.overflow = 'auto';
   }
 
@@ -312,12 +311,13 @@ document.addEventListener('DOMContentLoaded', function() {
   // 7) 세 번째 모달(결제 완료) 열기/닫기 함수 정의
   // ─────────────────────────────────────────────────────────────
   function openPurchaseModal() {
-    overlay.style.display       = 'block';
+    overlay.style.display = 'block';
     purchaseModal.style.display = 'block';
     document.body.style.overflow = 'hidden';
   }
+
   function closePurchaseModal() {
-    overlay.style.display       = 'none';
+    overlay.style.display = 'none';
     purchaseModal.style.display = 'none';
     document.body.style.overflow = 'auto';
   }
@@ -333,14 +333,14 @@ document.addEventListener('DOMContentLoaded', function() {
   openAddFormBtn.addEventListener('click', openAddAddressModal);   // “+ 새 주소 추가하기” 클릭 → 주소 추가 폼 모달 열기
   closeAddFormBtn.addEventListener('click', closeAddAddressModal); // 주소 추가 폼 모달 X클릭 → 모달 닫기
 
-  zipSearchBtn.addEventListener('click', function() {
+  zipSearchBtn.addEventListener('click', function () {
     // 실제: API/팝업 → 여기서는 예시로 임의 데이터 채우기
     zipCodeInput.value = '12345';
     addressInput.value = '서울특별시 강남구 역삼동 000-00';
     addressInput.focus();
   });
 
-  addForm.addEventListener('submit', function(event) {
+  addForm.addEventListener('submit', function (event) {
     event.preventDefault(); // 페이지 리로드 방지
     // 입력값 수집 예시
     const data = {
@@ -364,7 +364,7 @@ document.addEventListener('DOMContentLoaded', function() {
   closePurchaseBtn.addEventListener('click', closePurchaseModal);      // 결제 완료 모달 닫기 버튼 클릭 → 모달 닫기
 
   // [오버레이 클릭 시, 열린 모달 모두 닫기]
-  overlay.addEventListener('click', function() {
+  overlay.addEventListener('click', function () {
     if (purchaseModal.style.display === 'block') {
       closePurchaseModal();
       return;
@@ -490,6 +490,12 @@ document.addEventListener('DOMContentLoaded', function() {
   updateFinalPrice(); // 초기값 렌더링
   updateCheckPay();   // ✅ 버튼 색 및 활성 상태 초기 설정
 
+
+
+  //쿠폰 관련 세팅
+  const res = await fetch(`/product/getCoupon`);
+  const json = await res.json();
+
   const couponOverlay = document.querySelector(".coupon-modal-overlay");
   const couponModal = document.querySelector(".coupon-modal");
   const couponCards = document.querySelectorAll(".coupon-card");
@@ -508,11 +514,17 @@ document.addEventListener('DOMContentLoaded', function() {
     couponModal.style.display = "none";
   });
 
-  // 쿠폰 선택
-  couponCards.forEach(card => {
+  // [쿠폰 선택 이벤트 바인딩: 페이지 렌더 후 실행]
+  document.querySelectorAll(".coupon-card").forEach(card => {
     card.addEventListener("click", () => {
       const discount = parseInt(card.dataset.discount);
+      couponDiscount = discount;
+
       couponDisplay.textContent = `-${discount.toLocaleString()} katte`;
+
+      // 결제 금액 다시 계산
+      updateFinalPrice();
+
       couponOverlay.style.display = "none";
       couponModal.style.display = "none";
     });

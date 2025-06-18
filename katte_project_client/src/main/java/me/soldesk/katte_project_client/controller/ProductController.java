@@ -2,6 +2,8 @@ package me.soldesk.katte_project_client.controller;
 
 import common.bean.auction.AuctionDataBean;
 import common.bean.content.ContentShortformBean;
+import common.bean.ecommerce.EcommerceCoupon;
+import common.bean.ecommerce.EcommerceCouponHistory;
 import common.bean.product.*;
 import common.bean.user.UserBean;
 import common.bean.user.UserPaymentBean;
@@ -18,6 +20,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.lang.model.type.ReferenceType;
+import java.lang.ref.Reference;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -111,10 +116,6 @@ public class ProductController {
         model.addAttribute("size", size);
 
 
-        System.out.println("origin_price = " + originPrice);
-        System.out.println("product_id = " + productId);
-        System.out.println("product_name = " + productName);
-
         //거래 api 만들기
 
         //User payment 가져오기
@@ -122,9 +123,16 @@ public class ProductController {
         model.addAttribute("userPoint", paymentBean.getPoint());
         model.addAttribute("katte_money", paymentBean.getKatte_money());
 
+        //쿠폰 데이터 가져오기
+        List<EcommerceCouponHistory> userCoupon = userService.getUserCouponHistory(userBean.getUser_id());
+        List<EcommerceCoupon> couponDatas = new ArrayList<>();
 
-        System.out.println("userPoint = " + paymentBean.getPoint());
-        System.out.println("katte_money = " + paymentBean.getKatte_money());
+        for (EcommerceCouponHistory coupon : userCoupon) {
+            couponDatas.add(userService.getUserCoupon(coupon.getCoupon_id()));
+        }
+        model.addAttribute("userCoupons", couponDatas);
+
+        System.out.println("userCoupons" + couponDatas);
 
         return "Productpage/Product_buybtn_next_Page";
     }
