@@ -106,7 +106,7 @@ html, body {
   font-weight: 400;
   position: absolute;
   left: 950.30px;
-  top: 113.05px;
+  top: 167.45px;
   width: 550.80px;
   height: 39.95px;
   display: flex;
@@ -481,6 +481,7 @@ html, body {
   top: 28.90px;
   height: 39.95px;
   display: flex;
+  align-items: center;
   align-items: center;
   justify-content: flex-start;
 }
@@ -1323,23 +1324,23 @@ html, body {
 /* 
 밑에 페이지 */
 
-.div131 {
-  color: #f9eeee;
-  text-align: left;
-  font-family: "LineSeedSansKr-Regular", sans-serif;
-  font-size: 34.00px;
-  line-height: 92.65px;
-  letter-spacing: -0.03em;
-  font-weight: 400;
-  position: absolute;
-  left: 297.50px;
-  top: calc(28.90px + 918.00px);
-  width: 113.90px;
-  height: 39.95px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-}
+/*.div131 {*/
+/*  color: #f9eeee;*/
+/*  text-align: left;*/
+/*  font-family: "LineSeedSansKr-Regular", sans-serif;*/
+/*  font-size: 34.00px;*/
+/*  line-height: 92.65px;*/
+/*  letter-spacing: -0.03em;*/
+/*  font-weight: 400;*/
+/*  position: absolute;*/
+/*  left: 297.50px;*/
+/*  top: calc(28.90px + 918.00px);*/
+/*  width: 113.90px;*/
+/*  height: 39.95px;*/
+/*  display: flex;*/
+/*  align-items: center;*/
+/*  justify-content: flex-start;*/
+/*}*/
 ._1 {
   color: #f9eeee;
   text-align: left;
@@ -2860,7 +2861,7 @@ html, body {
   height: 88.4px;
   position: absolute;
   left: 323px;
-  top: 3850.5px;
+  top: calc(81.60px + 918.00px);
   object-fit: cover;
 }
 .rectangle-15943 {
@@ -2875,13 +2876,15 @@ html, body {
   color: #f9eeee;
   text-align: left;
   font-family: "LineSeedSansKr-Regular", sans-serif;
-  font-size: 34px;
+  font-size: 27px;
   line-height: 92.65px;
   letter-spacing: -0.04em;
   font-weight: 400;
   position: absolute;
-  left: 297.5px;
-  top: 2783.9px;
+  left: 297.50px;
+  top: calc(28.90px + 918.00px);
+  width: 113.90px;
+  height: 39.95px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -2896,7 +2899,7 @@ html, body {
   font-weight: 400;
   position: absolute;
   left: 297.5px;
-  top: 3196px;
+  top: calc(81.60px + 1300.00px);
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -2907,7 +2910,7 @@ html, body {
   height: 195.5px;
   position: absolute;
   left: 355.3px;
-  top: 2910.4px;
+  top: calc(81.60px + 918.00px);
   object-fit: cover;
 }
 .group-1003 {
@@ -2924,7 +2927,7 @@ html, body {
   font-weight: 700;
   position: absolute;
   left: 355.419px;
-  top: 3122.9px;
+  top: calc(81.60px + 1118.00px);
   width: 74.222px;
   height: 17.459px;
   display: flex;
@@ -2940,7 +2943,7 @@ html, body {
   font-weight: 700;
   position: absolute;
   left: 355.419px;
-  top: 3169.6385px;
+  top: calc(81.60px + 1200.00px);
   width: 71.774px;
   height: 25.781px;
   display: flex;
@@ -2956,7 +2959,7 @@ html, body {
   font-weight: 400;
   position: absolute;
   left: 355.3px;
-  top: 3140px;
+  top: calc(81.60px + 1145.00px);
   width: 215.05px;
   height: 33.15px;
   display: flex;
@@ -2969,7 +2972,7 @@ html, body {
   height: 195.5px;
   position: absolute;
   left: 600.95px;
-  top: 2910.4px;
+  top: calc(81.60px + 918.00px);
   object-fit: cover;
 }
 .group-1004 {
@@ -2986,7 +2989,7 @@ html, body {
   font-weight: 700;
   position: absolute;
   left: 600.069px;
-  top: 3122.9px;
+  top: calc(81.60px + 1118.00px);
   width: 74.222px;
   height: 17.459px;
   display: flex;
@@ -3002,7 +3005,7 @@ html, body {
   font-weight: 700;
   position: absolute;
   left: 600.069px;
-  top: 3169.6385px;
+  top: calc(81.60px + 1200.00px);
   width: 71.774px;
   height: 25.781px;
   display: flex;
@@ -3018,7 +3021,7 @@ html, body {
   font-weight: 400;
   position: absolute;
   left: 600.95px;
-  top: 3140.0px;
+  top: calc(81.60px + 1145.00px);
   width: 215.05px;
   height: 33.15px;
   display: flex;
@@ -3031,7 +3034,7 @@ html, body {
   height: 195.5px;
   position: absolute;
   left: 846.6px;
-  top: 2910.4px;
+  top: calc(81.60px + 918.00px);
   object-fit: cover;
 }
 .group-1005 {
@@ -3048,7 +3051,7 @@ html, body {
   font-weight: 700;
   position: absolute;
   left: 846.719px;
-  top: 3122.9px;
+  top: calc(81.60px + 1118.00px);
   width: 74.222px;
   height: 17.459px;
   display: flex;
@@ -3064,7 +3067,7 @@ html, body {
   font-weight: 700;
   position: absolute;
   left: 846.719px;
-  top: 3169.6385px;
+  top: calc(81.60px + 1200.00px);
   width: 71.774px;
   height: 25.781px;
   display: flex;
@@ -3080,7 +3083,7 @@ html, body {
   font-weight: 400;
   position: absolute;
   left: 846.6px;
-  top: 3140.0px;
+  top: calc(81.60px + 1145.00px);
   width: 215.05px;
   height: 33.15px;
   display: flex;
@@ -3093,7 +3096,7 @@ html, body {
   height: 195.5px;
   position: absolute;
   left: 1092.25px;
-  top: 2910.4px;
+  top: calc(81.60px + 918.00px);
   object-fit: cover;
 }
 .group-1006 {
@@ -3110,12 +3113,15 @@ html, body {
   font-weight: 700;
   position: absolute;
   left: 1092.25px;
-  top: 3122.9px;
+  top: calc(81.60px + 1118.00px);
   width: 74.222px;
   height: 17.459px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 ._94-0002 {
   color: #f9eeee;
@@ -3126,7 +3132,7 @@ html, body {
   font-weight: 700;
   position: absolute;
   left: 1092.369px;
-  top: 3169.6385px;
+  top: calc(81.60px + 1200.00px);
   width: 71.774px;
   height: 25.781px;
   display: flex;
@@ -3142,7 +3148,7 @@ html, body {
   font-weight: 400;
   position: absolute;
   left: 1092.25px;
-  top: 3140.0px;
+  top: calc(81.60px + 1145.00px);
   width: 215.05px;
   height: 33.15px;
   display: flex;
@@ -3155,7 +3161,7 @@ html, body {
   height: 195.5px;
   position: absolute;
   left: 1338.9px;
-  top: 2910.4px;
+  top: calc(81.60px + 918.00px);
   object-fit: cover;
   aspect-ratio: 184.45/195.5;
 }
@@ -3173,7 +3179,7 @@ html, body {
   font-weight: 700;
   position: absolute;
   left: 1338.019px;
-  top: 3122.9px;
+  top: calc(81.60px + 1118.00px);
   width: 74.222px;
   height: 17.459px;
   display: flex;
@@ -3189,7 +3195,7 @@ html, body {
   font-weight: 700;
   position: absolute;
   left: 1338.019px;
-  top: 3169.6385px;
+  top: calc(81.60px + 1200.00px);
   width: 71.774px;
   height: 25.781px;
   display: flex;
@@ -3205,7 +3211,7 @@ html, body {
   font-weight: 400;
   position: absolute;
   left: 1338.9px;
-  top: 3140.0px;
+  top: calc(81.60px + 1145.00px);
   width: 215.05px;
   height: 33.15px;
   display: flex;
@@ -3218,7 +3224,7 @@ html, body {
   height: 195.5px;
   position: absolute;
   left: 355.3px;
-  top: 3323.5px;
+  top: calc(81.60px + 1390.00px);
   object-fit: cover;
 }
 .nike {
@@ -3230,7 +3236,7 @@ html, body {
   font-weight: 700;
   position: absolute;
   left: 355.419px;
-  top: 3536px;
+  top: calc(81.60px + 1600.00px);
   width: 74.222px;
   height: 17.459px;
   display: flex;
@@ -3262,7 +3268,7 @@ html, body {
   font-weight: 400;
   position: absolute;
   left: 355.3px;
-  top: 3563.1px;
+  top: calc(81.60px + 1630.00px);
   width: 215.05px;
   height: 33.15px;
   display: flex;
@@ -3275,7 +3281,7 @@ html, body {
   height: 195.5px;
   position: absolute;
   left: 600.95px;
-  top: 3323.5px;
+  top: calc(81.60px + 1390.00px);
   object-fit: cover;
 }
 .nike2 {
@@ -3287,7 +3293,7 @@ html, body {
   font-weight: 700;
   position: absolute;
   left: 600.069px;
-  top: 3536px;
+  top: calc(81.60px + 1600.00px);
   width: 74.222px;
   height: 17.459px;
   display: flex;
@@ -3319,7 +3325,7 @@ html, body {
   font-weight: 400;
   position: absolute;
   left: 600.95px;
-  top: 3563.1px;
+  top: calc(81.60px + 1630.00px);
   width: 215.05px;
   height: 33.15px;
   display: flex;
@@ -3332,7 +3338,7 @@ html, body {
   height: 195.5px;
   position: absolute;
   left: 846.6px;
-  top: 3323.5px;
+  top: calc(81.60px + 1390.00px);
   object-fit: cover;
 }
 .nike3 {
@@ -3344,7 +3350,7 @@ html, body {
   font-weight: 700;
   position: absolute;
   left: 846.719px;
-  top: 3536px;
+  top: calc(81.60px + 1600.00px);
   width: 74.222px;
   height: 17.459px;
   display: flex;
@@ -3376,7 +3382,7 @@ html, body {
   font-weight: 400;
   position: absolute;
   left: 846.6px;
-  top: 3563.1px;
+  top: calc(81.60px + 1630.00px);
   width: 215.05px;
   height: 33.15px;
   display: flex;
@@ -3389,7 +3395,7 @@ html, body {
   height: 195.5px;
   position: absolute;
   left: 1092.25px;
-  top: 3323.5px;
+  top: calc(81.60px + 1390.00px);
   object-fit: cover;
 }
 .nike4 {
@@ -3401,7 +3407,7 @@ html, body {
   font-weight: 700;
   position: absolute;
   left: 1092.25px;
-  top: 3536px;
+  top: calc(81.60px + 1600.00px);
   width: 74.222px;
   height: 17.459px;
   display: flex;
@@ -3433,7 +3439,7 @@ html, body {
   font-weight: 400;
   position: absolute;
   left: 1092.25px;
-  top: 3563.1px;
+  top: calc(81.60px + 1630.00px);
   width: 215.05px;
   height: 33.15px;
   display: flex;
@@ -3446,7 +3452,7 @@ html, body {
   height: 195.51px;
   position: absolute;
   left: 1338.9px;
-  top: 3323.5px;
+  top: calc(81.60px + 1390.00px);
   object-fit: cover;
   aspect-ratio: 184.44/195.51;
 }
@@ -3459,7 +3465,7 @@ html, body {
   font-weight: 700;
   position: absolute;
   left: 1338.019px;
-  top: 3536px;
+  top: calc(81.60px + 1600.00px);
   width: 74.222px;
   height: 17.459px;
   display: flex;
@@ -3491,7 +3497,7 @@ html, body {
   font-weight: 400;
   position: absolute;
   left: 1338.9px;
-  top: 3563.1px;
+  top: calc(81.60px + 1630.00px);
   width: 215.05px;
   height: 33.15px;
   display: flex;

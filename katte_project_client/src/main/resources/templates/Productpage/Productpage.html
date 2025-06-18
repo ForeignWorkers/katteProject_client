@@ -1,690 +1,336 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+  <meta charset="UTF-8">
+  <title>Insert title here</title>
 </head>
 <body>
 <link rel="stylesheet" href="/css/Productpage/Productpage.css" />
-<body>
+<!-- 사이드바 CSS 분리 스타일 적용 -->
+<link rel="stylesheet" href="/css/fragments/Sidebar.css" />
+<!-- 사이드바 HTML 분리 -->
+<div th:replace="Fragments/Sidebar :: sidebar"></div>
+<div class="wrapper">
 <!-- 첫 번째 페이지 -->
 
 <div class="from-product-product-page-01">
-  <aside class="sidebar">
-  <a href="/main">
-  <img class="logo-1" src="/img/logo%20(1).png" alt="로고" />
-  </a>
-  <nav class="sidebar-nav">
-    <ul>
-      <li><a href="/search">검색</a></li>
-      <li><a href="/explore">탐색</a></li>
-      <li><a href="/sell">판매등록</a></li>
-      <li><a href="/wishlist">관심상품</a></li>
-      <li><a href="/style">스타일</a></li>
-      <li><a href="/mypage">마이페이지</a></li>
-      <li><a href="/support">고객센터</a></li>
-    </ul>
-  </nav>
-  <div class="login-area">
-    <a href="/login" class="btn-login">로그인</a>
-  </div>
-  <footer class="sidebar-footer">
-    <p><a href="/support">고객센터</a> | <a href="/terms">이용약관</a></p>
-    <small>&copy; All copyright in soldesk</small>
-  </footer>
-</aside>
+  <!-- 사이드바 HTML 분리 -->
+  <div th:replace="Fragments/Sidebar :: sidebar"></div>
 
-<div class="wraaper">
-  
+  <div class="wrapper">
 
-  <div class="nike-x-lil-yachty-us-force-1-low-white-and-midnight-navy">
-    Nike x Lil Yachty Us Force 1 Low White and Midnight Navy
-  </div>
-  <div class="div13">최근 거래가</div>
-  <div class="div14">추가 혜택</div>
-  <div class="div15">배송 정보</div>
-  <div class="nike111">NIKE</div>
-  <img class="mask-group1111" src="/img/nikelogo.png" />
-  <div class="_8-8">나이키 ・좋아요 8.8만</div>
-  <div class="div16">포인트</div>
-  <div class="div17">일반 배송</div>
-  <div class="_5-7">검수 후 배송・ 5-7일 내 도착 예정</div>
-  <div class="_3-000">3,000원</div>
-  <div class="_0-5">결제 금액의 0.5% 적립</div>
-  <div class="_40-3">
+  <div class="wraaper">
+
+
+    <input type="hidden" id="product-meta"
+           th:data-product-id="${product.product_id}"
+           th:data-brand="${product.brand_name}"
+           th:data-name="${product.product_name}" />
+
+    <div class="nike-x-lil-yachty-us-force-1-low-white-and-midnight-navy"
+         th:text="${product.product_name}"
+         style="display: inline;"></div>
+    <div class="div13">최근 거래가</div>
+    <div class="div14">추가 혜택</div>
+    <div class="div15">배송 정보</div>
+    <div class="div16">포인트</div>
+    <div class="div17">일반 배송</div>
+    <div class="_5-7">검수 후 배송・ 5-7일 내 도착 예정</div>
+    <div class="_3-000">3,000원</div>
+    <div class="_0-5">결제 금액의 0.3% 적립</div>
+    <div class="_40-3">
     <span>
-      <span class="_40-3-span">민규페이 이용 시 최대 40만원 혜택</span>
-      <span class="_40-3-span2">외 3건</span>
+      <span class="_40-3-span">결제혜택 없음</span>
+      <span class="_40-3-span2">외 건</span>
     </span>
-  </div>
-  <div class="div18">결제</div>
-  <div class="_198-000">198,000 ₩</div>
-  <div class="_18-000-6-7">18,000 (+6.7%)</div>
-  <div class="_168-000">168,000 ₩</div>
-  <div class="_23-12-02">23/12/02</div>
-  <div class="div19">발매가</div>
-  <div class="div20">출시일</div>
-  <div class="_45">스타일 리뷰 45</div>
-  <div class="x-1">
-    나이키 x 릴 야티 어스 포스 1 로우 화이트 앤 미드나잇 네이비
-  </div>
-  <div class="div21">즉시 구매가</div>
-  <div class="_178-000">178,000 원</div>
-  <div class="_23-12-022">23/12/02</div>
-  <div class="div22">출시일</div>
-  <div class="div23">즉시 구매가</div>
-  <div class="rectangle-1593"></div>
-  <div class="rectangle-1596"></div>
-  <div class="rectangle-1598"></div>
-  <div class="rectangle-1599"></div>
-  <div class="rectangle-1600"></div>
-  <div class="rectangle-1601"></div>
-  <div class="rectangle-1602"></div>
-  <img class="image" src="/img/imagemain1.png" />
-  <img class="image2" src="image1.png" />
-  <img class="image3" src="image2.png" />
-  <img class="image4" src="image3.png" />
-  <img class="image5" src="image4.png" />
-  <img class="image6" src="image5.png" />
-  <img class="image7" src="image6.png" />
-  <div class="rectangle-1594"></div>
-  <div class="rectangle-1595"></div>
-  <div class="rectangle-1603"></div>
-  <div class="rectangle-1570"></div>
-  <div class="div24">모든 사이즈</div>
-  <div class="rectangle-15702"></div>
-  <div class="div25">관심 상품</div>
-  <div class="_12-342">12,342</div>
-  <img class="polygon-1" src="polygon-10.svg" />
-  <img class="polygon-2" src="polygon-20.svg" />
-  
+    </div>
+    <div class="div18">결제</div>
+    <div class="_198-000" th:text="${price_summary != null and price_summary.price != null ? price_summary.price + ' 원' : '정보 없음'}">
+      198,000 원
+    </div>
+    <div class="_18-000-6-7"
+         th:text="${price_summary != null and price_summary.diff_amount != null ?
+               (price_summary.diff_amount > 0 ? '+' : '') + price_summary.diff_amount + ' 원 (' + price_summary.diff_percent + '%)'
+               : '정보 없음'}">
+      18,000 (+6.7%)</div>
+    <div class="_168-000" th:text="${product != null and product.release_price != null ? product.release_price + ' 원' : '정보 없음'}">
+      168,000 원</div>
+    <div class="_23-12-02" th:text="${product != null and product.release_date != null ? #dates.format(product.release_date, 'yy/MM/dd') : '정보 없음'}">
+      23/12/02</div>
+    <div class="div19">발매가</div>
+    <div class="div20">출시일</div>
+    <!--    <div class="_45">스타일 리뷰 45</div>-->
+    <div class="x-1"
+         th:text="${product != null and product.product_name != null ? product.product_name : '상품명 정보 없음'}">
+      나이키 x 릴 야티 어스 포스 1 로우 화이트 앤 미드나잇 네이비
+    </div>
+    <div class="div21">즉시 구매가</div>
+    <div class="_178-000" th:text="${price_summary != null and price_summary.instant_price != null ? price_summary.instant_price + ' 원' : '정보 없음'}">
+      178,000 원
+    </div>
+    <div class="_23-12-022" th:text="${price_summary != null and price_summary.previous_date != null ? #dates.format(price_summary.previous_date, 'yy/MM/dd') : '정보 없음'}">
+      23/12/02</div>
+    <div class="div22">직전거래일</div>
+    <div class="rectangle-1593"></div>
+    <img class="image" src="" />
 
-<div class="katte-buy-box">
-  <div class="katte-buy-label">구매</div>
-  <div class="katte-buy-price">178,000 원</div>
-  <div class="katte-buy-desc">즉시 구매가</div>
-  
-<div class="line-23722"></div> 
+    <!-- ✅ 즉시 구매 / 입찰 트리거 -->
+    <div class="katte-buy-box" onclick="openBuyModal()" role="button" style="cursor: pointer;">
+      <div class="katte-buy-label">구매</div>
+      <div class="katte-buy-price"
+           th:text="${price_summary != null and price_summary.instant_price != null ? price_summary.instant_price + ' 원' : '정보 없음'}">
+        178,000 원
+      </div>
+      <div class="katte-buy-desc">즉시 구매가</div>
+    </div>
 
-<div class="katte-buy-btn" id="katteBuyBtn">
-</div>
-</div>
-<!-- =========== 구매하기 팝업 =========== -->
-<div id="katteBuyModal" class="katte-modal-outer" style="display:none;">
-  <div class="katte-modal-content">
-    <span class="katte-modal-close" id="katteModalClose">&times;</span>
-    <div class="katte-modal-title">구매하기</div>
-    <div class="katte-modal-product">
-      <img src="/img/imagemain1.png" alt="상품 이미지" class="katte-modal-thumb">
-      <div class="katte-modal-info">
-        <div class="katte-modal-prodtitle">Nike x Lil Yachty Us Force 1 Low White and Midnight Navy</div>
-        <div class="katte-modal-proddesc">나이키 x 릴 야티 어스 포스 1 로우 화이트 앤 미드나잇 네이비</div>
-        <div class="katte-modal-prodcode">U2010AGY</div>
-      </div>
-    </div>
-    <div class="katte-modal-size-wrap">
-      <div class="katte-modal-size-grid">
-        <!-- 3x8 = 24칸, 예시는 22개. 필요하면 늘리거나 줄이세요 -->
-        <button class="katte-size-btn"><div>모든 사이즈</div><div class="sub">198,000</div></button>
-        <button class="katte-size-btn"><div>220</div><div class="sub">198,000</div></button>
-        <button class="katte-size-btn"><div>225</div><div class="sub">198,000</div></button>
-        <button class="katte-size-btn"><div>230</div><div class="sub">198,000</div></button>
-        <button class="katte-size-btn"><div>235</div><div class="sub">198,000</div></button>
-        <button class="katte-size-btn"><div>240</div><div class="sub">198,000</div></button>
-        <button class="katte-size-btn"><div>245</div><div class="sub">198,000</div></button>
-        <button class="katte-size-btn"><div>250</div><div class="sub">198,000</div></button>
-        <button class="katte-size-btn"><div>255</div><div class="sub">198,000</div></button>
-        <button class="katte-size-btn"><div>260</div><div class="sub">198,000</div></button>
-        <button class="katte-size-btn"><div>265</div><div class="sub">198,000</div></button>
-        <button class="katte-size-btn"><div>270</div><div class="sub">198,000</div></button>
-        <button class="katte-size-btn"><div>275</div><div class="sub">198,000</div></button>
-        <button class="katte-size-btn"><div>280</div><div class="sub">198,000</div></button>
-        <button class="katte-size-btn"><div>285</div><div class="sub">198,000</div></button>
-        <button class="katte-size-btn"><div>290</div><div class="sub">198,000</div></button>
-        <button class="katte-size-btn"><div>295</div><div class="sub">198,000</div></button>
-        <button class="katte-size-btn"><div>300</div><div class="sub">198,000</div></button>
-        <button class="katte-size-btn"><div>305</div><div class="sub">198,000</div></button>
-        <button class="katte-size-btn"><div>310</div><div class="sub">198,000</div></button>
-        <button class="katte-size-btn"><div>315</div><div class="sub">198,000</div></button>
-        <button class="katte-size-btn"><div>320</div><div class="sub">198,000</div></button>
-      </div>
-    </div>
-    <div class="katte-modal-bottom">
-      <button class="katte-wishlist-btn">관심상품 넣기</button>
-      <button class="katte-buy-action-btn">즉시 구매 / 구매 입찰</button>
-    </div>
+    <div class="line-23722"></div>
+
   </div>
 </div>
-  
-  
-  <div class="line-238"></div>
-  
+
+</section>
+<!-- ✅ 중앙 팝업 (사이즈 선택 + 즉시가) -->
+<div id="buyOptionModal" style="display:none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+     background: white; z-index: 9999; padding: 20px; border-radius: 10px; min-width: 300px;">
+  <h3>구매 옵션 선택</h3>
+  <input type="hidden" id="product-id-hidden" th:value="${product.product_id}" />
+
+  <label for="sizeSelect">사이즈 / 가격 선택:</label>
+  <select id="sizeSelect" onchange="updatePrice()" style="width: 100%; margin-top: 10px;">
+    <option value="">사이즈를 선택해주세요</option>
+    <th:block th:each="item : ${size_price_list}">
+      <option th:value="${item.auction_size_value}"
+              th:data-price="${item.  price}"
+              th:text="${item.price != null
+                   ? item.auction_size_value + ' / ' + #numbers.formatInteger(item.price, 0, 'COMMA') + '원'
+                   : item.auction_size_value + ' / 가격 없음'}">
+      </option>
+    </th:block>
+  </select>
+
+  <p style="margin-top: 10px;">선택된 즉시가: <span id="selectedPrice">-</span></p>
+
+  <div style="margin-top: 20px; display: flex; justify-content: space-between;">
+    <button onclick="closeBuyModal()">닫기</button>
+    <button onclick="confirmSelection()" style="background-color: crimson; color: white;">선택 확인</button>
+  </div>
+</div>
+
+
+<div class="line-238"></div>
+
 
 <div class="rectangle-16042">
   <div class="div28">판매</div>
-  <div class="_198-0002">198,000 원</div>
+  <div class="_198-0002"
+       th:text="${lowestsellprice != null ? lowestsellprice + ' 원' : '정보 없음'}">
+    198,000 원
+  </div>
   <div class="div29">즉시 판매가</div>
   <div class="line-2372"></div>
 </div>
 
-<div class="transparent-sell-btn" id="sellBtn"></div>
+  <a href="/sell">
+    <div class="transparent-sell-btn"></div>
+  </a>
 
-<!-- 사이즈 선택 모달 -->
-<div id="sizeModal" class="katte-size-modal" style="display:none;">
-  <div class="katte-modal-content">
-    <span class="katte-modal-close" id="closeModal">&times;</span>
-    <div class="katte-modal-title">사이즈</div>
-    <div class="katte-size-grid">
-      <button class="size-btn"><div>모든 사이즈</div><div class="sub">198,000</div></button>
-      <button class="size-btn"><div>220</div><div class="sub">198,000</div></button>
-      <button class="size-btn"><div>225</div><div class="sub">198,000</div></button>
-      <button class="size-btn"><div>230</div><div class="sub">198,000</div></button>
-      <button class="size-btn"><div>235</div><div class="sub">198,000</div></button>
-      <button class="size-btn"><div>240</div><div class="sub">198,000</div></button>
-      <button class="size-btn"><div>245</div><div class="sub">198,000</div></button>
-      <button class="size-btn"><div>250</div><div class="sub">198,000</div></button>
-      <button class="size-btn"><div>255</div><div class="sub">198,000</div></button>
-      <button class="size-btn"><div>260</div><div class="sub">198,000</div></button>
-      <button class="size-btn"><div>265</div><div class="sub">198,000</div></button>
-      <button class="size-btn"><div>270</div><div class="sub">198,000</div></button>
-      <button class="size-btn"><div>275</div><div class="sub">198,000</div></button>
-      <button class="size-btn"><div>280</div><div class="sub">198,000</div></button>
-      <button class="size-btn"><div>285</div><div class="sub">198,000</div></button>
-      <button class="size-btn"><div>290</div><div class="sub">198,000</div></button>
-      <button class="size-btn"><div>295</div><div class="sub">198,000</div></button>
-      <button class="size-btn"><div>300</div><div class="sub">198,000</div></button>
-      <button class="size-btn"><div>305</div><div class="sub">198,000</div></button>
-      <button class="size-btn"><div>310</div><div class="sub">198,000</div></button>
-      <button class="size-btn"><div>315</div><div class="sub">198,000</div></button>
-      <button class="size-btn"><div>320</div><div class="sub">198,000</div></button>
-    </div>
-  </div>
-</div>
-  
-  
-  <div class="rectangle-16043"></div>
-  <div class="div30">판매</div>
-  <div class="_198-0003">198,000 원</div>
-  <div class="div31">즉시 판매가</div>
-  <div class="line-2373"></div>
-  <img class="div32" src="/img/heartpro.png" />
-  <img class="mask-group" src="mask-group0.svg" />
-  <img class="group-787" src="/img/semo.png" />
-  
 <!-- 2번째 페이지 -->
 
+<div class="div133">추천상품</div>
 
-  
-  <div class="div131">시세표</div>
-  <div class="_1">1개월</div>
-  <div class="div141">체결 거래가</div>
-  <div class="_3">3개월</div>
-  <div class="div151">실시간 구매입찰 반영 가격</div>
-  <div class="div161">옵션</div>
-  <div class="_25-05-22">25/05/22</div>
-  <div class="_25-05-222">25/05/22</div>
-  <div class="_25-05-223">25/05/22</div>
-  <div class="_25-05-224">25/05/22</div>
-  <div class="_25-05-225">25/05/22</div>
-  <div class="_25-05-226">25/05/22</div>
-  <div class="_25-05-227">25/05/22</div>
-  <div class="_275">275</div>
-  <div class="_2752">275</div>
-  <div class="_2753">275</div>
-  <div class="_2754">275</div>
-  <div class="_2755">275</div>
-  <div class="_2756">275</div>
-  <div class="_2757">275</div>
-  <div class="_186-000">186,000 ₩</div>
-  <div class="_186-0002">186,000 ₩</div>
-  <div class="_186-0003">186,000 ₩</div>
-  <div class="_186-0004">186,000 ₩</div>
-  <div class="_186-0005">186,000 ₩</div>
-  <div class="_186-0006">186,000 ₩</div>
-  <div class="_186-0007">186,000 ₩</div>
-  <div class="_186-0008">186,000 ₩</div>
-  <div class="_186-0009">186,000 ₩</div>
-  <div class="_186-00010">186,000 ₩</div>
-  <div class="_186-00011">186,000 ₩</div>
-  <div class="_186-00012">186,000 ₩</div>
-  <div class="_186-00013">186,000 ₩</div>
-  <div class="_186-00014">186,000 ₩</div>
-  <div class="div171">판매 입찰가</div>
-  <div class="div181">구매 입찰가</div>
-  <div class="div191">거래일</div>
-  <div class="div201">실시간 판매입찰 반영 가격</div>
-  <div class="_6">6개월</div>
-  <div class="_12">1년</div>
-  <div class="div211">전체</div>
-
-
-  <div class="rectangle-1570"></div>
-  <div class="line-238"></div>
-  <div class="_0">0</div>
-  <div class="_50-000">50,000</div>
-  <div class="_100-000">100,000</div>
-  <div class="_150-000">150,000</div>
-  <div class="_200-000">200,000</div>
-  <div class="_250-000">250,000</div>
-  <div class="_300-000">300,000</div>
-  <div class="_350-000">350,000</div>
-  <div class="_400-000">400,000</div>
-  <div class="_2-3">2.3</div>
-  <div class="_3-3">3.3</div>
-  <div class="_5-3">5.3</div>
-  <div class="_6-3">6.3</div>
-  <div class="_7-3">7.3</div>
-  <div class="line-159"></div>
-  <div class="line-172"></div>
-  <div class="line-173"></div>
-  <div class="line-174"></div>
-  <div class="line-175"></div>
-  <div class="line-176"></div>
-  <div class="line-177"></div>
-  <div class="line-178"></div>
-  <div class="line-179"></div>
-  <div class="line-168"></div>
-  <div class="line-169"></div>
-  <div class="line-170"></div>
-  <div class="line-171"></div>
-
-  
-  
-  
-
-  <div class="div132">사이즈표</div>
-  <div class="_14">스타일 ( 14 )</div>
-
-  <img class="rectangle-15942" src="rectangle-15940.svg" />
-   <table class="price-table">
-    <thead>
-	  <tr>
-        <td>KR</td>
-        <td>225</td>
-        <td>230</td>
-        <td>235</td>
-        <td>240</td>
-        <td>245</td>
-        <td>250</td>
-        <td>255</td>
-        <td>260</td>
-        <td>265</td>
-      </tr>
-    </thead>
-    <tbody>
-      
-      <tr>
-        <td>KR</td>
-        <td>225</td>
-        <td>230</td>
-        <td>235</td>
-        <td>240</td>
-        <td>245</td>
-        <td>250</td>
-        <td>255</td>
-        <td>260</td>
-        <td>265</td>
-      </tr>
-      <tr>
-        <td>KR</td>
-        <td>225</td>
-        <td>230</td>
-        <td>235</td>
-        <td>240</td>
-        <td>245</td>
-        <td>250</td>
-        <td>255</td>
-        <td>260</td>
-        <td>265</td>
-      </tr>
-      <tr>
-        <td>KR</td>
-        <td>225</td>
-        <td>230</td>
-        <td>235</td>
-        <td>240</td>
-        <td>245</td>
-        <td>250</td>
-        <td>255</td>
-        <td>260</td>
-        <td>265</td>
-      </tr>
-      <tr>
-        <td>KR</td>
-        <td>225</td>
-        <td>230</td>
-        <td>235</td>
-        <td>240</td>
-        <td>245</td>
-        <td>250</td>
-        <td>255</td>
-        <td>260</td>
-        <td>265</td>
-      </tr>
-      <tr>
-        <td>KR</td>
-        <td>225</td>
-        <td>230</td>
-        <td>235</td>
-        <td>240</td>
-        <td>245</td>
-        <td>250</td>
-        <td>255</td>
-        <td>260</td>
-        <td>265</td>
-      </tr>
-      <tr>
-        <td>KR</td>
-        <td>225</td>
-        <td>230</td>
-        <td>235</td>
-        <td>240</td>
-        <td>245</td>
-        <td>250</td>
-        <td>255</td>
-        <td>260</td>
-        <td>265</td>
-      </tr>
-    </tbody>
-  </table>
-  <div class="div142">
-    <div class="_122">
-      <div class="group-772">
-        <img class="image-68" src="image-680.png" />
-        <div class="_23">23</div>
-        <div class="_5">#5뭐입챌린지 #슈프림</div>
-        <div class="chubby">chubby</div>
-        <div class="div152">
-          <img class="mask-group" src="mask-group0.svg" />
-        </div>
-      </div>
-      <div class="group-776">
-        <img class="image-682" src="image-681.png" />
-        <div class="_232">23</div>
-        <div class="_52">#5뭐입챌린지 #슈프림</div>
-        <div class="chubby2">chubby</div>
-        <div class="div152">
-          <img class="mask-group2" src="mask-group1.svg" />
-        </div>
-      </div>
-      <div class="div162">
-        <img class="image-101" src="image-1010.png" />
-      </div>
-      <div class="group-774">
-        <img class="image-683" src="image-682.png" />
-        <div class="_233">23</div>
-        <div class="_53">#5뭐입챌린지 #슈프림</div>
-        <div class="chubby3">chubby</div>
-        <div class="div152">
-          <img class="mask-group3" src="mask-group2.svg" />
-        </div>
-      </div>
-      <div class="group-775">
-        <img class="image-684" src="image-683.png" />
-        <div class="_234">23</div>
-        <div class="_54">#5뭐입챌린지 #슈프림</div>
-        <div class="chubby4">chubby</div>
-        <div class="div152">
-          <img class="mask-group4" src="mask-group3.svg" />
-        </div>
-      </div>
-      <img class="image-100" src="image-1000.png" />
-    </div>
-  </div>
-  <img class="_102" src="_1020.png" />
-  <img class="_103" src="_1030.png" /> 
-
-<!-- 세번쨰 -->
-
-  <img class="image333" src="image0.png" />
-  <img class="rectangle-15943" src="rectangle-15940.svg" />
-  <div class="div133">추천상품</div>
-  <div class="div144">이 브랜드의 다른 상품</div>
-  <img class="image233" src="/img/image233.png" />
+<!-- 추천상품 1 -->
+<div th:if="${katteRecommendList.size() >= 1}">
+  <a th:href="@{'/product/' + ${katteRecommendList[0].product_id}}">
+    <video th:src="${katteRecommendList[0].shortform_content_url}" class="image233" autoplay muted loop></video>
+  </a>
   <div class="group-1003">
-    <div class="k-swiss">K-SWISS</div>
-    <div class="_198-000333">198,000원</div>
-    <div class="kswiss-ksrc-before-the-classic">
-      KSWISS KSRC Before The Classic
-    </div>
-   
-  </div>
-  <div class="group-1004">
-    <div class="k-swiss2">K-SWISS</div>
-    <div class="_143-000">143,000원</div>
-    <div class="kswiss-ksrc-before-the-classic2">
-      KSWISS KSRC Before The Classic
-    </div>
-  </div>
-  <img class="image433" src="image3.png" />
-  <div class="group-1005">
-    <div class="tretorn">Tretorn</div>
-    <div class="_94-000">94,000원</div>
-    <div class="tretorn-lund-deck-shoes-gray">Tretorn Lund Deck Shoes Gray</div>
-  </div>
-  <img class="image533" src="image4.png" />
-  <div class="group-1006">
-    <div class="tretorn2">Tretorn</div>
-    <div class="_94-0002">94,000원</div>
-    <div class="tretorn-lund-deck-shoes-olive">
-      Tretorn Lund Deck Shoes Olive
-    </div>
-  </div>
-  <img class="image633" src="image5.png" />
-  <div class="group-1007">
-    <div class="tretorn3">Tretorn</div>
-    <div class="_94-0003">94,000원</div>
-    <div class="tretorn-lund-deck-shoes-beige">
-      Tretorn Lund Deck Shoes Beige
-    </div>
-  </div>
-  <img class="image733" src="/img/image733.png"/>
-  <div class="group-1003">
-    <div class="nike">Nike</div>
-    <div class="_319-000">319,000원</div>
-    <div class="nike-kobe-9-elite-high-protro-what-the-kobe">
-      Nike Kobe 9 Elite High Protro What the Kobe
-    </div>
-    <img class="image833" src="image7.png" />
-  </div>
-  <div class="group-1004">
-    <div class="nike2">Nike</div>
-    <div class="_169-000">169,000원</div>
-    <div class="nike-x-nigo-air-force-3-low-sp-black-and-white">
-      Nike x Nigo Air Force 3 Low SP Black and White
-    </div>
-  </div>
-  <img class="image933" src="image8.png" />
-  <div class="group-1005">
-    <div class="nike3">Nike</div>
-    <div class="_174-000">174,000원</div>
-    <div class="nike-sb-dunk-low-pro-tourmaline">
-      Nike SB Dunk Low Pro Tourmaline
-    </div>
-  </div>
-  <img class="image1033" src="image9.png" />
-  <div class="group-1006">
-    <div class="nike4">Nike</div>
-    <div class="_990-000">990,000원</div>
-    <div class="w-nike-x-swarovski-air-max-97-lx-silver-bullet">
-      (W) Nike x Swarovski Air Max 97 LX Silver Bullet
-    </div>
-  </div>
-  <img class="image1133" src="image10.png" />
-  <div class="group-1007">
-    <div class="nike5">Nike</div>
-    <div class="_152-000">152,000원</div>
-    <div class="nike-x-paul-rodriguez-sb-air-zoom-low-white-and-black">
-      Nike x Paul Rodriguez SB Air Zoom Low White and Black
-    </div>
-  </div>
-  <img class="arrow-746" src="arrow-7460.svg" />
-  
-  <!-- 네 번쨰 -->
-
-
-  <img class="image444" src="image0.png" />
-  <img class="rectangle-159444" src="rectangle-15940.svg" />
-  <div class="div1344">함께 본 상품</div>
-  <img class="image244" src="image1.png" />
-  <div class="group-100344">
-    <div class="jordan44">Jordan</div>
-    <div class="_222-00044">222,000원</div>
-    <div class="w-jordan-1-retro-high-og-ruby">
-      W) Jordan 1 Retro High OG Ruby
-    </div>
-    <img class="image344" src="image2.png" />
-  </div>
-  <div class="group-100444">
-    <div class="jordan244">Jordan</div>
-    <div class="_239-00044">239,000원</div>
-    <div class="jordan-x-travis-scott-jumpman-jack-tr-bright-cactus">
-      Jordan x Travis Scott Jumpman Jack TR Bright Cactus
-    </div>
-  </div>
-  <img class="image444" src="image3.png" />
-  <div class="group-100544">
-    <div class="nike44">Nike</div>
-    <div class="_395-00044">395,000원</div>
-    <div class="w-nike-x-swarovski-air-force-1-lxx-triple-black">
-      (W) Nike x Swarovski Air Force 1 LXX Triple Black
-    </div>
-  </div>
-  <img class="image544" src="image4.png" />
-  <div class="group-100644">
-    <div class="jordan344">Jordan</div>
-    <div class="_1-490-00044">1,490,000원</div>
-    <div
-      class="jordan-1-x-travis-scott-x-fragment-retro-low-og-sp-military-blue"
-    >
-      Jordan 1 x Travis Scott x Fragment Retro Low OG SP Military Blue
-    </div>
-  </div>
-  <img class="image644" src="image5.png" />
-  <div class="group-100744">
-    <div class="new-balance44">New Balance</div>
-    <div class="_256-00044">256,000원</div>
-    <div class="new-balance-x-ronnie-fieg-2010-abzorb-black-yellow">
-      New Balance x Ronnie Fieg 2010 Abzorb Black Yellow
-    </div>
-  </div>
-  <img class="image744" src="image6.png" />
-  <div class="group-100344">
-    <div class="jordan444">Jordan</div>
-    <div class="_222-000244">222,000원</div>
-    <div class="w-jordan-1-retro-high-og-ruby2">
-      W) Jordan 1 Retro High OG Ruby
-    </div>
-    <img class="image844" src="image7.png" />
-  </div>
-  <div class="group-100444">
-    <div class="jordan544">Jordan</div>
-    <div class="_239-000244">239,000원</div>
-    <div class="jordan-x-travis-scott-jumpman-jack-tr-bright-cactus2">
-      Jordan x Travis Scott Jumpman Jack TR Bright Cactus
-    </div>
-  </div>
-  <img class="image944" src="image8.png" />
-  <div class="group-100544">
-    <div class="nike244">Nike</div>
-    <div class="_395-000244">395,000원</div>
-    <div class="w-nike-x-swarovski-air-force-1-lxx-triple-black2">
-      (W) Nike x Swarovski Air Force 1 LXX Triple Black
-    </div>
-  </div>
-  <img class="image1044" src="image9.png" />
-  <div class="group-100644">
-    <div class="jordan644">Jordan</div>
-    <div class="_1-490-000244">1,490,000원</div>
-    <div
-      class="jordan-1-x-travis-scott-x-fragment-retro-low-og-sp-military-blue2"
-    >
-      Jordan 1 x Travis Scott x Fragment Retro Low OG SP Military Blue
-    </div>
-  </div>
-  <img class="image1144" src="image10.png" />
-  <div class="group-1007">
-    <div class="new-balance244">New Balance</div>
-    <div class="_256-000244">256,000원</div>
-    <div class="new-balance-x-ronnie-fieg-2010-abzorb-black-yellow2">
-      New Balance x Ronnie Fieg 2010 Abzorb Black Yellow
-    </div>
-  </div>
-  <img class="image1244" src="image11.png" />
-  <div class="group-1003">
-    <div class="jordan744">Jordan</div>
-    <div class="_222-000344">222,000원</div>
-    <div class="w-jordan-1-retro-high-og-ruby3">
-      W) Jordan 1 Retro High OG Ruby
-    </div>
-    <img class="image1344" src="image12.png" />
-  </div>
-  <div class="group-100444">
-    <div class="jordan844">Jordan</div>
-    <div class="_239-000344">239,000원</div>
-    <div class="jordan-x-travis-scott-jumpman-jack-tr-bright-cactus3">
-      Jordan x Travis Scott Jumpman Jack TR Bright Cactus
-    </div>
-  </div>
-  <img class="image1444" src="image13.png">
-  <div class="group-1005">
-    <div class="nike344">Nike</div>
-    <div class="_395-000344">395,000원</div>
-    <div class="w-nike-x-swarovski-air-force-1-lxx-triple-black3">
-      (W) Nike x Swarovski Air Force 1 LXX Triple Black
-    </div>
-  </div>
-  <img class="image1544" src="image14.png" />
-  <div class="group-1006">
-    <div class="jordan944">Jordan</div>
-    <div class="_1-490-0003">1,490,000원</div>
-    <div
-      class="jordan-1-x-travis-scott-x-fragment-retro-low-og-sp-military-blue3"
-    >
-      Jordan 1 x Travis Scott x Fragment Retro Low OG SP Military Blue
-    </div>
-  </div>
-  <img class="image1644" src="image15.png" />
-  <div class="group-1007">
-    <div class="new-balance344">New Balance</div>
-    <div class="_256-000344">256,000원</div>
-    <div class="new-balance-x-ronnie-fieg-2010-abzorb-black-yellow3">
-      New Balance x Ronnie Fieg 2010 Abzorkatte-buy-btnb Black Yellow
-    </div>
+    <div class="k-swiss" th:text="${katteRecommendList[0].brand_name}">브랜드</div>
+    <div class="_198-000333" th:text="${katteRecommendList[0].like_count + ' 좋아요'}">좋아요</div>
+    <div class="kswiss-ksrc-before-the-classic" th:text="${katteRecommendList[0].product_name}">상품명</div>
   </div>
 </div>
+
+<!-- 추천상품 2 -->
+<div th:if="${katteRecommendList.size() >= 2}">
+  <a th:href="@{'/product/' + ${katteRecommendList[1].product_id}}">
+    <video th:src="${katteRecommendList[1].shortform_content_url}" class="image333" autoplay muted loop></video>
+  </a>
+  <div class="group-1004">
+    <div class="k-swiss2" th:text="${katteRecommendList[1].brand_name}">브랜드</div>
+    <div class="_143-000" th:text="${katteRecommendList[1].like_count + ' 좋아요'}">좋아요</div>
+    <div class="kswiss-ksrc-before-the-classic2" th:text="${katteRecommendList[1].product_name}">상품명</div>
+  </div>
 </div>
+
+<!-- 추천상품 3 -->
+<div th:if="${katteRecommendList.size() >= 3}">
+  <a th:href="@{'/product/' + ${katteRecommendList[2].product_id}}">
+    <video th:src="${katteRecommendList[2].shortform_content_url}" class="image433" autoplay muted loop></video>
+  </a>
+  <div class="group-1005">
+    <div class="tretorn" th:text="${katteRecommendList[2].brand_name}">브랜드</div>
+    <div class="_94-000" th:text="${katteRecommendList[2].like_count + ' 좋아요'}">좋아요</div>
+    <div class="tretorn-lund-deck-shoes-gray" th:text="${katteRecommendList[2].product_name}">상품명</div>
+  </div>
+</div>
+
+<!-- 추천상품 4 -->
+<div th:if="${katteRecommendList.size() >= 4}">
+  <a th:href="@{'/product/' + ${katteRecommendList[3].product_id}}">
+    <video th:src="${katteRecommendList[3].shortform_content_url}" class="image533" autoplay muted loop></video>
+  </a>
+  <div class="group-1006">
+    <div class="tretorn2" th:text="${katteRecommendList[3].brand_name}">브랜드</div>
+    <div class="_94-0002" th:text="${katteRecommendList[3].like_count + ' 좋아요'}">좋아요</div>
+    <div class="tretorn-lund-deck-shoes-olive" th:text="${katteRecommendList[3].product_name}">상품명</div>
+  </div>
+</div>
+
+<!-- 추천상품 5 -->
+<div th:if="${katteRecommendList.size() >= 5}">
+  <a th:href="@{'/product/' + ${katteRecommendList[4].product_id}}">
+    <video th:src="${katteRecommendList[4].shortform_content_url}" class="image633" autoplay muted loop></video>
+  </a>
+  <div class="group-1007">
+    <div class="tretorn3" th:text="${katteRecommendList[4].brand_name}">브랜드</div>
+    <div class="_94-0003" th:text="${katteRecommendList[4].like_count + ' 좋아요'}">좋아요</div>
+    <div class="tretorn-lund-deck-shoes-beige" th:text="${katteRecommendList[4].product_name}">상품명</div>
+  </div>
+</div>
+
+<!-- 브랜드 인기상품 타이틀 -->
+<div class="div144">이 브랜드의 다른 상품</div>
+
+<!-- 브랜드상품 1 -->
+  <div th:if="${brandTopList.size() >= 1}">
+    <a th:href="@{'/product/' + ${brandTopList[0].product_id}}">
+      <img class="image733"
+           th:src="'https://resources-katte.jp.ngrok.io/images/' + ${brandTopList[0].product_id} + '/' + ${brandTopList[0].product_id} + '_1.png'" />
+    </a>
+    <div class="group-1013">
+      <div class="nike" th:text="${brandTopList[0].brand_name}">브랜드</div>
+      <div class="nike-kobe-9-elite-high-protro-what-the-kobe" th:text="${brandTopList[0].product_name}">상품명</div>
+    </div>
+  </div>
+
+<!-- 브랜드상품 2 -->
+  <div th:if="${brandTopList.size() >= 2}">
+    <a th:href="@{'/product/' + ${brandTopList[1].product_id}}">
+      <img class="image833"
+           th:src="'https://resources-katte.jp.ngrok.io/images/' + ${brandTopList[1].product_id} + '/' + ${brandTopList[1].product_id} + '_1.png'" />
+    </a>
+    <div class="group-1014">
+      <div class="nike2" th:text="${brandTopList[1].brand_name}">브랜드</div>
+      <div class="nike-x-nigo-air-force-3-low-sp-black-and-white" th:text="${brandTopList[1].product_name}">상품명</div>
+    </div>
+  </div>
+
+<!-- 브랜드상품 3 -->
+  <div th:if="${brandTopList.size() >= 3}">
+    <a th:href="@{'/product/' + ${brandTopList[2].product_id}}">
+      <img class="image933"
+           th:src="'https://resources-katte.jp.ngrok.io/images/' + ${brandTopList[2].product_id} + '/' + ${brandTopList[2].product_id} + '_1.png'" />
+    </a>
+    <div class="group-1015">
+      <div class="nike3" th:text="${brandTopList[2].brand_name}">브랜드</div>
+      <div class="nike-sb-dunk-low-pro-tourmaline" th:text="${brandTopList[2].product_name}">상품명</div>
+    </div>
+  </div>
+
+<!-- 브랜드상품 4 -->
+  <div th:if="${brandTopList.size() >= 4}">
+    <a th:href="@{'/product/' + ${brandTopList[3].product_id}}">
+      <img class="image1033"
+           th:src="'https://resources-katte.jp.ngrok.io/images/' + ${brandTopList[3].product_id} + '/' + ${brandTopList[3].product_id} + '_1.png'" />
+    </a>
+    <div class="group-1016">
+      <div class="nike4" th:text="${brandTopList[3].brand_name}">브랜드</div>
+      <div class="w-nike-x-swarovski-air-max-97-lx-silver-bullet" th:text="${brandTopList[3].product_name}">상품명</div>
+    </div>
+  </div>
+
+<!-- 브랜드상품 5 -->
+  <div th:if="${brandTopList.size() >= 5}">
+    <a th:href="@{'/product/' + ${brandTopList[4].product_id}}">
+      <img class="image1133"
+           th:src="'https://resources-katte.jp.ngrok.io/images/' + ${brandTopList[4].product_id} + '/' + ${brandTopList[4].product_id} + '_1.png'" />
+    </a>
+    <div class="group-1017">
+      <div class="nike5" th:text="${brandTopList[4].brand_name}">브랜드</div>
+      <div class="nike-x-paul-rodriguez-sb-air-zoom-low-white-and-black" th:text="${brandTopList[4].product_name}">상품명</div>
+    </div>
+  </div>
+
+<div class="div1344"> . </div>
+
+</div>
+</div>
+
 <script>
-document.getElementById('sellBtn').addEventListener('click', function() {
-	  document.getElementById('sizeModal').style.display = 'flex';
-	});
-	document.getElementById('closeModal').addEventListener('click', function() {
-	  document.getElementById('sizeModal').style.display = 'none';
-	});
-	document.querySelectorAll('.size-btn').forEach(function(btn) {
-	  btn.addEventListener('click', function() {
-	    
-	    document.getElementById('sizeModal').style.display = 'none';
-	  });
-	});
-	// 팝업 열기/닫기
-	document.getElementById('katteBuyBtn').addEventListener('click', function() {
-	  document.getElementById('katteBuyModal').style.display = 'flex';
-	});
-	document.getElementById('katteModalClose').addEventListener('click', function() {
-	  document.getElementById('katteBuyModal').style.display = 'none';
-	});
-	document.getElementById('katteBuyModal').addEventListener('click', function(e) {
-	  if (e.target === this) this.style.display = 'none';
-	});
-	// 사이즈 선택
-	document.querySelectorAll('.katte-size-btn').forEach(function(btn) {
-	  btn.addEventListener('click', function() {
-	    document.querySelectorAll('.katte-size-btn').forEach(b => b.classList.remove('selected'));
-	    btn.classList.add('selected');
-	  });
-	});
+
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const meta = document.getElementById("product-meta");
+    const productId = meta.dataset.productId;
+    const brand = meta.dataset.brand;
+
+    const resourceURL = "https://resources-katte.jp.ngrok.io/images/";
+    const imagePath = `${resourceURL}${productId}/${productId}_1.png`;
+
+    document.querySelector('.image').src = imagePath;
+
+    console.log("✅ 이미지 경로:", imagePath);
+  });
+
+  // 중앙 모달 열기
+  function openBuyModal() {
+    document.getElementById('buyOptionModal').style.display = 'block';
+  }
+
+  // 닫기
+  function closeBuyModal() {
+    document.getElementById('buyOptionModal').style.display = 'none';
+  }
+
+  // 즉시가 실시간 갱신
+  function updatePrice() {
+    const selected = document.getElementById('sizeSelect').selectedOptions[0];
+    if (selected && selected.value) {
+      const price = selected.getAttribute('data-price');
+      document.getElementById('selectedPrice').innerText = price + '원';
+    } else {
+      document.getElementById('selectedPrice').innerText = '-';
+    }
+  }
+
+  // 선택 완료 → 이동
+  function confirmSelection() {
+    const selected = document.getElementById('sizeSelect').selectedOptions[0];
+    if (!selected || !selected.value) {
+      alert("등록된 상품이 없습니다..");
+      return;
+    }
+    const size = selected.value;
+    const price = selected.getAttribute('data-price');
+    const productId = document.getElementById('product-id-hidden').value;
+
+    window.location.href = `/product/buy?product_id=${productId}&size=${size}&price=${price}`;
+  }
+
+  //css상으로
+  window.addEventListener('DOMContentLoaded', () => {
+    const elements = document.querySelectorAll('*');  // 모든 DOM 요소 순회
+    elements.forEach(el => {
+      const rect = el.getBoundingClientRect();
+      if (rect.top > 2100) {  // top 위치가 1900px보다 크면 (=아래쪽에 위치하면)
+        el.remove();          // 삭제
+      }
+    });
+  });
 
 </script>
+
 </body>
+
 </html>
