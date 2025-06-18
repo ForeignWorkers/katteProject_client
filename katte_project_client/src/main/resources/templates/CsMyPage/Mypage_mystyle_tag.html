@@ -4,61 +4,41 @@
   <meta charset="UTF-8">
   <title>Favorite</title>
   <link rel="stylesheet" href="/css/CsMyPage/Mypage_mystyle_tag.css">
+  <link rel="stylesheet" href="/css/fragments/Sidebar.css">
 </head>
 <body>
-<aside class = "sidebar"> <!--사이드 바-->
-  <a href="/main"><img class="logo-1" src="/img/logo%20(1).png" alt="로고"></a>
-  <nav class="sidebar-nav">
-    <ul>
-      <li><a href="/search">검색</a></li>
-      <li><a href="/explore">탐색</a></li>
-      <li><a href="/sell">판매등록</a></li>
-      <li><a href="/wishlist">관심상품</a></li>
-      <li><a href="/style">스타일</a></li>
-      <li><a href="/mypage">마이페이지</a></li>
-      <li><a href="/support">고객센터</a></li>
-    </ul>
-  </nav>
-   <div class="login-area">
-    <a href="/login" class="btn-login">로그인</a>
-  </div>
-  <footer class="sidebar-footer">
-    <p><a href="/support">고객센터</a> | <a href="/terms">이용약관</a></p>
-    <small>&copy; All copyright in soldesk</small>
-  </footer>
-</aside>
-<div id = "MyPageBar"> <!--상단 마이페이지 바-->
-  <div id = "MyPageText">MyPage</div>
-  <div id = "ClickBox">
-    <div id = "buyList">
-      <a href="/MyPage">구매 내역</a>
-    </div>
-    <div id = "favorite">
-      <a href="/Favorite">관심</a>
-    </div>
-    <div id = "MyStyle" class = "selected">
-      <a href="/MyStyle">내 스타일</a>
-    </div>
-    <div id = "MyKatteMoney">
-      <a href="/MyKatteMoney">캇테머니</a>
-    </div>
-    <div id = "MyPoint">
-      <a href="/MyPoint">포인트</a>
-    </div>
-    <div id = "MyCoupon">
-      <a href="/MyCoupon">쿠폰함</a>
-    </div>
-    <div id = "MyLogInfo">
-      <a href="/MyLogInfo">로그인 정보</a>
-    </div>
-    <div id = "MyProfile">
-      <a href="/MyProfile">프로필 관리</a>
-    </div>
-    <div id = "MyAddress">
-      <a href="/MyAddress">주소록 관리</a>
+
+<!-- ✅ 사이드바 -->
+<div th:replace="Fragments/Sidebar :: sidebar"></div>
+
+<div class="contentWrapper">
+  <div id = "MyPageBar"> <!--상단 마이페이지 바-->
+    <div id = "MyPageText">MyPage</div>
+    <div id = "ClickBox">
+      <a href="/MyPage" id = "buyList">
+        <div>구매내역</div>
+      </a>
+      <a href="/Favorite" id = "favorite">
+        <div>관심</div>
+      </a>
+      <a href="/MyStyle" id = "MyStyle">
+        <div>스타일</div>
+      </a>
+      <a href="/MyKatteMoney" id = "MyKatteMoney">
+        <div>캇테머니</div>
+      </a>
+      <a href="/MyPoint" id = "MyPoint">
+        <div>포인트</div>
+      </a>
+      <a href="/MyCoupon" id = "MyCoupon"  class = "selected">
+        <div>쿠폰함</div>
+      </a>
+      <a href="/MyAddress" id = "MyAddress">
+        <div>주소록 관리</div>
+      </a>
     </div>
   </div>
-</div>
+
   <img class="line-136" src="line-1360.svg" />
   <img class="group-767" src="group-7670.svg" />
   <img class="image-94" src="image-940.png" />
