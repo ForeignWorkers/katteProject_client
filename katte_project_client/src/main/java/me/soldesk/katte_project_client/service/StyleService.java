@@ -70,7 +70,7 @@ public class StyleService {
 
         TypeReference<Boolean> ref = new TypeReference<>(){};
 
-        Boolean productResult = ApiManagers.get("content/style/add_product_id",
+        Boolean productResult = ApiManagers.postQuery("content/style/add_product_id",
                 reqQuery,
                 ref).getBody();
         if (Boolean.FALSE.equals(productResult))
