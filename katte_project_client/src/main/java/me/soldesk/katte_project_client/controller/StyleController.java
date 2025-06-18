@@ -4,6 +4,9 @@ import common.bean.content.ContentStyleBean;
 import common.bean.content.ContentStyleComment;
 import common.bean.product.ProductInfoBean;
 import common.bean.user.UserBean;
+import common.bean.user.UserRestrictionBean;
+import jakarta.servlet.http.HttpSession;
+import me.soldesk.katte_project_client.service.AdminUserListService;
 import me.soldesk.katte_project_client.service.StyleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,7 +15,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
-import org.springframework.web.context.annotation.SessionScope;
 
 import java.io.IOException;
 import java.util.List;
@@ -24,6 +26,9 @@ public class StyleController {
     public StyleController(StyleService styleService) {
         this.styleService = styleService;
     }
+
+    @Autowired
+    private AdminUserListService adminUserListService;
 
     /**
      * 스타일 목록 페이지
@@ -50,7 +55,19 @@ public class StyleController {
 
     // 상세보기는 그대로
     @GetMapping("/style/detail")
-    public String styleDetail() {
+    public String styleDetail(HttpSession session, Model model) {
+        UserBean user = (UserBean) session.getAttribute("currentUser");
+        int userId = user != null ? user.getUser_id() : -1;
+        model.addAttribute("userId", userId);
+
+        // 제한 여부 추가
+        boolean isRestricted = false;
+        if (userId != -1) {
+            List<UserRestrictionBean> restrictions = adminUserListService.getUserRestrictions(userId);
+            isRestricted = restrictions.stream()
+                    .anyMatch(r -> r.getRestriction_type().equals("comment"));
+        }
+        model.addAttribute("commentRestricted", isRestricted);
         return "Stylepage/Style_detail";
     }
 

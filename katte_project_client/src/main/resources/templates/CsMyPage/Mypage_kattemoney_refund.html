@@ -3,11 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <title>Favorite</title>
+  <link rel="stylesheet" href="/css/fragments/Sidebar.css" />
   <link rel="stylesheet" href="/css/CsMyPage/Mypage_kattemoney_refund.css">
-  <link rel="stylesheet" href="/css/fragments/Sidebar.css">
 </head>
 <body>
-
 <!-- ✅ 사이드바 -->
 <div th:replace="Fragments/Sidebar :: sidebar"></div>
 
@@ -36,33 +35,33 @@
       <a href="/MyAddress" id = "MyAddress">
         <div>주소록 관리</div>
       </a>
+      </div>
     </div>
   </div>
-
   <!-- 충전/환불 탭 버튼 (상단 위치) -->
   <div class="katte-tab-buttons">
     <a th:class="${tab} == 'charge' ? 'selected-tab' : ''" href="/mypage/kattemoney">충전</a>
     <a th:class="${tab} == 'refund' ? 'selected-tab' : ''" href="/mypage/kattemoney/refund">환불</a>
   </div>
   <div class="refund-wrapper">
-  <div class="refund-title">캇테머니 환불</div>
-  <div class="refund-balance-label">보유 캇테머니</div>
+    <div class="refund-title">캇테머니 환불</div>
+    <div class="refund-balance-label">보유 캇테머니</div>
     <div class="refund-balance"
          th:text="${#numbers.formatInteger(katteMoney, 3, 'COMMA') + 'katte'}"
          th:data-balance="${katteMoney}">
       0 katte
     </div>
-  <div class="refund-label">환불 신청 금액</div>
+    <div class="refund-label">환불 신청 금액</div>
     <input class="refund-input" type="text" placeholder="katte" inputmode="numeric">
-  <select class="refund-bank-select">
-    <option value="kb">KB국민은행</option>
-    <option value="shinhan">신한은행</option>
-    <option value="woori">우리은행</option>
-    <option value="hana">하나은행</option>
-    <option value="ibk">IBK기업은행</option>
-    <option value="nh">NH농협은행</option>
-    <!-- 필요시 추가 -->
-  </select>
+    <select class="refund-bank-select">
+      <option value="kb">KB국민은행</option>
+      <option value="shinhan">신한은행</option>
+      <option value="woori">우리은행</option>
+      <option value="hana">하나은행</option>
+      <option value="ibk">IBK기업은행</option>
+      <option value="nh">NH농협은행</option>
+      <!-- 필요시 추가 -->
+    </select>
     <input class="refund-account-input" type="text" placeholder="계좌번호 입력">
     <input type="hidden" id="katteBalance" th:value="${katteMoney}" />
     <button class="refund-btn" onclick="submitRefund()">확인</button>
@@ -82,8 +81,8 @@
       return;
     }
 
-    if (amount < 10000 || amount > 1000000 || amount % 10000 !== 0) {
-      alert("환불 금액은 10,000원 이상, 1,000,000원 이하이며 10,000원 단위여야 합니다.");
+    if (amount < 1000 || amount > 1000000 || amount % 1000 !== 0) {
+      alert("환불 금액은 1000원 이상, 1,000,000원 이하이며 1000원 단위여야 합니다.");
       return;
     }
 

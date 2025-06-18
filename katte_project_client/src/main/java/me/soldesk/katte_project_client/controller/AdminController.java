@@ -2,6 +2,7 @@ package me.soldesk.katte_project_client.controller;
 
 
 
+import common.bean.user.UserRestrictionBean;
 import me.soldesk.katte_project_client.service.AdminUserListService;
 import me.soldesk.katte_project_client.service.InspectionListService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import common.bean.admin.*;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
@@ -134,5 +136,11 @@ public class AdminController {
         } else {
             return "redirect:/admin/user_view?page=" + page;
         }
+    }
+
+    @GetMapping("/restriction/comment")
+    @ResponseBody
+    public List<UserRestrictionBean> getCommentRestrictions(@RequestParam("user_id") int userId) {
+        return adminUserListService.getUserRestrictions(userId);
     }
 }
