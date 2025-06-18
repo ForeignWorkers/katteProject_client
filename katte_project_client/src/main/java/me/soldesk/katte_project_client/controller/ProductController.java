@@ -2,24 +2,22 @@ package me.soldesk.katte_project_client.controller;
 
 import common.bean.auction.AuctionDataBean;
 import common.bean.content.ContentShortformBean;
-import common.bean.product.ProductCheckResultBean;
-import common.bean.product.ProductPerSaleBean;
-import common.bean.product.ProductSizeBean;
+import common.bean.product.*;
 import common.bean.user.UserBean;
 import jakarta.servlet.http.HttpSession;
 import me.soldesk.katte_project_client.manager.ApiManagers;
 import me.soldesk.katte_project_client.service.ProductRegisterResult;
 import me.soldesk.katte_project_client.service.ProductRegisterService;
+import me.soldesk.katte_project_client.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -27,12 +25,163 @@ public class ProductController {
 
     @Autowired
     private ProductRegisterService productRegisterService;
+    @Autowired
+    private ProductService productService;
 
-    //특정 상품 디테일 페이지 이동
-    @GetMapping("/product/detail")
-    public String productDetail() {
+    //입찰구매 등록
+
+    //즉시구매 겟.
+    @GetMapping("/product/instant_buy")
+    public String showInstantBuyPage(@RequestParam("product_id") int productId,
+                                     @RequestParam("size") String size,
+                                     @RequestParam("price") int price,
+                                     Model model) {
+
+        model.addAttribute("product_id", productId);
+        model.addAttribute("size", size);
+        model.addAttribute("price", price);
+
+
+        return "Product_instant_buybtn_Page";
+    }
+
+    //입찰 겟
+    @GetMapping("/product/buy")
+    public String showBuyPage(@RequestParam("product_id") int productId,
+                              @RequestParam("size") String size,
+                              @RequestParam("price") int price,
+                              Model model, HttpSession session) {
+
+        // 상품 정보 가져오기
+        ProductInfoBean product = productService.getProductInfo(productId);
+        // 💡 로그인된 user 정보 가져오기
+        UserBean loginUser = (UserBean) session.getAttribute("currentUser");
+        if (loginUser == null) {
+            return "redirect:/login"; // 또는 에러 메시지 페이지
+        }
+        int userId = loginUser.getUser_id();
+
+        // 💰 잔액 조회
+        int katteMoney = productService.getUserKatteMoney(userId); // 이거 있어야 함
+        model.addAttribute("katte_money", katteMoney);
+
+        model.addAttribute("product", product);
+
+        model.addAttribute("product_id", productId);
+        model.addAttribute("size", size);
+        model.addAttribute("price", price);
+
+        // 최저 즉시 판매가
+        Integer lowestsellprice = productService.getLowestSellPrice(productId) != null ? productService.getLowestSellPrice(productId) : 0;
+        model.addAttribute("lowestsellprice", lowestsellprice);
+
+        // ✅ 사이즈별 즉시 판매가 추가
+        List<ProductSizeWithSellPriceBean> sellPriceList = productService.getSizePriceListByProductId(productId);
+        model.addAttribute("sell_price_list", sellPriceList); // ✅ 추가
+
+        // 2. 경매 정보 (마감일 포함)
+        String auctionEndTime = productService.getAuctionEndTime(productId, size);
+        System.out.println("🟡 클라이언트 auctionEndTime = " + auctionEndTime);
+        model.addAttribute("auctionEndTime", auctionEndTime); // auction.auction_end_time 으로 접근 가능
+
+        return "Productpage/Product_buybtn_Page";
+    }
+
+
+    // 결제 및 배송지 선택 페이지
+    @GetMapping("/product/payment")
+    public String showPaymentPage() {
+        return "Productpage/Product_buybtn_next_Page"; // ← 업로드한 Product_buybtn_next_Page.html
+    }
+
+    //캇테머니 겟터
+    @GetMapping("/product/kattePayment")
+    public String showPaymentPage(@RequestParam("user_id") int userId, Model model) {
+        int katteMoney = productService.getUserKatteMoney(userId);
+        System.out.println("사용자 잔액: " + katteMoney);
+        model.addAttribute("katte_money", katteMoney);
+        return "Productpage/Product_buybtn_next_Page";
+
+    }
+
+    // 상품 상세 페이지 - 패스 변수로 product_id 받기
+    @GetMapping("/product/{product_id}")
+    public String showProductDetail(@PathVariable("product_id") int productId, Model model) {
+
+        // 상품 정보
+        ProductInfoBean product = productService.getProductInfo(productId);
+        System.out.println("상품 브랜드명 확인: " + product.getBrand_name()); // [✔ 확인용 로그]
+        System.out.println("👉 브랜드 탑 상품 API 호출 브랜드명: " + product.getBrand_name());
+        model.addAttribute("product", product);
+
+        System.out.println("넘어온 product_id: " + productId);
+
+        // 가격 요약 정보
+        ProductPriceSummaryBean priceSummary = productService.getProductPriceSummary(productId);
+        model.addAttribute("price_summary", priceSummary);
+
+        // 최저 즉시 판매가
+        Integer lowestsellprice = productService.getLowestSellPrice(productId) != null ? productService.getLowestSellPrice(productId) : 0;
+        model.addAttribute("lowestsellprice", lowestsellprice);
+
+        // 사이즈별 즉시가 리스트
+        List<ProductSizeWithPriceBean> sizePriceList = productService.getSizePriceList(productId);
+        System.out.println("사이즈/가격 리스트 수: " + sizePriceList.size());
+        for (ProductSizeWithPriceBean item : sizePriceList) {
+            System.out.println("👉 사이즈: " + item.getAuction_size_value() + " / 즉시가: " + item.getPrice());
+        }
+        System.out.println(sizePriceList.size());
+        System.out.println(sizePriceList);
+        model.addAttribute("size_price_list", sizePriceList);
+        // 사이즈별 즉시 판매가 용
+        model.addAttribute("sell_price_list", productService.getSizePriceListByProductId(product.getProduct_id()));
+        // 시세 데이터
+        model.addAttribute("priceHistory1M", productService.getPriceHistory(productId, "1M"));
+        model.addAttribute("priceHistory3M", productService.getPriceHistory(productId, "3M"));
+        model.addAttribute("priceHistoryAll", productService.getPriceHistory(productId, "ALL"));
+
+        //캇테추천(5)
+        List<ProductKatteRecommendBean> katteRecommendList = productService.getKatteRecommendList(0, 5);
+        model.addAttribute("katteRecommendList", katteRecommendList);
+
+        // 브랜드 상품(5)
+        List<ProductInfoBean> brandTopProducts = productService.getBrandTopProducts(product.getBrand_name(), 0, 5);
+        model.addAttribute("brandTopList", brandTopProducts);
+
+        String imageUrl = String.format("https://resources-katte.jp.ngrok.io/images/%d/%d_1.png", product.getProduct_id(), product.getProduct_id());
+        System.out.println("AAAAA" + imageUrl);
+        model.addAttribute("resourceURL", imageUrl);
+
         return "Productpage/Productpage";
     }
+
+
+    // 사이즈별 최저 즉시 판매가 JSON 응답
+    @GetMapping("/api/product/sell-price-by-size")
+    @ResponseBody
+    public List<ProductSizeWithSellPriceBean> getLowestSellPriceBySize(@RequestParam("product_id") int productId) {
+        return productService.getLowestSellPriceBySize(productId);
+    }
+
+    @GetMapping("/product/price-chart")
+    public String showPriceChartPage(@RequestParam int product_id, @RequestParam(defaultValue = "1M") String period, Model model) {
+        List<Map<String, Object>> priceHistory = productService.getPriceHistory(product_id, period);
+        model.addAttribute("priceHistory", priceHistory);
+        model.addAttribute("productId", product_id);
+        model.addAttribute("period", period);
+        return "Productpage/Productpage";
+    }
+
+    @PostMapping("/product/like")
+    public String addToWishlist(@RequestParam("product_id") int productId, HttpSession session) {
+        UserBean user = (UserBean) session.getAttribute("user");
+        int userId = user.getUser_id();
+
+        productService.addProductLike(userId, productId);  // 위 서비스 호출
+        System.out.println("현재 세션 유저 ID: " + session.getAttribute("user_id"));
+        return "redirect:/product/detail?product_id=" + productId;
+    }
+
 
     @PostMapping("/submit-product")
     public String submitProduct(

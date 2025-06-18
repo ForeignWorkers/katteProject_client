@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<link rel="stylesheet" href="/css/Productpage/Product_buybtn_Page.css" />
+<body>
+<aside class="sidebar">
+  <a href="/main">
+  <img class="logo-1" src="/img/logo%20(1).png" alt="로고" />
+  </a>
+  <nav class="sidebar-nav">
+    <ul>
+      <li><a href="/search">검색</a></li>
+      <li><a href="/explore">탐색</a></li>
+      <li><a href="/sell">판매등록</a></li>
+      <li><a href="/wishlist">관심상품</a></li>
+      <li><a href="/style">스타일</a></li>
+      <li><a href="/mypage">마이페이지</a></li>
+      <li><a href="/support">고객센터</a></li>
+    </ul>
+  </nav>
+  <div class="login-area">
+    <a href="/login" class="btn-login">로그인</a>
+  </div>
+  <footer class="sidebar-footer">
+    <p><a href="/support">고객센터</a> | <a href="/terms">이용약관</a></p>
+    <small>&copy; All copyright in soldesk</small>
+  </footer>
+</aside>
+
+<div class="wrapper">
+  <div class="div">구매 입찰하기</div>
+  <img class="rectangle-1594" src="rectangle-15940.svg" />
+  <div class="rectangle-1613"></div>
+  <div class="rectangle-1604"></div>
+  <img class="image" src="image0.png" />
+  <div class="nike-x-lil-yachty-us-force-1-low-white-and-midnight-navy">
+    Nike x Lil Yachty Us Force 1 Low White and Midnight Navy
+  </div>
+  <div class="x-1">
+    나이키 x 릴 야티 어스 포스 1 로우 화이트 앤 미드나잇 네이비
+  </div>
+  <div class="_270">270</div>
+  <div class="div2">즉시 구매가</div>
+  <div class="_178-000">178,000 ₩</div>
+  <div class="div3">즉시 판매가</div>
+  <div class="_168-000">168,000 ₩</div>
+  <div class="line-262"></div>
+  <div class="rectangle-1614"></div>
+  <div class="rectangle-1615"></div>
+  <div class="rectangle-1616"></div>
+  <div class="div4">구매 입찰</div>
+  <div class="div5">즉시 구매</div>
+  <div class="div6">구매 희망가</div>
+  <div class="_172-000">172,000</div>
+  <div class="div7">₩</div>
+  <div class="rectangle-1618"></div>
+  <div class="div8">예수금 적용</div>
+  <div class="_86-000">86,000</div>
+  <div class="div9">₩</div>
+  <div class="rectangle-16182"></div>
+  <div class="div10">보유 머니현황</div>
+  <div class="_320-000">320,000</div>
+  <div class="katte">katte</div>
+  <div class="rectangle-16183"></div>
+  <div class="div11">입찰 마감기한</div>
+  <button class="day-button _1">1일</button>
+<button class="day-button _3">3일</button>
+<button class="day-button _7">7일</button>
+<button class="day-button _30">30일</button>
+<button class="day-button _60">60일</button>
+<button class="day-button _90">90일</button>
+<button class="day-button _180">180일</button>
+  <div class="_60-2025-07-22">60일 (2025/07/22 마감)</div>
+  <div class="rectangle-1619"></div>
+  <a href="/style" class="div12">구매 입찰 계속</a>
+ 
+</div>
+<script>
+  // 페이지가 로드된 뒤에 실행
+  document.addEventListener("DOMContentLoaded", function() {
+    // 모든 버튼을 배열로 가져오기
+    const buttons = document.querySelectorAll(".day-button");
+
+    buttons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        // 1) 기존에 활성화된 버튼에서 active 클래스 제거
+        buttons.forEach(b => b.classList.remove("active"));
+        // 2) 클릭한 버튼에만 active 클래스 추가
+        btn.classList.add("active");
+      });
+    });
+  });
+</script>
+</body>
+</html>
