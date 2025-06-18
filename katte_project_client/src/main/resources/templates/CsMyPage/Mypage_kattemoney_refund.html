@@ -54,9 +54,13 @@
   <div class="refund-wrapper">
   <div class="refund-title">캇테머니 환불</div>
   <div class="refund-balance-label">보유 캇테머니</div>
-    <div class="refund-balance" th:text="${#numbers.formatInteger(katteMoney, 3, 'COMMA') + 'katte'}">0 katte</div>
+    <div class="refund-balance"
+         th:text="${#numbers.formatInteger(katteMoney, 3, 'COMMA') + 'katte'}"
+         th:data-balance="${katteMoney}">
+      0 katte
+    </div>
   <div class="refund-label">환불 신청 금액</div>
-  <input class="refund-input" type="text" placeholder="katte">
+    <input class="refund-input" type="text" placeholder="katte" inputmode="numeric">
   <select class="refund-bank-select">
     <option value="kb">KB국민은행</option>
     <option value="shinhan">신한은행</option>
@@ -66,47 +70,88 @@
     <option value="nh">NH농협은행</option>
     <!-- 필요시 추가 -->
   </select>
-    <input class="refund-account-input" type="text" placeholder="12345678">
+    <input class="refund-account-input" type="text" placeholder="계좌번호 입력">
+    <input type="hidden" id="katteBalance" th:value="${katteMoney}" />
     <button class="refund-btn" onclick="submitRefund()">확인</button>
   </div></div></body>
 
 <script>
   function submitRefund() {
-    const amount = document.querySelector(".refund-input").value;
+    const rawValue = document.querySelector(".refund-input").value;
+    const amount = parseInt(rawValue.replace(/[^0-9]/g, ""));
     const account = document.querySelector(".refund-account-input").value;
     const bank = document.querySelector(".refund-bank-select").value;
+
+    const balance = parseInt(document.getElementById("katteBalance").value); // 보유 금액 추출
 
     if (!amount || !account || !bank) {
       alert("모든 항목을 입력해 주세요.");
       return;
     }
 
-    const form = document.createElement("form");
-    form.method = "POST";
-    form.action = "/ecommerce/refund";
+    if (amount < 10000 || amount > 1000000 || amount % 10000 !== 0) {
+      alert("환불 금액은 10,000원 이상, 1,000,000원 이하이며 10,000원 단위여야 합니다.");
+      return;
+    }
 
-    const amountInput = document.createElement("input");
-    amountInput.name = "amount";
-    amountInput.value = amount;
-    form.appendChild(amountInput);
+    if (amount > balance) {
+      alert("❌ 보유한 금액보다 많이 환불할 수 없습니다.");
+      return;
+    }
 
-    const accountInput = document.createElement("input");
-    accountInput.name = "account_number";
-    accountInput.value = account;
-    form.appendChild(accountInput);
+    const payload = {
+      amount,
+      account_number: account,
+      bank_type: bank
+    };
 
-    const bankInput = document.createElement("input");
-    bankInput.name = "bank_type";
-    bankInput.value = bank;
-    form.appendChild(bankInput);
+    fetch("/ecommerce/refund", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    })
+            .then(res => {
+              const contentType = res.headers.get("content-type");
+              if (!res.ok) throw new Error("서버 오류 발생");
 
-    document.body.appendChild(form);
-    form.submit();
+              return contentType && contentType.includes("application/json")
+                      ? res.json()
+                      : res.text();
+            })
+            .then(msg => {
+              alert(`${amount.toLocaleString()}원이 환불되었습니다.`);
+              location.reload();
+            })
+            .catch(err => {
+              alert("❌ 환불 요청 중 오류가 발생했습니다.");
+              console.error(err);
+            });
   }
 </script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const accountInput = document.querySelector(".refund-account-input");
+
+    accountInput.addEventListener("input", function () {
+      // 숫자만 남기고 나머지 제거
+      let cleaned = accountInput.value.replace(/[^0-9]/g, "");
+
+      // 최대 14자리까지만 입력
+      if (cleaned.length > 14) {
+        cleaned = cleaned.substring(0, 14);
+      }
+
+      accountInput.value = cleaned;
+    });
+  });
+</script>
+
 
 <script th:inline="javascript">
   const message = /*[[${message}]]*/ null;
   if (message) alert(message);
 </script>
+
+
 </html>

@@ -83,13 +83,13 @@ public class EcommerceController {
 
     //환불 등록
     @PostMapping("/ecommerce/refund")
-    public String handleKatteRefund(@ModelAttribute UserKatteMoneyRefundBean refundBean,
-                                    HttpSession session,
-                                    RedirectAttributes redirectAttributes) {
+    @ResponseBody //핵심: View가 아닌 응답 본문 그대로 전송
+    public String handleKatteRefund(@RequestBody UserKatteMoneyRefundBean refundBean,
+                                    HttpSession session) {
 
         UserBean currentUser = (UserBean) session.getAttribute("currentUser");
         if (currentUser == null) {
-            return "redirect:/login";
+            return "로그인이 필요합니다.";
         }
 
         // 디버깅용 출력
@@ -100,15 +100,11 @@ public class EcommerceController {
         System.out.println("bank_type: " + refundBean.getBank_type());
 
         refundBean.setUser_id(currentUser.getUser_id());
-        refundBean.setStatus(UserKatteMoneyRefundBean.status.REQUESTED);
 
         String result = ecommerceService.requestKatteRefund(refundBean);
-        redirectAttributes.addFlashAttribute("message", result);
 
-        return "redirect:/mypage/kattemoney/refund";
+        return result; // ✅ View 이름 아님. 결과 메시지로 바로 반환
     }
-
-
 
     @GetMapping("/mypage/kattemoney/refund")
     public String moveToKatteMoneyRefundPage(HttpSession session, Model model) {
