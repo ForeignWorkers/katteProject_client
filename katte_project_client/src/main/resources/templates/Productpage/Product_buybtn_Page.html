@@ -12,18 +12,23 @@
 <div th:replace="Fragments/Sidebar :: sidebar"></div>
 
 <div class="wrapper">
+
+  <input type="hidden" id="product-meta"
+         th:data-product-id="${product.product_id}"
+         th:data-brand="${product.brand_name}"
+         th:data-name="${product.product_name}" />
+
   <div class="div">구매 입찰하기</div>
   <img class="rectangle-1594" src="rectangle-15940.svg" />
   <div class="rectangle-1613"></div>
   <div class="rectangle-1604"></div>
-  <img class="image" src="image0.png" />
+  <img class="image" src="" />
   <div class="nike-x-lil-yachty-us-force-1-low-white-and-midnight-navy"
        th:text="${product.product_name}">
-    Nike x Lil Yachty Us Force 1 Low White and Midnight Navy
   </div>
-  <div class="_270" th:text="'옵션: ' + ${size}">270</div>
+  <div class="_270" th:text="'옵션: ' + ${size}"></div>
   <div class="div2">즉시 구매가</div>
-  <div class="_178-000" th:text=" ${price} + '₩'">178,000₩</div>
+  <div class="_178-000" th:text=" ${price} + '₩'"></div>
   <div class="div3">즉시 판매가</div>
   <div th:if="${#lists.isEmpty(sell_price_list)}">
     <div class="_168-000">정보 없음</div>
@@ -75,7 +80,15 @@
        th:text="'(' + ${#strings.substring(auctionEndTime, 0, 10).replace('-', '/')} + ' 마감)'">
   </div>
   <div class="rectangle-1619"></div>
-  <a href="/product/payment" class="div12">구매 입찰 계속</a>
+  <form action="/product/payment" method="post">
+    <input type="hidden" name="product_id" th:value="${product.product_id}" />
+    <input type="hidden" name="product_name" th:value="${product.product_name}" />
+    <input type="hidden" name="brand_name" th:value="${product.brand_name}" />
+    <input type="hidden" id="formOriginPrice" name="origin_price" />
+    <input type="hidden" name="size" th:value="${size}" />
+
+    <button type="submit" class="div12">구매 입찰 계속</button>
+  </form>
  
 </div>
 <script>
@@ -83,6 +96,14 @@
   document.addEventListener("DOMContentLoaded", function() {
     // 모든 버튼을 배열로 가져오기
     const buttons = document.querySelectorAll(".day-button");
+
+    const meta = document.getElementById("product-meta");
+    const productId = meta.dataset.productId;
+
+    const resourceURL = "https://resources-katte.jp.ngrok.io/images/";
+    const imagePath = `${resourceURL}${productId}/${productId}_1.png`;
+
+    document.querySelector('.image').src = imagePath;
 
     buttons.forEach(btn => {
       btn.addEventListener("click", () => {
@@ -95,10 +116,20 @@
   });
   function updateLockedKatte() {
     const origin = parseInt(document.getElementById("originPriceInput").value) || 0;
-    const locked = Math.floor(origin / 2);
-    document.getElementById("lockedKatteDisplay").value = locked.toLocaleString();
-    document.getElementById("lockedKatteInput").value = locked;
+
+    // 💥 이 코드가 누락되었으면 form에는 아무 값도 전송되지 않음!
+    document.getElementById("formOriginPrice").value = origin;
   }
+
+  document.querySelector("form").addEventListener("submit", function(e) {
+    const origin = document.getElementById("originPriceInput").value;
+    if (!origin || parseInt(origin) <= 0) {
+      alert("구매 희망가를 입력해주세요.");
+      e.preventDefault();
+      return false;
+    }
+  });
+
 </script>
 </body>
 </html>

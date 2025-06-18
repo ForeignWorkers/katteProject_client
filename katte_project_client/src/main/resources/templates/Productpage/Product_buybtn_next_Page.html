@@ -4,35 +4,12 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+<link rel="stylesheet" href="/css/fragments/Sidebar.css" />
 <link rel="stylesheet" href="/css/Productpage/Product_buybtn_next_Page.css" />
 <body>
-<aside class="sidebar">
-  <a href="/main">
-  <img class="logo-1" src="/img/logo%20(1).png" alt="로고" />
-  </a>
-  <nav class="sidebar-nav">
-    <ul>
-      <li><a href="/search">검색</a></li>
-      <li><a href="/explore">탐색</a></li>
-      <li><a href="/sell">판매등록</a></li>
-      <li><a href="/wishlist">관심상품</a></li>
-      <li><a href="/style">스타일</a></li>
-      <li><a href="/mypage">마이페이지</a></li>
-      <li><a href="/support">고객센터</a></li>
-    </ul>
-  </nav>
-  <div class="login-area">
-    <a href="/login" class="btn-login">로그인</a>
-  </div>
-  <footer class="sidebar-footer">
-    <p><a href="/support">고객센터</a> | <a href="/terms">이용약관</a></p>
-    <small>&copy; All copyright in soldesk</small>
-  </footer>
-</aside>
+<div th:replace="~{Fragments/Sidebar :: sidebar}"></div>
 
 <div class="wrapper">
-
-
   <div class="line-262"></div>
   <img class="line-136" src="line-1360.svg" />
   <div class="div">배송 / 결제</div>
@@ -159,15 +136,14 @@
   </div>
   <img class="polygon-20" src="/img/Polygon.png" />
   <img class="polygon-21" src="/img/Polygon.png" />
-  <div class="rectangle-1604"></div>
-  <img class="image" src="image0.png" />
-  <div class="nike-x-lil-yachty-us-force-1-low-white-and-midnight-navy">
-    Nike x Lil Yachty Us Force 1 Low White and Midnight Navy
+  <div class="rectangle-1604">
+    <img class="product-image" th:src="'https://resources-katte.jp.ngrok.io/images/' + ${product.product_id} + '/' + ${product.product_id} + '_1.png'" />
   </div>
-  <div class="x-1">
-    나이키 x 릴 야티 어스 포스 1 로우 화이트 앤 미드나잇 네이비
+  <div class="nike-x-lil-yachty-us-force-1-low-white-and-midnight-navy"
+       th:text="${product.product_name}">
   </div>
-  <div class="_270">270</div>
+  <div class="x-1" th:text="${product.brand_name}"></div>
+  <div class="_270" th:text="${size}">270</div>
   <div class="ellipse-63"></div>
   <div class="ellipse-64"></div>
   <div class="rectangle-1617"></div>
@@ -177,25 +153,25 @@
   <div class="rectangle-1723"></div>
   <div class="rectangle-1722"></div>
   <div class="div1">결제 금액</div>
-  <div class="_179-000-katte">179,000 katte</div>
   <div class="div21">구매가</div>
-  <div class="_189-000-katte">189,000 katte</div>
+  <div class="_189-000-katte" th:text="${#numbers.formatInteger(origin_price, 3, 'COMMA')} + ' katte'"></div>
   <div class="div31">검수비</div>
   <div class="free">free</div>
   <div class="div41">수수료</div>
-  <div class="_2-700-katte">2,700 katte</div>
+  <div class="_2-700-katte">0 katte</div>
   <div class="div51">배송비</div>
   <div class="_3-000-katte">3,000 katte</div>
   <div class="div61">쿠폰사용</div>
-  <div class="_5-700-katte">-5,700 katte</div>
+<div class="_5-700-katte" id="couponDiscountText">-5,700 katte</div>
   <div class="div71">포인트사용</div>
-  <div class="_7000-katte">-7000 katte</div>
+  <div class="_7000-katte" id="pointDiscountText">-0 katte</div>
   <div class="group-897">
     <div class="group-906">
       <div class="rectangle-1618"></div>
       <div class="div81">결제 금액</div>
-      <div class="_179-000-katte2">179,000 katte</div>
-      <div class="_179-000-katte3">179,000 katte</div>
+      <!-- 결제 금액 관련 -->
+      <div class="_179-000-katte" id="finalPriceText">179,000 katte</div>
+      <div class="_179-000-katte3" id="finalPriceText2">179,000 katte</div>
       <div class="div91">결제</div>
       <div class="div101">최대 사용</div>
       <div class="rectangle-1636"></div>
@@ -206,7 +182,8 @@
       <div class="group-8972">
         <div class="rectangle-1570"></div>
         <div class="div131">카카오 페이</div>
-        <img class="image-105" src="image-1050.png" />
+        <img class="image-105" src=
+                "image-1050.png" />
       </div>
     </div>
     <div class="rectangle-1639"></div>
@@ -215,7 +192,7 @@
     <!-- 기존 rectangle-1640과 텍스트를 감싸는 클릭용 버튼 -->
     <button id="completePurchaseBtn" class="payment-btn">
       <div class="rectangle-1640"></div>
-      <div class="_179-000-katte4">179,000 katte・결제하기</div>
+      <div class="_179-000-katte4" id="finalPriceText3">179,000 katte・결제하기</div>
     </button>
 
 
@@ -237,9 +214,11 @@
     </div>
   </div>
   <div class="div171">포인트</div>
-  <div class="_7-000-p">7,000 P</div>
-  <div class="rectangle-1720"></div>
-  <div class="div181">최대 사용</div>
+<div class="rectangle-1720">
+  <input type="number" id="pointInput" class="custom-input" placeholder="포인트 입력" />
+</div>
+<!-- 최대 사용 버튼 -->
+  <button id="maxPointBtn" class="div181">최대 사용</button>
   <div class="rectangle-1721"></div>
   <div class="div191">보유 포인트</div>
   <div class="div201">
@@ -386,6 +365,51 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
+
+  //데이터 연동
+// DOM 요소 가져오기
+  const pointInput = document.getElementById("pointInput");
+  const pointDiscountText = document.getElementById("pointDiscountText");
+  const couponDiscountText = document.getElementById("couponDiscountText");
+  const finalPriceText = document.getElementById("finalPriceText");
+  const finalPriceText2 = document.getElementById("finalPriceText2");
+  const finalPriceText3 = document.getElementById("finalPriceText3");
+  const totalDisplayText = document.querySelector("._179-000-katte"); // 상단 결제 금액 표시도 함께 반영
+
+  // 👉 DOM에서 실제 숫자 가져오기
+  const maxPoint = parseKatte(document.querySelector("._15-000-p").textContent);
+  const originPrice = parseKatte(document.querySelector("._189-000-katte").textContent);
+  const deliveryFee = parseKatte(document.querySelector("._3-000-katte").textContent);
+  const couponDiscount = parseKatte(document.getElementById("couponDiscountText").textContent);
+
+  // 최대 사용 버튼
+  document.getElementById("maxPointBtn").addEventListener("click", function () {
+    pointInput.value = maxPoint;
+    updateDisplay(maxPoint);
+  });
+
+// 입력 제한 및 계산
+  pointInput.addEventListener("input", function () {
+    let value = parseInt(this.value) || 0;
+    if (value > maxPoint) {
+      value = maxPoint;
+      this.value = maxPoint;
+    }
+    updateDisplay(value);
+  });
+
+// 결제 금액 갱신
+  function updateDisplay(pointUsed) {
+    pointDiscountText.textContent = `-${pointUsed.toLocaleString()} katte`;
+    const finalPrice = originPrice + deliveryFee - couponDiscount - pointUsed;
+    finalPriceText.textContent = `${finalPrice.toLocaleString()} katte`;
+    finalPriceText2.textContent = `${finalPrice.toLocaleString()} katte`;
+    finalPriceText3.textContent = `${finalPrice.toLocaleString()} katte・결제하기`;
+    totalDisplayText.textContent = `${finalPrice.toLocaleString()} katte`; // 위쪽 금액도 함께 변경
+  }
+
+// 초기 계산
+  updateDisplay(0);
 }); // ────────────────────────────────────────────────────────────
 </script>
 

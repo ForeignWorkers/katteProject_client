@@ -87,11 +87,29 @@ public class ProductController {
         return "Productpage/Product_buybtn_Page";
     }
 
+    @PostMapping("/product/payment")
+    public String showPaymentPage(
+            @RequestParam("product_id") int productId,
+            @RequestParam("product_name") String productName,
+            @RequestParam("brand_name") String brandName,
+            @RequestParam("origin_price") int originPrice,
+            @RequestParam("size") String size,
+            Model model
+    ) {
+        ProductInfoBean product = new ProductInfoBean();
+        product.setProduct_id(productId);
+        product.setProduct_name(productName);
+        product.setBrand_name(brandName);
 
-    // 결제 및 배송지 선택 페이지
-    @GetMapping("/product/payment")
-    public String showPaymentPage() {
-        return "Productpage/Product_buybtn_next_Page"; // ← 업로드한 Product_buybtn_next_Page.html
+        model.addAttribute("product", product);
+        model.addAttribute("origin_price", originPrice);
+        model.addAttribute("size", size);
+
+        System.out.println("origin_price = " + originPrice);
+        System.out.println("product_id = " + productId);
+        System.out.println("product_name = " + productName);
+
+        return "Productpage/Product_buybtn_next_Page";
     }
 
     //캇테머니 겟터
@@ -149,7 +167,6 @@ public class ProductController {
         model.addAttribute("brandTopList", brandTopProducts);
 
         String imageUrl = String.format("https://resources-katte.jp.ngrok.io/images/%d/%d_1.png", product.getProduct_id(), product.getProduct_id());
-        System.out.println("AAAAA" + imageUrl);
         model.addAttribute("resourceURL", imageUrl);
 
         return "Productpage/Productpage";
