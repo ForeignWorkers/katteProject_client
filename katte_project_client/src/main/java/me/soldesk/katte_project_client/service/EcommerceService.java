@@ -26,23 +26,26 @@ public class EcommerceService {
         }
     }
 
-    //완불
+    //환불
     public String requestKatteRefund(UserKatteMoneyRefundBean refundBean) {
 
         ResponseEntity<String> response = ApiManagers.post(
-                "/user/katte/refund",
+                "user/katte/refund",
                 refundBean,
                 new TypeReference<String>() {}
         );
 
-        refundBean.setStatus(UserKatteMoneyRefundBean.status.REQUESTED);
+
+
+        System.out.println("응답 상태 코드: " + response.getStatusCodeValue());
+        System.out.println("응답 본문: " + response.getBody());
+
 
         System.out.println("=== 백엔드 요청 직전 상태 ===");
         System.out.println("user_id: " + refundBean.getUser_id());
         System.out.println("amount: " + refundBean.getAmount());
         System.out.println("account_number: " + refundBean.getAccount_number());
         System.out.println("bank_type: " + refundBean.getBank_type());
-        System.out.println("status: " + refundBean.getStatus()); // ← 꼭 확인
 
         if (ApiManagers.isSuccessful(response)) {
             return response.getBody(); // ex: "환불 요청서 생성 완료"
