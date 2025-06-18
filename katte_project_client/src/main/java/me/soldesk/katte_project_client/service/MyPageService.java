@@ -16,8 +16,8 @@ import java.util.Map;
 @Service
 public class MyPageService {
     /* ───────────────────────────────────────────────────────────────────────────
-                                        구매이력
-       ─────────────────────────────────────────────────────────────────────────── */
+                                            구매이력
+           ─────────────────────────────────────────────────────────────────────────── */
     //주문 이력 리스트 뽑기
     public List<EcommerceOrderHistoryBean> getOrderHistory(String user_id) {
         Map<String, String> params = new HashMap<>();
@@ -29,7 +29,7 @@ public class MyPageService {
                 new TypeReference<>() {
                 }
         );
-        System.out.println("리스트 뽑기 서비스");
+        System.out.println("리스트 뽑기 서비스 탔어요");
         System.out.println(response.getBody());
 
         if (ApiManagers.isSuccessful(response)) {
@@ -39,19 +39,21 @@ public class MyPageService {
         }
     }
 
+    //product_id 받아서 상품 정보 반환
     public ProductInfoBean getProductInfo(int product_id) {
         Map<String, String> params = new HashMap<>();
         params.put("product_id", String.valueOf(product_id));
-
+        System.out.println("product_id 받아서 물품 정보 받는 서비스 탔어요");
         System.out.println("params 값 : " + params);
         System.out.println("Calling URL: /ecommerce/order/history/detail?product_id=" + product_id);
 
         ResponseEntity<ProductInfoBean> response = ApiManagers.get(
-                "order/history/detail?",
+                "ecommerce/order/history/detail",
                 params,
                 new TypeReference<>() {}
         );
 
+        System.out.println("response 내용 확인 : " +response.getBody());
 
         if (ApiManagers.isSuccessful(response) && response.getBody() != null) {
             return response.getBody();
@@ -65,24 +67,26 @@ public class MyPageService {
         return null;
     }
 
-/*    public List<ProductInfoBean> getProductInfo(int user_id, int product_id) {
+    // 구매 확정 요청
+    public String confirmOrder(int order_id, int user_id) {
         Map<String, String> params = new HashMap<>();
+        params.put("order_id", String.valueOf(order_id));
         params.put("user_id", String.valueOf(user_id));
-        params.put("product_id", String.valueOf(product_id));
-        ResponseEntity<List<ProductInfoBean>> response = ApiManagers.get(
-                "order/history",
+
+        ResponseEntity<String> response = ApiManagers.patchQuery(
+                "ecommerce/order/confirm",
                 params,
-                new TypeReference<>() {
-                }
+                new TypeReference<>() {}
         );
 
         if (ApiManagers.isSuccessful(response)) {
-            List<ProductInfoBean> orders = response.getBody();
-            return orders;
+            return response.getBody();
+        } else {
+            return "구매 확정 실패: " + (response.getBody() != null ? response.getBody() : "서버 오류");
         }
+    }
 
-        return null;
-    }*/
+
 
     /* ───────────────────────────────────────────────────────────────────────────
                                     관심

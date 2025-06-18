@@ -61,7 +61,7 @@
                   <br>
               </div>
               <span class="section-label">저장된 주소</span>
-              <th:block th:each = "al : ${addressList}" >
+              <th:block th:each = "al : ${addressList}" th:if="${al.is_main == false}" >
                   <div class = "address-list-content-box">
                       <div class = "address-text-content-box" id = "address-content-box-id">
                         <div class = "main-address-name-box" th:text="'이름 : ' +${al.name}">이름</div>
@@ -88,7 +88,7 @@
       </section>
     </div>
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
+       document.addEventListener("DOMContentLoaded", function () {
             const openBtn = document.querySelector(".post-btn");
 
             openBtn.addEventListener("click", function () {
