@@ -134,8 +134,6 @@
   <div class="_12345-123-1234">
     [12345] 서울특별시 서울구 서울동 123번지 1234호
   </div>
-  <img class="polygon-20" src="/img/Polygon.png" />
-  <img class="polygon-21" src="/img/Polygon.png" />
   <div class="rectangle-1604">
     <img class="product-image" th:src="'https://resources-katte.jp.ngrok.io/images/' + ${product.product_id} + '/' + ${product.product_id} + '_1.png'" />
   </div>
@@ -148,7 +146,6 @@
   <div class="ellipse-64"></div>
   <div class="rectangle-1617"></div>
 </div>
-
 
   <div class="rectangle-1723"></div>
   <div class="rectangle-1722"></div>
@@ -173,25 +170,26 @@
       <div class="_179-000-katte" id="finalPriceText">179,000 katte</div>
       <div class="_179-000-katte3" id="finalPriceText2">179,000 katte</div>
       <div class="div91">결제</div>
-      <div class="div101">최대 사용</div>
-      <div class="rectangle-1636"></div>
-      <div class="div111">보유 캇테머니</div>
-      <div class="_3-000-000-katte">3,000,000 katte</div>
-      <div class="div121">캇테머니 충전하기</div>
-      <div class="rectangle-1638"></div>
-      <div class="group-8972">
-        <div class="rectangle-1570"></div>
-        <div class="div131">카카오 페이</div>
-        <img class="image-105" src=
-                "image-1050.png" />
+      <button id="maxKatteBtn" class="div101">최대 사용</button>
+      <div class="rectangle-1636">
+        <input type="number" id="katteInput" class="custom-input2" placeholder="캇테 머니 입력" />
       </div>
+      <div class="div111">보유 캇테머니</div>
+      <div class="_3-000-000-katte" th:text="${katte_money != null ? katte_money + ' katte' : '0 katte'}"></div>
+<!--      <div class="group-8972">-->
+<!--        <div class="rectangle-1570"></div>-->
+<!--        <div class="div131">카카오 페이</div>-->
+<!--        <img class="image-105" src=-->
+<!--                "image-1050.png" />-->
+<!--      </div>-->
+      <div class="rectangle-1638"></div>
     </div>
     <div class="rectangle-1639"></div>
     <div class="div141">포인트 혜택</div>
  
     <!-- 기존 rectangle-1640과 텍스트를 감싸는 클릭용 버튼 -->
     <button id="completePurchaseBtn" class="payment-btn">
-      <div class="rectangle-1640"></div>
+      <div class="rectangle-1640" id="rectangle-1640"></div>
       <div class="_179-000-katte4" id="finalPriceText3">179,000 katte・결제하기</div>
     </button>
 
@@ -207,11 +205,6 @@
     </div> -->
     <div class="div151">적립 예정 포인트</div>
     <div class="_910-p">910 p</div>
-    <div class="group-898">
-      <div class="rectangle-1571"></div>
-      <div class="div161">네이버 페이</div>
-      <img class="image-107" src="image-1070.png" />
-    </div>
   </div>
   <div class="div171">포인트</div>
 <div class="rectangle-1720">
@@ -225,13 +218,34 @@
     구매 입찰은 ‘최대 사용’만 선택 가능하며, 거래 체결 시점에 보유한 모든
     포인트를 사용합니다.
   </div>
-  <div class="_15-000-p">15,000 p</div>
+<div class="_15-000-p" th:text="${userPoint != null ? userPoint + ' p' : '0 p'}"></div>
 
+<!-- 쿠폰 모달 오버레이 -->
+<div class="coupon-modal-overlay"></div>
+
+<!-- 쿠폰 선택 모달 -->
+<div class="coupon-modal">
+  <div class="modal-header">
+    <h2>사용 가능한 쿠폰</h2>
+    <button class="modal-close-btn" id="closeCouponModal">&times;</button>
+  </div>
+  <div class="coupon-list">
+    <!-- 예시 카드 -->
+    <div class="coupon-card" data-discount="5700">
+      <p>신규 가입 쿠폰</p>
+      <p>-5,700 katte</p>
+    </div>
+    <div class="coupon-card" data-discount="10000">
+      <p>10,000원 할인 쿠폰</p>
+      <p>-10,000 katte</p>
+    </div>
+  </div>
+</div>
 
 </div>
 </div>
 <!-- HTML 하단에 삽입할 수정된 JS 코드 -->
-<script>
+<script th:inline="javascript">
 document.addEventListener('DOMContentLoaded', function() {
   // ─────────────────────────────────────────────────────────────
   // 1) 공통 오버레이(모달 뒤 어두운 배경) 가져오기
@@ -368,48 +382,141 @@ document.addEventListener('DOMContentLoaded', function() {
 
   //데이터 연동
 // DOM 요소 가져오기
+  const originPrice = /*[[${origin_price}]]*/ 0;
+  const deliveryFee = 3000;
+  let couponDiscount = 0;
+  let pointDiscount = 0;
+
+  // ───────────── 포인트 관련 기능 추가 ─────────────
   const pointInput = document.getElementById("pointInput");
-  const pointDiscountText = document.getElementById("pointDiscountText");
-  const couponDiscountText = document.getElementById("couponDiscountText");
-  const finalPriceText = document.getElementById("finalPriceText");
-  const finalPriceText2 = document.getElementById("finalPriceText2");
-  const finalPriceText3 = document.getElementById("finalPriceText3");
-  const totalDisplayText = document.querySelector("._179-000-katte"); // 상단 결제 금액 표시도 함께 반영
+  const katteInput = document.getElementById("katteInput");
+  const pointText = document.getElementById("pointDiscountText");
+  const maxPointBtn = document.getElementById("maxPointBtn");
+  const maxKatteBtn = document.getElementById("maxKatteBtn");
+  const purchase = document.getElementById("rectangle-1640");
+  const purchaseBtn = document.getElementById("completePurchaseBtn");
 
-  // 👉 DOM에서 실제 숫자 가져오기
-  const maxPoint = parseKatte(document.querySelector("._15-000-p").textContent);
-  const originPrice = parseKatte(document.querySelector("._189-000-katte").textContent);
-  const deliveryFee = parseKatte(document.querySelector("._3-000-katte").textContent);
-  const couponDiscount = parseKatte(document.getElementById("couponDiscountText").textContent);
+  const maxPoint = parseInt(document.querySelector("._15-000-p").textContent.replace(/[^\d]/g, "")) || 0;
+  const currentKatteMoney = parseInt(document.querySelector("._3-000-000-katte").textContent.replace(/[^\d]/g, "")) || 0;
+  let finalPrice;
+  let currentPayKatte;
 
-  // 최대 사용 버튼
-  document.getElementById("maxPointBtn").addEventListener("click", function () {
+  // 최대 사용 버튼 누르면 자동 입력 + 계산
+  maxPointBtn.addEventListener("click", () => {
     pointInput.value = maxPoint;
-    updateDisplay(maxPoint);
+    pointDiscount = maxPoint;
+    pointText.textContent = `-${maxPoint.toLocaleString()} katte`;
+    updateFinalPrice();
   });
 
-// 입력 제한 및 계산
+  // 최대 사용 버튼 누르면 자동 입력 + 계산
+  maxKatteBtn.addEventListener("click", () => {
+    let maxUsable = currentKatteMoney;
+
+    // ⚠️ 보유 캇테머니가 결제 금액보다 크면 → 결제 금액까지만 사용
+    if (maxUsable > finalPrice) {
+      maxUsable = finalPrice;
+    }
+
+    katteInput.value = maxUsable;
+    updateCheckPay(); // ✅ 입력값이 바뀌었으니 결제 조건 체크도 같이 실행
+  });
+
+
+  function updateFinalPrice() {
+    finalPrice = Math.max(0, originPrice - couponDiscount - pointDiscount + deliveryFee);
+    const formatted = finalPrice.toLocaleString();
+    document.getElementById("finalPriceText").textContent = `${formatted} katte`;
+    document.getElementById("finalPriceText2").textContent = `${formatted} katte`;
+    document.getElementById("finalPriceText3").textContent = `${formatted} katte-결제하기`;
+  }
+
+  function updateCheckPay() {
+    const katteValue = parseInt(katteInput.value) || 0;
+
+    if (katteValue === finalPrice) {
+      purchase.style.backgroundColor = "#ff0044";
+      purchaseBtn.disabled = false;
+      purchaseBtn.style.cursor = "pointer";
+    } else {
+      purchase.style.backgroundColor = "#5D5A5A";
+      purchaseBtn.disabled = true;
+      purchaseBtn.style.cursor = "not-allowed";
+    }
+  }
+
+  // 사용자가 포인트 입력 시, 최대값 제한 및 실시간 표시
   pointInput.addEventListener("input", function () {
     let value = parseInt(this.value) || 0;
     if (value > maxPoint) {
       value = maxPoint;
       this.value = maxPoint;
     }
-    updateDisplay(value);
+    pointDiscount = value;
+    pointText.textContent = `-${value.toLocaleString()} katte`;
+    updateFinalPrice();
   });
 
-// 결제 금액 갱신
-  function updateDisplay(pointUsed) {
-    pointDiscountText.textContent = `-${pointUsed.toLocaleString()} katte`;
-    const finalPrice = originPrice + deliveryFee - couponDiscount - pointUsed;
-    finalPriceText.textContent = `${finalPrice.toLocaleString()} katte`;
-    finalPriceText2.textContent = `${finalPrice.toLocaleString()} katte`;
-    finalPriceText3.textContent = `${finalPrice.toLocaleString()} katte・결제하기`;
-    totalDisplayText.textContent = `${finalPrice.toLocaleString()} katte`; // 위쪽 금액도 함께 변경
-  }
+  // 사용자가 포인트 입력 시, 최대값 제한 및 실시간 표시
+  katteInput.addEventListener("input", function () {
+    let value = parseInt(this.value) || 0;
 
-// 초기 계산
-  updateDisplay(0);
+    // 1. 보유 금액 제한
+    if (value > currentKatteMoney) {
+      value = currentKatteMoney;
+    }
+
+    // 2. 최종 결제 금액 제한
+    if (value > finalPrice) {
+      value = finalPrice;
+    }
+
+    // 3. 실제 입력창에 반영
+    this.value = value;
+
+    updateCheckPay();
+  });
+
+  document.querySelectorAll(".coupon-card").forEach(card => {
+    card.addEventListener("click", () => {
+      couponDiscount = parseInt(card.dataset.discount);
+      updateFinalPrice();
+    });
+  });
+
+  // ✅ 포인트 관련 초기 UI 렌더링
+  pointText.textContent = `-${pointDiscount.toLocaleString()} katte`;
+
+  updateFinalPrice(); // 초기값 렌더링
+  updateCheckPay();   // ✅ 버튼 색 및 활성 상태 초기 설정
+
+  const couponOverlay = document.querySelector(".coupon-modal-overlay");
+  const couponModal = document.querySelector(".coupon-modal");
+  const couponCards = document.querySelectorAll(".coupon-card");
+  const couponDisplay = document.getElementById("couponDiscountText");
+
+  // 쿠폰 모달 열기
+  document.querySelector(".rectangle-1617").addEventListener("click", () => {
+    console.log("clicked");
+    couponOverlay.style.display = "block";
+    couponModal.style.display = "block";
+  });
+
+  // 쿠폰 모달 닫기
+  document.getElementById("closeCouponModal").addEventListener("click", () => {
+    couponOverlay.style.display = "none";
+    couponModal.style.display = "none";
+  });
+
+  // 쿠폰 선택
+  couponCards.forEach(card => {
+    card.addEventListener("click", () => {
+      const discount = parseInt(card.dataset.discount);
+      couponDisplay.textContent = `-${discount.toLocaleString()} katte`;
+      couponOverlay.style.display = "none";
+      couponModal.style.display = "none";
+    });
+  });
 }); // ────────────────────────────────────────────────────────────
 </script>
 

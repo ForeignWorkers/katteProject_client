@@ -4,11 +4,13 @@ import common.bean.auction.AuctionDataBean;
 import common.bean.content.ContentShortformBean;
 import common.bean.product.*;
 import common.bean.user.UserBean;
+import common.bean.user.UserPaymentBean;
 import jakarta.servlet.http.HttpSession;
 import me.soldesk.katte_project_client.manager.ApiManagers;
 import me.soldesk.katte_project_client.service.ProductRegisterResult;
 import me.soldesk.katte_project_client.service.ProductRegisterService;
 import me.soldesk.katte_project_client.service.ProductService;
+import me.soldesk.katte_project_client.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -27,6 +29,8 @@ public class ProductController {
     private ProductRegisterService productRegisterService;
     @Autowired
     private ProductService productService;
+    @Autowired
+    private UserService userService;
 
     //입찰구매 등록
 
@@ -94,6 +98,7 @@ public class ProductController {
             @RequestParam("brand_name") String brandName,
             @RequestParam("origin_price") int originPrice,
             @RequestParam("size") String size,
+            @SessionAttribute("currentUser") UserBean userBean,
             Model model
     ) {
         ProductInfoBean product = new ProductInfoBean();
@@ -105,9 +110,21 @@ public class ProductController {
         model.addAttribute("origin_price", originPrice);
         model.addAttribute("size", size);
 
+
         System.out.println("origin_price = " + originPrice);
         System.out.println("product_id = " + productId);
         System.out.println("product_name = " + productName);
+
+        //거래 api 만들기
+
+        //User payment 가져오기
+        UserPaymentBean paymentBean = userService.getUserPayment(userBean.getUser_id());
+        model.addAttribute("userPoint", paymentBean.getPoint());
+        model.addAttribute("katte_money", paymentBean.getKatte_money());
+
+
+        System.out.println("userPoint = " + paymentBean.getPoint());
+        System.out.println("katte_money = " + paymentBean.getKatte_money());
 
         return "Productpage/Product_buybtn_next_Page";
     }
