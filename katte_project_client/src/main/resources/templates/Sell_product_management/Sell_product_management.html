@@ -312,12 +312,12 @@
 <script>
   function deleteRow(element, auctionId) {
   // 1단계: 삭제 가능 상태로 조정
-  fetch(`http://localhost:9000/admin/inspection/expire_now?auction_id=${auctionId}`, {
+  fetch(`https://api-katte.jp.ngrok.io/admin/inspection/expire_now?auction_id=${auctionId}`, {
     method: 'PATCH'
   }).then(response => {
     if (response.ok) {
       // 2단계: 삭제 실행 API 호출
-      fetch(`http://localhost:9000/admin/inspection/delete`, {
+      fetch(`https://api-katte.jp.ngrok.io/admin/inspection/delete`, {
         method: 'DELETE'
       }).then(res => {
         if (res.ok) {

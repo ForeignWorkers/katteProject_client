@@ -68,7 +68,7 @@
   let page        = 0;    // 페이지 번호 (0부터 시작)
   const size      = 10;   // 한 번에 불러올 개수
   let loading     = false;// 중복 호출 방지 플래그
-  const baseURL   = "http://localhost:9000/"
+  const baseURL   = "https://api-katte.jp.ngrok.io/"
   // ——————————————————————————
   // 1) 유저 정보(fetchuserBean) 가져오는 함수
   async function fetchuserBean(userId) {
@@ -92,7 +92,7 @@
             `${baseURL}content/style/recent?size=${size}&offset=${offset}`
     );
     const data   = await res.json();
-    const resourceUrl = "https://resources-katte.jp.ngrok.io/";
+    const resourceUrl = "https://api-katte.jp.ngrok.io/";
 
     // 2-2) 더 이상 불러올 데이터가 없으면 스크롤 이벤트 제거
     if (!data || data.length === 0) {
