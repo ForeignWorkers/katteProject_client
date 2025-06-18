@@ -19,7 +19,7 @@ public class ApiManagers {
 
     private static final ObjectMapper objectMapper = new ObjectMapper();
 
-    private static final String BASE_URL = "https://api-katte.jp.ngrok.io/"; // ✅ 수정: http: → http://
+    private static final String BASE_URL = "http://localhost:9000/"; // ✅ 수정: http: → http://
 
     static {
         objectMapper.registerModule(new com.fasterxml.jackson.datatype.jsr310.JavaTimeModule());
