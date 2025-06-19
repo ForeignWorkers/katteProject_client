@@ -156,6 +156,11 @@ html, body {
   left: 388px;
   top: 212px;
 }
+.searchdiv {
+  position: relative;
+  left: -10%;
+}
+
 .bape {
   color: #f9eeee;
   text-align: left;
