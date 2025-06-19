@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import common.bean.ecommerce.EcommerceCoupon;
 import common.bean.ecommerce.EcommerceCouponHistory;
 import common.bean.user.UserBean;
+import common.bean.user.UserKatteMoneyLogBean;
 import common.bean.user.UserPaymentBean;
 import me.soldesk.katte_project_client.manager.ApiManagers;
 import org.jetbrains.annotations.Nullable;
@@ -77,6 +78,21 @@ public class UserService {
         requestBody.put("coupon_id", Integer.toString(coupon_id));
         TypeReference<EcommerceCoupon> ref = new TypeReference<>() {};
         ResponseEntity<EcommerceCoupon> result = ApiManagers.get("coupon/data", requestBody, ref);
+        return result.getBody();
+    }
+
+    public String setPoint(int user_id, int point) {
+        Map<String, String> requestBody = new HashMap<>();
+        requestBody.put("user_id", Integer.toString(user_id));
+        requestBody.put("point", Integer.toString(point));
+        TypeReference<String> ref = new TypeReference<>() {};
+        ResponseEntity<String> result = ApiManagers.patchQuery("user/point", requestBody, ref);
+        return result.getBody();
+    }
+
+    public String useKatteMoney(UserKatteMoneyLogBean userKatteMoneyLogBean){
+        TypeReference<String> ref = new TypeReference<>() {};
+        ResponseEntity<String> result = ApiManagers.patchBody("user/katte", userKatteMoneyLogBean, ref);
         return result.getBody();
     }
 }

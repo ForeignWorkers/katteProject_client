@@ -69,24 +69,47 @@
     let isLoading = false;
 
     const observer = new IntersectionObserver((entries) => {
+      let currentVisibleProductId = null;
+
       entries.forEach(entry => {
         const video = entry.target;
+        const wrapper = video.closest(".short-item-wrapper");
+
         if (entry.isIntersecting) {
           video.muted = false;
           video.play().catch(err => console.warn("재생 실패:", err));
+
+          // ✅ 보이는 쇼츠의 product_id 찾기
+          if (wrapper && !currentVisibleProductId) {
+            currentVisibleProductId = wrapper.dataset.productId;
+          }
+
         } else {
           video.pause();
           video.muted = true;
         }
       });
+
+      // ✅ 시세표 및 스타일 리뷰 업데이트
+      if (currentVisibleProductId) {
+        changeChartRange('1m', currentVisibleProductId);
+        loadStyleReviews(currentVisibleProductId);
+      }
     }, { threshold: 0.3 });
 
-    async function loadNextShort() {
+
+
+    async function loadNextShort(selectId) {
       if (isLoading) return;
       isLoading = true;
 
       try {
-        const res = await fetch(`/shortform/random`);
+        // ✅ selectId가 있으면 파라미터에 포함, 없으면 생략
+        const url = selectId !== null && selectId !== undefined
+                ? `/shortform/random?selectId=${selectId}`
+                : `/shortform/random`;
+
+        const res = await fetch(url);
         if (!res.ok) return;
 
         const short = await res.json();
@@ -307,32 +330,26 @@
       alert("링크가 복사되었습니다");
     }
 
-      window.addEventListener("wheel", (e) => {
-        if (e.deltaY > 0) loadNextShort();
-      });
+    window.addEventListener("DOMContentLoaded", async () => {
+      const priorityList = [17158, 17154, 17151, 17147, 17144];
+      let priorityIndex = 0;
 
-    window.addEventListener("DOMContentLoaded", () => {
-      if (hasUserInteracted) {
-        loadNextShort();
-      } else {
-        const waitForClick = () => {
-          hasUserInteracted = true;
-          loadNextShort();
-          window.removeEventListener("click", waitForClick);
-        };
-
-        window.addEventListener("click", waitForClick);
-
-        // ⏱ 2초 뒤 자동 실행 (실제 클릭은 아님)
-        setTimeout(() => {
-          if (!hasUserInteracted) {
-            console.warn("⏰ 자동 상호작용 시도 중...");
-            hasUserInteracted = true;
-            loadNextShort();
-          }
-        }, 2000);
+      // 👉 1. 우선 지정된 5개만 순차 로딩
+      for (let i = 0; i < priorityList.length; i++) {
+        await loadNextShort(priorityList[i]);
+        priorityIndex++;
       }
+
+      console.log("✅ 초기 숏폼 5개 로딩 완료");
+
+      // 👉 2. 이후 휠 이벤트 등록 (무한 스크롤 or 자동 로드)
+      window.addEventListener("wheel", (e) => {
+        if (e.deltaY > 0 && !isLoading) {
+          loadNextShort(); // 선택 ID 없이 랜덤 또는 기본 다음 쇼츠 로드
+        }
+      });
     });
+
 
     function getCurrentProductId() {
       const shorts = document.querySelectorAll(".short-item-wrapper");
@@ -354,7 +371,12 @@
       fetch(`/price_history?range=${range}&productId=${product_id}`) // 예시
               .then(res => res.json())
               .then(data => {
-                const labels = data.map(d => d.ordered_at);
+                const labels = data.map(d => {
+                  const date = new Date(d.ordered_at);
+                  const month = String(date.getMonth() + 1).padStart(2, '0');
+                  const day = String(date.getDate()).padStart(2, '0');
+                  return `${month}-${day}`;
+                });
                 const prices = data.map(d => d.final_price);
                 updateChart(labels, prices);
               });
@@ -377,10 +399,11 @@
           datasets: [{
             label: '가격',
             data: [],
-            borderColor: '#ff5f5f',
-            borderWidth: 2,
-            fill: false,
-            tension: 0.3
+            borderColor: '#ff0044',        // 선 색상
+            backgroundColor: 'rgba(255, 0, 68, 0.1)', // 채우기 색 (투명도 포함)
+            borderWidth: 2,                // 선 굵기 설정
+            fill: false,                   // 아래 영역 채우지 않음
+            tension: 0.3                   // 곡선 정도
           }]
         },
         options: {
@@ -410,7 +433,6 @@
               });
     }
 
-    resourceURL = "https://resources-katte.jp.ngrok.io/";
     function renderReview(index) {
       const container = document.getElementById('styleReviewContainer');
       container.innerHTML = '';
@@ -449,7 +471,6 @@
 
     window.addEventListener('load', () => {
       initChart();
-      console.log("AAAAAA")
 
       const productId = getCurrentProductId();
       if (productId) {

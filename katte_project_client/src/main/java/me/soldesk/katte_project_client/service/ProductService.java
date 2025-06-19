@@ -213,4 +213,14 @@ public class ProductService {
             System.out.println("주문 업로드를 성공했씁니다.");
         }
     }
+
+    public AuctionDataBean getAuctionData(int product_id, int instant_price) {
+        Map<String, String> params = new HashMap<>();
+        params.put("product_id", String.valueOf(product_id));
+        params.put("instant_price", String.valueOf(instant_price));
+        TypeReference<AuctionDataBean> ref = new TypeReference<>() {};
+
+        ResponseEntity<AuctionDataBean> response = ApiManagers.get("auction/getData", params, ref);
+        return response.getBody();
+    }
 }

@@ -24,6 +24,14 @@ public class ShortformService {
         return response.getBody();
     }
 
+    public ContentShortformBean getShortData(Integer product_id) {
+        Map<String, String> params = new HashMap<>();
+        params.put("id", String.valueOf(product_id));
+        TypeReference<ContentShortformBean> ref = new TypeReference<>() {};
+        ResponseEntity<ContentShortformBean> response =ApiManagers.get("content/short/id",params,ref);
+        return response.getBody();
+    }
+
     public boolean toggleLike(int user_id, int short_id) {
         Map<String, String> params = new HashMap<>();
         params.put("user_id", Integer.toString(user_id));

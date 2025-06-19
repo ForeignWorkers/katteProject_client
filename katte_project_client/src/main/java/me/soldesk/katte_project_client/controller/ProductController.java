@@ -8,6 +8,7 @@ import common.bean.ecommerce.EcommerceOrderBean;
 import common.bean.product.*;
 import common.bean.user.UserAddressBean;
 import common.bean.user.UserBean;
+import common.bean.user.UserKatteMoneyLogBean;
 import common.bean.user.UserPaymentBean;
 import jakarta.servlet.http.HttpSession;
 import me.soldesk.katte_project_client.manager.ApiManagers;
@@ -36,6 +37,8 @@ public class ProductController {
 
     @Autowired
     private MyPageService myPageService;
+    @Autowired
+    private EcommerceService ecommerceService;
     //입찰구매 등록
 
     //즉시구매 겟.
@@ -113,10 +116,6 @@ public class ProductController {
         model.addAttribute("product", product);
         model.addAttribute("origin_price", originPrice);
         model.addAttribute("size", size);
-
-
-        //거래 api 만들기
-
 
         //User payment 가져오기
         UserPaymentBean paymentBean = userService.getUserPayment(userBean.getUser_id());
@@ -354,8 +353,10 @@ public class ProductController {
     @PostMapping("/product/submitOrder")
     @ResponseBody
     public String submitOrder(@RequestBody EcommerceOrderBean orderDTO,
+                              @RequestParam("point") int point,
                               @SessionAttribute("currentUser") UserBean user) {
 
+        AuctionDataBean auctionBean = productService.getAuctionData(orderDTO.getProduct_id(),orderDTO.getOrigin_price());
         EcommerceOrderBean order = new EcommerceOrderBean();
         order.setUser_id(user.getUser_id());
         order.setProduct_id(orderDTO.getProduct_id());
@@ -366,12 +367,27 @@ public class ProductController {
         order.setOrder_status(orderDTO.getOrder_status());
         order.setOrdered_at(new Date());
         order.setOrder_confirm(order.isOrder_confirm());
-        order.setAuction_id(7781);
+        order.setAuction_id(auctionBean != null ? auctionBean.getId() : 7781);
 
         // terms_id, auction_id, per_sale_id는 상황에 맞게 지정
         order.setTerms_id(1); // 예: 기본 약관 id
 
         productService.insertOrder(order); // DB 삽입
+
+        //금액 정산
+        UserPaymentBean bean = userService.getUserPayment(user.getUser_id());
+        int final_point = bean.getPoint() - point;
+
+        //포인트 사용
+        userService.setPoint(user.getUser_id(),final_point);
+
+        //캇테 사용
+        UserKatteMoneyLogBean katteMoneyLogBean = new UserKatteMoneyLogBean();
+        katteMoneyLogBean.setUser_id(user.getUser_id());
+        katteMoneyLogBean.setChange_amount(orderDTO.getFinal_price());
+        katteMoneyLogBean.setReason(UserKatteMoneyLogBean.reason.USED);
+        katteMoneyLogBean.setCreated_at(new Date());
+        userService.useKatteMoney(katteMoneyLogBean);
 
         return "success";
     }

@@ -551,7 +551,7 @@ document.addEventListener('DOMContentLoaded', async function () {
       terms_id : 1
     };
 
-    const res = await fetch("/product/submitOrder", {
+    const res = await fetch(`/product/submitOrder?point=${pointDiscount}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data)
@@ -559,6 +559,10 @@ document.addEventListener('DOMContentLoaded', async function () {
 
     const result = await res.text();
     if (result === "success") {
+      //정산 처리
+      //포인트 깍기
+      //캇테머니 깍기
+
       openPurchaseModal(); // 결제 완료 모달 열기
     } else {
       alert("주문 처리 중 오류 발생");

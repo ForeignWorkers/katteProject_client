@@ -47,8 +47,16 @@ public class ContentController {
     private String basicProfileUrl;
 
     @GetMapping("/shortform/random")
-    public ResponseEntity<ContentShortformBean> getRandomShort() {
-        ContentShortformBean shortform = shortformService.getRandomShort();
+    public ResponseEntity<ContentShortformBean> getRandomShort(@RequestParam("selectId") Integer selectId) {
+
+        ContentShortformBean shortform = new ContentShortformBean();
+        if(selectId != null) {
+            shortform = shortformService.getShortData(selectId);
+        }
+        else {
+            shortform = shortformService.getRandomShort();
+        }
+
         UserBean bean = userService.getUserByUserId(shortform.getAuthor_id());
 
         shortform.setProfileImgUrl(bean.getProfile_url() == null ? resourceUrl+basicProfileUrl : bean.getProfile_url());
@@ -61,8 +69,6 @@ public class ContentController {
             shortform.setCurrentPrice(Integer.toString(auctionDataBean.getCurrent_price()));
             shortform.setInstantPrice(Integer.toString(auctionDataBean.getInstant_price()));
         }
-        //테스트로 하나만
-//        shortform.setProduct_id(440882);
 
         return ResponseEntity.ok(shortform);
     }
