@@ -224,7 +224,6 @@
               const resLike = await fetch(`/style/isLikeExist?style_id=${styleId}`)
               const isHave = await resLike.json();
 
-              console.log("@#@#@#!@#!@#!@#" + isHave);
               likeBtnImg.src = isHave
                       ? '/img/heart_icon_clicked.png'
                       : '/img/heart_icon_no_clicked.png';
@@ -256,29 +255,62 @@
               const tagContainer = document.querySelector(".group-975");
               tagContainer.innerHTML = ''; // 기존 내용 제거
               const res = await fetch(`/content/stylePrdouct?style_id=${styleId}`)
-              const products = await res.json();
-
               for (const productId of products) {
                 const wrapper = document.createElement("div");
-                const res = await fetch(`/content/getProduct?product_id=${productId}`)
-                const productData = await res.json();
+
+                const res = await fetch(`/content/getProduct?product_id=${productId}`);
+
+                if (!res.ok) {
+                  console.warn(`❌ 상품 ID ${productId} 응답 실패: ${res.status}`);
+                  continue;
+                }
+
+                let productData;
+                try {
+                  // JSON 응답이 빈 경우 (""), 이 줄에서 에러 발생하므로 try-catch 필요
+                  productData = await res.json();
+                } catch (e) {
+                  console.warn(`❌ 상품 ID ${productId} 응답 JSON 파싱 실패`);
+                  continue;
+                }
+
+                if (!productData || Object.keys(productData).length === 0) {
+                  console.warn(`❌ 상품 ID ${productId} 데이터가 비어 있음`);
+                  continue;
+                }
+                const imagePathBase = `${resourceUrl}images/${productId}/${productId}_1`;
+
+                let finalSrc = imagePathBase + '.png';
+                console.log("finalSrc" + finalSrc)
+
+                try {
+                  const res = await fetch(finalSrc, { method: 'HEAD' });
+                  if (!res.ok) {
+                    console.log("AA rest");
+                    finalSrc = imagePathBase + '.jpg';
+                  }
+                } catch (e) {
+                  console.log("BBB rest");
+                  finalSrc = imagePathBase + '.jpg';
+                }
+
                 wrapper.className = "_1";
 
                 wrapper.innerHTML = `
-  <a class="product-link" href="/product/${productId}" style="text-decoration: none; color: inherit;">
-    <img class="image-125" src="${resourceUrl}images/${productId}/${productId}_1.png" />
-    <div class="hysteric-glamour-hyst-280-000">
-      <span>
-        <span class="hysteric-glamour-hyst-280-000-span">
-          ${productData.product_name_kor ?? '상품명 없음'}<br><br>
-        </span>
-        <span class="hysteric-glamour-hyst-280-000-span2">
-          ${Number(productData.release_price).toLocaleString() ?? '-'} 원
-        </span>
-      </span>
-    </div>
-  </a>
-`;
+                <a class="product-link" href="/product/${productId}" style="text-decoration: none; color: inherit;">
+                <img class="image-125" src="${finalSrc}" />
+                <div class="hysteric-glamour-hyst-280-000">
+                <span>
+                <span class="hysteric-glamour-hyst-280-000-span">
+                    ${productData.product_name_kor ?? '상품명 없음'}<br><br>
+                </span>
+                <span class="hysteric-glamour-hyst-280-000-span2">
+                ${Number(productData.release_price).toLocaleString() ?? '-'} 원
+                </span>
+                </span>
+                </div>
+                </a>
+                `;
 
                 tagContainer.appendChild(wrapper);
               }
@@ -317,10 +349,6 @@
               });
               render();
             })
-            .catch(err => {
-              console.error('이미지 로드 실패:', err);
-              imgRoot.textContent = '이미지를 불러올 수 없습니다.';
-            });
 
     //댓글 영역
     const commentList = document.querySelector('.comment-list');
@@ -368,6 +396,11 @@
 
         const comment = commentInput.value.trim();
         const res = await fetch(`/comment/add?style_id=${styleId}&content=${comment}`);
+        if (!res.ok) {
+          alert("❌ 댓글 등록 실패: 서버 에러");
+          return;
+        }
+
         const result = await res.json();
 
         if (result) {
