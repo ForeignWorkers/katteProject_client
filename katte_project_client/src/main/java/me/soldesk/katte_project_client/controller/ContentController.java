@@ -62,7 +62,7 @@ public class ContentController {
             shortform.setInstantPrice(Integer.toString(auctionDataBean.getInstant_price()));
         }
         //테스트로 하나만
-        shortform.setProduct_id(440882);
+//        shortform.setProduct_id(440882);
 
         return ResponseEntity.ok(shortform);
     }
