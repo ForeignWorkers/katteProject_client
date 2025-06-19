@@ -627,3 +627,28 @@ html, body {
  .search-form .search-button:hover {
    background-color: #cc0038;
  }
+
+ .tab-container {
+   display: flex;
+   gap: 12px; /* 탭 사이 여백 */
+ }
+
+ .tab-container .tab {
+   min-width: 140px;
+   text-align: center;
+   padding: 14px 0;
+   font-size: 22px;
+   font-weight: 400;
+   color: #f9eeee;
+   border: 1px solid #ff0044;
+   background: transparent;
+   cursor: pointer;
+   border-radius: 8px;
+   text-decoration: none; /* ✅ 밑줄 제거 */
+ }
+
+ .tab-container .tab.active {
+   background: #ff0044;
+   font-weight: 700;
+   text-decoration: none; /* ✅ 활성 상태도 밑줄 제거 */
+ }
