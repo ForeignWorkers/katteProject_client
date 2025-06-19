@@ -32,18 +32,18 @@ public class ProductListService {
         return res.getBody() != null ? res.getBody() : 0;
     }
 
-    //판매 완료 리스트
-    public List<InspectionProductViewBean> getSoldoutItems(int page, int size) {
+    // ✅ 판매 완료 리스트
+    public List<SoldoutProductViewBean> getSoldoutItems(int page, int size) {
         Map<String, String> params = new HashMap<>();
         params.put("offset", String.valueOf((page - 1) * size));
         params.put("size", String.valueOf(size));
 
-        ResponseEntity<List<InspectionProductViewBean>> res =
+        ResponseEntity<List<SoldoutProductViewBean>> res =
                 ApiManagers.get("products/soldout", params, new TypeReference<>() {});
         return res.getBody();
     }
 
-    //판매 완료 수
+    // ✅ 판매 완료 수
     public int getSoldoutCount() {
         ResponseEntity<Integer> res =
                 ApiManagers.get("products/soldout/count", null, new TypeReference<>() {});
