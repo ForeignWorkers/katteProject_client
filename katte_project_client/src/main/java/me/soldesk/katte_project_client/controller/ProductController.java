@@ -4,15 +4,14 @@ import common.bean.auction.AuctionDataBean;
 import common.bean.content.ContentShortformBean;
 import common.bean.ecommerce.EcommerceCoupon;
 import common.bean.ecommerce.EcommerceCouponHistory;
+import common.bean.ecommerce.EcommerceOrderBean;
 import common.bean.product.*;
+import common.bean.user.UserAddressBean;
 import common.bean.user.UserBean;
 import common.bean.user.UserPaymentBean;
 import jakarta.servlet.http.HttpSession;
 import me.soldesk.katte_project_client.manager.ApiManagers;
-import me.soldesk.katte_project_client.service.ProductRegisterResult;
-import me.soldesk.katte_project_client.service.ProductRegisterService;
-import me.soldesk.katte_project_client.service.ProductService;
-import me.soldesk.katte_project_client.service.UserService;
+import me.soldesk.katte_project_client.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -22,10 +21,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.lang.model.type.ReferenceType;
 import java.lang.ref.Reference;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.time.LocalDateTime;
+import java.util.*;
 
 @Controller
 public class ProductController {
@@ -37,6 +34,8 @@ public class ProductController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private MyPageService myPageService;
     //입찰구매 등록
 
     //즉시구매 겟.
@@ -118,6 +117,7 @@ public class ProductController {
 
         //거래 api 만들기
 
+
         //User payment 가져오기
         UserPaymentBean paymentBean = userService.getUserPayment(userBean.getUser_id());
         model.addAttribute("userPoint", paymentBean.getPoint());
@@ -132,8 +132,22 @@ public class ProductController {
         }
         model.addAttribute("userCoupons", couponDatas);
 
-        System.out.println("userCoupons" + couponDatas);
+        // 유저 주소록 리스트 조회
+        ResponseEntity<UserAddressBean> responseAddress = myPageService.getUserMainAddress(Integer.toString(userBean.getUser_id()));
+        UserAddressBean userAddressBean = responseAddress.getBody();
 
+        if(userAddressBean == null){
+            userAddressBean = new UserAddressBean();
+            userAddressBean.setUser_id(userBean.getUser_id());
+            userAddressBean.setName("강호동");
+            userAddressBean.setAddress_line01("서울시 행복구 행복동 12번지");
+            userAddressBean.setPhone_number("010-2222-3333");
+            userAddressBean.setIs_main(true);
+            userAddressBean.setPost_num(1111);
+        }
+
+        // 모델에 담기
+        model.addAttribute("addrList", userAddressBean);
         return "Productpage/Product_buybtn_next_Page";
     }
 
@@ -335,5 +349,30 @@ public class ProductController {
         model.addAttribute("message", result.getMessage());
         System.out.println("submitProduct() 실행됨");
         return "redirect:/sell/manage";
+    }
+
+    @PostMapping("/product/submitOrder")
+    @ResponseBody
+    public String submitOrder(@RequestBody EcommerceOrderBean orderDTO,
+                              @SessionAttribute("currentUser") UserBean user) {
+
+        EcommerceOrderBean order = new EcommerceOrderBean();
+        order.setUser_id(user.getUser_id());
+        order.setProduct_id(orderDTO.getProduct_id());
+        order.setOrigin_price(orderDTO.getOrigin_price());
+        order.setFinal_price(orderDTO.getFinal_price());
+        order.setUsed_coupon_id(orderDTO.getUsed_coupon_id());
+        order.setAddress_key(orderDTO.getAddress_key());
+        order.setOrder_status(orderDTO.getOrder_status());
+        order.setOrdered_at(new Date());
+        order.setOrder_confirm(order.isOrder_confirm());
+        order.setAuction_id(7781);
+
+        // terms_id, auction_id, per_sale_id는 상황에 맞게 지정
+        order.setTerms_id(1); // 예: 기본 약관 id
+
+        productService.insertOrder(order); // DB 삽입
+
+        return "success";
     }
 }
