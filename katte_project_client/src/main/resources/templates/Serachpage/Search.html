@@ -12,12 +12,13 @@
 <div th:replace="Fragments/Sidebar :: sidebar"></div>
 
 <div class="search-wrapper">
-  <input type="text" id="searchInput" placeholder="키워드를 입력하세요." />
-  <div class="tabs">
-    <button class="tab active" data-type="product">상품</button>
-    <button class="tab" data-type="style">스타일</button>
+  <div class="searchdiv">
+    <input type="text" id="searchInput" placeholder="키워드를 입력하세요." />
+    <div class="tabs">
+      <button class="tab active" data-type="product">상품</button>
+      <button class="tab" data-type="style">스타일</button>
+    </div>
   </div>
-
   <div id="resultsGrid" class="grid-container"></div>
 </div>
 <script>
