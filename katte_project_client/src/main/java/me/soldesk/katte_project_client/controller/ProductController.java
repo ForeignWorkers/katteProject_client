@@ -2,13 +2,16 @@ package me.soldesk.katte_project_client.controller;
 
 import common.bean.auction.AuctionDataBean;
 import common.bean.content.ContentShortformBean;
+import common.bean.ecommerce.EcommerceCoupon;
+import common.bean.ecommerce.EcommerceCouponHistory;
+import common.bean.ecommerce.EcommerceOrderBean;
 import common.bean.product.*;
+import common.bean.user.UserAddressBean;
 import common.bean.user.UserBean;
+import common.bean.user.UserPaymentBean;
 import jakarta.servlet.http.HttpSession;
 import me.soldesk.katte_project_client.manager.ApiManagers;
-import me.soldesk.katte_project_client.service.ProductRegisterResult;
-import me.soldesk.katte_project_client.service.ProductRegisterService;
-import me.soldesk.katte_project_client.service.ProductService;
+import me.soldesk.katte_project_client.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -16,9 +19,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import javax.lang.model.type.ReferenceType;
+import java.lang.ref.Reference;
+import java.time.LocalDateTime;
+import java.util.*;
 
 @Controller
 public class ProductController {
@@ -27,7 +31,11 @@ public class ProductController {
     private ProductRegisterService productRegisterService;
     @Autowired
     private ProductService productService;
+    @Autowired
+    private UserService userService;
 
+    @Autowired
+    private MyPageService myPageService;
     //입찰구매 등록
 
     //즉시구매 겟.
@@ -87,11 +95,60 @@ public class ProductController {
         return "Productpage/Product_buybtn_Page";
     }
 
+    @PostMapping("/product/payment")
+    public String showPaymentPage(
+            @RequestParam("product_id") int productId,
+            @RequestParam("product_name") String productName,
+            @RequestParam("brand_name") String brandName,
+            @RequestParam("origin_price") int originPrice,
+            @RequestParam("size") String size,
+            @SessionAttribute("currentUser") UserBean userBean,
+            Model model
+    ) {
+        ProductInfoBean product = new ProductInfoBean();
+        product.setProduct_id(productId);
+        product.setProduct_name(productName);
+        product.setBrand_name(brandName);
 
-    // 결제 및 배송지 선택 페이지
-    @GetMapping("/product/payment")
-    public String showPaymentPage() {
-        return "Productpage/Product_buybtn_next_Page"; // ← 업로드한 Product_buybtn_next_Page.html
+        model.addAttribute("product", product);
+        model.addAttribute("origin_price", originPrice);
+        model.addAttribute("size", size);
+
+
+        //거래 api 만들기
+
+
+        //User payment 가져오기
+        UserPaymentBean paymentBean = userService.getUserPayment(userBean.getUser_id());
+        model.addAttribute("userPoint", paymentBean.getPoint());
+        model.addAttribute("katte_money", paymentBean.getKatte_money());
+
+        //쿠폰 데이터 가져오기
+        List<EcommerceCouponHistory> userCoupon = userService.getUserCouponHistory(userBean.getUser_id());
+        List<EcommerceCoupon> couponDatas = new ArrayList<>();
+
+        for (EcommerceCouponHistory coupon : userCoupon) {
+            couponDatas.add(userService.getUserCoupon(coupon.getCoupon_id()));
+        }
+        model.addAttribute("userCoupons", couponDatas);
+
+        // 유저 주소록 리스트 조회
+        ResponseEntity<UserAddressBean> responseAddress = myPageService.getUserMainAddress(Integer.toString(userBean.getUser_id()));
+        UserAddressBean userAddressBean = responseAddress.getBody();
+
+        if(userAddressBean == null){
+            userAddressBean = new UserAddressBean();
+            userAddressBean.setUser_id(userBean.getUser_id());
+            userAddressBean.setName("강호동");
+            userAddressBean.setAddress_line01("서울시 행복구 행복동 12번지");
+            userAddressBean.setPhone_number("010-2222-3333");
+            userAddressBean.setIs_main(true);
+            userAddressBean.setPost_num(1111);
+        }
+
+        // 모델에 담기
+        model.addAttribute("addrList", userAddressBean);
+        return "Productpage/Product_buybtn_next_Page";
     }
 
     //캇테머니 겟터
@@ -149,7 +206,6 @@ public class ProductController {
         model.addAttribute("brandTopList", brandTopProducts);
 
         String imageUrl = String.format("https://resources-katte.jp.ngrok.io/images/%d/%d_1.png", product.getProduct_id(), product.getProduct_id());
-        System.out.println("AAAAA" + imageUrl);
         model.addAttribute("resourceURL", imageUrl);
 
         return "Productpage/Productpage";
@@ -293,5 +349,30 @@ public class ProductController {
         model.addAttribute("message", result.getMessage());
         System.out.println("submitProduct() 실행됨");
         return "redirect:/sell/manage";
+    }
+
+    @PostMapping("/product/submitOrder")
+    @ResponseBody
+    public String submitOrder(@RequestBody EcommerceOrderBean orderDTO,
+                              @SessionAttribute("currentUser") UserBean user) {
+
+        EcommerceOrderBean order = new EcommerceOrderBean();
+        order.setUser_id(user.getUser_id());
+        order.setProduct_id(orderDTO.getProduct_id());
+        order.setOrigin_price(orderDTO.getOrigin_price());
+        order.setFinal_price(orderDTO.getFinal_price());
+        order.setUsed_coupon_id(orderDTO.getUsed_coupon_id());
+        order.setAddress_key(orderDTO.getAddress_key());
+        order.setOrder_status(orderDTO.getOrder_status());
+        order.setOrdered_at(new Date());
+        order.setOrder_confirm(order.isOrder_confirm());
+        order.setAuction_id(7781);
+
+        // terms_id, auction_id, per_sale_id는 상황에 맞게 지정
+        order.setTerms_id(1); // 예: 기본 약관 id
+
+        productService.insertOrder(order); // DB 삽입
+
+        return "success";
     }
 }

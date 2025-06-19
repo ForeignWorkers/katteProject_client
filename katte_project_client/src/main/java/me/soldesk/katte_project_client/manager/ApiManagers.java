@@ -19,8 +19,9 @@ public class ApiManagers {
 
     private static final ObjectMapper objectMapper = new ObjectMapper();
 
-    private static final String BASE_URL = "https://api-katte.jp.ngrok.io/"; // ✅ 수정: http: → http://
+    private static final String BASE_URL = "http://localhost:9000/"; // ✅ 수정: http: → http://
 
+    private static final String API_KEY = "ak_2ygZezYSjvylHB2n5yOwxfCam2e";
     static {
         objectMapper.registerModule(new com.fasterxml.jackson.datatype.jsr310.JavaTimeModule());
     }
@@ -36,6 +37,7 @@ public class ApiManagers {
             Request request = new Request.Builder()
                     .url(urlBuilder.build())
                     .get()
+                    .header("x-api-key", API_KEY)
                     .build();
 
             return execute(request, typeRef);
@@ -60,6 +62,7 @@ public class ApiManagers {
             Request request = new Request.Builder()
                     .url(urlWithParams)
                     .post(RequestBody.create("", null)) // POST인데 바디는 없음 (빈 바디)
+                    .header("x-api-key", API_KEY)
                     .build();
 
             return execute(request, typeRef);
@@ -78,6 +81,7 @@ public class ApiManagers {
             Request request = new Request.Builder()
                     .url(BASE_URL + path)
                     .post(body)
+                    .header("x-api-key", API_KEY)
                     .build();
 
             return execute(request, typeRef);
@@ -98,6 +102,7 @@ public class ApiManagers {
             Request request = new Request.Builder()
                     .url(urlBuilder.build())
                     .patch(RequestBody.create(new byte[0])) // 빈 Body 전달
+                    .header("x-api-key", API_KEY)
                     .build();
 
             return execute(request, typeRef);
@@ -117,6 +122,7 @@ public class ApiManagers {
             Request request = new Request.Builder()
                     .url(BASE_URL + path)
                     .patch(body)
+                    .header("x-api-key", API_KEY)
                     .build();
 
             return execute(request, typeRef);
@@ -137,6 +143,7 @@ public class ApiManagers {
             Request request = new Request.Builder()
                     .url(urlBuilder.build())
                     .delete()
+                    .header("x-api-key", API_KEY)
                     .build();
 
             return execute(request, typeRef);
@@ -154,6 +161,7 @@ public class ApiManagers {
             Request request = new Request.Builder()
                     .url(BASE_URL + path)
                     .delete(body)
+                    .header("x-api-key", API_KEY)
                     .build();
 
             return execute(request, typeRef);
@@ -189,6 +197,7 @@ public class ApiManagers {
             Request request = new Request.Builder()
                     .url(BASE_URL + path) // url 세팅 localhost:9000/
                     .post(builder.build()) // post + body
+                    .header("x-api-key", API_KEY)
                     .build();
 
             //실제 요청 수행 및 결과 반환

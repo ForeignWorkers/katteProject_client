@@ -1,6 +1,7 @@
 package me.soldesk.katte_project_client.service;
 
 import common.bean.auction.AuctionDataBean;
+import common.bean.ecommerce.EcommerceOrderBean;
 import common.bean.product.*;
 import common.bean.user.UserPaymentBean;
 import me.soldesk.katte_project_client.manager.ApiManagers;
@@ -199,6 +200,17 @@ public class ProductService {
             return response.getBody();
         } else {
             throw new RuntimeException(errorMsg);
+        }
+    }
+
+    public void insertOrder(EcommerceOrderBean orderBean) {
+        ResponseEntity<String> response = ApiManagers.post("ecommerce/order", orderBean, new TypeReference<>() {});
+        System.out.println(response);
+        if (!ApiManagers.isSuccessful(response)) {
+            System.out.println("주문 업로드를 실패했씁니다.");
+        }
+        else {
+            System.out.println("주문 업로드를 성공했씁니다.");
         }
     }
 }

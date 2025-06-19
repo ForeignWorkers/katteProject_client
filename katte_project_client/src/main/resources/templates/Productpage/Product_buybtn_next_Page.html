@@ -4,35 +4,12 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+<link rel="stylesheet" href="/css/fragments/Sidebar.css" />
 <link rel="stylesheet" href="/css/Productpage/Product_buybtn_next_Page.css" />
 <body>
-<aside class="sidebar">
-  <a href="/main">
-  <img class="logo-1" src="/img/logo%20(1).png" alt="로고" />
-  </a>
-  <nav class="sidebar-nav">
-    <ul>
-      <li><a href="/search">검색</a></li>
-      <li><a href="/explore">탐색</a></li>
-      <li><a href="/sell">판매등록</a></li>
-      <li><a href="/wishlist">관심상품</a></li>
-      <li><a href="/style">스타일</a></li>
-      <li><a href="/mypage">마이페이지</a></li>
-      <li><a href="/support">고객센터</a></li>
-    </ul>
-  </nav>
-  <div class="login-area">
-    <a href="/login" class="btn-login">로그인</a>
-  </div>
-  <footer class="sidebar-footer">
-    <p><a href="/support">고객센터</a> | <a href="/terms">이용약관</a></p>
-    <small>&copy; All copyright in soldesk</small>
-  </footer>
-</aside>
+<div th:replace="~{Fragments/Sidebar :: sidebar}"></div>
 
 <div class="wrapper">
-
-
   <div class="line-262"></div>
   <img class="line-136" src="line-1360.svg" />
   <div class="div">배송 / 결제</div>
@@ -151,71 +128,71 @@
   <div class="div9">연락처</div>
   <div class="div10">주소</div>
   <div class="div11">요청 사항 없음</div>
-  <div class="div12">사용한 쿠폰이 없음</div>
-  <div class="div13">정민규</div>
-  <div class="_010-2011-6847">010-2011-6847</div>
-  <div class="_12345-123-1234">
+  <div class="div12"
+       th:text="'사용 가능한 쿠폰 ' + ${#lists.size(userCoupons)} + '개 있음'">
+  </div>
+  <div class="div13" th:text="${addrList.getName()}">정민규</div>
+  <div class="_010-2011-6847" th:text="${addrList.getPhone_number()}">010-2011-6847</div>
+  <div class="_12345-123-1234" th:text="${addrList.getAddress_line01() + addrList.getAddress_line02()}">
     [12345] 서울특별시 서울구 서울동 123번지 1234호
   </div>
-  <img class="polygon-20" src="/img/Polygon.png" />
-  <img class="polygon-21" src="/img/Polygon.png" />
-  <div class="rectangle-1604"></div>
-  <img class="image" src="image0.png" />
-  <div class="nike-x-lil-yachty-us-force-1-low-white-and-midnight-navy">
-    Nike x Lil Yachty Us Force 1 Low White and Midnight Navy
+  <div class="rectangle-1604">
+    <img class="product-image" th:src="'https://resources-katte.jp.ngrok.io/images/' + ${product.product_id} + '/' + ${product.product_id} + '_1.png'" />
   </div>
-  <div class="x-1">
-    나이키 x 릴 야티 어스 포스 1 로우 화이트 앤 미드나잇 네이비
+  <div class="nike-x-lil-yachty-us-force-1-low-white-and-midnight-navy"
+       th:text="${product.product_name}">
   </div>
-  <div class="_270">270</div>
+  <div class="x-1" th:text="${product.brand_name}"></div>
+  <div class="_270" th:text="${size}">270</div>
   <div class="ellipse-63"></div>
   <div class="ellipse-64"></div>
   <div class="rectangle-1617"></div>
 </div>
 
-
   <div class="rectangle-1723"></div>
   <div class="rectangle-1722"></div>
   <div class="div1">결제 금액</div>
-  <div class="_179-000-katte">179,000 katte</div>
   <div class="div21">구매가</div>
-  <div class="_189-000-katte">189,000 katte</div>
+  <div class="_189-000-katte" th:text="${#numbers.formatInteger(origin_price, 3, 'COMMA')} + ' katte'"></div>
   <div class="div31">검수비</div>
   <div class="free">free</div>
   <div class="div41">수수료</div>
-  <div class="_2-700-katte">2,700 katte</div>
+  <div class="_2-700-katte">0 katte</div>
   <div class="div51">배송비</div>
   <div class="_3-000-katte">3,000 katte</div>
   <div class="div61">쿠폰사용</div>
-  <div class="_5-700-katte">-5,700 katte</div>
+<div class="_5-700-katte" id="couponDiscountText">-5,700 katte</div>
   <div class="div71">포인트사용</div>
-  <div class="_7000-katte">-7000 katte</div>
+  <div class="_7000-katte" id="pointDiscountText">-0 katte</div>
   <div class="group-897">
     <div class="group-906">
       <div class="rectangle-1618"></div>
       <div class="div81">결제 금액</div>
-      <div class="_179-000-katte2">179,000 katte</div>
-      <div class="_179-000-katte3">179,000 katte</div>
+      <!-- 결제 금액 관련 -->
+      <div class="_179-000-katte" id="finalPriceText">179,000 katte</div>
+      <div class="_179-000-katte3" id="finalPriceText2">179,000 katte</div>
       <div class="div91">결제</div>
-      <div class="div101">최대 사용</div>
-      <div class="rectangle-1636"></div>
-      <div class="div111">보유 캇테머니</div>
-      <div class="_3-000-000-katte">3,000,000 katte</div>
-      <div class="div121">캇테머니 충전하기</div>
-      <div class="rectangle-1638"></div>
-      <div class="group-8972">
-        <div class="rectangle-1570"></div>
-        <div class="div131">카카오 페이</div>
-        <img class="image-105" src="image-1050.png" />
+      <button id="maxKatteBtn" class="div101">최대 사용</button>
+      <div class="rectangle-1636">
+        <input type="number" id="katteInput" class="custom-input2" placeholder="캇테 머니 입력" />
       </div>
+      <div class="div111">보유 캇테머니</div>
+      <div class="_3-000-000-katte" th:text="${katte_money != null ? katte_money + ' katte' : '0 katte'}"></div>
+<!--      <div class="group-8972">-->
+<!--        <div class="rectangle-1570"></div>-->
+<!--        <div class="div131">카카오 페이</div>-->
+<!--        <img class="image-105" src=-->
+<!--                "image-1050.png" />-->
+<!--      </div>-->
+      <div class="rectangle-1638"></div>
     </div>
     <div class="rectangle-1639"></div>
     <div class="div141">포인트 혜택</div>
  
     <!-- 기존 rectangle-1640과 텍스트를 감싸는 클릭용 버튼 -->
     <button id="completePurchaseBtn" class="payment-btn">
-      <div class="rectangle-1640"></div>
-      <div class="_179-000-katte4">179,000 katte・결제하기</div>
+      <div class="rectangle-1640" id="rectangle-1640"></div>
+      <div class="_179-000-katte4" id="finalPriceText3">179,000 katte・결제하기</div>
     </button>
 
 
@@ -230,30 +207,48 @@
     </div> -->
     <div class="div151">적립 예정 포인트</div>
     <div class="_910-p">910 p</div>
-    <div class="group-898">
-      <div class="rectangle-1571"></div>
-      <div class="div161">네이버 페이</div>
-      <img class="image-107" src="image-1070.png" />
-    </div>
   </div>
   <div class="div171">포인트</div>
-  <div class="_7-000-p">7,000 P</div>
-  <div class="rectangle-1720"></div>
-  <div class="div181">최대 사용</div>
+<div class="rectangle-1720">
+  <input type="number" id="pointInput" class="custom-input" placeholder="포인트 입력" />
+</div>
+<!-- 최대 사용 버튼 -->
+  <button id="maxPointBtn" class="div181">최대 사용</button>
   <div class="rectangle-1721"></div>
   <div class="div191">보유 포인트</div>
   <div class="div201">
     구매 입찰은 ‘최대 사용’만 선택 가능하며, 거래 체결 시점에 보유한 모든
     포인트를 사용합니다.
   </div>
-  <div class="_15-000-p">15,000 p</div>
+<div class="_15-000-p" th:text="${userPoint != null ? userPoint + ' p' : '0 p'}"></div>
 
+<!-- 쿠폰 모달 오버레이 -->
+<div class="coupon-modal-overlay"></div>
+
+<!-- 쿠폰 선택 모달 -->
+<div class="coupon-modal">
+  <div class="modal-header">
+    <h2>사용 가능한 쿠폰</h2>
+    <button class="modal-close-btn" id="closeCouponModal">&times;</button>
+  </div>
+  <div class="coupon-list">
+    <th:block th:each="coupon : ${userCoupons}">
+      <div class="coupon-card"
+           th:attr="data-discount=${coupon.sale_amount},
+                    data-name=${coupon.name},
+                    data-id=${coupon.id}">
+        <p th:text="${coupon.name}">쿠폰명</p>
+        <p th:text="'-' + ${#numbers.formatInteger(coupon.sale_amount, 3, 'COMMA')} + ' katte'">-할인금액</p>
+      </div>
+    </th:block>
+  </div>
+</div>
 
 </div>
 </div>
 <!-- HTML 하단에 삽입할 수정된 JS 코드 -->
-<script>
-document.addEventListener('DOMContentLoaded', function() {
+<script th:inline="javascript">
+document.addEventListener('DOMContentLoaded', async function () {
   // ─────────────────────────────────────────────────────────────
   // 1) 공통 오버레이(모달 뒤 어두운 배경) 가져오기
   // ─────────────────────────────────────────────────────────────
@@ -262,38 +257,39 @@ document.addEventListener('DOMContentLoaded', function() {
   // ─────────────────────────────────────────────────────────────
   // 2) 첫 번째 모달(주소록) 관련 요소 가져오기
   // ─────────────────────────────────────────────────────────────
-  const changeBtn       = document.getElementById('changeAddressButton');           // “주소 변경” 버튼
-  const addressModal    = document.querySelector('.address-modal');                 // 첫 번째 주소록 모달
-  const closeAddrBtn    = document.querySelector('.address-modal .modal-close-btn');// 첫 번째 모달 닫기(X) 버튼
-  const openAddFormBtn  = document.querySelector('.add-address-btn');               // 첫 번째 모달 내 “+ 새 주소 추가하기” 버튼
+  const changeBtn = document.getElementById('changeAddressButton');           // “주소 변경” 버튼
+  const addressModal = document.querySelector('.address-modal');                 // 첫 번째 주소록 모달
+  const closeAddrBtn = document.querySelector('.address-modal .modal-close-btn');// 첫 번째 모달 닫기(X) 버튼
+  const openAddFormBtn = document.querySelector('.add-address-btn');               // 첫 번째 모달 내 “+ 새 주소 추가하기” 버튼
 
   // ─────────────────────────────────────────────────────────────
   // 3) 두 번째 모달(주소 추가 폼) 관련 요소 가져오기
   // ─────────────────────────────────────────────────────────────
-  const addFormModal    = document.querySelector('.add-address-modal');             // 두 번째 주소 추가 폼 모달
+  const addFormModal = document.querySelector('.add-address-modal');             // 두 번째 주소 추가 폼 모달
   const closeAddFormBtn = document.getElementById('closeAddFormBtn');               // 두 번째 모달 닫기(X) 버튼
-  const zipSearchBtn    = document.querySelector('.zip-search-btn');                // 우편번호 검색 버튼
-  const zipCodeInput    = document.getElementById('zipCode');                       // 우편번호 입력란
-  const addressInput    = document.getElementById('address');                       // 주소 입력란
-  const addForm         = document.getElementById('addAddressForm');                 // 두 번째 모달 폼 전체
+  const zipSearchBtn = document.querySelector('.zip-search-btn');                // 우편번호 검색 버튼
+  const zipCodeInput = document.getElementById('zipCode');                       // 우편번호 입력란
+  const addressInput = document.getElementById('address');                       // 주소 입력란
+  const addForm = document.getElementById('addAddressForm');                 // 두 번째 모달 폼 전체
 
   // ─────────────────────────────────────────────────────────────
   // 4) 세 번째 모달(결제 완료) 관련 요소 가져오기
   // ─────────────────────────────────────────────────────────────
-  const completePurchaseBtn   = document.getElementById('completePurchaseBtn');      // “결제하기” 버튼
-  const purchaseModal         = document.querySelector('.purchase-complete-modal');   // 결제 완료 모달
-  const closePurchaseBtn      = document.getElementById('closePurchaseCompleteBtn');  // 결제 완료 모달 내 “닫기” 버튼
+  const completePurchaseBtn = document.getElementById('completePurchaseBtn');      // “결제하기” 버튼
+  const purchaseModal = document.querySelector('.purchase-complete-modal');   // 결제 완료 모달
+  const closePurchaseBtn = document.getElementById('closePurchaseCompleteBtn');  // 결제 완료 모달 내 “닫기” 버튼
 
   // ─────────────────────────────────────────────────────────────
   // 5) 첫 번째 모달 열기/닫기 함수 정의
   // ─────────────────────────────────────────────────────────────
   function openAddressModal() {
-    overlay.style.display      = 'block';
+    overlay.style.display = 'block';
     addressModal.style.display = 'block';
     document.body.style.overflow = 'hidden'; // 스크롤 방지
   }
+
   function closeAddressModal() {
-    overlay.style.display      = 'none';
+    overlay.style.display = 'none';
     addressModal.style.display = 'none';
     document.body.style.overflow = 'auto';
   }
@@ -306,12 +302,13 @@ document.addEventListener('DOMContentLoaded', function() {
     closeAddressModal();
     // 두 번째 모달을 열기
     addFormModal.style.display = 'block';
-    overlay.style.display      = 'block';
+    overlay.style.display = 'block';
     document.body.style.overflow = 'hidden';
   }
+
   function closeAddAddressModal() {
     addFormModal.style.display = 'none';
-    overlay.style.display      = 'none';
+    overlay.style.display = 'none';
     document.body.style.overflow = 'auto';
   }
 
@@ -319,12 +316,13 @@ document.addEventListener('DOMContentLoaded', function() {
   // 7) 세 번째 모달(결제 완료) 열기/닫기 함수 정의
   // ─────────────────────────────────────────────────────────────
   function openPurchaseModal() {
-    overlay.style.display       = 'block';
+    overlay.style.display = 'block';
     purchaseModal.style.display = 'block';
     document.body.style.overflow = 'hidden';
   }
+
   function closePurchaseModal() {
-    overlay.style.display       = 'none';
+    overlay.style.display = 'none';
     purchaseModal.style.display = 'none';
     document.body.style.overflow = 'auto';
   }
@@ -340,14 +338,14 @@ document.addEventListener('DOMContentLoaded', function() {
   openAddFormBtn.addEventListener('click', openAddAddressModal);   // “+ 새 주소 추가하기” 클릭 → 주소 추가 폼 모달 열기
   closeAddFormBtn.addEventListener('click', closeAddAddressModal); // 주소 추가 폼 모달 X클릭 → 모달 닫기
 
-  zipSearchBtn.addEventListener('click', function() {
+  zipSearchBtn.addEventListener('click', function () {
     // 실제: API/팝업 → 여기서는 예시로 임의 데이터 채우기
     zipCodeInput.value = '12345';
     addressInput.value = '서울특별시 강남구 역삼동 000-00';
     addressInput.focus();
   });
 
-  addForm.addEventListener('submit', function(event) {
+  addForm.addEventListener('submit', function (event) {
     event.preventDefault(); // 페이지 리로드 방지
     // 입력값 수집 예시
     const data = {
@@ -371,7 +369,7 @@ document.addEventListener('DOMContentLoaded', function() {
   closePurchaseBtn.addEventListener('click', closePurchaseModal);      // 결제 완료 모달 닫기 버튼 클릭 → 모달 닫기
 
   // [오버레이 클릭 시, 열린 모달 모두 닫기]
-  overlay.addEventListener('click', function() {
+  overlay.addEventListener('click', function () {
     if (purchaseModal.style.display === 'block') {
       closePurchaseModal();
       return;
@@ -386,6 +384,196 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
+
+  //데이터 연동
+// DOM 요소 가져오기
+  const originPrice = /*[[${origin_price}]]*/ 0;
+  const deliveryFee = 3000;
+  let couponDiscount = 0;
+  let pointDiscount = 0;
+
+  // ───────────── 포인트 관련 기능 추가 ─────────────
+  const pointInput = document.getElementById("pointInput");
+  const katteInput = document.getElementById("katteInput");
+  const pointText = document.getElementById("pointDiscountText");
+  const maxPointBtn = document.getElementById("maxPointBtn");
+  const maxKatteBtn = document.getElementById("maxKatteBtn");
+  const purchase = document.getElementById("rectangle-1640");
+  const purchaseBtn = document.getElementById("completePurchaseBtn");
+
+  const maxPoint = parseInt(document.querySelector("._15-000-p").textContent.replace(/[^\d]/g, "")) || 0;
+  const currentKatteMoney = parseInt(document.querySelector("._3-000-000-katte").textContent.replace(/[^\d]/g, "")) || 0;
+  let finalPrice;
+  let currentPayKatte;
+
+  // 최대 사용 버튼 누르면 자동 입력 + 계산
+  maxPointBtn.addEventListener("click", () => {
+    pointInput.value = maxPoint;
+    pointDiscount = maxPoint;
+    pointText.textContent = `-${maxPoint.toLocaleString()} katte`;
+    updateFinalPrice();
+  });
+
+  // 최대 사용 버튼 누르면 자동 입력 + 계산
+  maxKatteBtn.addEventListener("click", () => {
+    let maxUsable = currentKatteMoney;
+
+    // ⚠️ 보유 캇테머니가 결제 금액보다 크면 → 결제 금액까지만 사용
+    if (maxUsable > finalPrice) {
+      maxUsable = finalPrice;
+    }
+
+    katteInput.value = maxUsable;
+    updateCheckPay(); // ✅ 입력값이 바뀌었으니 결제 조건 체크도 같이 실행
+  });
+
+
+  function updateFinalPrice() {
+    finalPrice = Math.max(0, originPrice - couponDiscount - pointDiscount + deliveryFee);
+    const formatted = finalPrice.toLocaleString();
+    document.getElementById("finalPriceText").textContent = `${formatted} katte`;
+    document.getElementById("finalPriceText2").textContent = `${formatted} katte`;
+    document.getElementById("finalPriceText3").textContent = `${formatted} katte-결제하기`;
+  }
+
+  function updateCheckPay() {
+    const katteValue = parseInt(katteInput.value) || 0;
+
+    if (katteValue === finalPrice) {
+      purchase.style.backgroundColor = "#ff0044";
+      purchaseBtn.disabled = false;
+      purchaseBtn.style.cursor = "pointer";
+    } else {
+      purchase.style.backgroundColor = "#5D5A5A";
+      purchaseBtn.disabled = true;
+      purchaseBtn.style.cursor = "not-allowed";
+    }
+  }
+
+  // 사용자가 포인트 입력 시, 최대값 제한 및 실시간 표시
+  pointInput.addEventListener("input", function () {
+    let value = parseInt(this.value) || 0;
+    if (value > maxPoint) {
+      value = maxPoint;
+      this.value = maxPoint;
+    }
+    pointDiscount = value;
+    pointText.textContent = `-${value.toLocaleString()} katte`;
+    updateFinalPrice();
+  });
+
+  // 사용자가 포인트 입력 시, 최대값 제한 및 실시간 표시
+  katteInput.addEventListener("input", function () {
+    let value = parseInt(this.value) || 0;
+
+    // 1. 보유 금액 제한
+    if (value > currentKatteMoney) {
+      value = currentKatteMoney;
+    }
+
+    // 2. 최종 결제 금액 제한
+    if (value > finalPrice) {
+      value = finalPrice;
+    }
+
+    // 3. 실제 입력창에 반영
+    this.value = value;
+
+    updateCheckPay();
+  });
+
+  document.querySelectorAll(".coupon-card").forEach(card => {
+    card.addEventListener("click", () => {
+      couponDiscount = parseInt(card.dataset.discount);
+      updateFinalPrice();
+    });
+  });
+
+  // ✅ 포인트 관련 초기 UI 렌더링
+  pointText.textContent = `-${pointDiscount.toLocaleString()} katte`;
+
+  updateFinalPrice(); // 초기값 렌더링
+  updateCheckPay();   // ✅ 버튼 색 및 활성 상태 초기 설정
+
+
+
+  //쿠폰 관련 세팅
+  const res = await fetch(`/product/getCoupon`);
+  const json = await res.json();
+
+  const couponOverlay = document.querySelector(".coupon-modal-overlay");
+  const couponModal = document.querySelector(".coupon-modal");
+  const couponCards = document.querySelectorAll(".coupon-card");
+  const couponDisplay = document.getElementById("couponDiscountText");
+  const couponView = document.querySelector(".div12");
+
+  // 쿠폰 모달 열기
+  document.querySelector(".rectangle-1617").addEventListener("click", () => {
+    console.log("clicked");
+    couponOverlay.style.display = "block";
+    couponModal.style.display = "block";
+  });
+
+  // 쿠폰 모달 닫기
+  document.getElementById("closeCouponModal").addEventListener("click", () => {
+    couponOverlay.style.display = "none";
+    couponModal.style.display = "none";
+  });
+
+  // [쿠폰 선택 이벤트 바인딩: 페이지 렌더 후 실행]
+  document.querySelectorAll(".coupon-card").forEach(card => {
+    card.addEventListener("click", () => {
+      const discount = parseInt(card.dataset.discount);
+      couponDiscount = discount;
+
+      couponView.textContent = card.dataset.name.toLocaleString();
+      couponDisplay.textContent = `-${discount.toLocaleString()} katte`;
+
+      // 결제 금액 다시 계산
+      updateFinalPrice();
+
+      couponOverlay.style.display = "none";
+      couponModal.style.display = "none";
+    });
+  });
+
+  const productId = [[${product.product_id}]];
+
+  document.getElementById("completePurchaseBtn").addEventListener("click", async () => {
+    const data = {
+      product_id: productId /* Thymeleaf로 주입 or JS 변수 */,
+      origin_price: originPrice,
+      final_price: finalPrice,
+      used_coupon_id: 1 || null,
+      address_key: 1 || null,
+      order_status: "DELIVERED",
+      order_confirm : true,
+      terms_id : 1
+    };
+
+    const res = await fetch("/product/submitOrder", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)
+    });
+
+    const result = await res.text();
+    if (result === "success") {
+      openPurchaseModal(); // 결제 완료 모달 열기
+    } else {
+      alert("주문 처리 중 오류 발생");
+    }
+  });
+
+  // 결제 완료 모달 닫기 버튼 클릭 시 → 마이페이지로 이동
+  closePurchaseBtn.addEventListener('click', () => {
+    overlay.style.display = 'none';
+    purchaseModal.style.display = 'none';
+    document.body.style.overflow = 'auto';
+
+    // ✅ 마이페이지로 이동
+    window.location.href = "/MyPage"; // URL은 실제 마이페이지 주소로 수정
+  });
 }); // ────────────────────────────────────────────────────────────
 </script>
 
