@@ -121,16 +121,21 @@
 
     <!-- 등록 상품 1 -->
     <!-- div35 등록 상품 1 상품 숏폼 제목 -->
-    <div class="div35" th:text="${registered.size() > 0 ? registered[0].shortform_title : '-'}">-</div>
+    <div class="div35"
+         th:text="${registered.size() > 0 ? registered[0].shortform_title : '-'}"
+         th:attr="title=${registered.size() > 0 ? registered[0].shortform_title : '-'}">-</div>
     <!-- stussy-welder-t-shirt-white 등록 상품 1 상품명 -->
-    <div class="stussy-welder-t-shirt-white" th:text="${registered.size() > 0 ? registered[0].product_name : '-'}">-</div>
+    <div class="stussy-welder-t-shirt-white"
+         th:text="${registered.size() > 0 ? registered[0].product_name : '-'}"
+         th:attr="title=${registered.size() > 0 ? registered[0].product_name : '-'}">-</div>
+
     <!-- div36 등록 상품 1 등록가격(즉시구매가) -->
     <div class="div36"
          th:text="${registered.size() > 0} ?
-                 (registered[0].instant_price != null ?
-                     ${registered[0].start_price} + ' (' + ${registered[0].instant_price} + ')' :
-                     ${registered[0].start_price} + ' (-)') :
-              '-'">-</div>
+        ${#numbers.formatInteger(registered[0].start_price, 3, 'COMMA')} + '(' +
+        (registered[0].instant_price != null ?
+           ${#numbers.formatInteger(registered[0].instant_price, 3, 'COMMA')} : '-') + ') Katte' :
+          '-'">-</div>
     <!-- div37 등록 상품 1 경매상태 (검수중, 검수 기준 미달,경매중, 경매 기간 만료,)-->
     <div class="div37" th:text="${registered.size() > 0 ? readableSteps[0] : '-'}">-</div>
     <!-- div38 등록 상품 1 경매상태 링크 -->
@@ -159,7 +164,7 @@
     <!-- _78-000 등록 상품 1 현재 경매가 -->
     <div class="_78-000"
          th:text="${registered.size() > 0 and registered[0].current_price != null ?
-                 registered[0].current_price : '-'}">-</div>
+             #numbers.formatInteger(registered[0].current_price, 3, 'COMMA') + ' Katte' : '-'}">-</div>
     <!-- _2025-04-23 등록 상품 1 경매 종료일 -->
     <div class="_2025-04-23"
          th:text="${registered.size() > 0 and registered[0].auction_end_time != null ?
@@ -169,16 +174,22 @@
 
     <!-- 등록 상품 2 -->
     <!-- div41 등록 상품 2 상품 숏폼 제목 -->
-    <div class="div41" th:text="${registered.size() > 1 ? registered[1].shortform_title : '-'}">-</div>
+    <div class="div41"
+         th:text="${registered.size() > 1 ? registered[1].shortform_title : '-'}"
+         th:attr="title=${registered.size() > 1 ? registered[1].shortform_title : '-'}">-</div>
     <!-- stussy-welder-t-shirt-white2 등록 상품 2 상품명 -->
-    <div class="stussy-welder-t-shirt-white2" th:text="${registered.size() > 1 ? registered[1].product_name : '-'}">-</div>
+    <div class="stussy-welder-t-shirt-white2"
+         th:text="${registered.size() > 1 ? registered[1].product_name : '-'}"
+         th:attr="title=${registered.size() > 1 ? registered[1].product_name : '-'}">-</div>
+
     <!-- _174-000 등록 상품 2 등록가격 -->
     <div class="_174-000"
          th:text="${registered.size() > 1} ?
-                 (registered[1].instant_price != null ?
-                     ${registered[1].start_price} + ' (' + ${registered[1].instant_price} + ')' :
-                     ${registered[1].start_price} + ' (-)') :
-              '-'">-</div>
+        ${#numbers.formatInteger(registered[1].start_price, 3, 'COMMA')} + '(' +
+        (registered[1].instant_price != null ?
+           ${#numbers.formatInteger(registered[1].instant_price, 3, 'COMMA')} : '-') + ') Katte' :
+          '-'">-</div>
+
     <!-- div42 등록 상품 2 경매상태 -->
     <div class="div42" th:text="${registered.size() > 1 ? readableSteps[1] : '-'}">-</div>
     <!-- div39 등록 상품 2 경매상태 링크 위와 내용 동일 -->
@@ -207,7 +218,7 @@
     <!-- _78-0002 등록 상품 2 현재 경매가 -->
     <div class="_78-0002"
          th:text="${registered.size() > 1 and registered[1].current_price != null ?
-                 registered[1].current_price : '-'}">-</div>
+             #numbers.formatInteger(registered[1].current_price, 3, 'COMMA') + ' Katte' : '-'}">-</div>
     <!-- _2025-04-232 등록 상품 2 종료일 -->
     <div class="_2025-04-232"
          th:text="${registered.size() > 1 and registered[1].auction_end_time != null ?
@@ -217,16 +228,22 @@
 
     <!-- 등록 상품 3 -->
     <!-- div43 등록 상품 3 상품 숏폼 제목 -->
-    <div class="div43" th:text="${registered.size() > 2 ? registered[2].shortform_title : '-'}">-</div>
+    <div class="div43"
+         th:text="${registered.size() > 2 ? registered[2].shortform_title : '-'}"
+         th:attr="title=${registered.size() > 2 ? registered[2].shortform_title : '-'}">-</div>
     <!-- stussy-welder-t-shirt-white3 등록 상품 3 상품명 -->
-    <div class="stussy-welder-t-shirt-white3" th:text="${registered.size() > 2 ? registered[2].product_name : '-'}">-</div>
+    <div class="stussy-welder-t-shirt-white3"
+         th:text="${registered.size() > 2 ? registered[2].product_name : '-'}"
+         th:attr="title=${registered.size() > 2 ? registered[2].product_name : '-'}">-</div>
+
     <!-- div44 등록 상품 3 등록가격 -->
     <div class="div44"
          th:text="${registered.size() > 2} ?
-                 (registered[2].instant_price != null ?
-                     ${registered[2].start_price} + ' (' + ${registered[2].instant_price} + ')' :
-                     ${registered[2].start_price} + ' (-)') :
-              '-'">-</div>
+        ${#numbers.formatInteger(registered[2].start_price, 3, 'COMMA')} + '(' +
+        (registered[2].instant_price != null ?
+           ${#numbers.formatInteger(registered[2].instant_price, 3, 'COMMA')} : '-') + ') Katte' :
+          '-'">-</div>
+
     <!-- div45 등록 상품 3 경매상태 -->
     <div class="div45" th:text="${registered.size() > 2 ? readableSteps[2] : '-'}">-</div>
     <!-- div40 등록 상품 3 경매상태 링크 위와 내용 동일 -->
@@ -255,7 +272,7 @@
     <!-- _78-0003 등록 상품 3 현재 경매가 -->
     <div class="_78-0003"
          th:text="${registered.size() > 2 and registered[2].current_price != null ?
-                 registered[2].current_price : '-'}">-</div>
+             #numbers.formatInteger(registered[2].current_price, 3, 'COMMA') + ' Katte' : '-'}">-</div>
     <!-- _2025-04-30 등록 상품 3 종료일 -->
     <div class="_2025-04-30"
          th:text="${registered.size() > 2 and registered[2].auction_end_time != null ?
@@ -269,13 +286,20 @@
 
     <!-- 판매 완료 1 -->
     <!-- div46 판매완료 1 상품 숏폼 제목 -->
-    <div class="div46" th:text="${soldout.size() > 0 ? soldout[0].shortform_title : '-'}">-</div>
+    <div class="div46"
+       th:text="${soldout.size() > 0 ? soldout[0].shortform_title : '-'}"
+       th:attr="title=${soldout.size() > 0 ? soldout[0].shortform_title : '-'}">-</div>
     <!-- stussy-welder-t-shirt-white4 판매완료 1 상품명 -->
-    <div class="stussy-welder-t-shirt-white4" th:text="${soldout.size() > 0 ? soldout[0].product_name : '-'}">-</div>
+    <div class="stussy-welder-t-shirt-white4"
+       th:text="${soldout.size() > 0 ? soldout[0].product_name : '-'}"
+       th:attr="title=${soldout.size() > 0 ? soldout[0].product_name : '-'}">-</div>
+
     <!-- min-qqq-qq-qsdf 판매완료 1 구매자 닉네임 -->
     <div class="min-qqq-qq-qsdf">-</div>
     <!-- _94-000 판매완료 1 낙찰가 -->
-    <div class="_94-000">-</div>
+    <div class="_94-000"
+       th:text="${soldout.size() > 0 and soldout[0].final_price != null ?
+              #numbers.formatInteger(soldout[0].final_price, 3, 'COMMA') + ' Katte' : '-'}">-</div>
     <!-- _2025-04-27 판매완료 1 낙찰일 -->
     <div class="_2025-04-27">-</div>
     <!-- div48 판매완료 1 정산하기 버튼 -->
@@ -290,13 +314,20 @@
 
     <!-- 판매 완료2 -->
     <!-- div47 판매완료 2 상품 숏폼 제목 -->
-    <div class="div47" th:text="${soldout.size() > 1 ? soldout[1].shortform_title : '-'}">-</div>
+    <div class="div47"
+       th:text="${soldout.size() > 1 ? soldout[1].shortform_title : '-'}"
+       th:attr="title=${soldout.size() > 1 ? soldout[1].shortform_title : '-'}">-</div>
     <!-- stussy-welder-t-shirt-white5 판매완료 2 상품명 -->
-    <div class="stussy-welder-t-shirt-white5" th:text="${soldout.size() > 1 ? soldout[1].product_name : '-'}">-</div>
+    <div class="stussy-welder-t-shirt-white5"
+       th:text="${soldout.size() > 1 ? soldout[1].product_name : '-'}"
+       th:attr="title=${soldout.size() > 1 ? soldout[1].product_name : '-'}">-</div>
+
     <!-- jiyun-kawaii 판매완료 2 구매자 닉네임 -->
     <div class="jiyun-kawaii">-</div>
     <!-- _124-000 판매완료 2 낙찰가 -->
-    <div class="_124-000">-</div>
+    <div class="_124-000"
+       th:text="${soldout.size() > 1 and soldout[1].final_price != null ?
+              #numbers.formatInteger(soldout[1].final_price, 3, 'COMMA') + ' Katte' : '-'}">-</div>
     <!-- _2025-05-01 판매완료 2 낙찰일 -->
     <div class="_2025-05-01">-</div>
     <!-- div480 판매완료 2 정산하기 버튼 -->
