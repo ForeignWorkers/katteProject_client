@@ -27,7 +27,7 @@
       <div class="tab-container">
         <a class="tab" th:classappend="${activeTab == 'member-area'} ? ' active'" href="/admin/user_view">회원 관리</a>
         <a class="tab" th:classappend="${activeTab == 'review-area'} ? ' active'" href="/admin/inspection_view">검수 관리</a>
-        <div class="tab" th:classappend="${activeTab == 'report-area'} ? ' active'" data-target="report-area">신고 관리</div>
+        <!--<div class="tab" th:classappend="${activeTab == 'report-area'} ? ' active'" data-target="report-area">신고 관리</div>-->
       </div>
 
       <!-- 회원 전용 컨트롤: 드롭다운 + 검색창 + 총 회원 -->
@@ -317,11 +317,11 @@
     <!-- ───────────────────────────────────────────────────────────────────
          2-7) 신고 관리 섹션
          ─────────────────────────────────────────────────────────────────── -->
-    <div id="report-area" th:classappend="${activeTab != 'report-area'} ? ' hidden'">
-      <!-- ▶ 맨 위: 신고 건수 -->
+   <!-- <div id="report-area" th:classappend="${activeTab != 'report-area'} ? ' hidden'">
+      &lt;!&ndash; ▶ 맨 위: 신고 건수 &ndash;&gt;
       <div class="section-count">신고 건수 10건</div>
 
-      <!-- ▶ 신고 관리 테이블 -->
+      &lt;!&ndash; ▶ 신고 관리 테이블 &ndash;&gt;
       <table class="report-table">
         <thead>
         <tr>
@@ -356,14 +356,14 @@
           <td>2025-01-14</td>
           <td><button class="delete-btn">삭제</button></td>
         </tr>
-        <!-- … 추가 행 가능 … -->
+        &lt;!&ndash; … 추가 행 가능 … &ndash;&gt;
         </tbody>
-      </table>
+      </table>-->
       <!-- ───────────────────────────────────────────────────────────────────
          2-8) 신고 관리 페이지 네이션
          ─────────────────────────────────────────────────────────────────── -->
       <!-- ▶ 페이징 네비게이션 (기존과 동일한 스타일) -->
-      <div class="pagination">
+      <!--<div class="pagination">
         <a href="#" class="prev">PREV</a>
         <span class="current-page">1</span>
         <a href="#">2</a>
@@ -371,7 +371,7 @@
         <a href="#" class="next">NEXT</a>
       </div>
     </div>
-  </div>
+  </div>-->
   <!-- ───────────────────────────────────────────────────────────────────
      3) 게시글 모달
      ─────────────────────────────────────────────────────────────────── -->
@@ -438,7 +438,7 @@
           document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
           tab.classList.add('active');
           // 섹션 표시 토글
-          ['member-area','review-area','report-area'].forEach(id => {
+          ['member-area','review-area'].forEach(id => {
             document.getElementById(id).classList.toggle('hidden', tab.dataset.target !== id);
           });
         });
