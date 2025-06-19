@@ -3,48 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <title>주소지 수정</title>
+    <link rel="stylesheet" href="/css/CsMyPage/MyPage_address_popup.css">
     <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </head>
 <body>
-<h2>주소지 수정</h2>
-<form method="post" th:action="@{/MyAddress/edit}" target="submitFrame">
-    <input type="hidden" name="id" th:value="${addressList.id}">
-    <input type="hidden" name="user_id" th:value="${addressList.user_id}">
-    <input type="hidden" name="is_main" th:value="${addressList.is_main}">
+<br>
+<br>
+    <h2>주소지 수정</h2>
+    <form method="post" th:action="@{/MyAddress/edit}">
+        <input type="hidden" name="id" th:value="${addressList.id}">
+        <input type="hidden" name="user_id" th:value="${addressList.user_id}">
+        <input type="hidden" name="is_main" th:value="${addressList.is_main}">
 
-    <label>이름:</label>
-    <input type="text" name="name" th:value="${addressList.name}" required><br>
+        <div class = "address-pop-btn-box">
+            <div class="popup-text">이름</div>
+            <div>
+                <input type="text" name="name" th:value="${addressList.name}" required class="popup-input"  placeholder="이름을 입력해주세요."><br>
+            </div><br>
 
-    <label>전화번호:</label>
-    <input type="text" name="phone_number" th:value="${addressList.phone_number}" required><br>
+            <div class="popup-text">전화번호</div>
+            <div>
+                <input type="text" name="phone_number" th:value="${addressList.phone_number}" required class="popup-input" placeholder="하이픈(-)을 제외한 숫자만 입력해주세요">
+            </div><br>
 
-    <label>우편번호:</label>
-    <input type="text" id="post_num" name="post_num" th:value="${addressList.post_num}" required readonly>
-    <button type="button" onclick="execDaumPostcode()">우편번호 검색</button><br>
+            <div class="popup-text">우편번호</div>
+            <div>
+                <input type="text" id="post_num" name="post_num" th:value="${addressList.post_num}" required readonly class="popup-input" placeholder="우편번호 검색을 눌러 우편번호를 입력해주세요.">
+                <button type="button" onclick="execDaumPostcode()"class = "popup-post-btn">우편번호 검색</button><br>
+            </div><br>
 
-    <label>주소1:</label>
-    <input type="text" id="address_line01" name="address_line01" th:value="${addressList.address_line01}" required readonly><br>
+            <div class="popup-text">도로명주소</div>
+            <div>
+                <input type="text" id="address_line01" name="address_line01" th:value="${addressList.address_line01}" required readonly class="popup-input" placeholder="우편번호를 입력하면 자동으로 채워집니다"><br>
+            </div><br>
 
-    <label>주소2:</label>
-    <input type="text" id="address_line02" name="address_line02" th:value="${addressList.address_line02}"><br>
+            <div class="popup-text">상세 주소</div>
+            <div>
+                <input type="text" id="address_line02" name="address_line02" th:value="${addressList.address_line02}" class="popup-input" placeholder="상세 주소를 입력해주세요."><br>
+            </div><br>
 
-    <button type="submit">수정 완료</button>
-</form>
+            <button type="submit" class="popup-ok-btn">수정</button>
+        </div>
+    </form>
+    <script>
+        function execDaumPostcode() {
+            new daum.Postcode({
+                oncomplete: function(data) {
+                    // 값이 정확히 입력되는지 확인
+                    var roadAddr = data.roadAddress || data.jibunAddress;
+                    var zonecode = data.zonecode;
 
-<script>
-    function execDaumPostcode() {
-        new daum.Postcode({
-            oncomplete: function(data) {
-                var roadAddr = data.roadAddress || data.jibunAddress;
-                var zonecode = data.zonecode;
+                    // 로그 확인용
+                    console.log("도로명주소 : " + roadAddr);
+                    console.log("우편번호: " + zonecode);
 
-                document.getElementById('address_line01').value = roadAddr;
-                document.getElementById('post_num').value = zonecode;
-            }
-        }).open({
-            popupName: 'postcodePopup'
-        });
-    }
-</script>
+                    document.getElementById('address_line01').value = roadAddr;
+                    document.getElementById('post_num').value = zonecode;
+
+                    // 팝업 자동 닫힘
+                    if (window.daum && window.daum.Postcode) {
+                    }
+                }
+            }).open({
+                popupName: 'postcodePopup' // 동일한 이름의 창이 있으면 재사용됨
+            });
+        }
+    </script>
 </body>
 </html>

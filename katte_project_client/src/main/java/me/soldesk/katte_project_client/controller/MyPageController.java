@@ -1,7 +1,6 @@
 package me.soldesk.katte_project_client.controller;
 
 import common.bean.ecommerce.EcommerceOrderHistoryBean;
-import common.bean.product.ProductBrandLikeBean;
 import common.bean.product.ProductInfoBean;
 import common.bean.user.UserAddressBean;
 import common.bean.user.UserBean;
@@ -23,16 +22,10 @@ public class MyPageController {
 
     public MyPageController(MyPageService myPageService) { this.myPageService = myPageService;}
 
+
     /* ───────────────────────────────────────────────────────────────────────────
                                     구매 이력
    ─────────────────────────────────────────────────────────────────────────── */
-/*
-    @GetMapping("/MyPage")
-    public String orderHistoryPage(@RequestParam("user_id") int user_id, Model model) {
-        List<EcommerceOrderHistoryBean> orderList = myPageService.getOrderHistory(user_id);
-        model.addAttribute("orderList", orderList);
-        return "CsMyPage/MyPage";
-    }*/
 
     @GetMapping("/MyPage")
     public String getOrderListPage(HttpSession session , Model model) {
@@ -63,37 +56,25 @@ public class MyPageController {
         return "CsMyPage/MyPage";
     }
 
+    @PostMapping("/MyPage/confirm")
+    @ResponseBody
+    public String confirmPurchase(@RequestParam("order_id") int order_id, HttpSession session) {
+        UserBean user = (UserBean) session.getAttribute("currentUser");
+        session.setAttribute("user_id", String.valueOf(user.getUser_id()));
+
+        if (user == null) {
+            return "로그인 해 주세요";
+        }
+
+        int user_id = user.getUser_id();
+        return myPageService.confirmOrder(order_id, user_id);
+    }
+
+
     /* ───────────────────────────────────────────────────────────────────────────
                                     관심
    ─────────────────────────────────────────────────────────────────────────── */
 
-
-    //관심 브랜드 조회 user_id 필요
-    /*@GetMapping("/Favorite")
-    public String getFavoriteBrand(HttpSession session, Model model){
-        UserBean user = (UserBean) session.getAttribute("currentUser");
-        if(user == null){
-            System.out.println("user_id 비어있음");
-            return "redirect:/login";
-        }
-
-        String user_id = String.valueOf(user.getUser_id());
-        System.out.println("받아 온 user_id: " + user_id);
-
-        ResponseEntity<List<ProductBrandLikeBean>> response = myPageService.getAllBrandLike(user_id);
-
-        System.out.println(response.getBody());
-
-        if (response == null || response.getBody() == null || response.getBody().isEmpty()) {
-            System.out.println("관심 브랜드가 없습니다.");
-            return "CsMyPage/Wishlist_brand_empty";
-        }
-
-        model.addAttribute("likeBrand", response.getBody());
-        System.out.println("모델에 ProductBrandLikeBean 담겼어요");
-
-        return "CsMyPage/Wishlist_brand";
-    }*/
 
     @GetMapping("/Favorite")
     public String showFavoriteBrandPage(HttpSession session, Model model) {
@@ -124,7 +105,7 @@ public class MyPageController {
 
     @GetMapping("/MyKatteMoney")
     public String myKatteMoney(){
-        return "CsMyPage/Mypage_kattemoney_page";
+        return "CsMyPage/Mypage_kattemoney_charge";
     }
 
     /* ───────────────────────────────────────────────────────────────────────────
@@ -222,12 +203,12 @@ public class MyPageController {
 
 
     @PostMapping("/MyAddress/add")
-    @ResponseBody
-    public String postAddress(@ModelAttribute UserAddressBean bean, HttpSession session) {
+    public String postAddress(@ModelAttribute UserAddressBean bean, HttpSession session, Model model) {
         int user_id = Integer.parseInt((String) session.getAttribute("user_id"));
         bean.setUser_id(user_id);
         myPageService.addAddress(bean);
         System.out.println("닫혀라");
+
         return "CsMyPage/MyPage_address_ok";
     }
 

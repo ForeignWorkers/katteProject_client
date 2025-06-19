@@ -3,30 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <title>주소지 추가</title>
+    <link rel="stylesheet" href="/css/CsMyPage/MyPage_address_popup.css">
     <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </head>
 <body>
+<br>
+<br>
     <h2>주소지 추가</h2>
-    <form method="post" th:action="@{/MyAddress/add}" target="submitFrame">
+    <form method="post" th:action="@{/MyAddress/add}">
         <input type="hidden" name="is_main" value="0">
+        <div class = "address-pop-btn-box">
+            <div class="popup-text">이름</div>
+            <div>
+                <input type="text" name="name" required class="popup-input"  placeholder="이름을 입력해주세요.">
+            </div><br>
 
-        <label>이름:</label>
-        <input type="text" name="name" required><br>
+            <div class="popup-text">전화번호</div>
+            <div>
+                <input type="text" name="phone_number" required class="popup-input" placeholder="하이픈(-)을 제외한 숫자만 입력해주세요">
+            </div><br>
 
-        <label>전화번호:</label>
-        <input type="text" name="phone_number" required><br>
+            <div class="popup-text">우편번호</div>
+            <div>
+                <input type="text" id="post_num" name="post_num" required readonly class="popup-input" placeholder="우편번호 검색을 눌러 우편번호를 입력해주세요.">
+                <button type="button" onclick="execDaumPostcode()" class = "popup-post-btn">우편번호 검색</button>
+            </div><br>
 
+            <div class="popup-text">도로명주소</div>
+            <div>
+                <input type="text" id="address_line01" name="address_line01" required readonly class="popup-input" placeholder="우편번호를 입력하면 자동으로 채워집니다">
+            </div><br>
 
-        <label>우편번호:</label>
-        <input type="text" id="post_num" name="post_num" required readonly>
-        <button type="button" onclick="execDaumPostcode()">우편번호 검색</button><br>
-        <label>주소1:</label>
-        <input type="text" id="address_line01" name="address_line01" required readonly><br>
-
-        <label>주소2:</label>
-        <input type="text" id="address_line02" name="address_line02"><br>
-
-        <button type="submit">등록</button>
+            <div class="popup-text">상세 주소</div>
+            <div>
+                <input type="text" id="address_line02" name="address_line02" class="popup-input" placeholder="상세 주소를 입력해주세요.">
+            </div><br>
+            <button type="submit" class="popup-ok-btn">등록</button>
+        </div>
     </form>
     <script>
         function execDaumPostcode() {
