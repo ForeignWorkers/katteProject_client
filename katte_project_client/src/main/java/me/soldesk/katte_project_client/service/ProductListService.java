@@ -32,7 +32,7 @@ public class ProductListService {
         return res.getBody() != null ? res.getBody() : 0;
     }
 
-    // ✅ 판매 완료 리스트
+    //판매 완료 리스트
     public List<SoldoutProductViewBean> getSoldoutItems(int page, int size) {
         Map<String, String> params = new HashMap<>();
         params.put("offset", String.valueOf((page - 1) * size));
@@ -43,10 +43,27 @@ public class ProductListService {
         return res.getBody();
     }
 
-    // ✅ 판매 완료 수
+    //판매 완료 수
     public int getSoldoutCount() {
         ResponseEntity<Integer> res =
                 ApiManagers.get("products/soldout/count", null, new TypeReference<>() {});
         return res.getBody() != null ? res.getBody() : 0;
     }
+
+    public String settleAuction(int auctionId) {
+        try {
+            ResponseEntity<String> response = ApiManagers.post(
+                    "settlement?auction_id=" + auctionId, null, new TypeReference<String>() {}
+            );
+
+            if (ApiManagers.isSuccessful(response)) {
+                return response.getBody();
+            } else {
+                return "정산 요청 실패: " + response.getBody();
+            }
+        } catch (Exception e) {
+            return "정산 중 오류 발생: " + e.getMessage();
+        }
+    }
+
 }

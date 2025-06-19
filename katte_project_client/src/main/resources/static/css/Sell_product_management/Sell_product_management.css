@@ -95,17 +95,17 @@ html, body {
 }
 
 .line-3113222 {
-    margin-top: -0.85px;
-    border-style: solid;
-    border-color: #f9eeee;
-    border-width: 0.85px 0px 0px 0px;
-    width: 1258.85px;
-    height: 0px;
-    position: absolute;
-    left: 314.50px;
-    top:  630.75px;
-    transform-origin: 0 0;
-    transform: rotate(0deg) scale(1, 1);
+  margin-top: -0.85px;
+  border-style: solid;
+  border-color: #f9eeee;
+  border-width: 0.85px 0px 0px 0px;
+  width: 1258.85px;
+  height: 0px;
+  position: absolute;
+  left: 314.50px;
+  top:  630.75px;
+  transform-origin: 0 0;
+  transform: rotate(0deg) scale(1, 1);
 }
 .line-136 {
   width: 204.88px;
@@ -628,7 +628,7 @@ html, body {
   line-height: 34px;
   font-weight: 700;
   position: absolute;
-  left: 400.85px;
+  left: 420.85px;
   top: 588.20px;
   width: 80.22px;
   display: flex;

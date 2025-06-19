@@ -41,11 +41,21 @@
     <!-- 로그인 한 경우 -->
     <div class="login-area" th:if="${nickname != null}">
       <div class="user-box">
-        <p class="nickname" th:text="${nickname + ' 님'}"></p>
+        <p class="nickname"
+           th:attr="title=${nickname}"
+           th:text="${nickname.length() > 10 ? nickname.substring(0, 10) + '...' : nickname} + ' 님'">홍길동 님</p>
         <p class="label">보유 캇테머니</p>
-        <p class="value" th:text="${#numbers.formatInteger(katteMoney, 3, 'COMMA') + 'katte'}"></p>
+        <p class="value"
+           th:attr="title=${#numbers.formatInteger(katteMoney, 3, 'COMMA') + 'katte'}"
+           th:text="${#numbers.formatInteger(katteMoney, 3, 'COMMA').length() > 10 ?
+              #numbers.formatInteger(katteMoney, 3, 'COMMA').substring(0, 10) + '...' :
+              #numbers.formatInteger(katteMoney, 3, 'COMMA')} + 'katte'">100,000katte</p>
         <p class="label">보유 포인트</p>
-        <p class="value" th:text="${point + 'Point'}"></p>
+        <p class="value"
+           th:attr="title=${point + 'Point'}"
+           th:text="${point.toString().length() > 10 ?
+              point.toString().substring(0, 10) + '...' :
+              point.toString()} + 'Point'">1000Point</p>
         <button class="charge-btn" onclick="location.href='/mypage/kattemoney';">충전하기</button>
       </div>
     </div>

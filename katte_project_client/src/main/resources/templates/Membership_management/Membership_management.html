@@ -57,15 +57,11 @@
       <div class="search-area">
         <div class="total-count" th:text="'총 회원 ' + ${userCount} + '명'">총   회원 0명</div>
 
-        <!-- 검색 폼 -->
-        <form method="get" th:action="@{/admin/user_search}" class="search-input">
-          <input type="hidden" name="filter" th:value="${filter}" />
-          <label>
-            <input type="text" name="keyword"
-                   placeholder="닉네임 혹은 계정 ID를 검색하세요"
-                   th:value="${param.keyword}" />
-          </label>
-          <button type="submit">검색</button>
+        <form method="get" th:action="@{/admin/user_search}" class="search-form">
+          <input class="search-input" type="text" name="keyword"
+                 placeholder="닉네임 혹은 계정 ID를 검색"
+                 th:value="${param.keyword}" />
+          <button type="submit" class="search-button">검색</button>
         </form>
       </div>
     </div>
