@@ -10,58 +10,60 @@
 <body>
 <!-- 사이드바 HTML 분리 -->
 <div th:replace="Fragments/Sidebar :: sidebar"></div>
-
 <div class="wrapper">
   <form action="/signUp_pro" method="POST">
     <div class="group-957">
       <div class="id">E-Mail</div>
-      <label id="email-error-label" class="error-label"></label>
       <input type="text" name="email_id" class="input-id" placeholder="E-Mail를 입력해 주세요" required />
+      <label id="email-error-label" class="error-label"></label>
     </div>
     <div class="group-958">
       <div class="password2">Password</div>
-      <label id="pw-error-label" class="error-label"></label>
       <input type="password" name="password" class="input-pw" placeholder="Password를 입력해 주세요" required />
+      <label id="pw-error-label" class="error-label"></label>
+    </div>
+    <div class="group-958">
+      <div class="password2" style="top: 500.65px;"></div>
+      <input type="password" name="confirm_password" class="input-pw" id="confirmPasswordInput" placeholder="비밀번호를 다시 입력해 주세요" style="top: 329.75px;" required />
+      <label id="pw-confirm-error-label" class="error-label"></label>
     </div>
     <div class="group-959">
-      <div class="date-of-birth">Date of Birth</div>
-      <select name="birthYear" id="birthYear" class="rectangle-16673"></select>
-      <div class="div13">년</div>
-      <select name="birthMonth" id="birthMonth" class="rectangle-1668"></select>
-      <div class="div14">월</div>
-      <select name="birthDay" id="birthDay" class="rectangle-1669"></select>
-      <div class="div15">일</div>
+      <div class="date-of-birth" style="top: 400.15px;">Date of Birth</div>
+      <select name="birthYear" id="birthYear" class="rectangle-16673" style="top: 446.35px;"></select>
+      <div class="div13" style="top: 452.3px;">년</div>
+      <select name="birthMonth" id="birthMonth" class="rectangle-1668" style="top: 446.35px;"></select>
+      <div class="div14" style="top: 452.3px;">월</div>
+      <select name="birthDay" id="birthDay" class="rectangle-1669" style="top: 446.35px;"></select>
+      <div class="div15" style="top: 452.3px;">일</div>
     </div>
     <div class="group-963">
-      <div class="nickname2">Nickname</div>
+      <div class="nickname2" style="top: 504.15px;">Nickname</div>
+      <input type="text" name="nickname" class="nickname" placeholder="Nickname을 입력해 주세요" required maxlength="12" style="top: 544.7px;" />
       <label id="nickname-error-label" class="error-label"></label>
-      <input type="text" name="nickname" class="nickname" placeholder="Nickname을 입력해 주세요" required maxlength="12" />
     </div>
-
-    <div class="group-965">
+    <div class="group-965" style="top: 620px;">
       <input type="checkbox" id="over14" name="over14" />
       <label for="over14" class="_14">[필수] 만 14세 이상입니다.</label>
     </div>
-    <div class="group-966">
+    <div class="group-966" style="top: 655px;">
       <input type="checkbox" id="terms1" name="terms1" />
       <label for="terms1" class="div17">[필수] 이용 약관 동의</label>
     </div>
-    <div class="group-967">
+    <div class="group-967" style="top: 690px;">
       <input type="checkbox" id="terms2" name="terms2" />
       <label for="terms2" class="div18">[필수] 개인 정보 수집 및 동의</label>
     </div>
-    <div class="group-968">
+    <div class="group-968" style="top: 725px;">
       <input type="checkbox" id="terms3" name="terms3" />
       <label for="terms3" class="div19">[선택] 광고성 홍보 수신 동의</label>
     </div>
-
-    <label id="terms-error-label" class="error-label"></label>
-
     <div class="group-969">
-      <button type="submit" class="div16">본인인증하고 가입</button>
+      <button type="submit" class="div16" style="top: 790px;">본인인증하고 가입</button>
+      <label id="terms-error-label" class="error-label"></label>
     </div>
   </form>
 </div>
+
 
 <script>
   // 년도 셀렉트박스
@@ -94,6 +96,8 @@
 
   const emailInput = document.querySelector('input[name="email_id"]');
   const passwordInput = document.querySelector('input[name="password"]');
+  const confirmPasswordInput = document.getElementById('confirmPasswordInput');
+  const pwConfirmError = document.getElementById("pw-confirm-error-label");
   const nicknameInput = document.querySelector('input[name="nickname"]');
   const emailError = document.getElementById("email-error-label");
   const pwError = document.getElementById("pw-error-label");
@@ -104,6 +108,7 @@
   let isEmailNotDuplicate = false;
   let isPasswordValid = false;
   let isNicknameFilled = false;
+  let isPasswordConfirmed = false;
 
   const BASE_URL = /*[[${apiBaseUrl}]]*/ "https://api-katte.jp.ngrok.io/";
   console.log("✅ BASE_URL =", BASE_URL);
@@ -222,6 +227,18 @@
     const isFormValid = isEmailFormatValid && isEmailNotDuplicate && isPasswordValid && isNicknameFilled && areAllTermsChecked();
     submitButton.disabled = !isFormValid;
   }
+
+  function validatePasswordMatch() {
+    const password = passwordInput.value;
+    const confirmPassword = confirmPasswordInput.value;
+
+    isPasswordConfirmed = password === confirmPassword;
+    pwError.textContent = isPasswordConfirmed ? "" : "비밀번호가 일치하지 않습니다.";
+    updateSubmitButton(); // 기존 함수
+  }
+
+  confirmPasswordInput.addEventListener("blur", validatePasswordMatch);
+  passwordInput.addEventListener("input", validatePasswordMatch);
 
   // 이벤트 바인딩
   emailInput.addEventListener("blur", validateEmail);

@@ -720,10 +720,29 @@ html, body {
   left: 960px;
 }
 #nickname-error-label {
-  top: 430px;
+  top: 500px;
   left: 960px;
 }
 #terms-error-label{
-  top: 685px;
+  top: 750px;
   left: 850px;
+}
+
+#pw-confirm-error-label {
+  top: 296px;
+  left: 960px;
+}
+
+.error-label {
+  display: block;
+  color: #ff0044;
+  font-size: 14px;
+  font-weight: 400;
+  font-family: "LineSeedSansKr-Regular", sans-serif;
+  margin-top: 4px;
+  margin-left: 8px;
+}
+
+.input-error {
+  border-color: #ff0044;
 }
