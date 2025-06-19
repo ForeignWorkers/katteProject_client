@@ -24,13 +24,13 @@
       <a href="/MyStyle" id = "MyStyle">
         <div>스타일</div>
       </a>
-      <a href="/MyKatteMoney" id = "MyKatteMoney" class = "selected">
+      <a href="/MyKatteMoney" id = "MyKatteMoney">
         <div>캇테머니</div>
       </a>
       <a href="/MyPoint" id = "MyPoint">
         <div>포인트</div>
       </a>
-      <a href="/MyCoupon" id = "MyCoupon">
+      <a href="/MyCoupon" id = "MyCoupon"  class = "selected">
         <div>쿠폰함</div>
       </a>
       <a href="/MyAddress" id = "MyAddress">
@@ -60,7 +60,7 @@
     <div class="div2" style="position: static; font-size: 18px;">토스 페이</div>
   </div>
 </div>
-
+<meta name="base-url" content="https://service-katte.jp.ngrok.io">
 <!-- 충전/환불 탭 버튼 (상단 위치) -->
 <div class="katte-tab-buttons">
   <a th:class="${tab} == 'charge' ? 'selected-tab' : ''" href="/mypage/kattemoney">충전</a>
@@ -103,11 +103,12 @@
           orderId: "order-" + new Date().getTime(),
           orderName: "캇테머니 충전",
           customerName: customerName,
-          successUrl: "http://localhost:8080/ecommerce/charge/success?amount=" + amount,
-          failUrl: "http://localhost:8080/ecommerce/charge/fail"
+          successUrl: "https://service-katte.jp.ngrok.io/ecommerce/charge/success?amount=" + amount,
+          failUrl: "https://service-katte.jp.ngrok.io/ecommerce/charge/fail"
         });
     });
   });
+  
 </script>
 
 <script th:inline="javascript">
