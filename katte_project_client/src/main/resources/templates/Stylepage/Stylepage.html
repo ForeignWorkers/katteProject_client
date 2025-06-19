@@ -123,7 +123,13 @@
       const imgContainer = cardEl.querySelector('.card-image');
       imgContainer.innerHTML = '';
       const img = document.createElement('img');
-      img.src    = resourceUrl + "style/" + item.id + "/" + item.id + "_1.png";
+      img.src = resourceUrl + "style/" + item.id + "/" + item.id + "_1.png";
+
+// PNG 로드 실패 시 JPG로 재시도
+      img.onerror = () => {
+        img.onerror = null; // 무한루프 방지
+        img.src = resourceUrl + "style/" + item.id + "/" + item.id + "_1.jpg";
+      };
       img.alt    = item.caption || '';
       img.style  = 'margin-right:4px;';
       imgContainer.appendChild(img);
@@ -135,12 +141,22 @@
       // — 기존 구현: 해시태그(item.hashtags) 렌더링 —
       const tagContainer = cardEl.querySelector('.hashtags-list');
       tagContainer.innerHTML = '';
-      (item.hashtags || []).forEach(ht => {
+      const hashtags = item.hashtags || [];
+      const maxTags = 3;
+
+      hashtags.slice(0, maxTags).forEach(ht => {
         const span = document.createElement('span');
-        span.className   = 'tag';
+        span.className = 'tag';
         span.textContent = `#${ht}`;
         tagContainer.append(span);
       });
+
+      if (hashtags.length > maxTags) {
+        const moreTag = document.createElement('span');
+        moreTag.className = 'tag more-tag';
+        moreTag.textContent = `+${hashtags.length - maxTags}`;
+        tagContainer.append(moreTag);
+      }
 
       // — 기존 구현: 좋아요 버튼 초기 상태 및 클릭 처리 —
       const likeBtn = cardEl.querySelector('.like-button');

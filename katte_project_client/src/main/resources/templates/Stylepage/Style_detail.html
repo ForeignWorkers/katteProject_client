@@ -149,6 +149,32 @@
     const getUserlikeData = await fetch(`/content/isUserLikeAll`);
     const list = await getUserlikeData.json();
 
+    async function getImageUrls(styleId, count) {
+      const extensions = ['.png', '.jpg'];
+      const urls = [];
+
+      for (let i = 1; i <= count; i++) {
+        let foundUrl = null;
+
+        for (let ext of extensions) {
+          const url = `${resourceUrl}style/${styleId}/${styleId}_${i}${ext}`;
+          try {
+            const res = await fetch(url, { method: "HEAD" });
+            if (res.ok) {
+              foundUrl = url;
+              break;
+            }
+          } catch (err) {
+            console.warn(`❌ 오류: ${url}`);
+          }
+        }
+
+        urls.push(foundUrl || '/img/default.png');
+      }
+
+      return urls;
+    }
+
     fetch(`/content/style?style_id=${styleId}`)
             .then(res => res.ok ? res.json() : Promise.reject(res.statusText))
             .then(async data => {
@@ -265,10 +291,7 @@
                 imgRoot.textContent = '등록된 이미지가 없습니다.';
                 return;
               }
-              const urls = Array.from(
-                      {length: count},
-                      (_, i) => `${resourceUrl}style/${styleId}/${styleId}_${i + 1}.png`
-              );
+              const urls = await getImageUrls(styleId, count);
               const mainImg = document.createElement('img');
               mainImg.classList.add('detail-img');
               imgRoot.appendChild(mainImg);
