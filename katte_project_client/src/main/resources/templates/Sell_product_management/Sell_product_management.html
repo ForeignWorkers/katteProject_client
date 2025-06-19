@@ -95,7 +95,7 @@
 
     <!-- 판매 완료 상품 테이블 헤더 -->
     <div class="div14">
-      <div class="div5"><div class="rectangle-16776"></div><div class="div16">상품명/타이틀</div></div>
+      <div class="div5"><div class="rectangle-16776"></div><div class="div16">상품명</div></div>
       <div class="id"><div class="rectangle-16777"></div><div class="div17">낙찰가</div></div>
       <div class="div8"><div class="rectangle-16778"></div><div class="div18">구매자</div></div>
       <div class="div10"><div class="rectangle-16779"></div><div class="div19">낙찰일</div></div>
@@ -286,56 +286,58 @@
 
     <!-- 판매 완료 1 -->
     <!-- div46 판매완료 1 상품 숏폼 제목 -->
-    <div class="div46"
-       th:text="${soldout.size() > 0 ? soldout[0].shortform_title : '-'}"
-       th:attr="title=${soldout.size() > 0 ? soldout[0].shortform_title : '-'}">-</div>
+    <div class="div46" th:text="'-'" th:attr="title='-'">-</div>
+
     <!-- stussy-welder-t-shirt-white4 판매완료 1 상품명 -->
     <div class="stussy-welder-t-shirt-white4"
-       th:text="${soldout.size() > 0 ? soldout[0].product_name : '-'}"
-       th:attr="title=${soldout.size() > 0 ? soldout[0].product_name : '-'}">-</div>
+       th:text="${soldout != null and soldout.size() > 0 and soldout[0].product_name != null ? soldout[0].product_name : '-'}"
+       th:attr="title=${soldout != null and soldout.size() > 0 and soldout[0].product_name != null ? soldout[0].product_name : '-'}">-</div>
 
     <!-- min-qqq-qq-qsdf 판매완료 1 구매자 닉네임 -->
-    <div class="min-qqq-qq-qsdf">-</div>
+    <div class="min-qqq-qq-qsdf"
+       th:text="${soldout != null and soldout.size() > 0 and soldout[0].buyer_email != null ? soldout[0].buyer_email : '-'}"
+       th:attr="title=${soldout != null and soldout.size() > 0 and soldout[0].buyer_email != null ? soldout[0].buyer_email : '-'}">-</div>
+
     <!-- _94-000 판매완료 1 낙찰가 -->
     <div class="_94-000"
-       th:text="${soldout.size() > 0 and soldout[0].final_price != null ?
-              #numbers.formatInteger(soldout[0].final_price, 3, 'COMMA') + ' Katte' : '-'}">-</div>
+       th:text="${soldout != null and soldout.size() > 0 and soldout[0].origin_price != null ?
+              #numbers.formatInteger(soldout[0].origin_price, 3, 'COMMA') + ' Katte' : '-'}">-</div>
     <!-- _2025-04-27 판매완료 1 낙찰일 -->
-    <div class="_2025-04-27">-</div>
+    <div class="_2025-04-27"
+         th:text="${soldout != null and soldout.size() > 0 and soldout[0].ordered_at != null ?
+          #dates.format(soldout[0].ordered_at, 'yyyy-MM-dd') : '-'}">-</div>
     <!-- div48 판매완료 1 정산하기 버튼 -->
     <div class="div48">
-      <!-- rectangle-17032 판매완료 1 정산하기 버튼 테두리 -->
-      <div class="rectangle-17032"></div>
-      <!-- div50 판매완료 1 정산하기 버튼 텍스트 -->
-      <div class="div50">정산하기</div></div>
+     <div class="div50" style="color:gray; cursor:default;">정산완료</div>
+    </div>
     </div>
     <!-- line-311444 판매완료 1 하단 경계선 -->
     <div class="line-311444"></div>
 
     <!-- 판매 완료2 -->
     <!-- div47 판매완료 2 상품 숏폼 제목 -->
-    <div class="div47"
-       th:text="${soldout.size() > 1 ? soldout[1].shortform_title : '-'}"
-       th:attr="title=${soldout.size() > 1 ? soldout[1].shortform_title : '-'}">-</div>
+    <div class="div47" th:text="'-'" th:attr="title='-'">-</div>
     <!-- stussy-welder-t-shirt-white5 판매완료 2 상품명 -->
     <div class="stussy-welder-t-shirt-white5"
-       th:text="${soldout.size() > 1 ? soldout[1].product_name : '-'}"
-       th:attr="title=${soldout.size() > 1 ? soldout[1].product_name : '-'}">-</div>
+       th:text="${soldout != null and soldout.size() > 1 and soldout[1].product_name != null ? soldout[1].product_name : '-'}"
+       th:attr="title=${soldout != null and soldout.size() > 1 and soldout[1].product_name != null ? soldout[1].product_name : '-'}">-</div>
 
     <!-- jiyun-kawaii 판매완료 2 구매자 닉네임 -->
-    <div class="jiyun-kawaii">-</div>
+    <div class="jiyun-kawaii"
+       th:text="${soldout != null and soldout.size() > 1 and soldout[1].buyer_email != null ? soldout[1].buyer_email : '-'}"
+       th:attr="title=${soldout != null and soldout.size() > 1 and soldout[1].buyer_email != null ? soldout[1].buyer_email : '-'}">-</div>
     <!-- _124-000 판매완료 2 낙찰가 -->
     <div class="_124-000"
-       th:text="${soldout.size() > 1 and soldout[1].final_price != null ?
-              #numbers.formatInteger(soldout[1].final_price, 3, 'COMMA') + ' Katte' : '-'}">-</div>
+       th:text="${soldout != null and soldout.size() > 1 and soldout[1].origin_price != null ?
+              #numbers.formatInteger(soldout[1].origin_price, 3, 'COMMA') + ' Katte' : '-'}">-</div>
     <!-- _2025-05-01 판매완료 2 낙찰일 -->
-    <div class="_2025-05-01">-</div>
+    <!-- 판매 완료 2 낙찰일 -->
+    <div class="_2025-05-01"
+         th:text="${soldout != null and soldout.size() > 0 and soldout[1].ordered_at != null ?
+          #dates.format(soldout[1].ordered_at, 'yyyy-MM-dd') : '-'}">-</div>
     <!-- div480 판매완료 2 정산하기 버튼 -->
     <div class="div480">
-      <!-- rectangle-1703 판매완료 2 정산하기 버튼 테두리 -->
-      <div class="rectangle-1703"></div>
-      <!-- div49 판매완료 2 정산하기 버튼 텍스트 -->
-      <div class="div49">정산하기</div></div>
+      <div class="div49" style="color:gray; cursor:default;">정산완료</div>
     </div>
     <!-- line-3115 판매완료 2 하단 경계선 -->
     <div class="line-3115"></div>
@@ -445,4 +447,9 @@
 </script>
 
 </body>
+<div th:if="${settleMessage != null}">
+  <script>
+    alert([[${settleMessage}]]);
+  </script>
+</div>
 </html>

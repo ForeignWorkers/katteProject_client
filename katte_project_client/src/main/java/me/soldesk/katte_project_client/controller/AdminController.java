@@ -78,6 +78,13 @@ public class AdminController {
         int offset = (page - 1) * size;
 
         List<InspectionProductViewBean> list = inspectionListService.getInspectionItems(offset, size);
+
+        // 🔍 여기서 check_step 로그 찍기 (확인할 것 1)
+        for (InspectionProductViewBean item : list) {
+            System.out.println("🟨 check_result_id: " + item.getCheck_result_id() +
+                    " | check_step: " + (item.getCheck_step() != null ? item.getCheck_step().name() : "NULL"));
+        }
+
         int totalCount = inspectionListService.getInspectionTotalCount();
         int totalPages = Math.max(1, (int) Math.ceil((double) totalCount / size));
 
@@ -87,6 +94,7 @@ public class AdminController {
         model.addAttribute("reviewTotalPages", totalPages);
 
         model.addAttribute("activeTab", "review-area");
+
 
         //공통 페이징 항목들도 null 방지를 위해 추가
         model.addAttribute("memberTotalPages", 1);
