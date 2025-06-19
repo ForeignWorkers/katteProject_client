@@ -18,7 +18,7 @@
          th:data-brand="${product.brand_name}"
          th:data-name="${product.product_name}" />
 
-  <div class="div">구매 입찰하기</div>
+  <div class="div">구매 정보 확인</div>
   <img class="rectangle-1594" src="rectangle-15940.svg" />
   <div class="rectangle-1613"></div>
   <div class="rectangle-1604"></div>
@@ -27,46 +27,46 @@
        th:text="${product.product_name}">
   </div>
   <div class="_270" th:text="'옵션: ' + ${size}"></div>
-  <div class="div2">즉시 구매가</div>
-  <div class="_178-000" th:text=" ${price} + '₩'"></div>
-  <div class="div3">즉시 판매가</div>
-  <div th:if="${#lists.isEmpty(sell_price_list)}">
-    <div class="_168-000">정보 없음</div>
+  <div class="div3">상품 가격</div>
+  <div class="_168-000" th:text=" ${price} + '₩'"></div>
+<!--  <div class="div3">즉시 판매가</div>-->
+<!--  <div th:if="${#lists.isEmpty(sell_price_list)}">-->
+<!--    <div class="_168-000">정보 없음</div>-->
+<!--  </div>-->
+<!--  <div th:unless="${#lists.isEmpty(sell_price_list)}" th:each="sp : ${sell_price_list}">-->
+<!--    <div th:if="${sp.auction_size_value == size}"-->
+<!--         th:text="${#numbers.formatInteger(sp.price, 3, 'COMMA')} + ' ₩'"-->
+<!--         class="_168-000">-->
+<!--    </div>-->
   </div>
-  <div th:unless="${#lists.isEmpty(sell_price_list)}" th:each="sp : ${sell_price_list}">
-    <div th:if="${sp.auction_size_value == size}"
-         th:text="${#numbers.formatInteger(sp.price, 3, 'COMMA')} + ' ₩'"
-         class="_168-000">
-    </div>
-  </div>
-  <div class="line-262"></div>
-  <div class="rectangle-1614"></div>
-    <div class="rectangle-1615"></div>
-  <a th:href="@{/product/payment}">
-  <div class="rectangle-1616"></div>
-  </a>
-  <div class="div4">구매 입찰</div>
-  <a th:href="@{/product/payment}">
-  <div class="div5">즉시 구매 </div>
-  </a>
+<!--  <div class="line-262"></div>-->
+<!--  <div class="rectangle-1614"></div>-->
+    <div class="rectangle-1616"></div>
+<!--  <a th:href="@{/product/payment}">-->
+<!--  <div class="rectangle-1616"></div>-->
+<!--  </a>-->
+  <div class="div5">금액 확인</div>
+<!--  <a th:href="@{/product/payment}">-->
+<!--  <div class="div5">즉시 구매 </div>-->
+<!--  </a>-->
 
-  <div class="div6">구매 희망가</div>
+  <div class="div8">금액 입력란</div>
   <input type="number"
          id="originPriceInput"
          name="origin_price"
-         class="_172-000"
+         class="_86-000"
          placeholder="금액 입력"
          style="color: black;"
          oninput="updateLockedKatte()" />
-  <div class="div7">₩</div>
-  <div class="div8">예수금 적용</div>
-  <input type="text"
-         id="lockedKatteDisplay"
-         class="_86-000"
-         value=""
-         style="color: black;"
-         disabled />
-  <input type="hidden" id="lockedKatteInput" name="locked_katte" />
+<!--  <div class="div7">₩</div>-->
+<!--&lt;!&ndash;  <div class="div8">예수금 적용</div>&ndash;&gt;-->
+<!--  <input type="text"-->
+<!--         id="lockedKatteDisplay"-->
+<!--         class="_86-000"-->
+<!--         value=""-->
+<!--         style="color: black;"-->
+<!--         disabled />-->
+<!--  <input type="hidden" id="lockedKatteInput" name="locked_katte" />-->
   <div class="div9">₩</div>
   <div class="rectangle-16182"></div>
   <div class="div10">보유 머니현황</div>
@@ -75,7 +75,7 @@
   </div>
   <div class="katte">katte</div>
   <div class="rectangle-16183"></div>
-  <div class="div11">입찰 마감기한</div>
+  <div class="div11">거래 마감기한</div>
   <div class="_60-2025-07-22"
        th:text="'(' + ${#strings.substring(auctionEndTime, 0, 10).replace('-', '/')} + ' 마감)'">
   </div>
@@ -87,7 +87,7 @@
     <input type="hidden" id="formOriginPrice" name="origin_price" />
     <input type="hidden" name="size" th:value="${size}" />
 
-    <button type="submit" class="div12">구매 입찰 계속</button>
+    <button type="submit" class="div12">구매 계속하기</button>
   </form>
  
 </div>
