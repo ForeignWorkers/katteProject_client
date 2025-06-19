@@ -206,7 +206,7 @@
       <div class="_179-000-katte5">179,000 katte・결제하기</div>
     </div> -->
     <div class="div151">적립 예정 포인트</div>
-    <div class="_910-p">910 p</div>
+    <div class="_910-p" id="expectedPointText">910 p</div>
   </div>
   <div class="div171">포인트</div>
 <div class="rectangle-1720">
@@ -391,6 +391,9 @@ document.addEventListener('DOMContentLoaded', async function () {
   const deliveryFee = 3000;
   let couponDiscount = 0;
   let pointDiscount = 0;
+  // 📌 예상 적립 포인트 계산: 3%
+  const expectedPoint = Math.floor(originPrice * 0.03); // 소수점 내림
+  document.getElementById("expectedPointText").textContent = `${expectedPoint.toLocaleString()} p`;
 
   // ───────────── 포인트 관련 기능 추가 ─────────────
   const pointInput = document.getElementById("pointInput");
