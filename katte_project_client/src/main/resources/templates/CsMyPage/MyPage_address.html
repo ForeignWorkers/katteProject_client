@@ -9,15 +9,13 @@
 <body>
     <div th:replace="~{Fragments/Sidebar :: sidebar}">
 
-    </div><div class="contentWrapper">
+    </div>
+    <div class="contentWrapper">
         <div id = "MyPageBar"> <!--상단 마이페이지 바-->
             <div id = "MyPageText">MyPage</div>
             <div id = "ClickBox">
                 <a href="/MyPage" id = "buyList">
                     <div>구매내역</div>
-                </a>
-                <a href="/Favorite" id = "favorite">
-                    <div>관심</div>
                 </a>
                 <a href="/MyStyle" id = "MyStyle">
                     <div>스타일</div>
@@ -65,7 +63,7 @@
                   <div class = "address-list-content-box">
                       <div class = "address-text-content-box" id = "address-content-box-id">
                         <div class = "main-address-name-box" th:text="'이름 : ' +${al.name}">이름</div>
-                        <div class = "main-address-phone-box" th:text="'전화번호 : 0' + ${al.phone_number}">전화번호</div>
+                        <div class = "main-address-phone-box" th:text="'전화번호 : ' + ${al.phone_number}">전화번호</div>
                         <div class = "address-line1-box" th:text="'도로명주소 : ' + ${al.address_line01}">주소1</div>
                         <div class = "address-line2-box" th:text="'상세 주소 : ' + ${al.address_line02}">주소2</div>
                         <div class = "address-post-box" th:text="'우편번호 : ' + ${al.post_num}">우편번호</div>
