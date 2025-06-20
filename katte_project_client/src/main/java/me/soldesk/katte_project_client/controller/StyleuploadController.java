@@ -99,6 +99,6 @@ public class StyleuploadController {
         );
         System.out.println("2323233");
         // ⑤ 업로드 완료 후 마이페이지로 리다이렉트
-        return "/CsMypage/Mypage_mystyle";
+        return "/Stylepage/Stylepage";
     }
 }
