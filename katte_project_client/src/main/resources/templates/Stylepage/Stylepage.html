@@ -135,9 +135,17 @@
       imgContainer.appendChild(img);
 
       // — 기존 구현: 제목·캡션 바인딩 —
-      cardEl.querySelector('.title').textContent   = item.style_title || '';
-      cardEl.querySelector('.caption').textContent = item.caption     || '';
+      cardEl.querySelector('.title').textContent =
+              !item.style_title || item.style_title === "제목 없음" ? '' : item.style_title;
+      
+      const captionEl = cardEl.querySelector('.caption');
+      const caption = item.caption ?? "";
 
+      if (caption.substring(0, 5) === "제목 없음") {
+        captionEl.textContent = ''; // 혹은 '(설명 없음)' 같이 대체 텍스트
+      } else {
+        captionEl.textContent = caption;
+      }
       // — 기존 구현: 해시태그(item.hashtags) 렌더링 —
       const tagContainer = cardEl.querySelector('.hashtags-list');
       tagContainer.innerHTML = '';
