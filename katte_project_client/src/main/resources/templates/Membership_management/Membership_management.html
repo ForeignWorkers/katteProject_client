@@ -77,7 +77,7 @@
           <th>닉네임</th>
           <th>계정 ID</th>
           <th>회원 가입일</th>
-          <th>게시글 &amp; 댓글 수</th>
+          <th>스타일 &amp; 댓글 수</th>
           <th>회원 상태 관리</th>
         </tr>
         </thead>
@@ -89,7 +89,7 @@
           <td th:text="${user.email_id}">계정ID</td>
           <td th:text="${#dates.format(user.registration_date, 'yyyy-MM-dd')}">가입일</td>
           <td class="post-cell">
-            <span th:text="'게시글: ' + ${user.style_count} + '개'"></span><br />
+            <span th:text="'스타일: ' + ${user.style_count} + '개'"></span><br />
             <span th:text="'댓글: ' + ${user.comment_count} + '개'"></span>
           </td>
           <td class="status-cell">
@@ -269,7 +269,7 @@
         <tr th:each="item : ${inspectionList}">
           <td>
             <span th:text="${item.product_name}">상품명</span><br/>
-            <button class="detail-btn" th:attr="data-id=${item.check_result_id}">상세 보기</button>
+            <!--<button class="detail-btn" th:attr="data-id=${item.check_result_id}">상세 보기</button>-->
           </td>
           <td th:text="${item.shortform_title}">타이틀</td>
           <td th:text="${item.seller_email}">판매자</td>
