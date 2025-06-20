@@ -66,7 +66,7 @@ public class StyleService {
         Map<String, String> reqQuery = new HashMap<>();
 
         reqQuery.put("style_id", Integer.toString(style.getId()));
-        reqQuery.put("product_id", hashtags.get(0));
+        reqQuery.put("product_id", productTags.get(0));
 
         TypeReference<Boolean> ref = new TypeReference<>(){};
 
