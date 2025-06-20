@@ -255,7 +255,9 @@
               const tagContainer = document.querySelector(".group-975");
               tagContainer.innerHTML = ''; // 기존 내용 제거
               const res = await fetch(`/content/stylePrdouct?style_id=${styleId}`)
+              const products = await res.json();
               for (const productId of products) {
+                console.log("productId" + productId);
                 const wrapper = document.createElement("div");
 
                 const res = await fetch(`/content/getProduct?product_id=${productId}`);
@@ -280,7 +282,17 @@
                 }
                 const imagePathBase = `${resourceUrl}images/${productId}/${productId}_1`;
 
+                const img = new Image();
                 let finalSrc = imagePathBase + '.png';
+
+                img.src = finalSrc;
+
+// PNG 로딩 실패 시 JPG로 대체
+                img.onerror = () => {
+                  img.onerror = null; // 무한 루프 방지
+                  img.src = imagePathBase + '.jpg';
+                };
+
                 console.log("finalSrc" + finalSrc)
 
                 try {
