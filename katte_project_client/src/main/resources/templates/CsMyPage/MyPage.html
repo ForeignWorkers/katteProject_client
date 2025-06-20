@@ -52,7 +52,7 @@
                     <div id = "ProductName" th:text="'상품명 : ' + ${productInfoMap[order.product_id].product_name_kor}">
                         상품명
                     </div>
-                    <div id = "ProductPrice" th:text="${#numbers.formatInteger(order.final_price, 3, 'COMMA')} + '원'">>
+                    <div id = "ProductPrice" th:text="${#numbers.formatInteger(order.origin_price, 3, 'COMMA')} + '원'">>
                         상품 가격
                     </div>
                 </div>
