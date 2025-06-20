@@ -249,7 +249,7 @@ html, body {
   letter-spacing: -0.03em;
   font-weight: 400;
   position: absolute;
-  left: 1174.7px;
+  left: 870.7px;
   top: 314.5px;
   width: 119.9px;
   height: 39.95px;
@@ -266,8 +266,8 @@ html, body {
   letter-spacing: -0.03em;
   font-weight: 400;
   position: absolute;
-  left: 1048.05px;
-  top: 344.25px;
+  left: 750px;
+  top: 360px;
   width: 367.2px;
   height: 56.1px;
   display: flex;
@@ -315,7 +315,7 @@ html, body {
   width: 522.75px;
   height: 74.81px;
   position: absolute;
-  left: 943.5px;
+  left: 670px;
   top: 424.15px;
 }
 .div4 {
@@ -344,7 +344,7 @@ html, body {
   letter-spacing: -0.06em;
   font-weight: 700;
   position: absolute;
-  left: 1131.35px;
+  left: 830px;
   top: 443.26px;
   width: 201.45px;
   height: 36.57px;
@@ -453,6 +453,7 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  background: transparent;
 }
 .div9 {
   color: #f9eeee;
