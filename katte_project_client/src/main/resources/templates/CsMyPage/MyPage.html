@@ -55,13 +55,6 @@
                     <div id = "ProductPrice" th:text="${#numbers.formatInteger(order.final_price, 3, 'COMMA')} + '원'">>
                         상품 가격
                     </div>
-                    <button
-                            type="button"
-                            th:if="!${order.is_buy_complete}"
-                            th:onclick="'confirmOrder(' + ${order.order_id} + ')'"
-                    >
-                        구매 확정
-                    </button>
                 </div>
             </div>
         </div>
