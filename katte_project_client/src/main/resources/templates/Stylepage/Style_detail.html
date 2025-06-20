@@ -46,7 +46,6 @@
 </div>
 
 <div class="styletitle"></div>
-<div class="stylecaption"></div>
 
 <div class="hashtag"></div>
 
@@ -209,7 +208,6 @@
 
               // 제목/캡션/해시태그 세팅
               document.querySelector('.styletitle').textContent = data.style_title || '';
-              document.querySelector('.stylecaption').textContent = data.caption || '';
               const htContainer = document.querySelector('.hashtag');
               htContainer.innerHTML = '';
               (data.hashtags || []).forEach(ht => {
@@ -280,32 +278,26 @@
                   console.warn(`❌ 상품 ID ${productId} 데이터가 비어 있음`);
                   continue;
                 }
-                const imagePathBase = `${resourceUrl}images/${productId}/${productId}_1`;
+                // 이미지 확장자 우선순위 체크 함수
+                async function getValidImageUrl(basePath) {
 
-                const img = new Image();
-                let finalSrc = imagePathBase + '.png';
-
-                img.src = finalSrc;
-
-// PNG 로딩 실패 시 JPG로 대체
-                img.onerror = () => {
-                  img.onerror = null; // 무한 루프 방지
-                  img.src = imagePathBase + '.jpg';
-                };
-
-                console.log("finalSrc" + finalSrc)
-
-                try {
-                  const res = await fetch(finalSrc, { method: 'HEAD' });
-                  if (!res.ok) {
-                    console.log("AA rest");
-                    finalSrc = imagePathBase + '.jpg';
+                  console.log("AAAAA" + basePath);
+                  const extensions = ['.png', '.jpg'];
+                  for (const ext of extensions) {
+                    const url = basePath + ext;
+                    try {
+                      const res = await fetch(url, { method: 'HEAD' });
+                      if (res.ok) return url;
+                    } catch (e) {
+                      console.warn(`❌ HEAD 요청 실패: ${url}`);
+                    }
                   }
-                } catch (e) {
-                  console.log("BBB rest");
-                  finalSrc = imagePathBase + '.jpg';
+                  return '/img/default.png';
                 }
 
+                const imagePathBase = `${resourceUrl}images/${productId}/${productId}_1`;
+                const finalSrc = await getValidImageUrl(imagePathBase);
+                console.log("finalSrc" + finalSrc)
                 wrapper.className = "_1";
 
                 wrapper.innerHTML = `
