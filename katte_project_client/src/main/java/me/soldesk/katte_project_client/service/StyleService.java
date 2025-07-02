@@ -65,7 +65,7 @@ public class StyleService {
         //프로덕트 아이디 업로드
         Map<String, String> reqQuery = new HashMap<>();
 
-        reqQuery.put("style_id", Integer.toString(style.getId()));
+        reqQuery.put("style_id", Integer.toString(styleId));
         reqQuery.put("product_id", productTags.get(0));
 
         TypeReference<Boolean> ref = new TypeReference<>(){};
